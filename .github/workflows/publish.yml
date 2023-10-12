@@ -17,7 +17,7 @@ jobs:
       id: changed-docker-files
       uses: tj-actions/changed-files@v38
       with:
-          files: .github/Dockerfile
+          files: Dockerfile
 
     - name: Login to GitHub Container Registry
       uses: docker/login-action@v2
