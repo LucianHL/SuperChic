@@ -28,6 +28,7 @@ jobs:
     - name: Build the superchic Docker image
       if: steps.changed-docker-files.outputs.any_changed == 'true' || ${{ github.event_name == 'schedule' }}
       run: |
+         cd .github
          docker build . --tag ghcr.io/andriish/superchic:latest
          docker run ghcr.io/andriish/superchic:latest
          docker push ghcr.io/andriish/superchic
