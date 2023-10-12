@@ -50,4 +50,7 @@ jobs:
     - name: Run
       run : |
          mkdir -p obj lib
-         gmake 
+         gmake
+         ls -lah 
+         ls -lah bin
+         bin/init < bin/input.DAT
