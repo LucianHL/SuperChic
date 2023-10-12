@@ -52,4 +52,7 @@ jobs:
          gmake
          ls -lah 
          ls -lah bin
-         bin/init < bin/input.DAT
+         mkdir RUN
+         cd RUN
+         cp -r ../bun/input ./
+         ../bin/init < ../bin/input.DAT
