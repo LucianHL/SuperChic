@@ -399,7 +399,7 @@ c        write(*,*) 'read model file ',tempname
 40      tempname='../'//tempname
         if (i.eq.5)then
            write(*,*) 'Warning: file ',filename,
-     &                           ' not found in the parent directories!(lha_read)'
+     &  ' not found in the parent directories!(lha_read)'
            stop
         endif
       enddo
