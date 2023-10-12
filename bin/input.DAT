@@ -1,7 +1,7 @@
 ****************************************************************************************
 ******  RE-RUN ./init IF FIRST FIVE PARAMETERS ARE CHANGED (and beam = 'prot'):  *******
 ****************************************************************************************
-5.02d3           !  [rts] : CMS collision energy (GeV)
+13d3           !  [rts] : CMS collision energy (GeV)
 4	       !  [isurv] : Model of soft survival (from 1 -> 4, corresponding to arXiv:1306.2149)
 'in13'         !  [intag] for input files 
 ****************************************************************************************
@@ -10,9 +10,9 @@
 0                    ! [PDFmember] : PDF member
 ****************************************************************************************
 56      !  [proc] : Process number (see manual for labelling)
-'ion'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
+'prot'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
 'test'          ! [outtg]
-.true.  !  [sfaci] : Include soft survival effects
+.false.  !  [sfaci] : Include soft survival effects
 ****************************************************************************************
 ************************* Dissociation parameters for PI  ******************************
 ****************************************************************************************
@@ -33,7 +33,7 @@
 ****************************************************************************************
 10000       ! [ncall] : Number of calls for preconditioning
 10          ! [itmx] : Number of iterations for preconditioning
-1d0          ! [prec]
+10d0          ! [prec]
 10000       ! [ncall1] : Number of calls in first iteration
 10000       ! [inccall] : Number of increase calls per iteration
 1000        ! [itend] : Maximum number of iterations
@@ -41,7 +41,7 @@
 ****************************************************************************************
 ******************************* Unweighted events **************************************
 ****************************************************************************************
-.false.       ! [genunw] : Generate unweighted events
+.true.       ! [genunw] : Generate unweighted events
 10           ! [nev] : Number of events ( < 1000000 recommended)
 'lhe'	     ! [erec] : Event record format ('hepmc','lhe','hepevt')
 .false.	     ! [readwt] : Set to true to read in pre-calculated maxium weight below
