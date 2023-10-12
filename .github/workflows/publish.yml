@@ -56,6 +56,7 @@ jobs:
       run : |
          mkdir -p obj lib
          gmake
+         gmake init
          ls -lah 
          ls -lah bin
          mkdir RUN
