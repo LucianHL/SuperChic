@@ -61,5 +61,6 @@ jobs:
          ls -lah bin
          mkdir RUN
          cd RUN
+         mkdir -p inputs
          cp -r ../bin/init ./
          ../bin/init < ../bin/input.DAT
