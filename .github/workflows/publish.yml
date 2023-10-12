@@ -25,9 +25,14 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build the superchic Docker image
+    - name: Build the superchic Docker image on the change of Dockerfile
       if: steps.changed-docker-files.outputs.any_changed == 'true' 
-      #|| ${{ github.event_name == 'schedule' }}
+      run: |
+         docker build . --tag ghcr.io/andriish/superchic:latest
+         docker run ghcr.io/andriish/superchic:latest
+         docker push ghcr.io/andriish/superchic
+    - name: Build the superchic Docker image on schedule
+      if: ${{ github.event_name == 'schedule' }}
       run: |
          docker build . --tag ghcr.io/andriish/superchic:latest
          docker run ghcr.io/andriish/superchic:latest
