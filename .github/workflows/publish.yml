@@ -26,7 +26,8 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the superchic Docker image
-      if: steps.changed-docker-files.outputs.any_changed == 'true' || ${{ github.event_name == 'schedule' }}
+      if: steps.changed-docker-files.outputs.any_changed == 'true' 
+      #|| ${{ github.event_name == 'schedule' }}
       run: |
          docker build . --tag ghcr.io/andriish/superchic:latest
          docker run ghcr.io/andriish/superchic:latest
