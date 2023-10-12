@@ -47,4 +47,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Run
       run : |
+         mkdir -p obj lib
          gmake 
