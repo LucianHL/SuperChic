@@ -1,0 +1,161 @@
+--- makefile.orig	2023-08-30 15:39:52.950992462 +0200
++++ makefile	2023-08-30 18:16:13.237975639 +0200
+@@ -377,7 +377,7 @@
+ 
+ #
+ 
+-sCODELHAi = $(Mainf) $(Mesf) $(EW) $(PDFsfLHA) $(Intf) $(Phasef) $(Subampsf) $(Survf) $(Userf) $(sPDFsf) $(Unwf) $(Varf) $(LbyLf) $(InitfION) $(Dissf) $(Helas) $(Model) $(MG)
++sCODELHAi = $(Mainf) $(Mesf) $(EW) $(PDFsfLHA) $(Intf) $(Phasef) $(Subampsf) $(Survf) $(Userf) $(sPDFsf) $(Unwf) $(Varf) $(LbyLf) $(InitfION) $(Dissf) $(InitfLHA) $(Helas) $(Model) $(MG)
+ 
+ sCODELHA = $(patsubst %,$(OBJ_PATH)%,$(sCODELHAi))
+ 
+@@ -391,7 +391,11 @@
+ 
+ all : init superchic superchicLib
+ 
+-superchicLib: $(sCODELHA) 
++# Rule to compile the get_env_var.c file
++$(OBJ_PATH)get_env_var.o: get_env_var.c
++	gcc -fPIC -c $< -o $@
++
++superchicLib: $(sCODELHA) $(OBJ_PATH)get_env_var.o 
+ 	$(FC) -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -mcmodel=large -shared -fPIC -o lib/libsuperchic.so $^
+ 	ar rc lib/libsuperchic.a obj/*.o
+ 
+@@ -404,11 +408,22 @@
+ $(OBJ_PATH)%.o: %.f
+ 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
+ 
+-superchic : $(OBJ_PATH)superchic.o $(sCODELHA) 
++superchic : $(OBJ_PATH)superchic.o $(sCODELHA) $(OBJ_PATH)get_env_var.o  
+ 	$(FC) $^ -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -o bin/$@
+ 
+-init : $(OBJ_PATH)init.o $(iCODELHA) 
++init : $(OBJ_PATH)init.o $(iCODELHA) $(OBJ_PATH)get_env_var.o  
+ 	$(FC) $^ -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -o bin/$@
+ 
+ clean:
+ 	rm -f bin/init bin/superchic lib/lib* *.o $(OBJ_PATH)*.o
++
++install: all
++	@echo "Installing to $$PREFIX..."
++	@mkdir -p $$PREFIX
++	@cp -r obj $$PREFIX/
++	@cp -r bin $$PREFIX/
++	@cp -r doc $$PREFIX/
++	@cp -r lib $$PREFIX/
++	@cp -r src $$PREFIX/
++	@cp -r Cards $$PREFIX/
++	@echo "Installation complete."
+diff -uprN src/main/superchic.f src/main/superchic.f
+--- src/main/superchic.f	2021-03-04 20:12:46.000000000 +0100
++++ src/main/superchic.f	2021-03-08 02:49:35.224883656 +0100
+@@ -628,8 +628,10 @@ ccccccccc
+       endif
+          
+       if(qcd)then
+-         call calcsud
+-         call calchg
++C         call calcsud
++C         call calchg
++         call readsud
++         call readhg
+       endif
+ 
+       if(beam.eq.'ion'.or.beam.eq.'ionp')call ioninit
+diff -uprN src/sPDFs/calchg.f src/sPDFs/calchg.f
+--- src/sPDFs/calchg.f	2021-03-04 20:12:28.000000000 +0100
++++ src/sPDFs/calchg.f	2021-03-08 02:50:40.046215372 +0100
+@@ -1,5 +1,6 @@
+ ccc   read in skewed pdf from file
+-      subroutine calchg
++C      subroutine calchg
++      subroutine readhg
+       implicit double precision(a-y)
+       integer i,itot,j,jtot,outl
+ 
+diff -uprN src/sPDFs/calcsud.f src/sPDFs/calcsud.f
+--- src/sPDFs/calcsud.f	2021-03-04 20:12:28.000000000 +0100
++++ src/sPDFs/calcsud.f	2021-03-08 02:50:52.728888804 +0100
+@@ -1,5 +1,6 @@
+ ccc   reads Sudakov factor from file
+-      subroutine calcsud
++C      subroutine calcsud
++      subroutine readsud
+       implicit double precision(a-y)
+       integer i,itot,j,jtot,outl
+
+--- /dev/null	2023-08-23 04:27:25.596000000 +0200
++++ get_env_var.c	2023-08-30 13:02:04.777333732 +0200
+@@ -0,0 +1,15 @@
++#include <stdlib.h>
++
++void get_env_var_(const char* env_var_name, char* value, int* length) {
++    char* env_value = getenv(env_var_name);
++    if (env_value) {
++        int i;
++        for (i = 0; env_value[i] != '\0' && i < *length; i++) {
++            value[i] = env_value[i];
++        }
++        *length = i;  // Return the actual length of the environment variable value
++    } else {
++        value[0] = '\0';  // If not found, return an empty string
++        *length = 0;
++    }
++}
+--- src/inition/gdrin.f.orig	2023-08-30 16:37:28.594739012 +0200
++++ src/inition/gdrin.f	2023-08-30 16:40:03.096267501 +0200
+@@ -11,12 +11,27 @@
+       include 'gdr.f'
+       include 'sAA.f'
+       
++      integer length
++      character*500 valuepath
++      length = 500
++      CALL GET_ENV_VAR('SUPERCHIC_SOURCE_PATH', valuepath, length)
++   
++      ! Check if the environment variable is set
++      if (length > 0) then      
++        open(10,file=valuepath(1:length) // '/src/inition/GDR/Veyssiere_singleneut.dat')
++        open(11,file=valuepath(1:length) // '/src/inition/GDR/Lepretre25_103.dat')
++        open(12,file=valuepath(1:length) // '/src/inition/GDR/Carlos_106_440.dat')
++        open(13,file=valuepath(1:length) // '/src/inition/GDR/gampgamn.dat')
++        open(14,file=valuepath(1:length) // '/src/inition/GDR/Caldwell.dat')
++        open(50,file=valuepath(1:length) // '/src/inition/GDR/Muccifora.dat')
++      else
+       open(10,file='../src/inition/GDR/Veyssiere_singleneut.dat')
+       open(11,file='../src/inition/GDR/Lepretre25_103.dat')
+       open(12,file='../src/inition/GDR/Carlos_106_440.dat')
+       open(13,file='../src/inition/GDR/gampgamn.dat')
+       open(14,file='../src/inition/GDR/Caldwell.dat')
+       open(50,file='../src/inition/GDR/Muccifora.dat')
++      endif
+       
+       i0=161 ! GDR, Veyssiere et al. Nucl. Phys. A159, 561 (1970)
+       i1=189 ! 25-103 MeV, Lepretre, et al., Nucl. Phys. A367, 237 (1981)
+--- src/diss/Elastic.f.orig	2023-08-30 16:38:21.976921611 +0200
++++ src/diss/Elastic.f	2023-08-30 16:41:52.220640773 +0200
+@@ -127,10 +127,21 @@
+       subroutine readcoh
+       implicit double precision(a-y)
+       integer i
+-      
+       include 'gcoh.f'
+ 
++      integer length
++      character*500 valuepath
++      length = 500
++ 
++      CALL GET_ENV_VAR('SUPERCHIC_SOURCE_PATH', valuepath, length)
++   
++      ! Check if the environment variable is set
++      if (length > 0) then
++         open(40,file=valuepath(1:length) // '/src/diss/SplinesWithVariableKnots.dat') 
++      else
+       open(40,file='../src/diss/SplinesWithVariableKnots.dat')
++      endif
++
+ 
+       do i=1,1000
+          read(40,*)gcoh(1,i),gcoh(2,i),dum,dum,dum,gcoh(3,i)
+ 
