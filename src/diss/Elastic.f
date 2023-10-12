@@ -137,7 +137,8 @@ cccccc
    
       ! Check if the environment variable is set
       if (length > 0) then
-         open(40,file=valuepath(1:length) // '/src/diss/SplinesWithVariableKnots.dat') 
+         open(40,file=valuepath(1:length) // 
+     &'/src/diss/SplinesWithVariableKnots.dat') 
       else
       open(40,file='../src/diss/SplinesWithVariableKnots.dat')
       endif

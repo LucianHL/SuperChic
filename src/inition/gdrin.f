@@ -18,12 +18,18 @@
    
       ! Check if the environment variable is set
       if (length > 0) then      
-        open(10,file=valuepath(1:length) // '/src/inition/GDR/Veyssiere_singleneut.dat')
-        open(11,file=valuepath(1:length) // '/src/inition/GDR/Lepretre25_103.dat')
-        open(12,file=valuepath(1:length) // '/src/inition/GDR/Carlos_106_440.dat')
-        open(13,file=valuepath(1:length) // '/src/inition/GDR/gampgamn.dat')
-        open(14,file=valuepath(1:length) // '/src/inition/GDR/Caldwell.dat')
-        open(50,file=valuepath(1:length) // '/src/inition/GDR/Muccifora.dat')
+        open(10,file=valuepath(1:length) // 
+     &'/src/inition/GDR/Veyssiere_singleneut.dat')
+        open(11,file=valuepath(1:length) // 
+     &'/src/inition/GDR/Lepretre25_103.dat')
+        open(12,file=valuepath(1:length) // 
+     &'/src/inition/GDR/Carlos_106_440.dat')
+        open(13,file=valuepath(1:length) //
+     &'/src/inition/GDR/gampgamn.dat')
+        open(14,file=valuepath(1:length) // 
+     &'/src/inition/GDR/Caldwell.dat')
+        open(50,file=valuepath(1:length) // 
+     &'/src/inition/GDR/Muccifora.dat')
       else
       open(10,file='../src/inition/GDR/Veyssiere_singleneut.dat')
       open(11,file='../src/inition/GDR/Lepretre25_103.dat')

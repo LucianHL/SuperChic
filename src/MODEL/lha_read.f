@@ -269,7 +269,8 @@ c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
-      subroutine LHA_get_real_silent(npara,param,value,name,var,def_value_num)
+      subroutine LHA_get_real_silent(npara,param,value,name,var,
+     &def_value_num)
 c----------------------------------------------------------------------------------
 c     finds the parameter named "name" in param and associate to "value" in value
 c----------------------------------------------------------------------------------
