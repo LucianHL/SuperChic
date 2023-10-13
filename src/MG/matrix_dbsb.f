@@ -514,7 +514,7 @@ C     Amplitude(s) for diagram number 51
       endif
 
       if(addnsf)then
-         JAMP(1)=-AMP(1)-AMP(2)-AMP(3)-AMP(4)-AMP(5)-AMP(6)-AMP(7)-AMP(8)                                                                                    
+        JAMP(1)=-AMP(1)-AMP(2)-AMP(3)-AMP(4)-AMP(5)-AMP(6)-AMP(7)-AMP(8)                                                                                    
      $ -AMP(9)-AMP(10)-AMP(11)-AMP(12)-AMP(13)-AMP(14)-AMP(15)-AMP(16)
      $ -AMP(17)-AMP(18)-AMP(19)-AMP(20)-AMP(21)-AMP(22)-AMP(23)-AMP(24)
      $ -AMP(25)-AMP(26)-AMP(27)-AMP(28)-AMP(29)-AMP(30)-AMP(31)-AMP(32)
