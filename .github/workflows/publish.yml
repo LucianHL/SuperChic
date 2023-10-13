@@ -66,4 +66,7 @@ jobs:
          ../bin/init < ../test/input.DAT_1
          ../bin/superchic < ../test/input.DAT_1
          find ./
-         cat evrecs/evrectest.dat  
+         cat evrecs/evrectest.dat
+         ../bin/superchic < ../test/input.DAT_2
+         find ./
+         cat evrecs/evrectest.dat
