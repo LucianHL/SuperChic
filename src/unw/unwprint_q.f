@@ -337,7 +337,7 @@ c$$$ 55      format(8a)
      &        ,' ',E15.9,' ',E15.9,' ',i0,' ',E15.9,' ',E15.9,' ',i0
      &        ,' ',i0,' ',i0)
  55      format(8a)
-
+ 56      format(A1,' ',E15.9,' ',E15.9)
 ccccccccccccccccccccccccccccccccccccccccccccccc
 ccccc Les Houches
 ccccccccccccccccccccccccccccccccccccccccccccccc
