@@ -391,11 +391,8 @@ iCODEION = $(patsubst %,$(OBJ_PATH)%,$(iCODEIONi))
 
 all : init superchic superchicLib
 
-# Rule to compile the get_env_var.c file
-$(OBJ_PATH)get_env_var.o: get_env_var.c
-	gcc -fPIC -c $< -o $@
 
-superchicLib: $(sCODELHA) $(OBJ_PATH)get_env_var.o 
+superchicLib: $(sCODELHA)
 	$(FC) -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -mcmodel=large -shared -fPIC -o lib/libsuperchic.so $^
 	ar rc lib/libsuperchic.a obj/*.o
 
@@ -408,10 +405,10 @@ init.o:	init.f
 $(OBJ_PATH)%.o: %.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
 
-superchic : $(OBJ_PATH)superchic.o $(sCODELHA) $(OBJ_PATH)get_env_var.o  
+superchic : $(OBJ_PATH)superchic.o $(sCODELHA)
 	$(FC) $^ -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -o bin/$@
 
-init : $(OBJ_PATH)init.o $(iCODELHA) $(OBJ_PATH)get_env_var.o  
+init : $(OBJ_PATH)init.o $(iCODELHA)
 	$(FC) $^ -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -o bin/$@
 
 clean:
