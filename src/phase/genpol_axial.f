@@ -77,7 +77,7 @@
      &     e1(2)*dconjg(e1(2))-e1(1)*dconjg(e1(1))
 
       do i = 1,4
-         e1(i) = e1(i)/zsqrt(e1_norm)
+         e1(i) = e1(i)/sqrt(e1_norm)
       enddo
 
 
@@ -96,7 +96,7 @@
      &     e2(2)*dconjg(e2(2))-e2(1)*dconjg(e2(1))
 
       do i = 1,4
-         e2(i) = e2(i)/zsqrt(e2_norm)
+         e2(i) = e2(i)/sqrt(e2_norm)
       enddo
 
 
