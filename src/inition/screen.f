@@ -4,7 +4,9 @@
       double precision opacpbpint,opacpbint
       double precision b0,hbt0,sum0,btminb
       integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision dbesj0 
+!endif
       include 'pi.f'
       include 'ion.f'
       include 'beam.f'
@@ -44,7 +46,7 @@
          if(beam.eq.'ion')wt=1d0-opacpbint(bt)
          if(beam.eq.'ionp')wt=1d0-opacpbpint(bt)
 
-         wt=wt*besj0(qt*bt)
+         wt=wt*dbesj0(qt*bt)
          wt=-wt*bt*hbt0/2d0/pi
 
          sum0=sum0+wt
@@ -63,7 +65,7 @@
          if(beam.eq.'ion')wt=1d0-opacpbint(bt)
          if(beam.eq.'ionp')wt=1d0-opacpbpint(bt)
  
-         wt=wt*besj0(qt*bt)
+         wt=wt*dbesj0(qt*bt)
          wt=-wt*bt*hbt/2d0/pi
 
          sum=sum+wt

@@ -5,7 +5,9 @@
       double precision b0,hbt0,sum0,btminb
       double precision btmin,btmax,aj0,aj0t,opac0,sumt
       integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision dbesj0 
+!endif
       include 'pi.f'
       include 'ion.f'
       include 'beam.f'
@@ -41,7 +43,7 @@ cccccccccccc
          opac0=opac0/(-2d0*pi*aj0)*bt
 
          wt=wt*(opac0-1d0)
-         wt=wt*besj0(qt*bt)
+         wt=wt*dbesj0(qt*bt)
          wt=wt*hbt
 
          sumt=sumt+wt
