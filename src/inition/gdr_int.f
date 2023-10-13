@@ -162,7 +162,9 @@
       double precision qtmin,hlq2
       double precision tpint
       integer i,itot
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision besj1
+!endif
       include 'ion.f'
       include 'gdr.f'
       include 'mion.f'

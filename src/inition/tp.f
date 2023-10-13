@@ -2,7 +2,9 @@
       implicit none
       double precision sum,btmax,hb,qt,tpz,bt,wt,rhoxyint
       integer n,ntot
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision besj0 
+!endif
       include 'pi.f'
       include 'ion.f'
       
@@ -34,7 +36,9 @@
       implicit none
       double precision btmax,sum,hb,bt,qt,wt,rhoxyint,tpn
       integer n,ntot
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision besj0 
+!endif
       include 'pi.f'
       include 'ion.f'
   

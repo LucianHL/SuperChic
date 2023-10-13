@@ -32,7 +32,9 @@
       double precision btmax,hb,sum,wt,sudgam,bt,lt,mll
       double precision sudgam_bt
       integer n,ntot
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision besj0 
+!endif
       include 'pi.f'
       include 'ion.f'
       

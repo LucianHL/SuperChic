@@ -4,7 +4,9 @@
       double precision opacpbpint,opacpbint
       double precision b0,hbt0,sum0,btminb
       integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
-
+!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
+      double precision besj0 
+!endif
       include 'pi.f'
       include 'ion.f'
       include 'beam.f'
