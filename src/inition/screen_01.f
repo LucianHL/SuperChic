@@ -43,7 +43,7 @@ cccccccccccc
          opac0=opac0/(-2d0*pi*aj0)*bt
 
          wt=wt*(opac0-1d0)
-         wt=wt*besj0(qt*bt)
+         wt=wt*dbesj0(qt*bt)
          wt=wt*hbt
 
          sumt=sumt+wt
