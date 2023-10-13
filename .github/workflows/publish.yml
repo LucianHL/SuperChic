@@ -28,22 +28,22 @@ jobs:
     - name: Build the superchic Docker image on the change of Dockerfile
       if: steps.changed-docker-files.outputs.any_changed == 'true' 
       run: |
-         docker build . --tag ghcr.io/LucianHL/superchic:latest
-         docker run ghcr.io/LucianHL/superchic:latest
-         docker push ghcr.io/LucianHL/superchic
+         docker build . --tag ghcr.io/lucianhl/superchic:latest
+         docker run ghcr.io/lucianhl/superchic:latest
+         docker push ghcr.io/lucianhl/superchic
     - name: Build the superchic Docker image on schedule
       if: ${{ github.event_name == 'schedule' }}
       run: |
-         docker build . --tag ghcr.io/LucianHL/superchic:latest
-         docker run ghcr.io/LucianHL/superchic:latest
-         docker push ghcr.io/LucianHL/superchic
+         docker build . --tag ghcr.io/lucianhl/superchic:latest
+         docker run ghcr.io/lucianhl/superchic:latest
+         docker push ghcr.io/lucianhl/superchic
 
   run-in-superchic-docker-image-gmake:
     name: Run in superchic Docker image  with gmake
     runs-on: ubuntu-latest
     needs: build-superchic-docker-image
     container:
-            image: ghcr.io/LucianHL/superchic:latest
+            image: ghcr.io/lucianhl/superchic:latest
             credentials:
                username: ${{ github.actor }}
                password: ${{ secrets.GITHUB_TOKEN }}
