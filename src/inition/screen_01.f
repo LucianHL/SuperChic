@@ -6,7 +6,7 @@
       double precision btmin,btmax,aj0,aj0t,opac0,sumt
       integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision besj0 
+      double precision dbesj0 
 !endif
       include 'pi.f'
       include 'ion.f'
