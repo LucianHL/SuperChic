@@ -602,7 +602,7 @@ C     Amplitude(s) for diagram number 86
       if(sfonly)then
          JAMP(2)=-AMP(18)-AMP(19)-AMP(20)
       else
-         JAMP(2)=-AMP(18)-AMP(19)-AMP(20)-AMP(21)-AMP(22)-AMP(23)-AMP(24)
+        JAMP(2)=-AMP(18)-AMP(19)-AMP(20)-AMP(21)-AMP(22)-AMP(23)-AMP(24)
      $ -AMP(25)-AMP(26)-AMP(27)-AMP(28)-AMP(29)       
          if(higgs)then
             JAMP(2)=JAMP(2)-AMP(30)
@@ -610,7 +610,7 @@ C     Amplitude(s) for diagram number 86
       endif
 
       if(addnsf)then
-         JAMP(2)=-AMP(18)-AMP(19)-AMP(20)-AMP(21)-AMP(22)-AMP(23)-AMP(24)
+        JAMP(2)=-AMP(18)-AMP(19)-AMP(20)-AMP(21)-AMP(22)-AMP(23)-AMP(24)
      $ -AMP(25)-AMP(26)-AMP(27)-AMP(28)-AMP(29)-AMP(30)-AMP(31)-AMP(32)
      $ -AMP(33)-AMP(34)-AMP(35)-AMP(36)-AMP(37)-AMP(38)-AMP(39)-AMP(40)
      $ -AMP(41)-AMP(42)-AMP(43)-AMP(44)-AMP(45)-AMP(46)-AMP(47)-AMP(48)
