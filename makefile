@@ -2,7 +2,8 @@ LIBFLAGlha = -lLHAPDF
 LIBFLAGapfel = -lAPFEL -lAPFELevol
 LHAPDFLIB = `lhapdf-config --prefix`/lib
 APFELLIB = /Users/luch/Desktop/superchics/apfel_install/lib
-FC = gfortran -g -w -Wall -fbacktrace -fcheck=all -fPIC -ffixed-line-length-132
+FC = gfortran -g -w -Wall -fbacktrace -fcheck=all -fPIC
+# -ffixed-line-length-132
 
 #####################
 

@@ -2,7 +2,8 @@ ccc   spin correlations for j_psi decay to mu+mu-
       subroutine jpsidecay(wt,wtt)
       implicit none
       double precision wtt,q10q11,q8q9,sdot,sh,pnorm
-      complex*16 ze6q8,qe7q10,qce7q10,zce7e7,ze7q10,zce7q10,zce6q8,zce6e6
+      complex*16 ze6q8,qe7q10,qce7q10,zce7e7,ze7q10,zce7q10,zce6q8,
+     & zce6e6
       complex*16 wt(10),wt1
       complex*16 rho1psi(4,4)
       integer h,i,j,k,l,m

@@ -17,8 +17,8 @@ c   calculates CEP cross section
       double precision ptxx,ptxsq,ptmin,ptmax1,ptmax2,ptmax,ptdif,ptav
       double precision pt2x,pt2y,pt1y,pt1x,pt1sq,pt2sq,phi2,phi1
       double precision ps,p2p,p2m,p1p,p1m,ktcut
-      double precision msub,mpp1,mpp2,mdissmax,lmdissmin,lmdissmax,lmdiss1,
-     &     lmdiss2
+      double precision msub,mpp1,mpp2,mdissmax,lmdissmin,lmdissmax,
+     &     lmdiss1,lmdiss2
       double precision jrho,jmono,jchi,jalp
       double precision delphin,delphi,acoab
       double precision wgt

@@ -600,7 +600,7 @@ C     Amplitude(s) for diagram number 86
       if(sfonly)then
          JAMP(1)=-AMP(1)-AMP(2)-AMP(3)
       else
-         JAMP(1)=-AMP(1)-AMP(2)-AMP(3)-AMP(4)-AMP(5)-AMP(6)-AMP(7)-AMP(8)
+        JAMP(1)=-AMP(1)-AMP(2)-AMP(3)-AMP(4)-AMP(5)-AMP(6)-AMP(7)-AMP(8)
      $        -AMP(9)-AMP(10)-AMP(11)-AMP(12)
          if(higgs)then
             JAMP(1)=JAMP(1)-AMP(13)

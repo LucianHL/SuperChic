@@ -1331,7 +1331,8 @@ c#endif
       if ( mass1*mass2.eq.rZero ) then
          pp = (esum-abs(ed))*rHalf
       else
-         pp = sqrt(max((md2/esum)**2-rTwo*(mass1**2+mass2**2)+esum**2,1d-99))*rHalf
+         pp = sqrt(max((md2/esum)**2
+     &-rTwo*(mass1**2+mass2**2)+esum**2,1d-99))*rHalf
       endif
       sinth1 = sqrt((rOne-costh1)*(rOne+costh1))
 

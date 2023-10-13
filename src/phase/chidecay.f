@@ -1,7 +1,8 @@
 ccc   generates rho meson invariant mass distribution according to modified BW 
       subroutine bwchi(mout,jrho)
       implicit none
-      double precision rm1,ran2,norm,mminr,mmaxr,almin,almax,al1,mout,jrho
+      double precision rm1,ran2,norm,mminr,mmaxr,almin,almax,al1,mout,
+     &jrho
 
       include 'mres.f'
       include 'mpip.f'

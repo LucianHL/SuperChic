@@ -269,7 +269,8 @@ c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
-      subroutine LHA_get_real_silent(npara,param,value,name,var,def_value_num)
+      subroutine LHA_get_real_silent(npara,param,value,name,var,
+     &def_value_num)
 c----------------------------------------------------------------------------------
 c     finds the parameter named "name" in param and associate to "value" in value
 c----------------------------------------------------------------------------------
@@ -398,7 +399,7 @@ c        write(*,*) 'read model file ',tempname
 40      tempname='../'//tempname
         if (i.eq.5)then
            write(*,*) 'Warning: file ',filename,
-     &                           ' not found in the parent directories!(lha_read)'
+     &  ' not found in the parent directories!(lha_read)'
            stop
         endif
       enddo
