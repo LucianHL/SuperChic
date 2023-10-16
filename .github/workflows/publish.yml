@@ -66,10 +66,13 @@ jobs:
          ../bin/init < ../test/input.DAT_1
          ../bin/superchic < ../test/input.DAT_1
          find ./
-         cat evrecs/evrectest.dat
-         ../bin/superchic < ../test/input.DAT_2
+         cat evrecs/evrectest1.dat
+         ../bin/superchic < ../test/input.DAT_3
          find ./
-         cat evrecs/evrectest.dat
+         cat evrecs/evrectest3.dat
+         ../bin/superchic < ../test/input.DAT_9
+         find ./
+         cat evrecs/evrectest9.dat
   run-in-superchic-docker-image-cmake:
     name: Run in superchic Docker image with cmake
     runs-on: ubuntu-latest
@@ -93,4 +96,4 @@ jobs:
          ls -lah bin
          ls -lah BUILD
          find INSTALL
-         ctest --test-dir BUILD -j 2 --output-on-failure
+         ctest --test-dir BUILD -j 3 --output-on-failure
