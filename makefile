@@ -404,10 +404,10 @@ init.o:	init.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
 
 $(OBJ_PATH)Elastic.o: Elastic.f
-	$(FC) $(FFLAGS) -cpp -I$(INCPATH) -c  $< -o $@
+	$(FC) $(FFLAGS) -cpp -DDATA_PREFIX=`$$PREFIX/share/SuperChic` -I$(INCPATH) -c  $< -o $@
 
 $(OBJ_PATH)gdrin.o: gdrin.f
-	$(FC) $(FFLAGS) -cpp -I$(INCPATH) -c  $< -o $@
+	$(FC) $(FFLAGS) -cpp -DDATA_PREFIX=`$$PREFIX/share/SuperChic` -I$(INCPATH) -c  $< -o $@
 
 $(OBJ_PATH)%.o: %.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
@@ -423,11 +423,19 @@ clean:
 
 install: all
 	@echo "Installing to $$PREFIX..."
-	@mkdir -p $$PREFIX
+	@mkdir -p $$PREFIX $$PREFIX/share/SuperChic
 	@cp -r obj $$PREFIX/
 	@cp -r bin $$PREFIX/
 	@cp -r doc $$PREFIX/
 	@cp -r lib $$PREFIX/
 	@cp -r src $$PREFIX/
 	@cp -r Cards $$PREFIX/
+	@cp data/SplinesWithVariableKnots.dat  $$PREFIX/share/SuperChic
+	@cp data/Carlos_106_440.dat  $$PREFIX/share/SuperChic
+	@cp data/gampgamn.dat  $$PREFIX/share/SuperChic
+	@cp data/Veyssiere_singleneut.dat  $$PREFIX/share/SuperChic
+	@cp data/Muccifora.dat $$PREFIX/share/SuperChic
+	@cp data/Lepretre25_103.dat  $$PREFIX/share/SuperChic
+	@cp data/Caldwell.dat  $$PREFIX/share/SuperChic
+	@cp data/Lepretre_25_103.dat  $$PREFIX/share/SuperChic
 	@echo "Installation complete."
