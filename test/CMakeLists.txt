@@ -7,7 +7,6 @@ target_link_libraries(validator PRIVATE ${HEPMC3_LIBRARIES})
 target_include_directories(validator PRIVATE ${HEPMC3_INCLUDE_DIRS})
 target_compile_features(validator PRIVATE cxx_std_11)
 
-
 find_package(Pythia8 8.3 REQUIRED)
 add_executable(shower ${CMAKE_CURRENT_SOURCE_DIR}/shower.cxx)
 target_link_libraries(shower PRIVATE ${HEPMC3_LIBRARIES} Pythia8::Pythia8 )
