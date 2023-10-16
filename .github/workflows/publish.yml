@@ -97,4 +97,3 @@ jobs:
          ls -lah BUILD
          find INSTALL
          ctest --test-dir BUILD -j 3 --output-on-failure
-         
