@@ -28,22 +28,22 @@ jobs:
     - name: Build the superchic Docker image on the change of Dockerfile
       if: steps.changed-docker-files.outputs.any_changed == 'true' 
       run: |
-         docker build . --tag ghcr.io/lucianhl/superchic:latest
-         docker run ghcr.io/lucianhl/superchic:latest
-         docker push ghcr.io/lucianhl/superchic
+         docker build . --tag ghcr.io/andriish/superchic:latest
+         docker run ghcr.io/andriish/superchic:latest
+         docker push ghcr.io/andriish/superchic
     - name: Build the superchic Docker image on schedule
       if: ${{ github.event_name == 'schedule' }}
       run: |
-         docker build . --tag ghcr.io/lucianhl/superchic:latest
-         docker run ghcr.io/lucianhl/superchic:latest
-         docker push ghcr.io/lucianhl/superchic
+         docker build . --tag ghcr.io/andriish/superchic:latest
+         docker run ghcr.io/andriish/superchic:latest
+         docker push ghcr.io/andriish/superchic
 
   run-in-superchic-docker-image-gmake:
     name: Run in superchic Docker image  with gmake
     runs-on: ubuntu-latest
     needs: build-superchic-docker-image
     container:
-            image: ghcr.io/lucianhl/superchic:latest
+            image: ghcr.io/andriish/superchic:latest
             credentials:
                username: ${{ github.actor }}
                password: ${{ secrets.GITHUB_TOKEN }}
@@ -66,10 +66,13 @@ jobs:
          ../bin/init < ../test/input.DAT_1
          ../bin/superchic < ../test/input.DAT_1
          find ./
-         cat evrecs/evrectest.dat
-         ../bin/superchic < ../test/input.DAT_2
+         cat evrecs/evrectest1.dat
+         ../bin/superchic < ../test/input.DAT_3
          find ./
-         cat evrecs/evrectest.dat
+         cat evrecs/evrectest3.dat
+         ../bin/superchic < ../test/input.DAT_9
+         find ./
+         cat evrecs/evrectest9.dat
   run-in-superchic-docker-image-cmake:
     name: Run in superchic Docker image with cmake
     runs-on: ubuntu-latest
@@ -93,4 +96,4 @@ jobs:
          ls -lah bin
          ls -lah BUILD
          find INSTALL
-         ctest --test-dir BUILD -j 2 --output-on-failure
+         ctest --test-dir BUILD -j 3 --output-on-failure
