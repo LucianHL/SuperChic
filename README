@@ -22,7 +22,6 @@ and optionally
 ctest --test-dir BUILD
 ```
 
-
 The extra flags might be:
 - generic CMake flags, e.g. `-DCMAKE_INSTALL_PREFIX=/my/home/dir`, `-DCMAKE_fortran_COMPILER=ifort`, etc.
 - flags pointing to the dependencies, `-DLHAPDF_DIR=/where/the/LHAPDF/is`, `-DAPFEL_DIR=/where/the/APFEL/is`
