@@ -38,38 +38,6 @@ jobs:
          docker run ghcr.io/lucianhl/superchic:latest
          docker push ghcr.io/lucianhl/superchic
 
-  run-in-superchic-docker-image-gmake:
-    name: Run in superchic Docker image  with gmake
-    runs-on: ubuntu-latest
-    needs: build-superchic-docker-image
-    container:
-            image: ghcr.io/lucianhl/superchic:latest
-            credentials:
-               username: ${{ github.actor }}
-               password: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         mkdir -p obj lib
-         gmake
-         gmake init
-         ls -lah 
-         ls -lah bin
-         mkdir RUN
-         cd RUN
-         mkdir -p inputs evrecs outputs
-         cp -r ../bin/init ./
-         ../bin/init < ../test/input.DAT_1
-         ../bin/superchic < ../test/input.DAT_1
-         find ./
-         cat evrecs/evrectest.dat
-         ../bin/superchic < ../test/input.DAT_2
-         find ./
-         cat evrecs/evrectest.dat
   run-in-superchic-docker-image-cmake:
     name: Run in superchic Docker image with cmake
     runs-on: ubuntu-latest
