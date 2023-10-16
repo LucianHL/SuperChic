@@ -403,6 +403,12 @@ superchic.o:	superchic.f
 init.o:	init.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
 
+$(OBJ_PATH)Elastic.o: Elastic.f
+	$(FC) $(FFLAGS) -cpp -I$(INCPATH) -c  $< -o $@
+
+$(OBJ_PATH)gdrin.o: gdrin.f
+	$(FC) $(FFLAGS) -cpp -I$(INCPATH) -c  $< -o $@
+
 $(OBJ_PATH)%.o: %.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
 
