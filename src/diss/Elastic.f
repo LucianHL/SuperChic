@@ -128,21 +128,27 @@ cccccc
       implicit double precision(a-y)
       integer i
       include 'gcoh.f'
-
+      character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'data'/
+#endif
       integer length
       character*500 valuepath
       length = 500
  
       length=0
-      CALL GETENV('SUPERCHIC_SOURCE_PATH', valuepath)
+      CALL GETENV('SUPERCHIC_DATA_PATH', valuepath)
       length=len(trim(valuepath))
    
       ! Check if the environment variable is set
       if (length > 0) then
-         open(40,file=valuepath(1:length) // 
-     &'/src/diss/SplinesWithVariableKnots.dat') 
+      write(*,*) 'Reading data from(env. var.)',valuepath(1:length)
+      open(40,file=valuepath(1:length)//'/SplinesWithVariableKnots.dat') 
       else
-      open(40,file='../src/diss/SplinesWithVariableKnots.dat')
+      write(*,*) 'Reading data from ',trim(defpath)
+      open(40,file=trim(defpath) //'/SplinesWithVariableKnots.dat')
       endif
 
 
