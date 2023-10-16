@@ -4,19 +4,22 @@ See manual in doc/ folder for further instructions!
 
 The latest version of Superchic can be compiled with CMake build system.
 Requirements: 
- - CMake>3.16
- - Fortran compiller: GNU, INtel, flang, NVFortran were tested
+ - CMake > 3.16
+ - Fortran compiller: GNU, Intel, flang, NVFortran were tested
  - APFEL
  - LHAPDF
  - Internet connection if the installation of PDFs was requested
 
 To build:
-``
+
+```
 cmake -S . -B BUILD <extra flags>
 cmake --build BUILD
 cmake --install BUILD
 ```
+
 and optionally
+
 ```
 ctest --test-dir BUILD
 ```
