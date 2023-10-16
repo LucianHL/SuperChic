@@ -1,8 +1,11 @@
-SuperChic MC event generator for central exclusive production
-Version 4.22
-See manual in doc/ folder for further instructions!
+# SuperChic MC event generator for central exclusive production
 
-The latest version of Superchic can be compiled with CMake build system.
+Version 4.22
+
+See manual in `doc/` folder for further instructions!
+
+
+The latest version of Superchic can be compiled with `CMake` build system.
 Requirements: 
  - CMake > 3.16
  - Fortran compiller: GNU, Intel, flang, NVFortran were tested
