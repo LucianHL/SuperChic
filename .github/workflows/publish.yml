@@ -98,3 +98,27 @@ jobs:
          ls -lah BUILD
          find INSTALL
          ctest --test-dir BUILD -j 3 --output-on-failure
+
+  run-on-Darwin-cmake:
+    runs-on: macos-latest
+    name: run on Darwin
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+          fetch-depth: 3 
+    - name: Run
+      run : |
+         brew install wget coreutils gcc
+         brew tap davidchall/hep
+         brew install hepmc3 pythia8 lhapdf git
+         git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap  && make && make install && cd  ../ && rm -rf apfel
+         cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+         cmake --build BUILD -j 2
+         cmake --install BUILD 
+         ls -lah 
+         ls -lah bin
+         ls -lah BUILD
+         find INSTALL
+#         ctest --test-dir BUILD -j 3 --output-on-failure
+
