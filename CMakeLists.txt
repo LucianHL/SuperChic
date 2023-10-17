@@ -20,6 +20,8 @@ add_compile_options("$<$<Fortran_COMPILER_ID:XL>:-qsave>")
 add_compile_options("$<$<Fortran_COMPILER_ID:LLVMFlang>:-Msave>")
 add_compile_options("$<$<Fortran_COMPILER_ID:Flang>:-Msave>")
 
+add_definitions("-DDATA_PATH=\'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/SuperChic\'")
+
 message(STATUS "SuperChic: CMAKE_Fortran_COMPILER_ID ${CMAKE_Fortran_COMPILER_ID} " )
 message(STATUS "SuperChic: CMAKE_Fortran_FLAGS ${CMAKE_Fortran_FLAGS} ${CMAKE_Fortran_FLAGS_${CMAKE_BUILD_TYPE}}  " )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
@@ -144,6 +146,10 @@ set(sccompile_options "$<$<Fortran_COMPILER_ID:GNU>:-mcmodel=large>"
                       "$<$<Fortran_COMPILER_ID:IntelLLVM>:-mcmodel=large>" 
                       "$<$<Fortran_COMPILER_ID:NVHPC>:-mcmodel=medium>"
                       "$<$<Fortran_COMPILER_ID:PGI>:-mcmodel=medium>")
+
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                             PROPERTIES Fortran_PREPROCESS ON)
+
 add_library(superchicLib SHARED ${sCODELHA})
 target_include_directories(superchicLib PRIVATE  ${scincludes})
 target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
@@ -164,6 +170,18 @@ install(TARGETS superchicLib   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT lib
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Cards/ DESTINATION  ${CMAKE_INSTALL_DOCDIR}/Cards COMPONENT doc)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/doc/superchic4.2.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR}/ COMPONENT doc)
+
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/SplinesWithVariableKnots.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/Carlos_106_440.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/gampgamn.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/Veyssiere_singleneut.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/Muccifora.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/Lepretre25_103.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/Caldwell.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/data/Lepretre_25_103.dat 
+              DESTINATION ${CMAKE_INSTALL_DATADIR}/SuperChic COMPONENT data)
+
+
 
 if (SUPERCHIC_ENABLE_TESTS)
   ENABLE_TESTING()

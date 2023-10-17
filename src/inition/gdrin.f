@@ -10,35 +10,37 @@
       include 'ion.f'
       include 'gdr.f'
       include 'sAA.f'
-      
+      character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'data'/
+#endif
+
       integer length
       character*500 valuepath
       length = 500
       length=0
-      CALL GETENV('SUPERCHIC_SOURCE_PATH', valuepath)
+      CALL GETENV('SUPERCHIC_DATA_PATH', valuepath)
       length=len(trim(valuepath))
    
       ! Check if the environment variable is set
-      if (length > 0) then      
-        open(10,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Veyssiere_singleneut.dat')
-        open(11,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Lepretre25_103.dat')
-        open(12,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Carlos_106_440.dat')
-        open(13,file=valuepath(1:length) //
-     &'/src/inition/GDR/gampgamn.dat')
-        open(14,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Caldwell.dat')
-        open(50,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Muccifora.dat')
+      if (length > 0) then
+        write(*,*) 'Reading data from(env. var.) ',valuepath(1:length)
+        open(10,file=valuepath(1:length) // '/Veyssiere_singleneut.dat')
+        open(11,file=valuepath(1:length) // '/Lepretre25_103.dat')
+        open(12,file=valuepath(1:length) // '/Carlos_106_440.dat')
+        open(13,file=valuepath(1:length) // '/gampgamn.dat')
+        open(14,file=valuepath(1:length) // '/Caldwell.dat')
+        open(50,file=valuepath(1:length) // '/Muccifora.dat')
       else
-      open(10,file='../src/inition/GDR/Veyssiere_singleneut.dat')
-      open(11,file='../src/inition/GDR/Lepretre25_103.dat')
-      open(12,file='../src/inition/GDR/Carlos_106_440.dat')
-      open(13,file='../src/inition/GDR/gampgamn.dat')
-      open(14,file='../src/inition/GDR/Caldwell.dat')
-      open(50,file='../src/inition/GDR/Muccifora.dat')
+      write(*,*) 'Reading data from ',trim(defpath)
+      open(10,file=trim(defpath)// '/Veyssiere_singleneut.dat')
+      open(11,file=trim(defpath)// '/Lepretre25_103.dat')
+      open(12,file=trim(defpath)// '/Carlos_106_440.dat')
+      open(13,file=trim(defpath)// '/gampgamn.dat')
+      open(14,file=trim(defpath)// '/Caldwell.dat')
+      open(50,file=trim(defpath)// '/Muccifora.dat')
       endif
       
       i0=161 ! GDR, Veyssiere et al. Nucl. Phys. A159, 561 (1970)

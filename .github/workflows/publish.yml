@@ -54,6 +54,7 @@ jobs:
           fetch-depth: 3 
     - name: Run
       run : |
+         export SUPERCHIC_DATA_PATH=$(pwd)/data
          mkdir -p obj lib
          gmake
          gmake init
