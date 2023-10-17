@@ -1,10 +1,10 @@
 
 enable_language(CXX)
 find_package(HepMC3 3.1.0 REQUIRED)
-message(STATUS "SuperChic test: HEPMC3_VERSION=${HEPMC3_VERSION} HEPMC3_LIBRARIES=${HEPMC3_LIBRARIES} HEPMC3_INCLUDE_DIRS=${HEPMC3_INCLUDE_DIRS}")
+message(STATUS "SuperChic test: HEPMC3_VERSION=${HEPMC3_VERSION} HEPMC3_LIBRARIES=${HEPMC3_LIBRARIES} HEPMC3_INCLUDE_DIR=${HEPMC3_INCLUDE_DIR}")
 add_executable(validator ${CMAKE_CURRENT_SOURCE_DIR}/validator.cxx)
 target_link_libraries(validator PRIVATE ${HEPMC3_LIBRARIES})
-target_include_directories(validator PRIVATE ${HEPMC3_INCLUDE_DIRS})
+target_include_directories(validator PRIVATE ${HEPMC3_INCLUDE_DIR})
 target_compile_features(validator PRIVATE cxx_std_11)
 
 set(STANDARDENVIRONMENT "SUPERCHIC_SOURCE_PATH=${PROJECT_SOURCE_DIR}")
