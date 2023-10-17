@@ -141,14 +141,23 @@ set( sCODELHA ${Mainf} ${Mesf} ${EW} ${PDFsfLHA} ${Intf} ${Phasef}
               ${LbyLf} ${InitfION} ${Dissf} ${Helas} ${Model} ${MG})
 
 set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/src/inc)
-set(sccompile_options "$<$<Fortran_COMPILER_ID:GNU>:-mcmodel=large>" 
-                      "$<$<Fortran_COMPILER_ID:Intel>:-mcmodel=large>"
-                      "$<$<Fortran_COMPILER_ID:IntelLLVM>:-mcmodel=large>" 
-                      "$<$<Fortran_COMPILER_ID:NVHPC>:-mcmodel=medium>"
-                      "$<$<Fortran_COMPILER_ID:PGI>:-mcmodel=medium>")
-
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  set(sccompile_options )
+else()
+  set(sccompile_options "$<$<Fortran_COMPILER_ID:GNU>:-mcmodel=large>" 
+                        "$<$<Fortran_COMPILER_ID:Intel>:-mcmodel=large>"
+                        "$<$<Fortran_COMPILER_ID:IntelLLVM>:-mcmodel=large>" 
+                        "$<$<Fortran_COMPILER_ID:NVHPC>:-mcmodel=medium>"
+                        "$<$<Fortran_COMPILER_ID:PGI>:-mcmodel=medium>")
+endif()
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
-                             PROPERTIES Fortran_PREPROCESS ON)
+                             PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)
+
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                             PROPERTIES COMPILE_FLAGS -traditional)  
+endif()
 
 add_library(superchicLib SHARED ${sCODELHA})
 target_include_directories(superchicLib PRIVATE  ${scincludes})

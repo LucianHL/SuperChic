@@ -149,8 +149,7 @@
          gam1=4.05d0
       endif
 
-      gdrx_res=sig1*e**2*gam1**2/((e**2-e1**2)**2
-     &        +e**2*gam1**2)
+      gdrx_res=sig1*e**2*gam1**2/((e**2-e1**2)**2+e**2*gam1**2)
       
       if(nint(az).eq.79)then
       elseif(nint(az).eq.82)then
