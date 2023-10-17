@@ -12,6 +12,7 @@ Requirements:
  - APFEL
  - LHAPDF
  - Internet connection if the installation of PDFs was requested
+ - C++ compiler, HepMC3 and Pythia8 for the tests
 
 To build:
 
