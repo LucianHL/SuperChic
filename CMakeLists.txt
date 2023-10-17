@@ -153,6 +153,12 @@ endif()
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
                              PROPERTIES Fortran_PREPROCESS ON)
 
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                             PROPERTIES COMPILE_FLAGS -traditional)  
+endif()
+
 add_library(superchicLib SHARED ${sCODELHA})
 target_include_directories(superchicLib PRIVATE  ${scincludes})
 target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
