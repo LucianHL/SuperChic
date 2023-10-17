@@ -11,7 +11,7 @@
 ****************************************************************************************
 56      !  [proc] : Process number (see manual for labelling)
 'prot'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
-'test'          ! [outtg]
+'test1'          ! [outtg]
 .false.  !  [sfaci] : Include soft survival effects
 ****************************************************************************************
 ************************* Dissociation parameters for PI  ******************************
