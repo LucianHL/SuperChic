@@ -193,68 +193,42 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        write(45,'(A)')'N 1 "Default"'
        write(45,56)'C',1.0d0,0.1d0 !FIXME
        write(45,52)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0
-              
-              write(45,53)'V',1,0,0d0,0d0,0d0,0d0,1,2
-
-              istup(3)=3
-              istup(4)=3
-
-              massgam=(pup(4,5)-pup(4,3))**2-(pup(3,5)-pup(3,3))**2
-     &             -(pup(2,5)-pup(2,3))**2-(pup(1,5)-pup(1,3))**2
-              massgam=-dsqrt(-massgam)
-              write(45,54)'P',1,idup(3),pup(1,3)
-     &                ,pup(2,3),pup(3,3),pup(4,3),pup(5,3),
-     &             istup(3),0d0,0d0,1,0,0
-              write(45,54)'P',2,idup(5),pup(1,5)
-     &                ,pup(2,5),pup(3,5),pup(4,5),pup(5,5),
-     &             istup(5),0d0,0d0,0,0,0
-              write(45,54)'P',3,22,pup(1,3)-pup(1,5)
-     &             ,pup(2,3)-pup(2,5),pup(3,3)-pup(3,5)
-     &             ,pup(4,3)-pup(4,5),massgam,
-     &                2,0d0,0d0,3,0,0
-
-              
-              write(45,53)'V',2,0,0d0,0d0,0d0,0d0,1,2
-
-
-              massgam=(pup(4,6)-pup(4,4))**2-(pup(3,6)-pup(3,4))**2
-     &             -(pup(2,6)-pup(2,4))**2-(pup(1,6)-pup(1,4))**2
-              massgam=-dsqrt(-massgam)
-              write(45,54)'P',4,idup(4),pup(1,4)
-     &                ,pup(2,4),pup(3,4),pup(4,4),pup(5,4),
-     &             istup(4),0d0,0d0,2,0,0
-              write(45,54)'P',5,idup(6),pup(1,6)
-     &                ,pup(2,6),pup(3,6),pup(4,6),pup(5,6),
-     &             istup(6),0d0,0d0,0,0,0
-              write(45,54)'P',6,22,pup(1,4)-pup(1,6)
-     &             ,pup(2,4)-pup(2,6),pup(3,4)-pup(3,6)
-     &             ,pup(4,4)-pup(4,6),massgam,
-     &             2,0d0,0d0,3,0,0
-
-
-              write(45,53)'V',3,0,0d0,0d0,0d0,0d0,0,2
-              massgam=(pup(4,5)-pup(4,3))**2-(pup(3,5)-pup(3,3))**2
-     &             -(pup(2,5)-pup(2,3))**2-(pup(1,5)-pup(1,3))**2
-              massgam=-dsqrt(-massgam)
-              write(45,54)'P',3,22,pup(1,3)-pup(1,5)
-     &             ,pup(2,3)-pup(2,5),pup(3,3)-pup(3,5)
-     &             ,pup(4,3)-pup(4,5),massgam,
-     &             2,0d0,0d0,3,0,0
-              massgam=(pup(4,6)-pup(4,4))**2-(pup(3,6)-pup(3,4))**2
-     &             -(pup(2,6)-pup(2,4))**2-(pup(1,6)-pup(1,4))**2
-              massgam=-dsqrt(-massgam)
-              write(45,54)'P',6,22,pup(1,4)-pup(1,6)
-     &             ,pup(2,4)-pup(2,6),pup(3,4)-pup(3,6)
-     &             ,pup(4,4)-pup(4,6),massgam,
-     &             2,0d0,0d0,3,0,0
-              write(45,54)'P',7,idup(7),pup(1,7)
-     &                ,pup(2,7),pup(3,7),pup(4,7),pup(5,7),
-     &             istup(7),0d0,0d0,0,0,0
-              write(45,54)'P',8,idup(8),pup(1,8)
-     &                ,pup(2,8),pup(3,8),pup(4,8),pup(5,8),
-     &             istup(8),0d0,0d0,0,0,0
-
-              
+       write(45,53)'V',-1,0,0d0,0d0,0d0,0d0,1,2,0
+       massgam=(pup(4,5)-pup(4,3))**2-(pup(3,5)-pup(3,3))**2
+     &        -(pup(2,5)-pup(2,3))**2-(pup(1,5)-pup(1,3))**2
+       massgam=-dsqrt(-massgam)
+       write(45,54)'P',1,idup(3),pup(1,3),pup(2,3),pup(3,3),pup(4,3),
+     &   pup(5,3),istup(3),0d0,0d0,-1,0
+       write(45,54)'P',2,idup(5),pup(1,5),pup(2,5),pup(3,5),pup(4,5),
+     &   pup(5,5),istup(5),0d0,0d0,0,0
+       write(45,54)'P',3,22,pup(1,3)-pup(1,5),pup(2,3)-pup(2,5),
+     &   pup(3,3)-pup(3,5) ,pup(4,3)-pup(4,5),massgam,2,0d0,0d0,-3,0
+       write(45,53)'V',-2,0,0d0,0d0,0d0,0d0,1,2,0
+       massgam=(pup(4,6)-pup(4,4))**2-(pup(3,6)-pup(3,4))**2
+     &        -(pup(2,6)-pup(2,4))**2-(pup(1,6)-pup(1,4))**2
+       massgam=-dsqrt(-massgam)
+       write(45,54)'P',4,idup(4),pup(1,4),pup(2,4),pup(3,4),pup(4,4),
+     &   pup(5,4),istup(4),0d0,0d0,-2,0
+       write(45,54)'P',5,idup(6),pup(1,6),pup(2,6),pup(3,6),pup(4,6),
+     &   pup(5,6),istup(6),0d0,0d0,0,0
+       write(45,54)'P',6,22,pup(1,4)-pup(1,6),pup(2,4)-pup(2,6),
+     &  pup(3,4)-pup(3,6),pup(4,4)-pup(4,6),massgam,2,0d0,0d0,-3,0
+       write(45,53)'V',-3,0,0d0,0d0,0d0,0d0,0,2,0
+       massgam=(pup(4,5)-pup(4,3))**2-(pup(3,5)-pup(3,3))**2
+     &        -(pup(2,5)-pup(2,3))**2-(pup(1,5)-pup(1,3))**2
+       massgam=-dsqrt(-massgam)
+       write(45,54)'P',3,22,pup(1,3)-pup(1,5),pup(2,3)-pup(2,5),
+     &  pup(3,3)-pup(3,5),pup(4,3)-pup(4,5),massgam,2,0d0,0d0,-3,0
+       massgam=(pup(4,6)-pup(4,4))**2-(pup(3,6)-pup(3,4))**2
+     &        -(pup(2,6)-pup(2,4))**2-(pup(1,6)-pup(1,4))**2
+       massgam=-dsqrt(-massgam)
+       write(45,54)'P',6,22,pup(1,4)-pup(1,6),pup(2,4)-pup(2,6),
+     &  pup(3,4)-pup(3,6),pup(4,4)-pup(4,6),massgam,2,0d0,0d0,-3,0
+       write(45,54)'P',7,idup(7),pup(1,7),pup(2,7),pup(3,7),pup(4,7),
+     &  pup(5,7),istup(7),0d0,0d0,0,0
+       write(45,54)'P',8,idup(8),pup(1,8),pup(2,8),pup(3,8),pup(4,8),
+     &  pup(5,8),istup(8),0d0,0d0,0,0
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
            elseif(diff.eq.'sd'.or.diff.eq.'sda'.or.diff.eq.'sdb')then
        istup(3)=3
        istup(4)=3
