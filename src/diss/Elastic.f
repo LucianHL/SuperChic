@@ -17,22 +17,22 @@
       ge0=ge
       gm0=gm
       
-ccccc interpolate
+!ccccc interpolate
 
       if(q2.lt.10d0)then
          gm=7.78d0*gmint(q2)**2      
          ge=geint(q2)**2
       else
-c         gm=0d0
-c         ge=0d0
+!c         gm=0d0
+!c         ge=0d0
          gm=gm0
          ge=ge0
       endif
 
-cccccccc
+!cccccccc
 
-c      ge=1d0/(1d0+q2/0.71d0)**4
-c      gm=7.78d0*ge
+!c      ge=1d0/(1d0+q2/0.71d0)**4
+!c      gm=7.78d0*ge
       
       fe=(4d0*mp**2*ge+q2*gm)/(4d0*mp**2+q2)
 
@@ -40,31 +40,31 @@ c      gm=7.78d0*ge
 
       if(fb1)then
       
-ccc   F1  
+!ccc   F1  
       
-c      fe=(dsqrt(ge)+tau*dsqrt(gm))/(1d0+tau)
-c      fe=fe**2
+!c      fe=(dsqrt(ge)+tau*dsqrt(gm))/(1d0+tau)
+!c      fe=fe**2
 
-ccc   F2                                                                                                   
-c      fe=(dsqrt(gm)-dsqrt(ge))/(1d0+tau)
-c      fe=fe**2*tau
+!ccc   F2                                                                                                   
+!c      fe=(dsqrt(gm)-dsqrt(ge))/(1d0+tau)
+!c      fe=fe**2*tau
 
-cccccc
+!cccccc
 
       endif
 
       if(fb2)then
                
-ccc   F1                                                                                                   
+!ccc   F1                                                                                                   
 
-c      fe=(dsqrt(ge)+tau*dsqrt(gm))/(1d0+tau)
-c      fe=fe**2
+!c      fe=(dsqrt(ge)+tau*dsqrt(gm))/(1d0+tau)
+!c      fe=fe**2
 
-ccc   F2                                                                                                                                                                                                 
-c      fe=(dsqrt(gm)-dsqrt(ge))/(1d0+tau)                                                                  
-c      fe=fe**2*tau                                                                                        
+!ccc   F2                                                                                                                                                                                                 
+!c      fe=(dsqrt(gm)-dsqrt(ge))/(1d0+tau)                                                                  
+!c      fe=fe**2*tau                                                                                        
 
-cccccc                                                                                                     
+!cccccc                                                                                                     
 
       endif
       
