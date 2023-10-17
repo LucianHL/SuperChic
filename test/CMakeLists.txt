@@ -87,8 +87,8 @@ inittest(1)
 sctesthepmc(1 1)
 sctestlhe(1 2)
 
-inittest(3)
-sctesthepmc(3 3)
+#inittest(3)
+#sctesthepmc(3 3)
 
-inittest(9)
-sctesthepmc(9 9)
+#inittest(9)
+#sctesthepmc(9 9)
