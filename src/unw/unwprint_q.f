@@ -163,7 +163,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
          write(45,51)'E',i,0,scalup,aqcdup,aqedup,proc,0,3,1,4,0,1,1d0
          write(45,55)'U GEV CM'                                         !Units
          write(45,'(A)')'N 1 "Default"'                                 !Weight names
-         write(45,56)'C',1.0d0,0.1d0 !FIXME                             !Cross-section
+         write(45,56)'C',xsecup(1),xerrup(1)                         !Cross-section
          write(45,52)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0             !PDF
          write(45,53)'V',-1,0,0d0,0d0,0d0,0d0,1,2,0                     !First extraction vertex
          write(45,54)'P',1,idup(1),pup(1,1),pup(2,1),pup(3,1),pup(4,1), !First beam particle
@@ -191,7 +191,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
        write(45,51)'E',i,0,scalup,aqcdup,aqedup,proc,0,3,1,2,0,1,1d0
        write(45,55)'U GEV CM'
        write(45,'(A)')'N 1 "Default"'
-       write(45,56)'C',1.0d0,0.1d0 !FIXME
+       write(45,56)'C',xsecup(1),xerrup(1)
        write(45,52)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0
        write(45,53)'V',-1,0,0d0,0d0,0d0,0d0,1,2,0
        massgam=(pup(4,5)-pup(4,3))**2-(pup(3,5)-pup(3,3))**2
@@ -229,7 +229,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
      &          ,nvert+3,1,2,0,1,1d0
        write(45,55)'U GEV CM'
        write(45,'(A)')'N 1 "Default"'
-       write(45,56)'C',1.0d0,0.1d0 !FIXME
+       write(45,56)'C',xsecup(1),xerrup(1)
        write(45,52)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0
        write(45,53)'V',-1,0,0d0,0d0,0d0,0d0,1,2,0
        massgam=(pup(4,5)-pup(4,4))**2-(pup(3,5)-pup(3,4))**2
