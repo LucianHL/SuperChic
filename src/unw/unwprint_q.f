@@ -1,3 +1,136 @@
+      subroutine write_particle(i)
+      implicit none
+      integer i
+      integer vert(20,4)
+      integer prodv(20)
+      integer endv(20)
+      integer nvert
+      integer ii
+      COMMON /HM/nvert,vert,prodv,endv
+      include 'leshouches.f'
+      ii = istup(i)
+      if ( i.lt. 3 ) ii = 4
+      write(45,154)'P',i,idup(i),pup(1,i),pup(2,i),pup(3,i),pup(4,i)
+     & ,0d0,ii,0d0,0d0,-endv(i),0
+
+ 154      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9
+     &        ,' ',E15.9,' ',E15.9,' ',i0,' ',E15.9,' ',E15.9,' ',i0
+     &        ,' ',i0)
+
+      end
+
+
+      subroutine write_vertex(i)
+      implicit none
+      integer i
+      integer vert(20,4)
+      integer prodv(20)
+      integer endv(20)
+      integer nvert
+      COMMON /HM/nvert,vert,prodv,endv
+      include 'leshouches.f'      
+      write(45,153)'V',-i,0,0d0,0d0,0d0,0d0,vert(i,3),vert(i,4),0
+ 153      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9,' '
+     &        ,E15.9,' ',i0,' ',i0,' ',i0)
+      end
+     
+      subroutine hmout(last,enr,nfl1,nfl2,x1,x2,proc)
+      implicit none
+      integer enr,nfl1,nfl2,proc
+      !double precision scalup,aqcdup,aqedup, x1,x2, xsecup,xerrup
+      double precision x1,x2 !,xsecup,xerrup, scalup
+      integer vert(20,4)
+      integer mom(20,2)
+      integer prodv(20)
+      integer endv(20)
+      integer nvert
+      integer i,j
+      COMMON /HM/nvert,vert,prodv,endv
+      integer st,last     
+      LOGICAL found
+      include 'leshouches.f'      
+      nvert=0
+      st=1
+      do i = 1,20      
+       vert(i,1)=0
+       vert(i,2)=0
+       vert(i,3)=0
+       vert(i,4)=0
+       prodv(i)=0
+       endv(i)=0
+       mom(i,1)=0
+       mom(i,2)=0
+      end do    
+      do i = 5,last
+        mom(i,1)=mothup(1,i)+2
+        mom(i,2)=mothup(2,i)+2
+      end do
+      mom(3,1)=1
+      mom(3,2)=1
+      mom(4,1)=2
+      mom(4,2)=2
+  
+      do i = 1,last
+      found = .FALSE.
+      do j=1,nvert
+      if (prodv(i) .ne. 0 ) then
+        found = .TRUE.
+        continue
+      endif
+      if (mom(i,1) .eq.vert(j,1).and.mom(i,2) .eq.vert(j,2))then
+      prodv(i) = j
+      found = .TRUE.
+      endif
+      end do
+      if ( .not. found )  then
+      nvert = nvert +1
+      prodv(i) = nvert
+      vert(nvert,1) = mom(i,1)
+      vert(nvert,2) = mom(i,2)
+      endif
+      end do
+ 
+      do i = 1,last
+      do j = 1,last
+      if  (i .ge. mom(j,1) .and. i .le. mom(j,2) ) then
+      endv(i) = prodv(j)
+      endif
+      end do
+      end do
+     
+      do i = 1,last
+      vert(endv(i),3)=vert(prodv(i),3)+1
+      vert(prodv(i),4)=vert(prodv(i),4)+1
+      end do
+
+      write(45,151)'E',enr,0,scalup,aqcdup,aqedup,proc,
+     &0,nvert,1,2,0,1,1d0
+      write(45,155)'U GEV CM'
+      write(45,'(A)')'N 1 "Default"'
+      write(45,156)'C',xsecup(1),xerrup(1)
+      write(45,152)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0 
+      do i=1,nvert
+      call write_vertex(i)
+      do j=1,last
+      if ((prodv(j).eq. i) .or. (prodv(j) .eq. 0 .and. i .eq. 1))  then
+      call write_particle(j)
+      endif
+      enddo
+      end do
+
+ 151      format(A1,' ',I0,' ',I0,' ',E15.9,' ',E15.9,' ',E15.9,' ',I0
+     &        ,' ',I0,' ',I0,' ',I0,' ',I0,' ',I0,' ',I0,' ',E15.9)
+ 152      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9,' '
+     &        ,E15.9,' ',E15.9,' ',i0,' ',i0)
+ 156      format(A1,' ',E15.9,' ',E15.9)
+ 155      format(8a)     
+      end
+
+ 
+
+
+
+
 ccc   randomizes order of VEGAS unweighted events and
 ccc   prints nev events to record
       subroutine unwprintq
