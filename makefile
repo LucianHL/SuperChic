@@ -404,10 +404,10 @@ init.o:	init.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
 
 $(OBJ_PATH)Elastic.o: Elastic.f
-	$(FC) $(FFLAGS) -cpp -DDATA_PREFIX=`$$PREFIX/share/SuperChic` -I$(INCPATH) -c  $< -o $@
+	$(FC) $(FFLAGS) -cpp -traditional -ffree-form -DDATA_PREFIX=`$$PREFIX/share/SuperChic` -I$(INCPATH) -c  $< -o $@
 
 $(OBJ_PATH)gdrin.o: gdrin.f
-	$(FC) $(FFLAGS) -cpp -DDATA_PREFIX=`$$PREFIX/share/SuperChic` -I$(INCPATH) -c  $< -o $@
+	$(FC) $(FFLAGS) -cpp -traditional -ffree-form -DDATA_PREFIX=`$$PREFIX/share/SuperChic` -I$(INCPATH) -c  $< -o $@
 
 $(OBJ_PATH)%.o: %.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
