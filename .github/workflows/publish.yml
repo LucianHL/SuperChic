@@ -113,7 +113,7 @@ jobs:
          brew tap davidchall/hep
          brew install hepmc3 pythia8 lhapdf git
          git clone https://github.com/scarrazza/apfel.git  && cd  apfel && FC=gfortran-13 ./configure  --disable-pywrap  && make && make install && cd  ../ && rm -rf apfel
-         gmake -j 2
+         make -j 2
          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13
          cmake --build BUILD -j 2 --verbose
          cmake --install BUILD 
