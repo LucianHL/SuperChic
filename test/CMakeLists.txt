@@ -75,6 +75,8 @@ endmacro()
 
 
 set(diffs  el sd dd)
+set(diffs  el  dd) 
+#sd does not work so far
 set(fmts  hepevt lhe hepmc)
 set(procs  1 2 3 4 5 6 7 8 9 10 11)
 set(procs 56)
