@@ -156,7 +156,7 @@ set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CM
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
-                             PROPERTIES COMPILE_FLAGS -traditional -cpp )  
+                             PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
 endif()
 
 add_library(superchicLib SHARED ${sCODELHA})
