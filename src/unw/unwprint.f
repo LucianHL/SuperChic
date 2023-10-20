@@ -316,33 +316,34 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
                enddo
             enddo
                
-            write(45,*)i
-
+            write(45,201)'E ',i,nhep
+            isthep(1)=4
+            isthep(2)=4
 
             if(beam.eq.'el'.or.beam.eq.'prot')then
             do m=1,nhep
-               write(45,300)m,idhep(m),isthep(m),jmohep(1,m),
+               write(45,300)isthep(m),idhep(m),jmohep(1,m),
      &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
      &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
      &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
             enddo
             elseif(beam.eq.'ion')then
             do m=1,nhep
-               write(45,200)m,idhep(m),isthep(m),jmohep(1,m),
+               write(45,200)isthep(m),idhep(m),jmohep(1,m),
      &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
      &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
      &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
             enddo
             elseif(beam.eq.'ionp')then
             do m=1,nhep
-            write(45,300)m,idhep(m),isthep(m),jmohep(1,m),
+            write(45,300)isthep(m),idhep(m),jmohep(1,m),
      &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
      &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
      &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
             enddo
             endif
                
-            write(45,*)''
+            !write(45,*)''
             
          endif
                
@@ -354,14 +355,15 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             write(45,*)'</LesHouchesEvents>'
          endif
       endif
+ 201  format(A1,i8,1x,i8)
 
- 200  format(i4,1x,i10,1x,i4,1x,i4,1x,i4,1x,i4,1x,i4,1x,E18.11,1x,E18.11
-     &,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x
-     &,E18.11)
+ 200  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
+     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
+     & E19.8,E19.8)
 
- 300  format(i4,1x,i10,1x,i4,1x,i4,1x,i4,1x,i4,1x,i4,1x,E18.11,1x,E18.11
-     &,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x
-     &     ,E18.11)
+ 300  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
+     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
+     & E19.8,E19.8)
 
  301  format(i5,1x,i4,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
      &E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9)
