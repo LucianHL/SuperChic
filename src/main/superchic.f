@@ -119,6 +119,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
+      
+      call system('mkdir -p inputs evrecs outputs')
 
 ccccccc
 

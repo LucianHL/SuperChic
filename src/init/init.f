@@ -8,7 +8,8 @@ ccc   Initialises grids for skewed PDFs and survival factors
       include 'intag.f'
       include 'pdfinf.f'
       include 'mp.f'
-
+       
+      call system('mkdir -p inputs evrecs outputs')
       mp=0.938272046d0
       pi=dacos(-1d0)
 
