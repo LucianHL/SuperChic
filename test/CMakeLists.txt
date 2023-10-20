@@ -81,6 +81,7 @@ endmacro()
 inittest(1)
 sctesthepmc(1 1)
 sctestlhe(1 2)
+sctesthepmc(1 10)
 
 #inittest(3)
 #sctesthepmc(3 3)
