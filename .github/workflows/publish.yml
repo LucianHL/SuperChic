@@ -62,7 +62,7 @@ jobs:
          ls -lah bin
          mkdir RUN
          cd RUN
-         mkdir -p inputs evrecs outputs
+         #mkdir -p inputs evrecs outputs
          cp -r ../bin/init ./
          ../bin/init < ../test/input.DAT_1
          ../bin/superchic < ../test/input.DAT_1
