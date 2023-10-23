@@ -72,7 +72,7 @@ ccc   prints histograms
       y1(ih)=x1
       ic(ih)=ib
       if(x.lt.x0) goto 11
-      if(x.gt.x1) goto 12
+      if(x.gt.x1 .or. isnan(x) ) goto 12
     
       ix=idint((x-x0)/(x1-x0)*dble(ib))+1
 
