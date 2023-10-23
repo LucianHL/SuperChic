@@ -132,7 +132,7 @@
 #if defined(DATA_PATH)
       data defpath/DATA_PATH/
 #else
-      data defpath/'data'/
+      data defpath/'share/SuperChic'/
 #endif
       integer length
       character*500 valuepath
