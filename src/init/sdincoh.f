@@ -261,7 +261,7 @@ c          print*,x,qt,surv
       
  902  enddo
      
- 887  close(10)
+      close(10)
 
       
 cccccccccccccccccc

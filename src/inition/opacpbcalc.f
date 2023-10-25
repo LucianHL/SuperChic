@@ -88,7 +88,7 @@ cccccc
          endif
 
 
- 888     if(qcd)opac=opac*(1d0-1d0/nshell)**2
+         if(qcd)opac=opac*(1d0-1d0/nshell)**2
          if(opac.gt.100d0)then
             opacpbarr(2,i)=0d0
          else

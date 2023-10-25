@@ -120,7 +120,7 @@ c      sum=sum/2d0/pi
       print*,1d0+2d0*sum/sum0+sum1/sum0
 
      
- 887  close(10)
+      close(10)
 
       
 cccccccccccccccccc
