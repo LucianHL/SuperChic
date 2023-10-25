@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 3.12.0 FATAL_ERROR)
 project(SuperChic LANGUAGES  Fortran)
 set(PROJECT_VERSION 4.2)
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
+option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
@@ -23,12 +24,19 @@ add_compile_options("$<$<Fortran_COMPILER_ID:PGI>:-Msave>")
 add_compile_options("$<$<Fortran_COMPILER_ID:XL>:-qsave>")
 add_compile_options("$<$<Fortran_COMPILER_ID:LLVMFlang>:-Msave>")
 add_compile_options("$<$<Fortran_COMPILER_ID:Flang>:-Msave>")
+if (SUPERCHIC_ENABLE_FPES)
+  add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-ffpe-trap=zero,overflow,underflow,invalid,denormal>")
+  add_compile_options("$<$<Fortran_COMPILER_ID:Intel>:-fpe0>")
+  add_compile_options("$<$<Fortran_COMPILER_ID:IntelLLVM>:-fpe0>")
+endif()
+
 
 add_definitions("-DDATA_PATH=\'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/SuperChic\'")
 
 message(STATUS "SuperChic: CMAKE_Fortran_COMPILER_ID ${CMAKE_Fortran_COMPILER_ID} " )
 message(STATUS "SuperChic: CMAKE_Fortran_FLAGS ${CMAKE_Fortran_FLAGS} ${CMAKE_Fortran_FLAGS_${CMAKE_BUILD_TYPE}}  " )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
+message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
 
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
