@@ -2,7 +2,7 @@ ccc   calls subprocess amplitude
       subroutine wtgen
       implicit none
       integer p
-      complex*16 ztest,zpp,zmm,zpm,zmp
+      complex*16 zpp,zmm,zpm,zmp
       double precision mu
 
       include 'polarization.f'

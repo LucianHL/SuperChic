@@ -1,17 +1,3 @@
-ccc   various functions
-      function min(p1,p2)
-      implicit none
-      double precision p1,p2,min
-      
-      if(p1.gt.p2)then
-         min=p2
-      else
-         min=p1
-      endif
-      
-
-      return
-      end
 
       function dphi_mom(p1,p2)
       implicit none

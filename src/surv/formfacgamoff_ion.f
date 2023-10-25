@@ -97,9 +97,9 @@ cccccccc
       zoutsf=0d0
       
       do mu=1,4
-	 do mup=1,4
+      do mup=1,4
             do nu=1,4
-	       do nup=1,4
+            do nup=1,4
 
                   zt=zoutarr(p,mu,nu)*dconjg(zoutarr(p,mup,nup))
 

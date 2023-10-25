@@ -4,9 +4,8 @@
       integer iin,i1,i2,i3,i4
       integer iphi1,iphi2,nphi,iphi
       integer ibt1,ibt2
-      integer ipt,npt,ipphi,npphi
+      integer ipt,ipphi,npphi
       integer n,ntotal,ntotal1
-      integer ix1,nx1,outl
       integer iq,iqtot
       integer in1,in2
 
@@ -120,7 +119,7 @@ c      sum=sum/2d0/pi
       print*,1d0+2d0*sum/sum0+sum1/sum0
 
      
- 887  close(10)
+      close(10)
 
       
 cccccccccccccccccc

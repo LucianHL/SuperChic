@@ -6,7 +6,7 @@ ccc   spin correlations for j_psi decay to mu+mu-
      & zce6e6
       complex*16 wt(10),wt1
       complex*16 rho1psi(4,4)
-      integer h,i,j,k,l,m
+      integer h,i,j,k
       complex*16 epsi1(3,4),epsia(4),cepsia(4)
       complex*16 epsi2(3,4),epsib(4),cepsib(4)
       double precision pcm(4),pboo(4),plb(4)

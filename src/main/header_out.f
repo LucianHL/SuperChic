@@ -2,7 +2,7 @@
 ccc   prints out header information
       subroutine header_out(avgi,sd)
       implicit none
-      integer outl,outl1
+      integer outl
       double precision avgi,sd
     
       include 'gencuts.f'
@@ -32,16 +32,16 @@ ccc   prints out header information
       call length(outtag,outl)
       open(56,file='outputs/output'//outtag(1:outl)//'.dat')
       write(56,*)''
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       call length(procn,outl)
       write(56,*)'* ',procn(1:outl)
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)
       write(56,301)avgi,sd
       write(56,*)
-      write(56,*)'********************  Input parameters *******************                                                                          
+      write(56,*)'********************  Input parameters ***************
      &**************'
       write(56,99)' *',rts,' :  CMS collision energy (GeV)'
       write(56,97)' *',isurv,' :  Model of soft survival'
@@ -52,13 +52,13 @@ ccc   prints out header information
       call length(outtag,outl)
       write(56,96)' *',outtag(1:outl)//'.dat',' :  Output file'
       write(56,98)' *',sfaci,' :  Include soft survival effects'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,98)' *',diff,' : dissociation flag'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
-      write(56,*)'****************** Integration parameters  ***************                                                                          
+      write(56,*)'****************** Integration parameters  ***********
      &**************'
       write(56,97)' *',ncall,' :  Preconditioning calls'
       write(56,97)' *',itmx,' :  Preconditioning iterations'
@@ -67,13 +67,13 @@ ccc   prints out header information
       write(56,97)' *',inccall,' :  Increase calls per iteration'
       write(56,97)' *',itend,' :  Maximum number of iterations'
       write(56,97)' *',iseed,' :  Random number seed'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,97)' *',s2int,' :  Survival factor integration par.'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
-      write(56,*)'********************* Unweighted Events  *****************                                                                          
+      write(56,*)'********************* Unweighted Events  *************
      &**************'
       write(56,98)' *',genunw,' :  Generate unweighted events'
       if(genunw)then
@@ -81,10 +81,10 @@ ccc   prints out header information
          write(56,97)' *',nev,' :  Number of events'
          write(56,96)' *',erec(1:outl),' :  Record format'
       endif
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
-      write(56,*)'********************* General Cuts ***********************                                                                          
+      write(56,*)'********************* General Cuts *******************
      &**************'
       write(56,99)' *',ymin,' :  Minimum object rapidity'
       write(56,99)' *',ymax,' :  Maximum object rapidity'
@@ -92,11 +92,11 @@ ccc   prints out header information
       write(56,99)' *',mmax,' :  Maximum object mass'
       write(56,98)' *',gencuts,' :  Include further cuts'
       write(56,98)' *',gencuts,' :  Include spin correlations'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       if(dps.eq.2.or.decay2)then
-      write(56,*)'***************** 2-body decay cuts **********************                                                                          
+      write(56,*)'***************** 2-body decay cuts ******************
      &**************'
       write(56,99)' *',ptamin,' :  pT(a) min'
       write(56,99)' *',ptbmin,' :  pT(b) min'
@@ -104,11 +104,11 @@ ccc   prints out header information
       write(56,99)' *',etaamax,' :  eta(a) max'
       write(56,99)' *',etabmin,' :  eta(b) min'
       write(56,99)' *',etabmax,' :  eta(b) max'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       elseif(dps.eq.3.or.decay3)then
-      write(56,*)'***************** 3-body decay cuts **********************                                                                          
+      write(56,*)'***************** 3-body decay cuts ******************
      &**************'
       write(56,99)' *',ptamin3,' :  pT(a) min'
       write(56,99)' *',ptbmin3,' :  pT(b) min'
@@ -119,12 +119,12 @@ ccc   prints out header information
       write(56,99)' *',etabmax3,' :  eta(b) max'
       write(56,99)' *',etacmin3,' :  eta(c) min'
       write(56,99)' *',etacmax3,' :  eta(c) max'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       write(56,*)''
       elseif(decay4)then
-      write(56,*)'***************** 4-body decay cuts **********************                                                                          
+      write(56,*)'***************** 4-body decay cuts ******************
      &**************'
       write(56,99)' *',ptamin4,' :  pT(a) min'
       write(56,99)' *',ptbmin4,' :  pT(b) min'
@@ -138,37 +138,37 @@ ccc   prints out header information
       write(56,99)' *',etacmax4,' :  eta(c) max'
       write(56,99)' *',etadmin4,' :  eta(d) min'
       write(56,99)' *',etadmax4,' :  eta(d) max'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       endif
       if(proc.eq.5.or.proc.eq.6)then
-       write(56,*)'*********************** Jet cuts ************************                                                                          
+       write(56,*)'*********************** Jet cuts ********************
      &**************'
       write(56,99)' *',rjet,' :  Jet Radius'
       call length(jalg,outl)
       write(56,96)' *',jalg(1:outl),' : Record format'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       endif
       if(proc.gt.40.and.proc.lt.46)then
-      write(56,*)'**************** chi_b 2-body decays *******************                                                                            
+      write(56,*)'**************** chi_b 2-body decays *****************
      &**************'
       write(56,99)' *',m2b,' :  Decay particle mass'
       write(56,97)' *',pdgid(6),' :  PDG number particle 1'
       write(56,97)' *',pdgid(7),' :  PDG number particle 2'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       endif
       if(proc.gt.22.and.proc.lt.28)then
-      write(56,*)'**************** chi_c 2-body decays *******************                                                                            
+      write(56,*)'**************** chi_c 2-body decays *****************
      &**************'
       write(56,99)' *',m2b,' :  Decay particle mass'
       write(56,97)' *',pdgid(6),' :  PDG number particle 1'
       write(56,97)' *',pdgid(7),' :  PDG number particle 2'
-      write(56,*)'**********************************************************                                                                          
+      write(56,*)'******************************************************
      &**************'
       write(56,*)''
       endif

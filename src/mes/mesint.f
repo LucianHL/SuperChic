@@ -1,7 +1,7 @@
 ccc   interpolates gg-->MM amplitude in cos(theta)
       subroutine mesint(pol,j,cost,out)
       implicit double precision(a-y)
-      integer i,j,p,pol
+      integer i,j,pol
 
       include 'mes.f'
 

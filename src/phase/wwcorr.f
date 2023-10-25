@@ -4,7 +4,7 @@ ccc   spin correlations in W+W- production (leptonic decays)
       double precision sint2,sint1,rhowpp,rhowpm,rhowp0,rhowmp,rhowm0
      &     ,rhowmm,cost1,cost2,wtt
       double precision rhow(9),rhowc(9)
-      integer mm,jj,nn
+      integer mm
       complex*16 wt(10),rhoww(9)
       logical rf
       double precision rhowp_rf(3),rhowm_rf(3)

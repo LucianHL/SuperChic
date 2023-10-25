@@ -1,6 +1,7 @@
       function rfit(i,x,qsq)
       implicit double precision(a-z)
       integer i
+      rfit = 0.0d0
 
       theta=1d0+12d0*(qsq/(qsq+1d0))*(0.125d0**2/(0.125d0**2+x**2))
       

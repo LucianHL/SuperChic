@@ -4,7 +4,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude
       double precision sphi,cphi,sintt,costt,cost_test
       double precision normp,beta,u,t,mx
       complex*16 pp,mm,pm,mp
-      integer p,l1,l2
+      integer p
 
       include 'ewpars.f'
       include 'pi.f'

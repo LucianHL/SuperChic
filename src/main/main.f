@@ -14,13 +14,12 @@ c   calculates CEP cross section
       double precision root1sq,root2sq,rmx,rm,cc1,cc2,aa1,aa2
       double precision rdisst,rdiss1,rdiss2,rdiss,r1,r2,r3,r4,r5
       double precision qsq1,qsq2,qsq1tt,qsq2tt
-      double precision ptxx,ptxsq,ptmin,ptmax1,ptmax2,ptmax,ptdif,ptav
+      double precision ptxx,ptxsq,ptmin,ptmax1,ptmax2,ptmax,ptdif
       double precision pt2x,pt2y,pt1y,pt1x,pt1sq,pt2sq,phi2,phi1
       double precision ps,p2p,p2m,p1p,p1m,ktcut
       double precision msub,mpp1,mpp2,mdissmax,lmdissmin,lmdissmax,
      &     lmdiss1,lmdiss2
       double precision jrho,jmono,jchi,jalp
-      double precision delphin,delphi,acoab
       double precision wgt
       
       include 'polvecs.f'
@@ -694,7 +693,7 @@ ccccccccccccccccccccccccccccccccccccccccccc
 ccccccccc
 
           
- 456      if(photo)then
+          if(photo)then
              if(beam.eq.'prot')then
                 call schimcphot(pt1x,pt1y,pt2x,pt2y,wt)
              elseif(beam.eq.'ionp')then
@@ -890,7 +889,7 @@ ccccccccc
                   wtt=wtt/pi*mx**4 ! To match with below
                endif    
             endif
- 334        wtt=wtt*wty
+            wtt=wtt*wty
             wtt=wtt*2d0/mx
             if(dps.eq.1)wtt=wtt*pi/2d0/mx**3
             if(dps.eq.2)wtt=wtt*mx**2*(1d0/mmin**1d0-1d0/mmax**1d0)/1d0

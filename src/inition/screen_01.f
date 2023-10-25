@@ -24,7 +24,7 @@
       
 cccccccccccc
 
- 111  btminb=0d0
+      btminb=0d0
       btmax=4d0*rzg
 
       aj0=(1d0-opacpbint_3(rzg*40d0))*rzg*40d0

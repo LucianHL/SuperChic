@@ -34,7 +34,7 @@
       
       sum=0d0
 
- 999  do ibt=1,nbt
+      do ibt=1,nbt
 
          bt=(dble(ibt)-0.5d0)*hbt
 
@@ -76,7 +76,7 @@ c      print*,cross/crossb
       write(10,*)cross/crossb
      
 
- 887  close(10)
+      close(10)
 
       return
       end

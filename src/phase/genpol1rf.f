@@ -4,7 +4,7 @@ ccc   generates polarization vectors for psi (in r.f.)
       double precision m,pnorm
       double precision n1(4),n2(4)
       double precision nchi(4),p(4)
-      integer i,in
+      integer i
       complex*16 echi1(3,4)
 
       include 'zi.f'
