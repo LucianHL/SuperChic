@@ -2,7 +2,7 @@
       implicit none
       double precision qtmin,qtmax,sum,qt,lqtmin,lqtmax,lqt
       double precision tpz,tpn
-      integer i,j,jmax
+      integer i
       
       include 'tppars.f'
       include 'ion.f'

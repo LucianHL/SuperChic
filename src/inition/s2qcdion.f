@@ -1,12 +1,11 @@
       subroutine s2qcdion
       implicit none
-      double precision wt1,wt,sum,sum1,sum2,out
+      double precision wt1,wt,sum,sum1,out
       double precision phi1,phi2,hbt,hphi
       double precision btx,bty,btmax,bt2x,bt2y,bt1y,bt1x,bt1,bt2,bt
       double precision tpqcdint,opacpbint
       integer iphi1,iphi2,ibt1,ibt2
       integer nphi,nbt
-      integer iphik,ik,nphik,nk,ik1
 
       include 'pi.f'
       include 'ion.f'

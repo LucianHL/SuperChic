@@ -3,7 +3,6 @@ ccc   various functions
       implicit none
       double precision dot,dphi_mom
       double precision p1(4),p2(4)
-      integer i,j,k
 
       include 'pi.f'
       include 'mom.f'

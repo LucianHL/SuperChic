@@ -1,6 +1,5 @@
       subroutine ionpars
       implicit none
-      integer fit
       
       include 'ion.f'
       include 'pi.f'
