@@ -365,9 +365,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
      & E19.8,E19.8)
 
- 301  format(i5,1x,i4,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
-     &E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9)
-
  303  format(7x,i10,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
      &     E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,F2.0,1x,F2.0)
 

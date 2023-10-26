@@ -7,9 +7,8 @@ ccc   (QCD induced processes)
       double precision betaionex,sc,screeningionint
       double precision p1xp,p1yp,p2xp,p2yp,mu,hphi,del
       double precision p1x,p1y,p2x,p2y
-      integer jx,jy,i1,i2,p,nphi,nqt,jqt,jphi,nnphi,nk,nk1
-      complex*16 out(10),x0(10),x00(10),x0p(10),outt
-      complex*16 screen(2,2)
+      integer p,nphi,jqt,jphi,nk,nk1
+      complex*16 out(10),x0(10),x0p(10),outt
 c      complex*16 outt(0:4000,10)
       integer icount
       common/icount/icount

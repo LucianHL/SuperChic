@@ -1,11 +1,6 @@
       subroutine cut(icut)
       implicit double precision(a-y)
-      double precision p1(4),p2(4),p3(4)
-      integer icut,jflag,i,j
-      logical accut
-      double precision pj1(4),pj2(4),pl1(4),pl2(4)
-      double precision pq1(4),pq2(4)
-      double precision q1(4),q2(4)
+      integer icut,jflag
       
       include 'gencuts.f'
       include 'vars.f'

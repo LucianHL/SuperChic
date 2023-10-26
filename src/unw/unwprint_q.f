@@ -135,7 +135,7 @@ ccc   randomizes order of VEGAS unweighted events and
 ccc   prints nev events to record
       subroutine unwprintq
       implicit double precision(a-y)
-      integer i,j,k,l,m,n,bar
+      integer i,j,k,l,m
       integer evfill(2000000)
 
       include 'pdg.f'
@@ -672,9 +672,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
  300  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
      &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
      & E19.8,E19.8)
-
- 301  format(i5,1x,i4,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
-     &E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9)
 
  303  format(7x,i10,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
      &     E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,F2.0,1x,F2.0)

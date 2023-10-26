@@ -94,7 +94,7 @@
 
       subroutine gaminit_comb
       implicit none
-      integer i,j,k,i1,j1,k1,k2,l,m
+      integer i,j,k,i1,j1,k1
       complex*16 zt
       
       include 'gmatrices.f'

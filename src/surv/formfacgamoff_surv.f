@@ -7,7 +7,7 @@ ccccc EPA form factors (proton)
       double precision q1(2),q2(2)
       double precision alphaem
       double precision out11,out12,out21,out22,out
-      integer p,i,j,k,l,io
+      integer p,i,j,k,io
  
       include 'photo.f'
       include 'mp.f'

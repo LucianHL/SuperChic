@@ -7,9 +7,8 @@ ccc   (photoproduction processes)
       double precision qtmax,qt,phiq
       double precision p1xp,p2xp,p1yp,p2yp,sc,screeningionint
       double precision p1x,p1y,p2x,p2y
-      integer jx,jy,i1,i2,p,nphi,nqt,jqt,jphi
-      complex*16 out(10),x0(10),x00(10),out1(10),out2(10),x01(10)
-      complex*16 screen(2,2)
+      integer p,nphi,nqt,jqt,jphi
+      complex*16 out(10),x0(10),out1(10),out2(10),x01(10)
 
       include 'nchan.f'
       include 'surv.f'

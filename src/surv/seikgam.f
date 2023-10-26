@@ -6,17 +6,16 @@ ccc   (two-photon induced processes)
       double precision x00p2a,x00p2,x00p,sc,sc1
       double precision s2sd1,s2sd2,s2sd,s2out,s2i,s2dd
       double precision qtmax,qtcut,qt1,qt2,qt
-      double precision q1xp,q1yp,q2xp,q2yp,phiq,hqt,hphi
+      double precision phiq,hqt,hphi
       double precision p1xp,p2xp,p1yp,p2yp
       double precision del,dbl
       double precision p1x,p1y,p2x,p2y
       double precision wt,tpx,tpy,tp2,t11,t12,t22
-      integer jx,jy,i1,i2,p,i,nphi,nqt,jqt,jphi,j
-      complex*16 out(4,10),x0(10),x00(10),outgg(10)
+      integer i1,i2,p,i,nphi,nqt,jqt,jphi
+      complex*16 out(4,10),x0(10),outgg(10)
       complex*16 screen(2,2)
-      integer nni
       complex*16 outg(2,10)
-      complex*16 zoutt(4,4),outgb(10),outgbo(10)
+      complex*16 outgb(10),outgbo(10)
       complex*16 zouts_1arr(10),zouts_2arr(10)
       
       include 'ppamp.f'
