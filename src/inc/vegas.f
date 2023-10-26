@@ -4,5 +4,5 @@ cccccc Vegas paramters
       double precision xl(10),xu(10),acc
       common/iteration/it
       COMMON/BVEG1/XL,XU,ACC,NDIM,NCALL,ITMX,NPRN
-      double precision cs
+!      double precision cs
 c      external cs

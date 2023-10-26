@@ -80,7 +80,7 @@ C
 7     XI(ND,J)=ONE
       NDO=ND
 C
-c8     IF(NPRN.NE.0) WRITE(6,200) NDIM,CALLS,IT,ITMX,ACC,MDS,ND
+c8     IF(NPRN.NE.0) WRITE(6,209) NDIM,CALLS,IT,ITMX,ACC,MDS,ND
 c     1                           ,(XL(J),XU(J),J=1,NDIM)
 8     IF(NPRN.NE.0)THEN
 c         WRITE(6,300) NDIM,CALLS,IT
@@ -218,21 +218,21 @@ C
 28    XI(ND,J)=ONE
 C
       IF(IT.LT.ITMX.AND.ACC*DABS(AVGI).LT.SD) GO TO 9
-200   FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
-     1    /28X,'  IT=',I5,'  ITMX=',I5/28X,'  ACC=',G9.3
-     2    /28X,'  MDS=',I3,'   ND=',I4/28X,'  (XL,XU)=',
-     3    (T40,'( ',G12.6,' , ',G12.6,' )'))
-201   FORMAT(///' INTEGRATION BY VEGAS' / ' ITERATION NO.',I3,
-     1    ':   INTEGRAL =',G14.8/21X,'STD DEV  = ',G10.4 /
-     2    ' ACCUMULATED RESULTS:   INTEGRAL =',G14.8 /
-     3    24X,'STD DEV  = ',G10.4 / 24X,'CHI**2 PER IT''N =',G10.4)
+C209   FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
+C     1    /28X,'  IT=',I5,'  ITMX=',I5/28X,'  ACC=',G9.3
+C     2    /28X,'  MDS=',I3,'   ND=',I4/28X,'  (XL,XU)=',
+C     3    (T40,'( ',G12.6,' , ',G12.6,' )'))
+C201   FORMAT(///' INTEGRATION BY VEGAS' / ' ITERATION NO.',I3,
+C     1    ':   INTEGRAL =',G14.8/21X,'STD DEV  = ',G10.4 /
+C     2    ' ACCUMULATED RESULTS:   INTEGRAL =',G14.8 /
+C     3    24X,'STD DEV  = ',G10.4 / 24X,'CHI**2 PER IT''N =',G10.4)
 202   FORMAT(' DATA FOR AXIS',I2 / ' ',6X,'X',7X,'  DELT I  ',
      1    2X,' CONV''CE  ',11X,'X',7X,'  DELT I  ',2X,' CONV''CE  '
      2   ,11X,'X',7X,'  DELT I  ',2X,' CONV''CE  ' /
      2    (' ',3G12.4,5X,3G12.4,5X,3G12.4))
 
- 300  FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
-     1    /28X,'  IT=',I5)
+C 300  FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
+C     1    /28X,'  IT=',I5)
  301  FORMAT(//' ************** Integration by Vegas (iteration',I4,') '
      .      ,'*************',/,' ******************** ',1X,I7,2X
      .     ,' calls','   *************************',/,' *',63X,'*'
@@ -278,7 +278,7 @@ C   ENTERS INITIALIZATION DATA FOR VEGAS
 C
       READ(7,200) NDO,IT,SI,SI2,SWGT,SCHI,
      1            ((XI(I,J),I=1,NDO),J=1,NDIM)
-200   FORMAT(2I8,4Z16/(5Z16))
+ 200  FORMAT(2I8,4Z16/(5Z16))
       RETURN
       END
 C

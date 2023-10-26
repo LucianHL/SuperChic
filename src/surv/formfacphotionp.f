@@ -2,9 +2,9 @@ ccccc EPA form factors (proton)
       subroutine formfacphotionp(io,t1,t2,out)
       implicit none
       double precision qsq1,qsq2,tpint,q0,out,t1,t2
-      double precision wt,ww1,ww2,ww1p,ww2p,x2i
+      double precision wt,ww2,ww2p,x2i
       double precision f2,mion
-      integer i1,i2,io
+      integer io
 
       include 'photo.f'
       include 'mp.f'
