@@ -2,8 +2,8 @@
 **********************************************
 * AQ2 = s,u    AP2 = t,u    AM12 = M^2 - i*eps
       IMPLICIT NONE
-      REAL*8 AQ2,AP2,TET,ABS,zet2
-      COMPLEX*16 AM12,IPI,XSPENZ,SQRT,CMPLX,LOG,C01
+      REAL*8 AQ2,AP2,TET,zet2
+      COMPLEX*16 AM12,IPI,XSPENZ,SQRT,CMPLX,LOG
       COMPLEX*16 A1,A2,A3,lA3,A2A3,A1A3
 !if defined(__FLANG)
       REAL*8  IMAG
