@@ -3,7 +3,7 @@ ccc   spin correlations in W+W- production (leptonic decays)
       implicit none
       double precision sint2,sint1,rhowpp,rhowpm,rhowp0,rhowmp,rhowm0
      &     ,rhowmm,cost1,cost2,wtt
-      double precision rhow(9),rhowc(9)
+      double precision rhow(9)
       integer mm
       complex*16 wt(10),rhoww(9)
       logical rf
@@ -78,7 +78,7 @@ ccc   spin correlations in W+W- production (leptonic decays)
       implicit none
       double precision mw
       double precision rho_rf(3)
-      integer i,j,mu,nu,alpha,beta,iw
+      integer i,j,mu,nu,beta,iw
       complex*16 ep(4),pl_e,pn_e,eps,zt,ep_epc
       
       include 'polwrf.f'
@@ -157,7 +157,7 @@ ccc   spin correlations in W+W- production (leptonic decays)
       implicit none
       double precision ml,mw
       double precision rho_rf(3)
-      integer i,j,mu,nu,alpha,beta,iw
+      integer i,j,mu,nu,beta,iw
       complex*16 ep(4),pf_e,paf_e,eps,zt,ep_epc,pw_e
       
       include 'polwrf.f'

@@ -2,7 +2,7 @@ c   calculates CEP cross section
       function cs(rarr,wgt)
       implicit none
       complex*16 wt(10),wtn(10),wtd(10),wtpvar(3,10)
-      double precision rarr(10),ran(5),wtr(10)
+      double precision rarr(10),wtr(10)
       integer i,p,icut
       double precision rphi,ran2,cs
       double precision ypp,ypmin1,ypmin2,ypmin,ypmax,ypmax1,ypmax2,

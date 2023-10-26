@@ -7,7 +7,7 @@ ccc   (assuming SCHC)
       complex*16 rho1psi(3,3)
       integer h,i,j,k
       complex*16 epsi1(3,4),epsi(4),cepsi(4)
-      double precision q5(4),q6(4),q7(4),q8(4),q9(4)
+      double precision q8(4)
       double precision pboo(4),plb(4),pcm(4)
 
       include 'polvecs.f'

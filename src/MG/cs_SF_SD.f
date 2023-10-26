@@ -1,27 +1,21 @@
 ccccc EPA form factors (proton)
       subroutine SFcalc_SD(p,pflag,qin,out)
       implicit none
-      integer i,j,mu,mup,nup,nu,p
+      integer i,p
       double precision pq1(4),pq2(4),xi1,xi2,xi,xii
       double precision p1(4),p2(4),q1(4),q2(4),qsq1,qsq2
       double precision alphaem
       double precision x1t,x2t,x1tt,x2tt,beta,xit,xbi
-      double precision sf_g,out_tot,qsq,f1,f2,fl
-      double precision outn,cs_SF,out,toti,out_tran,out_long
-      complex*16 ztsf,zt,zoutsf,zout_sf,sf_tran
-      complex*16 zsf,asf(4,2,2),znsf,awwnsf(4,2,2)
-      double precision qi(4),pqi(4),qi2(4),qsqi2,qdk
-      complex*16 zamp_arr(4,2,2),zout_tot,ztot,zout_gww
-      complex*16 awlh(4,2,2),zout_wq,awlhu(4,2,2),awlhd(4,2,2)
-      complex*16 zout_wwg,zout_wgw
+      double precision qsq,f1,f2,fl
+      double precision out,out_tran,out_long
+      double precision qi(4),pqi(4),qi2(4),qsqi2
 c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
-      double precision phot,garr(-6:6),fpdf,out_lo,matelem,out_t
-      double precision ap,apd,api,apdi,sw,cw,afp,afpd,eqi,eqim
+      double precision phot,garr(-6:6),fpdf,matelem,out_t
+      double precision ap,apd,api,apdi,sw,cw,eqi,eqim
       REAL*8 Pmom(0:3,6)
-      integer qin,qti,iw,pflag
+      integer qin,qti,pflag
       logical ati
-      complex*16 amptest,epg(4),emg(4)
-      double precision sigtest
+      complex*16 amptest
       double precision f1lo,f2lo,fk1
       common/amptest/amptest
     

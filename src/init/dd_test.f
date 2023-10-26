@@ -1,12 +1,7 @@
       subroutine dd_test
       implicit double precision(a-y)
-      integer ikt,nkt,nbt,ibt,ikt1,ikt2
-      integer iin,i1,i2,i3,i4
-      integer iphi1,iphi2,nphi,iphi
-      integer ibt1,ibt2
-      integer ipt,ipphi,npphi
+      integer i1,i2,i3,i4
       integer n,ntotal,ntotal1
-      integer iq,iqtot
       integer in1,in2
 
       include 'nchan.f'

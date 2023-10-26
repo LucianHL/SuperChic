@@ -1,7 +1,7 @@
       subroutine dd
       implicit double precision(a-y)
       integer nphi,nkt,nbt
-      integer iphi,ikt,ibt,i1,i2,outl
+      integer ikt,ibt,i1,i2,outl
 
       include 'nchan.f'
       include 'survpars.f'
