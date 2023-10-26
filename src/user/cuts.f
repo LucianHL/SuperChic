@@ -342,7 +342,7 @@ ccccccccc
            
       endif
 
- 777  icut=1
+      icut=1
 
       return
       end

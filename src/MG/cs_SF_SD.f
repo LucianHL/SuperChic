@@ -163,7 +163,7 @@ cccccccccccccccccc
 
 ccccccccccccccc
       
- 555  do i=1,3
+      do i=1,3
          pmom(i,1)=qi2(i)
          pmom(i,2)=pqi(i)
          pmom(i,3)=pqi(i)-qi(i)

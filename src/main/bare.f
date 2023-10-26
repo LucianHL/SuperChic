@@ -219,7 +219,7 @@ cccccc
  333  enddo
 
 
- 335  do p=1,pol
+      do p=1,pol
          out(p)=sum(p)
       enddo
 
