@@ -186,7 +186,7 @@ ccccccccccc  swap momenta
       
 ccccccccccc
 
- 444  call evolvePDFphoton(xi1,dsqrt(qsq1),garr,phot)
+      call evolvePDFphoton(xi1,dsqrt(qsq1),garr,phot)
       
       f2_1u=(garr(2)+garr(4))  ! note charge weighting included in SMATRIX
       f2_1d=(garr(1)+garr(3)+garr(5))

@@ -694,7 +694,7 @@ ccccccccccccccccccccccccccccccccccccccccccc
 ccccccccc
 
           
- 456      if(photo)then
+          if(photo)then
              if(beam.eq.'prot')then
                 call schimcphot(pt1x,pt1y,pt2x,pt2y,wt)
              elseif(beam.eq.'ionp')then
@@ -890,7 +890,7 @@ ccccccccc
                   wtt=wtt/pi*mx**4 ! To match with below
                endif    
             endif
- 334        wtt=wtt*wty
+            wtt=wtt*wty
             wtt=wtt*2d0/mx
             if(dps.eq.1)wtt=wtt*pi/2d0/mx**3
             if(dps.eq.2)wtt=wtt*mx**2*(1d0/mmin**1d0-1d0/mmax**1d0)/1d0

@@ -93,7 +93,7 @@ ccc   prints out header information
       print*,'**********************************************************
      &**************'
       print*,''
-      print*,'********************* Integration parameters  ******************
+      print*,'********************* Integration parameters  ************
      &**************'
       write(*,97)' *',ncall,' :  Preconditioning calls'
       write(*,97)' *',itmx,' :  Preconditioning iterations'

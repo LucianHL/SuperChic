@@ -546,7 +546,7 @@ C     Amplitude(s) for diagram number 51
          if(nhel(2).eq.1)matrix_ubcb=0d0 ! set to zero if LH                                                                                         
       elseif(ftype.eq.'LH')then
          if(nhel(1).eq.-1)matrix_ubcb=0d0 ! set to zero if RH                                                                                        
-	 if(nhel(2).eq.-1)matrix_ubcb=0d0 ! set to zero if RH                                                                                        
+      if(nhel(2).eq.-1)matrix_ubcb=0d0 ! set to zero if RH                                                                                        
       elseif(ftype.eq.'mixed')then
          if(nhel(1).eq.-1)matrix_ubcb=0d0 ! set to zero if RH                                                                                        
          if(nhel(2).eq.1)matrix_ubcb=0d0 ! set to zero if LH                                                                                         

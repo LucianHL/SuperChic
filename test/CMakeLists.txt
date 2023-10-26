@@ -49,9 +49,9 @@ endmacro()
 macro(sctesthepmc NN MM)
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
   if(SUPERCHIC_DOWNLOAD_PDFS)
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "UNZIPPDFS;INIT_${NN}")
+    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "UNZIPPDFS;INIT_${NN}")
   else()
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "INIT_${NN}")  
+    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "INIT_${NN}")  
   endif()
   add_test(NAME VALIDATE_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat)
   set_tests_properties( VALIDATE_${NN}_${MM} PROPERTIES DEPENDS "validator;SUPERCHIC_${NN}_${MM}")
@@ -63,9 +63,9 @@ endmacro()
 macro(sctestlhe NN MM)
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
   if(SUPERCHIC_DOWNLOAD_PDFS)
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "UNZIPPDFS;INIT_${NN}")
+    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "UNZIPPDFS;INIT_${NN}")
   else()
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "INIT_${NN}")  
+    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "INIT_${NN}")  
   endif()
   add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc)
   set_tests_properties( SHOWER_${NN}_${MM} PROPERTIES DEPENDS "shower;SUPERCHIC_${NN}_${MM}")
@@ -75,15 +75,35 @@ endmacro()
 
 
 set(diffs  el sd dd)
-set(diffs  el  dd) 
+set(diffs_dd   sd dd)
+set(diffs_el   el)
+#set(diffs  el  dd) 
 #sd does not work so far
 set(fmts  hepevt lhe hepmc)
-set(procs  1 2 3 4 5 6 7 8 9 10 11)
-set(procs 56)
+if (SUPERCHIC_ENABLE_ALL_TESTS)
+set(procs  1 2 3 4 5 6 7 8 9  
+           10 11 12 13 14 15 16 17 18 19 
+           20 21 22 23 24 25 26 27 28 29
+           30 31 32 33 34 35 36 37 38 39
+           40 41 42 43 44 45 46 47 48 49
+           50 51 52 53 54 55 56 57 58 59
+           60 61 62 63 64 65 66 67 68 69
+           70 71 72 73 74 75 76 77 78 79
+           80 81 82 83 84 
+           )
+set(procs_dd 54 55 56 57 58
+             68 )
+else()
+set(procs 56 )
+set(procs_dd 56 )
+endif()
+#54-58,68
 
+#set(procslheonly 56)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_PROCESS ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_PROCESS) # for init
 foreach ( diff ${diffs} )
 foreach ( process ${procs} )
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_PROCESS ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_PROCESS_${process}_${diff}) # for init
 foreach ( format ${fmts} )
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_PROCESS ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_PROCESS_${process}_${diff}_${format})
 endforeach()
@@ -91,11 +111,16 @@ endforeach()
 endforeach()
 
 
-foreach ( diff ${diffs} )
+inittest(PROCESS)
 foreach ( process ${procs} )
-inittest(PROCESS_${process}_${diff})
-sctestlhe(PROCESS_${process}_${diff} PROCESS_${process}_${diff}_lhe)
-sctesthepmc(PROCESS_${process}_${diff} PROCESS_${process}_${diff}_hepmc)
-# FIXME sctesthepmc(PROCESS_${process}_${diff} PROCESS_${process}_${diff}_hepevt)
+foreach ( diff ${diffs_el} )
+sctestlhe(PROCESS PROCESS_${process}_${diff}_lhe)
+sctesthepmc(PROCESS PROCESS_${process}_${diff}_hepmc)
+# FIXME sctesthepmc(PROCESS PROCESS_${process}_${diff}_hepevt)
+endforeach()
+endforeach()
+foreach ( process ${procs_dd} )
+foreach ( diff ${diffs_dd} )
+sctestlhe(PROCESS PROCESS_${process}_${diff}_lhe)
 endforeach()
 endforeach()
