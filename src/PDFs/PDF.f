@@ -1,7 +1,6 @@
 ccc   calculates single PDF xg and dxg/dQ^2
       function xg(x,qsq)
       implicit double precision (a-z)
-      double precision garr(-6:6)
 
       q0=1.5d0
       eps=1d-3
@@ -60,7 +59,6 @@ ccc   calculates single PDF xg and dxg/dQ^2
 
       function dxg(x,qsq)
       implicit double precision (a-z)
-      double precision garr(-6:6)
 
       q0=1.5d0
       eps=1d-3

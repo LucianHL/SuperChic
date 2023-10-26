@@ -3,7 +3,7 @@ ccc   vector meson
       subroutine chic2decay3(wt,wtt)
       implicit none
       double precision q8q9,q6q7,sdot,wt1,pnorm,wtt,mvec,mxx
-      complex*16 zq6epsi1p,zq6epsi1,ze7q8,zce7q8,zq6cepsi1,zce7e7
+      complex*16 zq6epsi1p,ze7q8,zce7q8,zq6cepsi1,zce7e7
       complex*16 wt(10)
       complex*16 rho1psi(3,3),rho2chi(5,5)
       integer h,i,j,k,l,m,o,p,r,d,n

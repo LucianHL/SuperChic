@@ -1,10 +1,6 @@
       subroutine sdcoh
       implicit double precision(a-y)
-      integer ikt,nkt,nbt,ibt,ikt1,ikt2
-      integer iin,i1,i2,i3,i4
-      integer iphi1,iphi2,nphi,iphi
-      integer ibt1,ibt2
-      integer ipt,npt,ipphi,npphi
+      integer i1,i2,i3,i4
       integer n,ntotal,ntotal1
       integer ix1,nx1,outl
       integer iq,iqtot
