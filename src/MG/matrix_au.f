@@ -359,7 +359,7 @@ c      JAMP(1)=JAMP(1)+AMP(2)+AMP(5)+AMP(3)+AMP(6)
         DO J = 1, NCOLOR
           ZTEMP = ZTEMP + CF(J,I)*JAMP(J)
         ENDDO
-        MATRIX_AU = MATRIX_AU+ZTEMP*DCONJG(JAMP(I))
+        MATRIX_AU = MATRIX_AU+DBLE(ZTEMP*DCONJG(JAMP(I)))
       ENDDO
 
       

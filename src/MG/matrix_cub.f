@@ -540,7 +540,7 @@ C     Amplitude(s) for diagram number 51
         DO J = 1, NCOLOR
           ZTEMP = ZTEMP + CF(J,I)*JAMP(J)
         ENDDO
-        MATRIX_CUB = MATRIX_CUB+ZTEMP*DCONJG(JAMP(I))
+        MATRIX_CUB = MATRIX_CUB+DBLE(ZTEMP*DCONJG(JAMP(I)))
       ENDDO
 
 

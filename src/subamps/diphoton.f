@@ -68,7 +68,7 @@ c         if(i.gt.3)cqfa(i)=cqfa(i)*3d0  ! Does not apply for gg
 c       mgen2=0d0
 c      mgen2i=dcmplx(0d0,-1d-30)
       
-      if (mgen2.eq.0) then
+      if (ABS(mgen2).LT.1.D-12) then
          
       qedamp(1,1,2,2) = qedamp(1,1,2,2) + cqfactor
 

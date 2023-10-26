@@ -353,7 +353,7 @@ C     Amplitude(s) for diagram number 15
         DO J = 1, NCOLOR
           ZTEMP = ZTEMP + CF(J,I)*JAMP(J)
         ENDDO
-        MATRIX_AUB = MATRIX_AUB+ZTEMP*DCONJG(JAMP(I))
+        MATRIX_AUB = MATRIX_AUB+DBLE(ZTEMP*DCONJG(JAMP(I)))
       ENDDO
 
          
