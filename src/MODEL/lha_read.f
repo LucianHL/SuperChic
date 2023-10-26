@@ -120,8 +120,7 @@ c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       character*20 blockname,val,par,temp,first_ref,first_line
       logical fopened
       integer ref_file
-      logical islast,isnum,found
-      character*20 temp_val
+      logical islast,found
 
 
 c     *********************************************************************
@@ -289,7 +288,6 @@ c
       character*(*)  name
       real*8 var,def_value_num
       character*20 c_param,c_name,ctemp
-      character*19 def_value
 c
 c     local
 c
@@ -345,7 +343,7 @@ c
       character*(*) filename
       character*90  tempname
       integer fine
-      integer dirup,i
+      integer i
 
       character*90 lastopen
       save lastopen

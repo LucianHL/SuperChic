@@ -1,19 +1,19 @@
 ccc   gamma gamma --> l+l- subprocess amplitude - off-shell axial gauge
       subroutine wwoff_axial(p)
       implicit none
-      complex*16 ampWWt,ampWWu,ampWWs,ampWWt_test,ampWW_H
+      complex*16 ampWWt,ampWWu,ampWWs
       complex*16 ep(4),em(4)
       complex*16 ep_em,ep_q1,ep_q2,em_q1,em_q2
      &,pm_ep,pp_em,pp_ep,pm_em
-      complex*16 ep_nL(4),em_nL(4),em2(4),ep2(4),em_em2,em_ep2,
-     &     n_em,n_em2,n_ep,n_ep2,zout,em_norm,ep_norm
-     &     ,ep_ep2,ztest,ampWWt_fun,ampWWu_fun,ampWWs_fun,
+      complex*16 
+     &     zout
+     &     ,ampWWt_fun,ampWWu_fun,ampWWs_fun,
      &     ampaxial_fun
-      double precision q1(4),q2(4),pp(4),pm(4),ap,beta,cw,sw,
-     &     n_pm,n_pp,n_n,n_q1,n_q2,qsq1,time,time_old,
+      double precision q1(4),q2(4),pp(4),pm(4),beta,
+     &     n_pm,n_pp,n_n,n_q1,n_q2,qsq1,
      &     qsq2,tl,ul,pp_q1,pp_q2,pp_pm,q1_q2,pm_q1,pm_q2
       double precision alphaEM
-      integer i,j,k,l,p,mu,nu
+      integer i,p,mu,nu
       logical onshell
       
       include 'mom.f'
