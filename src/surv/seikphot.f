@@ -6,8 +6,8 @@ ccc   (photoproduction processes)
       double precision tpx,tpy,tp2,t22,t12,t11,sc,sc1
       double precision qt,phiq,p1xp,p1yp,p2xp,p2yp,hqt,hphi
       double precision p1x,p1y,p2x,p2y
-      integer jx,jy,i1,i2,p,nphi,nqt,jqt,jphi
-      complex*16 out(10),x0(10),x00(10),out1(10),out2(10),x01(10)
+      integer i1,i2,p,nphi,nqt,jqt,jphi
+      complex*16 out(10),x0(10),out1(10),out2(10),x01(10)
       complex*16 screen(2,2)
 
       include 'nchan.f'

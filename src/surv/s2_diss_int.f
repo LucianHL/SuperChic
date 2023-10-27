@@ -5,7 +5,7 @@ ccc   interpolator for Sudakov factor
       double precision lxinc,lxmin,lx,lqtmin,lqtinc,lqt
       double precision qt,x,tg
       integer i,j,ii
-      integer nx,nqt
+      integer nqt
 
       include 's2_diss.f'
 

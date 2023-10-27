@@ -2,13 +2,13 @@ ccc   integrates bare + screened amplitude over k_t
 ccc   (QCD induced processes)
       subroutine schimc(p1x,p1y,p2x,p2y,out)
       implicit none
-      double precision x00p,wtt,mu
+      double precision x00p,mu
       double precision p1x,p1y,p2x,p2y,tpx,tpy,tp2,t11,t22,t12
       double precision sc,sc1
       double precision qtmax,qt,phiq,hphi,hqt
       double precision p1xp,p2xp,p1yp,p2yp
       double precision wt
-      integer jx,jy,i1,i2,p,nphi,nqt,jqt,jphi,nnphi
+      integer i1,i2,p,nphi,nqt,jqt,jphi,nnphi
       complex*16 out(10),x0(10),x00(10),x0p(10)
       complex*16 screen(2,2)
       complex*16 outt(0:200,10)

@@ -5,7 +5,7 @@ ccccc between eigenstates
       double precision ww1,ww2,wt
       double precision qsq,qsqmin,out1,out2,t1,t2,out
       double precision ge,gm,fe,fm,a2e,a2m,a1m,a1e,a0e,a0m
-      integer i1,i2,io
+      integer io
 
       include 'bpsi.f'
       include 'photo.f'

@@ -12,10 +12,7 @@ ccc   initialises number of histograms
 ccc   binning subroutine
       subroutine binit(wt)
       implicit none
-      double precision wt,acoab,delphin,delphi,cost,deleta
-      double precision pdec(4,4),ptel,eta1,eta2,pmod1,pmod2
-      integer i
-      double precision pcm(4),pboo(4),px(4)
+      double precision wt
 
 
 

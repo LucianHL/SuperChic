@@ -3,18 +3,17 @@ ccc   (two-photon induced processes)
       subroutine schimcgamion(p1x,p1y,p2x,p2y,outg)
       implicit none
       double precision x00p,wt,x00p2
-      double precision xggmin,yp,ypmax,ypmin,yqmin,yqmax,yq
+      double precision xggmin,yp,ypmax,ypmin
       complex*16 zout,zout1,zoutg,zoutoff2
       double precision tpx,tpy,tp2,t12,t22,t11,phiq
       double precision sc,qtmax,qt,screeningionint,qtmin
       double precision p1xp,p2xp,p1yp,p2yp
       double precision hy,hqt,hphi,del,dbl
       double precision p1x,p1y,p2x,p2y
-      integer jx,jy,i1,i2,p,i,nphi,nqt,jqt,jphi
-      complex*16 out(4,10),x0(10),x00(10),outg(10)
-      complex*16 screen(2,2),zouttest,zouttest1
-      integer nni,nk
-      complex*16 outt(0:200,0:10)
+      integer p,i,nphi,jqt,jphi
+      complex*16 out(4,10),x0(10),outg(10)
+      complex*16 zouttest,zouttest1
+      integer nk
 
       include 'ppamp.f'
       include 'nchan.f'
