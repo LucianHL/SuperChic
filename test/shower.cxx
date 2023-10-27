@@ -30,7 +30,7 @@ int main(int argc, char ** argv) {
   pythia.readString("Beams:frameType = 4");
   pythia.readString(std::string("Beams:LHEF = ")+argv[1]);
   pythia.init();
-
+  size_t events=0;
   // Book histogram.
   Hist nCharged("charged particle multiplicity",100,-0.5,399.5);
 
@@ -57,13 +57,14 @@ int main(int argc, char ** argv) {
       ++nChg;
     nCharged.fill(nChg);
     topHepMC.writeNextEvent( pythia );
+    events++;
   // End of event loop.
   }
 
   // Give statistics. Print histogram.
   pythia.stat();
   cout << nCharged;
-
+  if (events==0) return 1;
   // Done.
   return 0;
 }
