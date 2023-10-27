@@ -2,7 +2,7 @@
       implicit none
       double precision hbt,btmax,wt,wt1,sum,sum1,out,bt1
       double precision tpqcdint,opacpbpint
-      integer iphi1,iphi2,ibt1,ibt2
+      integer ibt1
       integer nphi,nbt
 
       include 'pi.f'

@@ -1,9 +1,9 @@
       function screen(qt)
       implicit none
-      double precision screen,wt,sum,bt,hbt,qt,lbt,lbtmin,lbtmax,hlbt
+      double precision screen,wt,sum,bt,hbt,qt
       double precision opacpbpint,opacpbint
       double precision b0,hbt0,sum0,btminb
-      integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
+      integer ibt,nbt,nbt0
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
       double precision dbesj0 
 !endif

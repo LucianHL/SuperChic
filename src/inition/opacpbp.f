@@ -1,6 +1,6 @@
       function opacpbp(btt)
       implicit double precision(a-y)
-      integer iphi1,iphi2,ibt1,ibt2
+      integer iphi1,ibt1
       integer nphi,nbt
 
       include 'pi.f'

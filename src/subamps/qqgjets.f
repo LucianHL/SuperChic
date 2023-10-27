@@ -2,7 +2,7 @@ ccc   gg --> qqbarg subprocess amplitude
       subroutine qqg(p,mx,pp,mm,pm,mp)
       implicit none
       complex*16 pp,mm,pm,mp
-      complex*16 zpp,zpm,zout,zmp,zmm
+      complex*16 zpp,zpm,zmp,zmm
       complex*16 zout45,zout35,zout13,zout14,zout23,zout24
       double precision mx,alphas,normp
       integer p

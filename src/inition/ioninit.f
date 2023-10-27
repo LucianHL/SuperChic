@@ -1,7 +1,5 @@
       subroutine ioninit
       implicit none
-      integer isurv
-      character*100 dum
 
       include 'pi.f'
       include 'vars.f'

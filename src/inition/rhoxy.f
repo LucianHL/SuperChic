@@ -1,7 +1,7 @@
       function rhozxy(rxy)
       implicit none
       double precision sum,wt,hz,rrz,r,rhoz
-      double precision rhozxy,rzmin,rzmax,rxy
+      double precision rhozxy,rzmax,rxy
       integer i,itot
 
       include 'ion.f'
@@ -33,7 +33,7 @@
       implicit none
       double precision sum,wt,hn,rrn,r,rhon
       integer i,itot
-      double precision rhonxy,rnmin,rnmax,rxy
+      double precision rhonxy,rnmax,rxy
 
       include 'ion.f'
       

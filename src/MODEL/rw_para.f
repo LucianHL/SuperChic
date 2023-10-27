@@ -10,7 +10,6 @@ c************************************************************************
       implicit none
 
       character*(*) param_name
-      logical readlha
 
       include 'coupl.inc'
       include 'input.inc'

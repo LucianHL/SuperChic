@@ -3,10 +3,10 @@ ccccc EPA form factors (proton)
       implicit none
       double precision t1,t2,out
       double precision x2i,qsq1,qsq2,q0,qsqmin
-      double precision ww1p,ww2p,ww1,ww2,ww1pa,ww2pa
+      double precision ww1p,ww2p,ww1,ww2,ww1pa
       double precision tpint,gm,ge,fm,fe,f2
       double precision a2e,a2m,a1m,a1e,a0e,a0m
-      integer i1,i2,io
+      integer io
 
       include 'photo.f'
       include 'mp.f'

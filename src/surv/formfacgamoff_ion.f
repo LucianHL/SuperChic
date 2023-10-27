@@ -4,13 +4,12 @@ ccccc EPA form factors (proton)
       complex*16 zt,ztsf,zoutsf,zout
       double precision xi1,xi2,x2tt,x1tt,x1t,x2t
       double precision SF_g_ion
-      double precision t1,t2,t11,t12,t22,qsq1,qsq2
+      double precision t1,t2,t11,t22,qsq1,qsq2
       double precision alphaem,beta
       double precision q1(2),q2(2),q1x,q2x,q1y,q2y
-      complex*16 sf_tran
-      integer p,i,j,k,l,io,mu,mup,nu,nup,qin
+      integer p,i,mu,mup,nu,nup
       double precision sf1_g(4,4),sf2_g(4,4),q1p(4),q2p(4),p1(4),p2(4)
-      complex*16 zw(9),zoutt
+      complex*16 zw(9)
       common/zw/zw
       common/sffull/sf1_g,sf2_g
       
@@ -97,9 +96,9 @@ cccccccc
       zoutsf=0d0
       
       do mu=1,4
-	 do mup=1,4
+      do mup=1,4
             do nu=1,4
-	       do nup=1,4
+            do nup=1,4
 
                   zt=zoutarr(p,mu,nu)*dconjg(zoutarr(p,mup,nup))
 
@@ -157,11 +156,10 @@ c      zout=zout*2d0*x00p
       function SF_g_ion(diss,mu,mup,x,xt,p1,q1)
       implicit none
       double precision tpint,q0
-      complex*16 zt,zsum
-      double precision sf_z,xb,x,xt,muf,qsq1,mdiss
-      double precision f1,f2,sf_g_ion
+      double precision x,xt,qsq1
+      double precision f1,sf_g_ion
       double precision p1(4),q1(4),q1t(4),p1t(4)
-      integer mu,mup,i,i1,i2,iorder
+      integer mu,mup,i
       logical diss
 
       include 'mion.f'

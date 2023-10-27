@@ -1,10 +1,10 @@
       function screen_01(qt)
       implicit none
-      double precision screen_01,wt,sum,bt,hbt,qt,lbt,lbtmin,lbtmax,hlbt
-      double precision opacpbint,opacpbint_3
+      double precision screen_01,wt,sum,bt,hbt,qt
+      double precision opacpbint_3
       double precision b0,hbt0,sum0,btminb
-      double precision btmin,btmax,aj0,aj0t,opac0,sumt
-      integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
+      double precision btmin,btmax,aj0,opac0,sumt
+      integer ibt,nbt,nbt0
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
       double precision dbesj0 
 !endif

@@ -1,7 +1,7 @@
       subroutine opacpbcalc
       implicit none
-      double precision sigin,px,p1,p0,opac,p1a,sum1,sumx,sum1t
-      double precision hb,bt,pgdrint,opacpb,dum,lbtmin,lbtmax,lbt
+      double precision sigin,px,p1,p0,opac,sum1t
+      double precision hb,bt,pgdrint,opacpb
       integer i
       logical readop
      
