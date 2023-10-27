@@ -87,9 +87,9 @@ set(procs  1 2 3 4 5 6 7 8 9
            30 31 32 33 34 35 36 37 38 39
            40 41 42 43 44 45 46 47 48 49
            50 51 52 53 54 55 56 57 58 59
-           60 61 62 63 64 65 66 67 68 69
+           60 61                   68 69
            70 71 72 73 74 75 76 77 78 79
-           80 81 82 83 84 
+                 82 83 84 
            )
 set(procs_dd 54 55 56 57 58
              68 )
@@ -97,30 +97,28 @@ else()
 set(procs 56 )
 set(procs_dd 56 )
 endif()
-#54-58,68
 
-#set(procslheonly 56)
-
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_PROCESS ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_PROCESS) # for init
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw) # for init
 foreach ( diff ${diffs} )
 foreach ( process ${procs} )
 foreach ( format ${fmts} )
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_PROCESS ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_PROCESS_${process}_${diff}_${format})
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw_${process}_${diff}_${format})
 endforeach()
 endforeach()
 endforeach()
 
 
-inittest(PROCESS)
+inittest(LHC13ppunw)
 foreach ( process ${procs} )
 foreach ( diff ${diffs_el} )
-sctestlhe(PROCESS PROCESS_${process}_${diff}_lhe)
-sctesthepmc(PROCESS PROCESS_${process}_${diff}_hepmc)
-# FIXME sctesthepmc(PROCESS PROCESS_${process}_${diff}_hepevt)
+sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe)
+sctesthepmc(LHC13ppunw LHC13ppunw_${process}_${diff}_hepmc)
+# FIXME sctesthepmc(LHC13ppunw LHC13ppunw_${process}_${diff}_hepevt)
 endforeach()
 endforeach()
 foreach ( process ${procs_dd} )
 foreach ( diff ${diffs_dd} )
-sctestlhe(PROCESS PROCESS_${process}_${diff}_lhe)
+sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe)
 endforeach()
 endforeach()
+
