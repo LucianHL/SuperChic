@@ -33,8 +33,6 @@ c      f1=0d0
 
       subroutine F1F2ap(x,q2,f2,fl)
       implicit double precision(a-y)
-      integer ie,i
-      double precision garr(-6:6)
 
       include 'pdfinf.f'
 

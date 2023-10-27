@@ -2,7 +2,7 @@
 ccc   prints out header information
       subroutine header_out(avgi,sd)
       implicit none
-      integer outl,outl1
+      integer outl
       double precision avgi,sd
     
       include 'gencuts.f'

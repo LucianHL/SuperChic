@@ -1,6 +1,6 @@
       subroutine apfelinit
       implicit double precision(a-y)
-      integer order,i
+      integer i
       
       include 'pdfinf.f'
       include 'ewsf.f'

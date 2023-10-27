@@ -45,7 +45,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       integer iinc,ncallu
       logical histol
       character*100 dum
-      integer idum,io
+      integer idum
       COMMON /ranno/ idum
 
       include 'pdfinf.f'

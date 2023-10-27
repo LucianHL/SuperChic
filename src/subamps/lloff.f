@@ -6,7 +6,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       double precision ul,tl,qsq1,qsq2,alphaem,beta,al
       complex*16 uelb(4),vpos(4),zt2,zt1,zout1,zout2,zout
       integer i1,i2
-      integer i,j,k,l,p,m,n
+      integer i,j,l,p
       
       include 'mom.f'
       include 'gmatrices.f'

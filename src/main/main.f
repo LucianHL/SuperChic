@@ -2,7 +2,7 @@ c   calculates CEP cross section
       function cs(rarr,wgt)
       implicit none
       complex*16 wt(10),wtn(10),wtd(10),wtpvar(3,10)
-      double precision rarr(10),ran(5),wtr(10)
+      double precision rarr(10),wtr(10)
       integer i,p,icut
       double precision rphi,ran2,cs
       double precision ypp,ypmin1,ypmin2,ypmin,ypmax,ypmax1,ypmax2,
@@ -14,13 +14,12 @@ c   calculates CEP cross section
       double precision root1sq,root2sq,rmx,rm,cc1,cc2,aa1,aa2
       double precision rdisst,rdiss1,rdiss2,rdiss,r1,r2,r3,r4,r5
       double precision qsq1,qsq2,qsq1tt,qsq2tt
-      double precision ptxx,ptxsq,ptmin,ptmax1,ptmax2,ptmax,ptdif,ptav
+      double precision ptxx,ptxsq,ptmin,ptmax1,ptmax2,ptmax,ptdif
       double precision pt2x,pt2y,pt1y,pt1x,pt1sq,pt2sq,phi2,phi1
       double precision ps,p2p,p2m,p1p,p1m,ktcut
       double precision msub,mpp1,mpp2,mdissmax,lmdissmin,lmdissmax,
      &     lmdiss1,lmdiss2
       double precision jrho,jmono,jchi,jalp
-      double precision delphin,delphi,acoab
       double precision wgt
       
       include 'polvecs.f'

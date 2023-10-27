@@ -2,9 +2,6 @@
       implicit none
       complex*16 pp,mm,pm,mp
       integer i,p
-      complex*16 b0fqsww,b0ftsww,b0fusww
-      complex*16 c0ccqswww,c0cctswww,c0ccuswww
-      complex*16 d0ccccqstswwww,d0ccccqsuswwww,d0ccccustswwww
       complex*16 b0fqsff,b0ftsff,b0fusff
       complex*16 c0ccqsfff,c0cctsfff,c0ccusfff
       complex*16 d0ccccqstsffff,d0ccccqsusffff,d0ccccustsffff
