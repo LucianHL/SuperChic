@@ -73,11 +73,11 @@ cccccccccccccccccccc
                do o=1,4
                   do k=1,4
                      do p=1,4
-                        wt2=wt2+4d0*echi(p,k)*cechi(o,j)*
+                        wt2=wt2+dble(4d0*echi(p,k)*cechi(o,j)*
      &                       (q6c(p)*q7c(o)+q6c(o)*q7c(p)
      &                       -mchi**2*g(p,o)/2d0)
      &                       *(q6c(k)-q7c(k))*(q6c(j)-q7c(j))
-     &                       *rho2chi(m,n)
+     &                       *rho2chi(m,n))
                      enddo
                   enddo
                enddo

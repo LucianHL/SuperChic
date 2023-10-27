@@ -36,7 +36,7 @@ C         - NO INITIALIZATION
       ND=NDMX
       NG=1
       IF(MDS.EQ.0) GO TO 2
-      NG=(NCALL/2.)**(1./NDIM)
+      NG=int((NCALL/2.)**(1./NDIM))
       MDS=1
       IF((2*NG-NDMX).LT.0) GO TO 2
       MDS=-1
@@ -107,7 +107,7 @@ C
       WGT=XJAC
       DO 15 J=1,NDIM
       XN=(KG(J)-QRAN(J))*DXG+ONE
-      IA(J)=XN
+      IA(J)=INT(XN)
       IF(IA(J).GT.1) GO TO 13
       XO=XI(IA(J),J)
       RC=(XN-IA(J))*XO

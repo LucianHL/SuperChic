@@ -95,8 +95,8 @@ ccccccccccccccccccc
                call cdot(cepsi,q8,zq8cepsi1p)
                call ccdot(epsi,cepsi,zepsi1cepsi1p)
 
-            wt1=wt1+(-(q8q9+mmu**2)*zepsi1cepsi1p-2d0*zq8epsi1*
-     &zq8cepsi1p)*rho1psi(k,j)/(2d0*(q8q9+2d0*mmu**2))*3d0
+            wt1=wt1+dble((-(q8q9+mmu**2)*zepsi1cepsi1p-2d0*zq8epsi1*
+     &zq8cepsi1p)*rho1psi(k,j)/(2d0*(q8q9+2d0*mmu**2))*3d0)
 
          enddo
       enddo
