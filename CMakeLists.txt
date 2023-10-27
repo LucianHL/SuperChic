@@ -1,8 +1,9 @@
-cmake_minimum_required(VERSION 3.12.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 #----------------------------------------------------------------------------
 project(SuperChic LANGUAGES  Fortran)
 set(PROJECT_VERSION 4.2)
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
+option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_ALL_TESTS        "Enables building of all tests." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
 include("GNUInstallDirs")
@@ -11,33 +12,33 @@ find_package(LHAPDF REQUIRED)
 message(STATUS "SuperChic: LHAPDF_VERSION=${LHAPDF_VERSION} LHAPDF_LIBRARIES=${LHAPDF_LIBRARIES} LHAPDF_INCLUDE_DIRS=${LHAPDF_INCLUDE_DIRS}")
 find_package(APFEL REQUIRED)
 message(STATUS "SuperChic: APFEL_VERSION=${APFEL_VERSION} APFEL_LIBRARIES=${APFEL_LIBRARIES} APFEL_INCLUDE_DIRS=${APFEL_INCLUDE_DIRS}")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-fbacktrace>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-fcheck=all>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-std=legacy>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-fno-automatic>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-Wall>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-pedantic>")
-#add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-Wextra>")
-#add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-Wno-unused-variable>")
-#add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-Wno-conversion>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-Wno-unused-dummy-argument>")
-add_compile_options("$<$<Fortran_COMPILER_ID:Intel>:-noauto>")
-add_compile_options("$<$<Fortran_COMPILER_ID:Intel>:-traceback>")
-add_compile_options("$<$<Fortran_COMPILER_ID:Intel>:-warn all>")
-add_compile_options("$<$<Fortran_COMPILER_ID:IntelLLVM>:-noauto>")
-add_compile_options("$<$<Fortran_COMPILER_ID:IntelLLVM>:-traceback>")
-add_compile_options("$<$<Fortran_COMPILER_ID:IntelLLVM>:-warn all>")
-add_compile_options("$<$<Fortran_COMPILER_ID:NVHPC>:-Msave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:PGI>:-Msave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:XL>:-qsave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:LLVMFlang>:-Msave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:Flang>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fbacktrace>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fcheck=all>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fno-automatic>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-unused-dummy-argument>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-noauto>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-traceback>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-noauto>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-traceback>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,XL>:-qsave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,LLVMFlang>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Flang>:-Msave>")
+if (SUPERCHIC_ENABLE_FPES)
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-ffpe-trap=zero,overflow,underflow,invalid,denormal>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-fpe0>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-fpe0>")
+endif()
 
 add_definitions("-DDATA_PATH=\'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/SuperChic\'")
 
 message(STATUS "SuperChic: CMAKE_Fortran_COMPILER_ID ${CMAKE_Fortran_COMPILER_ID} " )
 message(STATUS "SuperChic: CMAKE_Fortran_FLAGS ${CMAKE_Fortran_FLAGS} ${CMAKE_Fortran_FLAGS_${CMAKE_BUILD_TYPE}}  " )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
+message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
 
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
@@ -157,11 +158,11 @@ set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(sccompile_options )
 else()
-  set(sccompile_options "$<$<Fortran_COMPILER_ID:GNU>:-mcmodel=large>" 
-                        "$<$<Fortran_COMPILER_ID:Intel>:-mcmodel=large>"
-                        "$<$<Fortran_COMPILER_ID:IntelLLVM>:-mcmodel=large>" 
-                        "$<$<Fortran_COMPILER_ID:NVHPC>:-mcmodel=medium>"
-                        "$<$<Fortran_COMPILER_ID:PGI>:-mcmodel=medium>")
+  set(sccompile_options "$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-mcmodel=large>" 
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-mcmodel=large>"
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-mcmodel=large>" 
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-mcmodel=medium>"
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-mcmodel=medium>")
 endif()
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
                              PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)

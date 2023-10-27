@@ -32,8 +32,10 @@ ctest --test-dir BUILD
 The extra flags might be:
 - generic CMake flags, e.g. `-DCMAKE_INSTALL_PREFIX=/my/home/dir`, `-DCMAKE_Fortran_COMPILER=ifort`, etc.
 - flags pointing to the dependencies, `-DLHAPDF_DIR=/where/the/LHAPDF/is`, `-DAPFEL_DIR=/where/the/APFEL/is`
-- flags that regulate the compilation. In the current version there are two flags: `-DSUPERCHIC_ENABLE_TESTS=ON/OFF` (Enables building of tests) and
-`-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`(Enables downloading of PDFs for tests). 
+- flags that regulate the compilation. In the current version there are the following flags: 
+ - `-DSUPERCHIC_ENABLE_TESTS=ON/OFF` (Enables building of tests)
+ - `-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`(Enables downloading of PDFs for tests). 
+ - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`(Enables floating point exceptions in the code). 
 
 ## Running SuperChic
 
