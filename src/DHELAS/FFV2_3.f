@@ -49,12 +49,9 @@ C
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(*)
       REAL*8 M3
-      REAL*8 OM3
-      REAL*8 P3(0:3)
       COMPLEX*16 V3(6)
       COMPLEX*16 VTMP(6)
       REAL*8 W3
-      COMPLEX*16 DENOM
       INTEGER*4 I
       CALL FFV2_3(F1,F2,COUP1,M3,W3,V3)
       CALL FFV3_3(F1,F2,COUP2,M3,W3,VTMP)
@@ -77,12 +74,9 @@ C
       COMPLEX*16 F1(*)
       COMPLEX*16 F2(*)
       REAL*8 M3
-      REAL*8 OM3
-      REAL*8 P3(0:3)
       COMPLEX*16 V3(6)
       COMPLEX*16 VTMP(6)
       REAL*8 W3
-      COMPLEX*16 DENOM
       INTEGER*4 I
       CALL FFV2_3(F1,F2,COUP1,M3,W3,V3)
       CALL FFV5_3(F1,F2,COUP2,M3,W3,VTMP)

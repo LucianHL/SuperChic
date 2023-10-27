@@ -551,10 +551,6 @@ c
       integer nhel, nst
       double complex tc(18)
 
-      double complex ft(6,4), ep(4), em(4), e0(4)
-      double precision pt, pt2, pp, pzpt, emp, sqh, sqs
-      integer i, j
-
       double precision rZero, rHalf, rOne, rTwo
       parameter( rZero = 0.0d0, rHalf = 0.5d0 )
       parameter( rOne = 1.0d0, rTwo = 2.0d0 )
@@ -1692,7 +1688,7 @@ c
       implicit none
       double precision p(0:3),rmass
       integer nhel,nsr
-      double complex ro(18),fipp(4),fimm(4)
+      double complex ro(18)
 
       double complex rc(6,4),ep(4),em(4),e0(4),fop(4),fom(4),chi(2)
       double precision pp,pt2,pt,pzpt,emp, sf(2),sfomeg(2),omega(2),pp3,
