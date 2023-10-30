@@ -4,7 +4,7 @@ ccc   prints out header information
       implicit none
       integer outl
       double precision avgi,sd
-    
+
       include 'gencuts.f'
       include 'range.f'
       include 'unweighted.f'
@@ -18,7 +18,7 @@ ccc   prints out header information
       include 'procn.f'
       include 'vars.f'
       include 'pdg.f'
-      include 'jetalg.f'     
+      include 'jetalg.f'
       include 'record.f'
       include 'output.f'
       include 'nsurv.f'
@@ -180,6 +180,6 @@ ccc   prints out header information
  301  format(' Cross section = ',G16.7,' +/-',G16.7,' pb')
 
       close(56)
-         
+
       return
       end

@@ -6,6 +6,6 @@ ccc   gluon PDF for PDFINPUT = LHAPDF
       call evolvePDF(x,dsqrt(qsq),garr)
 
       xgi=garr(0)
- 
+
       return
       end

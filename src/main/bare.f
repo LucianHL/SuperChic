@@ -1,4 +1,4 @@
-ccc   calculates 'bare' amplitude, performs integration over gluon Q_t   
+ccc   calculates 'bare' amplitude, performs integration over gluon Q_t
       subroutine bare(mu,pt1x,pt1y,pt2x,pt2y,out)
       implicit none
       double precision qt1(2),qt2(2)
@@ -32,7 +32,7 @@ ccc   calculates 'bare' amplitude, performs integration over gluon Q_t
       include 'jz2.f'
       include 'gaussvars.f'
       include 'nsurv.f'
-      
+
 cccccccccccc
 
       ntot1=45
@@ -43,7 +43,7 @@ cccccccccccc
       ntot1=s2int*2
       ntot2=s2int
       ntot3=s2int*2
-      
+
       qmin=0.4d0
       qmax=8d0
       qmax1=qmax
@@ -88,9 +88,9 @@ ccccccc
 
       do 333 n1=1,ntot1+ntot3+1
          do 333 n2=1,ntot2
-  
+
       qphi=pi*(xiphib(n2)+1d0)
-      
+
       if(n1.lt.(ntot1+1))then
          qinc=qqinc1
          qtsq=(qqmax1-qqmin)*xib(n1)/2d0+(qqmax1+qqmin)/2d0
@@ -144,7 +144,7 @@ cccccccccccc
       if(q1min.lt.qmin) goto 334
       if(q2min.lt.qmin) goto 334
 
-ccccccccccc 
+ccccccccccc
 
       fg1=fg(x1,q1min,mu)
       fg2=fg(x2,q2min,mu)
@@ -158,7 +158,7 @@ ccccccccccc
          qt2(1)=-qtx-pt2x
          qt2(2)=-qty-pt2y
       endif
- 
+
       if(forward)then
          wtt=fg1*fg2/qtsq**3
       else
@@ -171,25 +171,25 @@ ccccccccccc
 ccccccc
 
       do p=1,pol
-    
+
          if(proc.eq.21.or.proc.eq.24.or.proc.eq.29.or.proc.eq.32
-     &        .or.proc.eq.35)then 
+     &        .or.proc.eq.35)then
             call chi0(mx,mx/2d0,qt1,qt2,zpp)
          elseif(proc.eq.22.or.proc.eq.25.or.proc.eq.27.or.proc.eq.
-     &           30.or.proc.eq.33.or.proc.eq.36)then 
+     &           30.or.proc.eq.33.or.proc.eq.36)then
             call chi1(p,mx,mx/2d0,mchic0,qt1,qt2,echi1,zpp)
          elseif(proc.eq.23.or.proc.eq.26.or.proc.eq.28.or.proc.eq.
-     &           31.or.proc.eq.34.or.proc.eq.37)then 
+     &           31.or.proc.eq.34.or.proc.eq.37)then
             call chi2(p,mx/2d0,mchic0,qt1,qt2,echi2,zpp)
          elseif(proc.eq.38)then
             call etaq(mx,qt1,qt2,zpp)
          endif
 
-        if(proc.eq.39.or.proc.eq.42)then 
+        if(proc.eq.39.or.proc.eq.42)then
             call chi0(mx,mx/2d0,qt1,qt2,zpp)
-         elseif(proc.eq.40.or.proc.eq.43.or.proc.eq.45)then 
+         elseif(proc.eq.40.or.proc.eq.43.or.proc.eq.45)then
             call chi1(p,mx,mx/2d0,mchib0,qt1,qt2,echi1,zpp)
-         elseif(proc.eq.41.or.proc.eq.44.or.proc.eq.46)then 
+         elseif(proc.eq.41.or.proc.eq.44.or.proc.eq.46)then
             call chi2(p,mx/2d0,mchib0,qt1,qt2,echi2,zpp)
          elseif(proc.eq.47)then
             call etaq(mx,qt1,qt2,zpp)
@@ -224,8 +224,8 @@ cccccc
       enddo
 
 c      print*,out(1)
-      
+
 c      stop
-     
+
       return
       end

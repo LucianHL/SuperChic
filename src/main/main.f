@@ -21,7 +21,7 @@ c   calculates CEP cross section
      &     lmdiss1,lmdiss2
       double precision jrho,jmono,jchi,jalp
       double precision wgt
-      
+
       include 'polvecs.f'
       include 'gencuts.f'
       include 'pi.f'
@@ -80,7 +80,7 @@ c   calculates CEP cross section
       wtt=0d0
 
       elcollw=.false.
-      
+
       if(beam.eq.'ionp')call pAinit
 
       if(dps.eq.1)then
@@ -123,7 +123,7 @@ c   calculates CEP cross section
      &           (1d0/mmin**1d0-1d0/mmax**1d0)*rm)
          mx=(1d0/msub/1d0)**(1d0/1d0)
       endif
-      
+
       if(beam.eq.'prot')then
          mpp1=mp
          mpp2=mp
@@ -159,29 +159,29 @@ c   calculates CEP cross section
             elcoll=.false.
          endif
       endif
-         
+
       if(photo)then
-         
+
          r1=rarr(2)
          r3=rarr(3)
          r4=rarr(4)
          r5=rarr(5)
-         
+
          r2=ran2()
-         
+
          ptmax=dsqrt(5d0)
          ptmin=0d0
-         
+
          pt2sq=(ptmax-ptmin)*r1+ptmin
-         pt2sq=pt2sq**2   
-            
+         pt2sq=pt2sq**2
+
          phi1=2d0*pi*r2
          phi2=2d0*pi*r3+phi1
-         
+
          rmx=dsqrt(pt2sq+mx**2)
          wtpt=2d0*dsqrt(pt2sq)*(ptmax-ptmin)
          xgmin=(mx/rts)**2
-      
+
          if(r5.gt.0.5d0)then
             ypmax=dlog(xgmin**2*mpp1**2+ptmax**2)
             ypmin=dlog(xgmin**2*mpp1**2)
@@ -192,16 +192,16 @@ c   calculates CEP cross section
             ypmax=dlog(xgmin**2*mpp2**2+ptmax**2)
             ypmin=dlog(xgmin**2*mpp2**2)
             yp=(ypmax-ypmin)*r4+ypmin
-            pt1sq=pt2sq         
-            pt2sq=dexp(yp)-xgmin**2*mpp2**2       
+            pt1sq=pt2sq
+            pt2sq=dexp(yp)-xgmin**2*mpp2**2
             wt1=xgmin**2*mpp2**2+pt2sq
          endif
-         
+
          pt2x=dsqrt(pt2sq)*dcos(phi2)
          pt2y=dsqrt(pt2sq)*dsin(phi2)
          pt1x=dsqrt(pt1sq)*dcos(phi1)
          pt1y=dsqrt(pt1sq)*dsin(phi1)
-         
+
          ptxx=(pt1x+pt2x)**2+(pt1y+pt2y)**2
          rmx=dsqrt(ptxx+mx**2)
 
@@ -209,16 +209,16 @@ c   calculates CEP cross section
             ymax=dlog(rts/rmx)
             ymin=-ymax
          endif
-         
+
          ry=rarr(1)
          yx=ymin+(ymax-ymin)*ry
-            
+
          wty=ymax-ymin
 
          if(beam.eq.'ionp')r5=0d0
 
-         if(r5.gt.0.5d0)then    ! photon emitted from q(1,k) 
-            xgam=rmx*dexp(yx)/rts ! photon mom. fraction 
+         if(r5.gt.0.5d0)then    ! photon emitted from q(1,k)
+            xgam=rmx*dexp(yx)/rts ! photon mom. fraction
             wpsi=dsqrt(xgam*s)  ! proton-photon cms energy
             xglu=(rmx/wpsi)**2  ! gluon mom. fraction
             x1=xgam
@@ -226,23 +226,23 @@ c   calculates CEP cross section
             prot=1
          else                   ! photon emitted from q(1,k)
             xgam=rmx*dexp(-yx)/rts
-            wpsi=dsqrt(xgam*s)  
+            wpsi=dsqrt(xgam*s)
             xglu=(rmx/wpsi)**2
             x2=xgam
             x1=xglu
             prot=2
          endif
-         
+
          bpsi=bpsi0+4d0*alphapb*dlog(wpsi/w0b)
 
          if(x1.gt.1d0)goto 777
          if(x2.gt.1d0)goto 777
-         
+
       elseif(gamma)then
 
-         
+
          if(beam.eq.'prot'.and.diff.eq.'sd')then
-            rdiss=ran2()            
+            rdiss=ran2()
             if(rdiss.gt.0.5d0)then
                diss1=.true.
                diss2=.false.
@@ -257,28 +257,28 @@ c   calculates CEP cross section
                diss1=.false.
                diss2=.true.
             endif
-            
+
          endif
-         
+
          r2=rarr(2)
          r3=rarr(3)
          r4=rarr(4)
 
          r1=ran2()
 
-         
+
          phi1=2d0*pi*r1
          phi2=2d0*pi*r2+phi1
-         
+
          if(beam.eq.'prot'.or.beam.eq.'ion'.or.beam.eq.'ionp')then
             ptmax=dsqrt(10d0)
          elseif(beam.eq.'el')then
-            ptmax=dsqrt(50d0)       
+            ptmax=dsqrt(50d0)
          endif
-         
+
          ptmin=0d0
          xgmin=(mx/rts)**2
-         
+
          if(diss1)then
             ptmax1=rts/2d0
             ypmax1=dlog(xgmin**2*mpp1**2+ptmax1**2)
@@ -298,27 +298,27 @@ c   calculates CEP cross section
             ptmax2=rts/2d0
             ypmax2=dlog(xgmin**2*mpp2**2+ptmax2**2)
             ypmin2=dlog(xgmin**2*mpp2**2)
-            ypp=(ypmax2-ypmin2)*r4+ypmin2         
+            ypp=(ypmax2-ypmin2)*r4+ypmin2
             pt2sq=dexp(ypp)-xgmin**2*mpp2**2
             wty2=(ypmax2-ypmin2)*(xgmin**2*mpp2**2+pt2sq)
          else
             ypmax2=dlog(xgmin**2*mpp2**2+ptmax**2)
             ypmin2=dlog(xgmin**2*mpp2**2)
-            ypp=(ypmax2-ypmin2)*r4+ypmin2         
+            ypp=(ypmax2-ypmin2)*r4+ypmin2
             pt2sq=dexp(ypp)-xgmin**2*mpp2**2
             wty2=(ypmax2-ypmin2)*(xgmin**2*mpp2**2+pt2sq)
          endif
-         
+
 ccccc
-             
+
          if(pt1sq.lt.0d0)then
             pt1sq=0d0
          endif
-         
+
          if(pt2sq.lt.0d0)then
             pt2sq=0d0
          endif
-         
+
          pt2x=dsqrt(pt2sq)*dcos(phi2)
          pt2y=dsqrt(pt2sq)*dsin(phi2)
          pt1x=dsqrt(pt1sq)*dcos(phi1)
@@ -327,86 +327,86 @@ ccccc
          ptxx=(pt1x+pt2x)**2+(pt1y+pt2y)**2
          rmx=dsqrt(ptxx+mx**2)
 
-         
+
          if(beam.eq.'ionp')then
             ymax=dlog(rts/rmx)
             ymin=-ymax
          endif
-            
+
          ry=rarr(1)
          yx=ymin+(ymax-ymin)*ry
-         
+
          wty=ymax-ymin
-         
-         x1=rmx*dexp(yx)/rts    ! photon 1 mom. fraction 
-         x2=rmx*dexp(-yx)/rts   ! photon 2 mom. fraction 
+
+         x1=rmx*dexp(yx)/rts    ! photon 1 mom. fraction
+         x2=rmx*dexp(-yx)/rts   ! photon 2 mom. fraction
 
          if(x1.gt.1d0)goto 777
-         if(x2.gt.1d0)goto 777      
-         
+         if(x2.gt.1d0)goto 777
+
          wpsi=dsqrt(x1*x2*s)
 
       else
-         
+
          r1=rarr(2)
          r2=rarr(3)
          r4=rarr(4)
-  
+
          r3=ran2()
-         
+
          ptmax=dsqrt(2d0)
          ptmin=0d0
-         
+
          pt1sq=r1*ptmax
          pt2sq=r2*ptmax
 
          pt1sq=ptmin+(ptmax-ptmin)*r1
          pt2sq=ptmin+(ptmax-ptmin)*r2
-         
+
          pt1sq=pt1sq**2
          pt2sq=pt2sq**2
-         
+
          phi1=2d0*pi*r3
          phi2=2d0*pi*r4+phi1
-            
+
          pt1x=dsqrt(pt1sq)*dcos(phi1)
          pt1y=dsqrt(pt1sq)*dsin(phi1)
          pt2x=dsqrt(pt2sq)*dcos(phi2)
          pt2y=dsqrt(pt2sq)*dsin(phi2)
-         
+
          ptxsq=(pt1x+pt2x)**2+(pt1y+pt2y)**2
          rmx=dsqrt(mx**2+ptxsq)
 
 cccccccccccccccccccccc
-      
+
          ymax1=ymax
          ymin1=ymin
          ycut=dlog(rts/rmx)
          ry=rarr(1)
          yx=ymin+(ymax-ymin)*ry
-         
+
          ymin=ymin1
          ymax=ymax1
-         
+
          x1=rmx/rts*dexp(yx)
          x2=rmx/rts*dexp(-yx)
 
          if(x1.gt.1d0)goto 777
          if(x2.gt.1d0)goto 777
- 
+
       endif
 
 cccccccc   Dissociation
 
-      
-      
+
+
       if(beam.eq.'prot')then
 
          mdissmax=rts
 
          lmdissmax=dlog(mdissmax)
          lmdissmin=dlog(mp)
-         
+
       if(diss1)then
          if(dps.eq.2)then
             rdiss1=rarr(7)
@@ -417,7 +417,7 @@ cccccccc   Dissociation
          lmdiss1=lmdissmin+(lmdissmax-lmdissmin)*rdiss1
          mdiss1=dexp(lmdiss1)
          wtdiss1=2d0*mdiss1**2*(lmdissmax-lmdissmin)
-         
+
       else
          mdiss1=mp
          wtdiss1=1d0
@@ -442,7 +442,7 @@ cccccccc   Dissociation
       else
          mdiss2=mp
          wtdiss2=1d0
-      endif     
+      endif
 
       mpp1=mdiss1
       mpp2=mdiss2
@@ -451,11 +451,11 @@ cccccccc   Dissociation
 
          wtdiss1=1d0
          wtdiss2=1d0
-      
+
       endif
 
 cccccccccccc
-      
+
       aa1=(1d0-x1)*rts/dsqrt(2d0)
       aa2=(1d0-x2)*rts/dsqrt(2d0)
       cc1=0.5d0*(pt2sq+mpp2**2)
@@ -463,13 +463,13 @@ cccccccccccc
 
 c     impose massive on-shell condition by solving
 c                   p1+ + cc1/p2- = aa1
-c                   p2- + cc2/p1+ = aa2 
+c                   p2- + cc2/p1+ = aa2
 
       root1sq=(cc1-cc2-aa1*aa2)**2-4d0*cc2*aa1*aa2
       root2sq=(cc2-cc1-aa1*aa2)**2-4d0*cc1*aa1*aa2
-      
+
       if(root1sq.le.0d0.or.root2sq.le.0d0)goto 777
-      
+
       p1p=(cc2-cc1+aa1*aa2+dsqrt(root1sq))/(2d0*aa2)
       p2m=(cc1-cc2+aa1*aa2+dsqrt(root2sq))/(2d0*aa1)
       p1m=(pt1sq+mpp1**2)/(2d0*p1p)
@@ -477,7 +477,7 @@ c                   p2- + cc2/p1+ = aa2
 
       if(p1m.lt.0d0)goto 777
       if(p2p.lt.0d0)goto 777
-      
+
       q(1,3)=pt1x
       q(2,3)=pt1y
       q(3,3)=(p1p-p1m)/dsqrt(2d0)
@@ -494,7 +494,7 @@ c                   p2- + cc2/p1+ = aa2
       enddo
 
       if(beam.eq.'prot')then
-         
+
          qsq1tt=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
      &        -(q(1,3)-q(1,1))**2
 
@@ -505,7 +505,7 @@ c                   p2- + cc2/p1+ = aa2
          qsq2=-qsq2tt
 
 ccccccc
-         
+
          if(diss1)then
             xb1=qsq1/(qsq1+mdiss1**2-mp**2)
          else
@@ -516,25 +516,25 @@ ccccccc
          else
             xb2=1d0
          endif
-         
+
          if(offshell)then
          else
             if(qsq1.gt.mx**2)goto 777
             if(qsq2.gt.mx**2)goto 777
          endif
-         
+
          if(diss1.and.xb1.gt.1d0)goto 777
          if(diss2.and.xb2.gt.1d0)goto 777
-         
+
          if(diss1)wtdiss1=wtdiss1/(qsq1+mdiss1**2-mp**2)
          if(diss2)wtdiss2=wtdiss2/(qsq2+mdiss2**2-mp**2)
-         
+
       endif
-       
+
 ccccccccccccccccccccccccccccccccc
 
 c      rphi=rarr(8)+r1+r2
-      
+
       if(dps.eq.2)then
          rphi=ran2()
          if(proc.eq.82)then
@@ -622,7 +622,7 @@ ccccccccccccccccccc
                call twobodyw(7,10,11,0d0,mmu)
             else
                call twobodyw(7,10,11,0d0,me)
-            endif           
+            endif
          elseif(proc.eq.73)then
             call threebody(1,6,8,9,10,mneut,mmu,0d0,wt3a)
             call threebody(1,7,11,12,13,mneut,mmu,0d0,wt3b)
@@ -648,16 +648,16 @@ ccccccccccccccccccc
          endif
 
          if(beam.eq.'ionp')call pAboost
-  
+
 ccccccccccccccccccc  cuts ccccccccccccccccc
-         
+
          neff0=neff0+1
 
          if(gencuts)then
             call cut(icut)
             if(icut.eq.0)goto 777
          endif
-         
+
          neff=neff+1
 
 ccccccccccccccccccccccccccccccccccccccccccc
@@ -689,10 +689,10 @@ ccccccccccccccccccccccccccccccccccccccccccc
           elseif(proc.eq.41.or.proc.eq.44.or.proc.eq.46)then
              call genpol2
           endif
-          
+
 ccccccccc
 
-          
+
           if(photo)then
              if(beam.eq.'prot')then
                 call schimcphot(pt1x,pt1y,pt2x,pt2y,wt)
@@ -705,7 +705,7 @@ ccccccccc
           elseif(gamma)then
              if(beam.eq.'prot'.or.beam.eq.'el')then
                 call schimcgam(pt1x,pt1y,pt2x,pt2y,wt)
-             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then                
+             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
                 if(pAAvar)then
                    do p=1,pol
                       do i=1,3
@@ -714,7 +714,7 @@ ccccccccc
                    enddo
                    if(sfac)then
                       do ifaa=1,3
-                         if(ifaa.eq.1)then ! inclusive                                                       
+                         if(ifaa.eq.1)then ! inclusive
                             ionbreakup=.false.
                          endif
                          if(ifaa.eq.2)then
@@ -745,7 +745,7 @@ ccccccccc
              endif
           else
              call wtgen
-             if(beam.eq.'prot')then               
+             if(beam.eq.'prot')then
                 call schimc(pt1x,pt1y,pt2x,pt2y,wt)
              elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
                 if(ionqcd.eq.'incoh')then
@@ -761,7 +761,7 @@ ccccccccc
                          if(beam.eq.'ion')wt(p)=wt(p)*dsqrt(s2qcd)*an
                          if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(s2qcd*an)
                       enddo
-                   endif      
+                   endif
                 elseif(ionqcd.eq.'coh')then
                    ptdif=dsqrt((pt1x-pt2x)**2+(pt1y-pt2y)**2)
                    ktcut=ptdif
@@ -851,10 +851,10 @@ ccccccccc
               call wwcorr(wt,wtt)
            endif
          endif
-    
+
          wtt=wtt*wt2*wt3*wt4*wt6
 
-         
+
          if(decays)then
             do i=1,nbr
                wtt=wtt*br(i)
@@ -863,7 +863,7 @@ ccccccccc
 
 
 
-         
+
          if(photo)then
             wtt=wtt*wty
             wtt=wtt*wtpt
@@ -887,7 +887,7 @@ ccccccccc
                   wtt=wtt/2d0   ! def of sigma
                   wtt=wtt/s**2  ! One from def of sigma, one from dx_i -> dM
                   wtt=wtt/pi*mx**4 ! To match with below
-               endif    
+               endif
             endif
             wtt=wtt*wty
             wtt=wtt*2d0/mx
@@ -907,7 +907,7 @@ ccccccccc
                endif
             endif
 
-         else            
+         else
             wtt=wtt*(ymax-ymin)
             wtt=wtt*4d0*ptmax**2*dsqrt(pt1sq*pt2sq)*pi**2
             if(fwidth)then
@@ -918,9 +918,9 @@ ccccccccc
                endif
             endif
          endif
-         
+
          wtt=wtt/sym
-         
+
          if(photo)goto 888
          if(gamma)goto 888
 
@@ -938,9 +938,9 @@ ccccccccccccc 1 body phase space
          endif
 
          wtt=wtt*conv*surv
-         
+
  888     if((elcoll.eqv..true.).and.(unw.eqv..true.))then
-               
+
             if(diss1)then
             else
                pt1sq=0d0
@@ -957,47 +957,47 @@ ccccccccccccc 1 body phase space
 
             ptxsq=(pt1x+pt2x)**2+(pt1y+pt2y)**2
             rmx=dsqrt(mx**2+ptxsq)
-            
+
             x1=rmx/rts*dexp(yx)
             x2=rmx/rts*dexp(-yx)
-            
+
             if(x1.gt.1d0)goto 777
             if(x2.gt.1d0)goto 777
 
-ccccccccccccccc            
-            
+ccccccccccccccc
+
             aa1=(1d0-x1)*rts/dsqrt(2d0)
             aa2=(1d0-x2)*rts/dsqrt(2d0)
             cc1=0.5d0*(pt2sq+mpp2**2)
             cc2=0.5d0*(pt1sq+mpp1**2)
-            
+
 c     impose massive on-shell condition by solving
 c     p1+ + cc1/p2- = aa1
-c                   p2- + cc2/p1+ = aa2 
-            
+c                   p2- + cc2/p1+ = aa2
+
             root1sq=(cc1-cc2-aa1*aa2)**2-4d0*cc2*aa1*aa2
             root2sq=(cc2-cc1-aa1*aa2)**2-4d0*cc1*aa1*aa2
-            
+
             if(root1sq.le.0d0.or.root2sq.le.0d0)goto 777
-            
+
             p1p=(cc2-cc1+aa1*aa2+dsqrt(root1sq))/(2d0*aa2)
             p2m=(cc1-cc2+aa1*aa2+dsqrt(root2sq))/(2d0*aa1)
             p1m=(pt1sq+mpp1**2)/(2d0*p1p)
             p2p=(pt2sq+mpp2**2)/(2d0*p2m)
-            
+
             if(p1m.lt.0d0)goto 777
             if(p2p.lt.0d0)goto 777
-      
+
             q(1,3)=pt1x
             q(2,3)=pt1y
             q(3,3)=(p1p-p1m)/dsqrt(2d0)
             q(4,3)=(p1p+p1m)/dsqrt(2d0)
-            
+
             q(1,4)=pt2x
             q(2,4)=pt2y
             q(3,4)=(p2p-p2m)/dsqrt(2d0)
             q(4,4)=(p2p+p2m)/dsqrt(2d0)
-            
+
             do i=1,4
                q(i,5)=q(i,1)+q(i,2)-q(i,3)-q(i,4)
             enddo
@@ -1007,11 +1007,11 @@ c                   p2- + cc2/p1+ = aa2
                elcollw=.true.
                call twobody(1,5,6,7,0d0,0d0,wt2)
                elcollw=.false.
-               
+
             else
-            
+
                call twojetps(mx,mq,rarr(6),rphi,ps,uh,th)
-               
+
                if(proc.eq.55.or.proc.eq.62)then
                   elcollw=.true.
                   if(wlp.eq.'mu')then
@@ -1023,17 +1023,17 @@ c                   p2- + cc2/p1+ = aa2
                      call twobodyw(7,10,11,0d0,mmu)
                   else
                      call twobodyw(7,10,11,0d0,me)
-                  endif  
+                  endif
                   elcollw=.false.
                endif
 
             endif
-               
+
          endif
 
          if(diss1)call qinit(xb1,qsq1,1)
          if(diss2)call qinit(xb2,qsq2,2)
-         
+
          val=wtt*wgt
          if(bin)then
             if(unw)then
@@ -1057,10 +1057,10 @@ c                   p2- + cc2/p1+ = aa2
                call unweight(wtt*wgt*ren,runw)
             endif
          endif
-         
+
  777     cs=wtt
-         
+
       return
       end
 
-   
+

@@ -25,7 +25,7 @@ cccccccccccccccccccc
 
       q6c(4)=q(4,6)
       q7c(4)=q(4,7)
-      
+
       do j=1,3
          q6c(j)=-q(j,6)
          q7c(j)=-q(j,7)
@@ -37,13 +37,13 @@ cccccccccccccccccccc
          q6c(i)=-paa(i)
          q7c(i)=paa(i)
       enddo
-      
-      
+
+
       wt2=0d0
       wt2a=0d0
-  
-   
-              
+
+
+
       do m=1,5
          do n=1,5
 
@@ -56,7 +56,7 @@ cccccccccccccccccccc
 
             zwt2a=(0d0,0d0)
             zwt2b=(0d0,0d0)
-            
+
             do j=1,4
                do k=1,4
                   do p=1,4
@@ -77,16 +77,16 @@ cccccccccccccccccccc
      &                 *(q6c(k)-q7c(k))
                enddo
             enddo
-                  
+
             wt2a=wt2a+dble(zwt2a*zwt2b*rho2chi(m,n))
 
-            
-            
+
+
          enddo
       enddo
 
       wtt=wt2/(mchi**2-4d0*m2b**2)**2*15d0/2d0
 
-      
+
       return
       end
