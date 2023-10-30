@@ -4,10 +4,10 @@
 
       include 'mp.f'
       include 'pi.f'
-      
+
       wcut=dsqrt(3.5d0)
       q0=1d0
-      
+
       if(diss)then
          if(mx.lt.wcut)then
             call f2sf(1,q2,x,f2)
@@ -23,7 +23,7 @@
             else
                call F1F2ap(x,q2,f2,fl)
                f1=f2*(1d0+4d0*mp**2*x**2/q2)-fl
-               f1=f1/2d0/x             
+               f1=f1/2d0/x
             endif
          endif
       else
