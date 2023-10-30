@@ -68,7 +68,7 @@ ccc   spin correlations in W+W- production (leptonic decays)
       wtt=0d0
 
       do mm=1,9
-         wtt=wtt+rhoww(mm)*rhow(mm)**2
+         wtt=wtt+dble(rhoww(mm)*rhow(mm)**2)
       enddo
 
       return

@@ -61,9 +61,9 @@ cccccccccccccccccccc
                do k=1,4
                   do p=1,4
                      do o=1,4
-                        wt2=wt2+echi(j,k)*cechi(p,o)*(q6c(j)-q7c(j))
+                    wt2=wt2+dble(echi(j,k)*cechi(p,o)*(q6c(j)-q7c(j))
      &                       *(q6c(k)-q7c(k))*(q6c(p)-q7c(p))
-     &                       *(q6c(o)-q7c(o))*rho2chi(m,n)                      
+     &                       *(q6c(o)-q7c(o))*rho2chi(m,n))
                      enddo
                   enddo
                enddo
@@ -78,7 +78,7 @@ cccccccccccccccccccc
                enddo
             enddo
                   
-            wt2a=wt2a+zwt2a*zwt2b*rho2chi(m,n)
+            wt2a=wt2a+dble(zwt2a*zwt2b*rho2chi(m,n))
 
             
             

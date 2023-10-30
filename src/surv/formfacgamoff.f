@@ -248,8 +248,8 @@ cccccccc
       call F1F2(diss,xb,qsq1,mdiss,f1,f2)
 
       
-      SF_g = -(d_(mu,mup))*f1+(q1t(mu)+xt*p1t(mu))*
-     &     (q1t(mup)+xt*p1t(mup))*2d0*xb*f2/qsq1/x**2
+      SF_g = dble(-(d_(mu,mup))*f1+(q1t(mu)+xt*p1t(mu))*
+     &     (q1t(mup)+xt*p1t(mup))*2d0*xb*f2/qsq1/x**2)
 
 c      SF_g=SF_g*2d0                 ! In def of rho - removed as included above                                                                  
 
