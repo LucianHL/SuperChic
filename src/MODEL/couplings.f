@@ -55,7 +55,6 @@ C
       DOUBLE PRECISION PI
       PARAMETER  (PI=3.141592653589793D0)
       DOUBLE PRECISION MU_R2, AS2
-      INCLUDE 'model_functions.inc'
       INCLUDE 'input.inc'
       INCLUDE 'coupl.inc'
 
