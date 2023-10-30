@@ -1,6 +1,6 @@
       logical calcmax
       integer iw
-      logical rebin
+!      logical rebin
       double precision wmax
       common/wmax_com/wmax
       common/wmax_com1/calcmax

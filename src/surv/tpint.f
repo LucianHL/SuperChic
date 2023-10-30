@@ -4,6 +4,7 @@
       integer it,ia
       
       include 'tppars.f'
+      tpint=0.0d0
 
       rmin=tparr(1,1)
       rmax=tparr(1,itp)

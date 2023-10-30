@@ -120,8 +120,7 @@ c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       character*20 blockname,val,par,temp,first_ref,first_line
       logical fopened
       integer ref_file
-      logical islast,isnum,found
-      character*20 temp_val
+      logical islast,found
 
 
 c     *********************************************************************
@@ -289,7 +288,6 @@ c
       character*(*)  name
       real*8 var,def_value_num
       character*20 c_param,c_name,ctemp
-      character*19 def_value
 c
 c     local
 c
@@ -345,7 +343,7 @@ c
       character*(*) filename
       character*90  tempname
       integer fine
-      integer dirup,i
+      integer i
 
       character*90 lastopen
       save lastopen
@@ -387,7 +385,7 @@ c
 c     if I have to read a card
 c
       if(index(filename,"_card").gt.0) then
-        tempname='./Cards/'//tempname
+        tempname='./Cards/'//trim(tempname)
       endif
 
       fopened=.false.
@@ -396,7 +394,7 @@ c
         fopened=.true.
 c        write(*,*) 'read model file ',tempname
         exit
-40      tempname='../'//tempname
+40      tempname='../'//trim(tempname)
         if (i.eq.5)then
            write(*,*) 'Warning: file ',filename,
      &  ' not found in the parent directories!(lha_read)'

@@ -162,7 +162,7 @@ c      return
                      zouts_1arr(p)=zout1
                      zouts_2arr(p)=zout2
                      
- 111                 x00p2a=zout2
+ 111                 x00p2a=dble(zout2)
                   endif
                   
               do i1=1,nch

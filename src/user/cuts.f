@@ -1,6 +1,6 @@
       subroutine cut(icut)
       implicit double precision(a-y)
-      integer icut,jflag
+      integer icut,jflag,ijet
       
       include 'gencuts.f'
       include 'vars.f'

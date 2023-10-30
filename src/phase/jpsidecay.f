@@ -132,7 +132,7 @@ ccccccc
          enddo
       enddo
 
-      wtt=wt1
+      wtt=dble(wt1)
 
       return
       end

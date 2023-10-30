@@ -41,8 +41,8 @@ cccccccccccccccc
               call ccdot(echi,cechi,ze5ce5)
               q6q7=sdot(q6,q7)
               
-         wt1=wt1+(-(q6q7+m2b**2)*ze5ce5-2d0*zq6e5*
-     &      zq6ce5)*rho1chi(l,h)/(2d0*(q6q7+2d0*m2b**2))*3d0   
+         wt1=wt1+dble((-(q6q7+m2b**2)*ze5ce5-2d0*zq6e5*
+     &      zq6ce5)*rho1chi(l,h)/(2d0*(q6q7+2d0*m2b**2))*3d0)   
 
            enddo
         enddo

@@ -863,7 +863,7 @@ c#endif
 
       sqh = dsqrt(rHalf)
       hel = dble(nhel)
-      nsvahl = nsv*dabs(hel)
+      nsvahl = int(nsv*dabs(hel))
       pt2 = p(1)**2+p(2)**2
       pp = min(p(0),dsqrt(pt2+p(3)**2))
       pt = min(pp,dsqrt(pt2))
