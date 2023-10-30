@@ -2,9 +2,9 @@
       implicit none
       double precision rmax,rhoxyint,rbin,del,r,m
       integer it,ia
-      
+
       include 'rhoxypars.f'
-      
+
       rmax=rhoxyarr(1,irho)
 
       if(r.gt.rmax)then
@@ -20,6 +20,6 @@
          del=r-rhoxyarr(1,it+1)
          rhoxyint=m*del+rhoxyarr(ia+1,it+1)
       endif
-         
+
       return
       end

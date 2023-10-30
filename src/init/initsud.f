@@ -26,7 +26,7 @@ ccc   writes out sudakov factor to file
 
       do 555 i=1,itot+1
       do 555 j=1,jtot+1
-         
+
          qsq=qmin+qinc*(dble(i)-1d0)
          mass=mmin+minc*(dble(j)-1d0)
 

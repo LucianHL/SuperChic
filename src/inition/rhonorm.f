@@ -10,7 +10,7 @@
 
       rho0z=1d0
       rho0n=1d0
-      
+
       rmax=10d0*rzg
       itot=10000
       hr=rmax/dble(itot)
@@ -29,10 +29,10 @@
          wtn=rhon(r)
          wtn=wtn*4d0*pi
          wtn=wtn*r**2*hr
-         
+
          sumz=sumz+wtz
          sumn=sumn+wtn
-         
+
       enddo
 
       rho0z=az/sumz

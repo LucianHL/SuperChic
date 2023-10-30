@@ -13,7 +13,7 @@
       include 'rho0.f'
       include 'ionqcd.f'
       include 'qcd.f'
-      
+
       btmax=2d0*rzg
       nphi=20
       nbt=100
@@ -58,16 +58,16 @@ c         rhoxy2=rhoxyint(1,bt2)+rhoxyint(2,bt2)
 
          rhoxy1=rhoxyint(3,bt1)+rhoxyint(4,bt1)
          rhoxy2=rhoxyint(3,bt2)+rhoxyint(4,bt2)
-        
+
 
          wt=wt*bt1*bt2*hphi**2*hbt**2
          wt=wt*rhoxy1*rhoxy2
-         
+
          sum=sum+wt
-         
+
  800  enddo
-      
+
       opacpb=sum
-      
+
       return
       end
