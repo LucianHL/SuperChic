@@ -646,7 +646,7 @@ C      print*,AMP(1)
         DO J = 1, NCOLOR
           ZTEMP = ZTEMP + CF(J,I)*JAMP(J)
         ENDDO
-        MATRIX_UDB = MATRIX_UDB+ZTEMP*DCONJG(JAMP(I))
+        MATRIX_UDB = MATRIX_UDB+DBLE(ZTEMP*DCONJG(JAMP(I)))
       ENDDO
       
       if(ftype.eq.'RH')then

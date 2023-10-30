@@ -351,7 +351,7 @@ C     Amplitude(s) for diagram number 15
         DO J = 1, NCOLOR
           ZTEMP = ZTEMP + CF(J,I)*JAMP(J)
         ENDDO
-        MATRIX_ADB = MATRIX_ADB+ZTEMP*DCONJG(JAMP(I))
+        MATRIX_ADB = MATRIX_ADB+DBLE(ZTEMP*DCONJG(JAMP(I)))
       ENDDO
 
       if(wpol.eq.'tot')then

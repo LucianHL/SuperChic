@@ -632,7 +632,7 @@ C     Amplitude(s) for diagram number 86
         DO J = 1, NCOLOR
           ZTEMP = ZTEMP + CF(J,I)*JAMP(J)
         ENDDO
-        MATRIX_DBUB = MATRIX_DBUB+ZTEMP*DCONJG(JAMP(I))
+        MATRIX_DBUB = MATRIX_DBUB+DBLE(ZTEMP*DCONJG(JAMP(I)))
       ENDDO
 
       if(ftype.eq.'RH')then
