@@ -13,7 +13,6 @@ c************************************************************************
 
       include 'coupl.inc'
       include 'input.inc'
-      include 'model_functions.inc'
 
       integer maxpara
       parameter (maxpara=5000)

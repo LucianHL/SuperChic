@@ -9,7 +9,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       LOGICAL READLHA
       PARAMETER  (PI=3.141592653589793D0)
       PARAMETER  (ZERO=0D0)
-      INCLUDE 'model_functions.inc'
       LOGICAL UPDATELOOP
       COMMON /TO_UPDATELOOP/UPDATELOOP
       INCLUDE 'input.inc'
