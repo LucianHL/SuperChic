@@ -3,8 +3,7 @@ ccccc EPA form factors (proton)
       implicit none
       double precision t1,t2,out
       double precision q0,x1i,x2i,qsq1,qsq2,f1,f2
-      double precision tpint,alphaem
-      integer i1,i2,io
+      double precision tpint
 
       include 'photo.f'
       include 'mp.f'

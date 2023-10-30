@@ -6,7 +6,7 @@
       complex*16 ep(4),em(4),ep_em,ep_q1,ep_q2,em_q1,em_q2,
      &     ampWWt_fun,ampWWt,d_(4,4)
       double precision pp(4),pm(4),q1(4),q2(4),q1_q2,pp_pm,qsq1,
-     &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul,tl2
+     &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul
       integer mu,nu
 
       ampWWt =
@@ -74,15 +74,14 @@
       implicit none
       complex*16 ep_em,ep_q1,ep_q2,em_q1,em_q2,pp_em,pp_ep,ep(4),em(4)
      &     ,ampax_fun,amp1ax,amp2ax,amp3ax,amp4ax,d_(4,4),
-     &     amp5ax,amp3axn,amp4axn,amp3axnn,amp4axnn,pm_em,zt,ztest,
-     &     zt1,zt2,zt3,zt4,zt5,zt6,ztest1,ztest2,ztest3,ztest4,ztest5,
-     &     ztest6,zt7,zt8,ztest7,ztest8,amp3axnind,amp4axnind
+     &     amp5ax,amp3axn,amp4axn,amp3axnn,amp4axnn,
+     &     amp3axnind,amp4axnind
       double precision tl,ul,qsq1,pp(4),pm(4),q1(4),q2(4),
      &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,n_q1,n_q2
      &     ,den1ax,den2ax,den3ax,den4ax,den5ax,n(4),
      &     den3axn,den4axn,den3axnn,den4axnn,n_pp,n_pm,n_n
-      integer mu,nu,nu2,mu2
-      logical test,n_ind
+      integer mu,nu
+      logical n_ind
 
       n_ind = .true.
       
@@ -674,8 +673,7 @@
       double precision tl,ul,qsq1,pp(4),pm(4),q1(4),q2(4),
      &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,n_q1,n_q2
      &     ,n(4),n_pp,n_pm,n_n,den1,den2,den3,den4,den5
-      integer mu,nu,nu2,mu2
-      logical test,n_ind
+      integer mu,nu
 
       amp1 =
      &  - 4*pp(mu)*pp(nu)*pp_ep*pp_em + 4*pp(mu)*pp(nu)*pp_ep*em_q1 + 4

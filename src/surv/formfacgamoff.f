@@ -5,8 +5,8 @@ ccccc EPA form factors (proton)
       double precision q1(2),q2(2)
       double precision xi1,xi2,x1tt,x2tt,x2t,x1t,beta
       double precision sf_g,alphaem,out,outi
-      complex*16 sf_tran,zt,ztsf,zoutsf,zout
-      integer p,i,j,k,l,io,mu,mup,nu,nup,qin
+      complex*16 zt,ztsf,zoutsf,zout
+      integer p,i,mu,mup,nu,nup,qin
       double precision sf1_g(4,4),sf2_g(4,4),q1p(4),q2p(4),p1(4),p2(4)
       complex*16 zw(9),zoutt
       common/zw/zw
@@ -217,11 +217,10 @@ cccccccc
 
       
       function SF_g(diss,mu,mup,xb,x,xt,p1,q1,muf)
-      complex*16 zt,zsum
-      double precision sf_z,xb,x,xt,muf,qsq1,mdiss
+      double precision xb,x,xt,muf,qsq1,mdiss
       double precision f1,f2,sf_g
       double precision p1(4),q1(4),q1t(4),p1t(4)
-      integer mu,mup,i,i1,i2,iorder
+      integer mu,mup,i
       logical diss
 
       include 'gmatrices.f'

@@ -2,8 +2,8 @@
       implicit none
       double precision rzmax,hz,tbtmin,tbtmax,tpqcd
       double precision b0,rxy,rhoxyint,htbt
-      integer i,itot
-      integer ibt,iphi,nbt,nphi,ik,nk
+      integer itot
+      integer nbt,nphi,nk
       
       include 'ion.f'
       include 'pi.f'

@@ -3,7 +3,7 @@ ccccc EPA form factors (electron)
       implicit none
       double precision qsq,qsqp,fe,fm,t1,t2,out
       double precision ww1,ww2,ww1p,ww2p,ww1pa,ww2pa
-      integer i1,i2,io
+      integer io
 
       include 'photo.f'
       include 'ewpars.f'

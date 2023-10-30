@@ -1,9 +1,9 @@
       subroutine gdrset
       implicit none
-      double precision sum1,sumx,sum1t,hb,btmin,btmax,bt,acc
-      double precision bti,lbtmin,lbtmax,hlb,dum,pgdrint,lbt
+      double precision sum1,sumx,hb,btmin,btmax,bt,acc
+      double precision bti,lbtmin,lbtmax,hlb,lbt
       logical recalc
-      integer i,ibtmax
+      integer i
 
       include 'ion.f'
       include 'pgdr.f'

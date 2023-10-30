@@ -3,7 +3,7 @@
       double precision gdrx_res,regge_gdr
       double precision xmax,lemax,lemin,leint,le
       double precision o0,emax,e,shad
-      double precision sigt(2,62),test
+      double precision sigt(2,62)
       integer i,j,ir
 
       include 'mion.f'
