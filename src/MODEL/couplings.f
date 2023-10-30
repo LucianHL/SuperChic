@@ -33,7 +33,6 @@ C
       PARAMETER  (ZERO=0D0)
       LOGICAL UPDATELOOP
       COMMON /TO_UPDATELOOP/UPDATELOOP
-      INCLUDE 'model_functions.inc'
       INCLUDE 'input.inc'
       INCLUDE 'coupl.inc'
       READLHA = .FALSE.
