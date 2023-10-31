@@ -15,7 +15,12 @@ IF(TEST_PYTHIA8_ROOT_DIR STREQUAL "")
 IF(DEFINED ENV{PYTHIA8_ROOT_DIR})
 set(PYTHIA8_ROOT_DIR  $ENV{PYTHIA8_ROOT_DIR})
 else()
+if ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set(PYTHIA8_ROOT_DIR  "/usr/local")
+else()
 set(PYTHIA8_ROOT_DIR  "/usr")
+endif()
+
 endif()
 endif()
 
