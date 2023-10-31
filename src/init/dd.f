@@ -10,7 +10,7 @@
       include 'intag.f'
 
       print*,'Calculating S^2 (Evolution + Evolution)...'
-      
+
       call length(intag,outl)
       open(10,file='inputs/dd'//intag(1:outl)//'.dat')
 
@@ -31,7 +31,7 @@
       hbt=btmax/dble(nbt)
       hphi=2d0*pi/dble(nphi)
 
-      
+
       sum=0d0
 
       do ibt=1,nbt
@@ -52,29 +52,29 @@
          enddo
 
          opac=opac**2
-         
+
       do ikt=1,nkt
 
          kt=(dble(ikt)-0.5d0)*hkt
-         
+
          wt=besj0(bt*kt)
-         wt=wt/2d0/pi*hkt*kt         
+         wt=wt/2d0/pi*hkt*kt
 
          call F1F2el(kt**2,f1,f2)
 
          sigmab=sigmab+wt*f2
 
-              
+
       enddo
 
       crossb=crossb+sigmab*hbt*bt
       cross=cross+sigmab*opac*hbt*bt
 
       enddo
- 
+
 c      print*,cross/crossb
       write(10,*)cross/crossb
-     
+
 
       close(10)
 

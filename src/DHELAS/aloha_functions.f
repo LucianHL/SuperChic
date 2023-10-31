@@ -925,7 +925,7 @@ c#endif
          vc(3) = dcmplx( rZero )
          vc(6) = dcmplx( hel*pt/pp*sqh )
 
-         
+
          if ( pt.ne.rZero ) then
             pzpt = p(3)/(pp*pt)*sqh*hel
             vc(4) = dcmplx( -p(1)*pzpt , -nsv*p(2)/pt*sqh )
@@ -943,9 +943,9 @@ c#endif
             vc(i+3)=egam0(i)
          enddo
          vc(3)=egam0(4)
-         
+
       endif
-      
+
 c
       return
       end
@@ -1278,7 +1278,7 @@ c
 c output:
 c       real    p1(0:3)        : four-momentum of particle 1
 c       real    p2(0:3)        : four-momentum of particle 2
-c     
+c
       implicit none
       double precision p1(0:3),p2(0:3),
      &     esum,mass1,mass2,costh1,phi1,md2,ed,pp,sinth1
@@ -1317,7 +1317,7 @@ c      endif
 c      if (phi1.lt.rZero .or. phi1.gt.rTwo*rPi) then
 c         write(stdo,*)
 c     &   ' helas-warn  : phi1 in mom2cx does not lie on 0.0 thru 2.0*pi'
-c         write(stdo,*) 
+c         write(stdo,*)
 c     &   '             : phi1 = ',phi1
 c      endif
 c#endif
@@ -1357,8 +1357,8 @@ c                                  (1- and 1 is forbidden if rmass = 0)
 c       integer nsr  = -1 or 1   : +1 for particle, -1 for anti-particle
 c
 c output:
-c       complex ri(18)           : RS fermion wavefunction         |ri>v   
-c     
+c       complex ri(18)           : RS fermion wavefunction         |ri>v
+c
 c- by K.Mawatari - 2008/02/26
 c
       implicit none
@@ -1368,7 +1368,7 @@ c
 
       double complex rc(6,4),ep(4),em(4),e0(4),fip(4),fim(4),chi(2)
       double precision pp,pt2,pt,pzpt,emp, sf(2),sfomeg(2),omega(2),pp3,
-     &                 sqp0p3,sqm      
+     &                 sqp0p3,sqm
       integer i,j,nsv,ip,im,nh
 
       double precision rZero, rHalf, rOne, rTwo, rThree, sqh,sq2,sq3
@@ -1425,7 +1425,7 @@ c#endif
 
       nsv = -nsr ! nsv=+1 for final, -1 for initial
 
-      if ( nhel.ge.1 ) then 
+      if ( nhel.ge.1 ) then
 c construct eps+
          if ( pp.eq.rZero ) then
             ep(1) = dcmplx( rZero )
@@ -1446,7 +1446,7 @@ c construct eps+
          endif
       end if
 
-      if ( nhel.le.-1 ) then 
+      if ( nhel.le.-1 ) then
 c construct eps-
          if ( pp.eq.rZero ) then
             em(1) = dcmplx( rZero )
@@ -1467,7 +1467,7 @@ c construct eps-
          endif
       end if
 
-      if ( abs(nhel).le.1 ) then  
+      if ( abs(nhel).le.1 ) then
 c construct eps0
          if ( pp.eq.rZero ) then
             e0(1) = dcmplx( rZero )
@@ -1489,7 +1489,7 @@ c construct eps0
       end if
 
       if ( nhel.ge.-1 ) then
-c constract spinor+ 
+c constract spinor+
        nh = nsr
        if ( rmass.ne.rZero ) then
          pp = min(p(0),dsqrt(p(1)**2+p(2)**2+p(3)**2))
@@ -1610,38 +1610,38 @@ c spin-3/2 fermion wavefunction
       else if ( nhel.eq.1 ) then
          do j = 1,4
             do i = 1,4
-              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then 
+              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then
                rc(i,j) =  sq2/sq3*e0(i)*fip(j) +rOne/sq3*ep(i)*fim(j)
-              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then 
+              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then
                rc(i,j) =  sq2/sq3*e0(i)*fip(j) -rOne/sq3*ep(i)*fim(j)
               else
-               rc(i,j) =  sq2/sq3*e0(i)*fip(j) 
-     &                  +rOne/sq3*ep(i)*fim(j) *dcmplx(P(1),nsr*P(2))/pt  
+               rc(i,j) =  sq2/sq3*e0(i)*fip(j)
+     &                  +rOne/sq3*ep(i)*fim(j) *dcmplx(P(1),nsr*P(2))/pt
               endif
             end do
          end do
       else if ( nhel.eq.-1 ) then
          do j = 1,4
             do i = 1,4
-              if     ( pt.eq.rZero .and.p(3).ge.0d0 ) then 
+              if     ( pt.eq.rZero .and.p(3).ge.0d0 ) then
                rc(i,j) = rOne/sq3*em(i)*fip(j) +sq2/sq3*e0(i)*fim(j)
-              elseif ( pt.eq.rZero .and.p(3).lt.0d0 ) then 
+              elseif ( pt.eq.rZero .and.p(3).lt.0d0 ) then
                rc(i,j) = rOne/sq3*em(i)*fip(j) -sq2/sq3*e0(i)*fim(j)
               else
-               rc(i,j) = rOne/sq3*em(i)*fip(j) 
-     &                  + sq2/sq3*e0(i)*fim(j) *dcmplx(P(1),nsr*P(2))/pt  
+               rc(i,j) = rOne/sq3*em(i)*fip(j)
+     &                  + sq2/sq3*e0(i)*fim(j) *dcmplx(P(1),nsr*P(2))/pt
               endif
             end do
          end do
       else
          do j = 1,4
             do i = 1,4
-              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then 
+              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then
                rc(i,j) =  em(i)*fim(j)
-              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then 
+              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then
                rc(i,j) = -em(i)*fim(j)
               else
-               rc(i,j) =  em(i)*fim(j) *dcmplx(P(1),nsr*P(2))/pt  
+               rc(i,j) =  em(i)*fim(j) *dcmplx(P(1),nsr*P(2))/pt
               endif
             end do
          end do
@@ -1681,8 +1681,8 @@ c                                  (1- and 1 is forbidden if rmass = 0)
 c       integer nsr  = -1 or 1   : +1 for particle, -1 for anti-particle
 c
 c output:
-c       complex ro(18)           : RS fermion wavefunction         |ro>v   
-c     
+c       complex ro(18)           : RS fermion wavefunction         |ro>v
+c
 c- by Y.Takaesu - 2011/01/11
 c
       implicit none
@@ -1692,7 +1692,7 @@ c
 
       double complex rc(6,4),ep(4),em(4),e0(4),fop(4),fom(4),chi(2)
       double precision pp,pt2,pt,pzpt,emp, sf(2),sfomeg(2),omega(2),pp3,
-     &                 sqp0p3,sqm(0:1)      
+     &                 sqp0p3,sqm(0:1)
       integer i,j,nsv,ip,im,nh
 
       double precision rZero, rHalf, rOne, rTwo, rThree, sqh,sq2,sq3
@@ -1749,7 +1749,7 @@ c#endif
 
       nsv = nsr ! nsv=+1 for final, -1 for initial
 
-      if ( nhel.ge.1 ) then 
+      if ( nhel.ge.1 ) then
 c construct eps+
          if ( pp.eq.rZero ) then
             ep(1) = dcmplx( rZero )
@@ -1770,7 +1770,7 @@ c construct eps+
          endif
       end if
 
-      if ( nhel.le.-1 ) then 
+      if ( nhel.le.-1 ) then
 c construct eps-
          if ( pp.eq.rZero ) then
             em(1) = dcmplx( rZero )
@@ -1791,7 +1791,7 @@ c construct eps-
          endif
       end if
 
-      if ( abs(nhel).le.1 ) then  
+      if ( abs(nhel).le.1 ) then
 c construct eps0
          if ( pp.eq.rZero ) then
             e0(1) = dcmplx( rZero )
@@ -1813,7 +1813,7 @@ c construct eps0
       end if
 
       if ( nhel.ge.-1 ) then
-c constract spinor+ 
+c constract spinor+
        nh = nsr
 
        if ( rmass.ne.rZero ) then
@@ -1821,19 +1821,19 @@ c constract spinor+
          pp = min(p(0),dsqrt(p(1)**2+p(2)**2+p(3)**2))
 
          if ( pp.eq.rZero ) then
-            
+
             sqm(0) = dsqrt(abs(rmass)) ! possibility of negative fermion masses
             sqm(1) = sign(sqm(0),rmass) ! possibility of negative fermion masses
             ip = -((1+nh)/2)
             im =  (1-nh)/2
-            
+
             fop(1) = im     * sqm(im)
             fop(2) = ip*nsr * sqm(im)
             fop(3) = im*nsr * sqm(-ip)
             fop(4) = ip     * sqm(-ip)
-            
+
          else
-            
+
             pp = min(p(0),dsqrt(p(1)**2+p(2)**2+p(3)**2))
             sf(1) = dble(1+nsr+(1-nsr)*nh)*rHalf
             sf(2) = dble(1+nsr-(1-nsr)*nh)*rHalf
@@ -1850,16 +1850,16 @@ c constract spinor+
             else
                chi(2) = dcmplx( nh*p(1) , -p(2) )/dsqrt(rTwo*pp*pp3)
             endif
-            
+
             fop(1) = sfomeg(2)*chi(im)
             fop(2) = sfomeg(2)*chi(ip)
             fop(3) = sfomeg(1)*chi(im)
             fop(4) = sfomeg(1)*chi(ip)
 
          endif
-         
+
       else
-         
+
          if(p(1).eq.0d0.and.p(2).eq.0d0.and.p(3).lt.0d0) then
             sqp0p3 = 0d0
          else
@@ -1886,7 +1886,7 @@ c constract spinor+
       endif
 
       if ( nhel.le.1 ) then
-c constract spinor+ 
+c constract spinor+
        nh = -nsr
 
       if ( rmass.ne.rZero ) then
@@ -1894,19 +1894,19 @@ c constract spinor+
          pp = min(p(0),dsqrt(p(1)**2+p(2)**2+p(3)**2))
 
          if ( pp.eq.rZero ) then
-            
+
             sqm(0) = dsqrt(abs(rmass)) ! possibility of negative fermion masses
             sqm(1) = sign(sqm(0),rmass) ! possibility of negative fermion masses
             ip = -((1+nh)/2)
             im =  (1-nh)/2
-            
+
             fom(1) = im     * sqm(im)
             fom(2) = ip*nsr * sqm(im)
             fom(3) = im*nsr * sqm(-ip)
             fom(4) = ip     * sqm(-ip)
-            
+
          else
-            
+
             pp = min(p(0),dsqrt(p(1)**2+p(2)**2+p(3)**2))
             sf(1) = dble(1+nsr+(1-nsr)*nh)*rHalf
             sf(2) = dble(1+nsr-(1-nsr)*nh)*rHalf
@@ -1923,16 +1923,16 @@ c constract spinor+
             else
                chi(2) = dcmplx( nh*p(1) , -p(2) )/dsqrt(rTwo*pp*pp3)
             endif
-            
+
             fom(1) = sfomeg(2)*chi(im)
             fom(2) = sfomeg(2)*chi(ip)
             fom(3) = sfomeg(1)*chi(im)
             fom(4) = sfomeg(1)*chi(ip)
 
          endif
-         
+
       else
-         
+
          if(p(1).eq.0d0.and.p(2).eq.0d0.and.p(3).lt.0d0) then
             sqp0p3 = 0d0
          else
@@ -1955,9 +1955,9 @@ c constract spinor+
             fom(3) = chi(2)
             fom(4) = chi(1)
          endif
-       endif 
+       endif
       endif
-      
+
 c spin-3/2 fermion wavefunction
       if ( nhel.eq.3 ) then
          do j = 1,4
@@ -1968,44 +1968,44 @@ c spin-3/2 fermion wavefunction
       else if ( nhel.eq.1 ) then
          do j = 1,4
             do i = 1,4
-              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then 
+              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then
                rc(i,j) =  sq2/sq3*e0(i)*fop(j)
      &                    +rOne/sq3*ep(i)*fom(j)
-              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then 
+              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then
                rc(i,j) =  sq2/sq3*e0(i)*fop(j)
      &                    -rOne/sq3*ep(i)*fom(j)
               else
-               rc(i,j) =  sq2/sq3*e0(i)*fop(j) 
+               rc(i,j) =  sq2/sq3*e0(i)*fop(j)
      &                  +rOne/sq3*ep(i)*fom(j)
-     &                   *dcmplx(P(1),-nsr*P(2))/pt  
+     &                   *dcmplx(P(1),-nsr*P(2))/pt
               endif
             end do
          end do
       else if ( nhel.eq.-1 ) then
          do j = 1,4
             do i = 1,4
-              if     ( pt.eq.rZero .and.p(3).ge.0d0 ) then 
+              if     ( pt.eq.rZero .and.p(3).ge.0d0 ) then
                rc(i,j) = rOne/sq3*em(i)*fop(j)
      &                   +sq2/sq3*e0(i)*fom(j)
-              elseif ( pt.eq.rZero .and.p(3).lt.0d0 ) then 
+              elseif ( pt.eq.rZero .and.p(3).lt.0d0 ) then
                rc(i,j) = rOne/sq3*em(i)*fop(j)
      &                   -sq2/sq3*e0(i)*fom(j)
               else
-               rc(i,j) = rOne/sq3*em(i)*fop(j) 
+               rc(i,j) = rOne/sq3*em(i)*fop(j)
      &                  + sq2/sq3*e0(i)*fom(j)
-     &                   *dcmplx(P(1),-nsr*P(2))/pt  
+     &                   *dcmplx(P(1),-nsr*P(2))/pt
               endif
             end do
          end do
       else
          do j = 1,4
             do i = 1,4
-              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then 
+              if     ( pt.eq.rZero .and. p(3).ge.0d0 ) then
                rc(i,j) =  em(i)*fom(j)
-              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then 
+              elseif ( pt.eq.rZero .and. p(3).lt.0d0 ) then
                rc(i,j) = -em(i)*fom(j)
               else
-               rc(i,j) =  em(i)*fom(j)*dcmplx(P(1),-nsr*P(2))/pt  
+               rc(i,j) =  em(i)*fom(j)*dcmplx(P(1),-nsr*P(2))/pt
               endif
             end do
          end do
@@ -2066,7 +2066,7 @@ c     local variable
       enddo
       return
       end
-      
+
       subroutine CombineAmpS(nb, ihels, iwfcts, W1, Wall, Amp)
 
       integer nb ! size of the vectors

@@ -22,12 +22,12 @@ ccc   evolution of flavour-singlet wave function
 
       xcap2=(alphasg0/alphasg)**(gamp(2)/b0/4d0/pi)
       ycap2=(alphasg0/alphasg)**(gamm(2)/b0/4d0/pi)
-      
+
       bm2=(a21-a2g/rhop(2))/(rhom(2)-1d0/rhop(2))
       bp2=(a21/rhom(2)-a2g)/(1d0/rhom(2)-rhop(2))
-      
+
       a21n=bp2*xcap2+rhom(2)*bm2*ycap2
-      a2gn=rhop(2)*bp2*xcap2+bm2*ycap2 
+      a2gn=rhop(2)*bp2*xcap2+bm2*ycap2
 
       return
       end

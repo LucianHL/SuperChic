@@ -9,7 +9,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       LOGICAL READLHA
       PARAMETER  (PI=3.141592653589793D0)
       PARAMETER  (ZERO=0D0)
-      INCLUDE 'model_functions.inc'
       LOGICAL UPDATELOOP
       COMMON /TO_UPDATELOOP/UPDATELOOP
       INCLUDE 'input.inc'
@@ -17,9 +16,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       READLHA = .TRUE.
       INCLUDE 'intparam_definition.inc'
       CALL COUP1()
-C     
+C
 couplings needed to be evaluated points by points
-C     
+C
       CALL COUP2()
 
       RETURN
@@ -34,7 +33,6 @@ C
       PARAMETER  (ZERO=0D0)
       LOGICAL UPDATELOOP
       COMMON /TO_UPDATELOOP/UPDATELOOP
-      INCLUDE 'model_functions.inc'
       INCLUDE 'input.inc'
       INCLUDE 'coupl.inc'
       READLHA = .FALSE.
@@ -42,9 +40,9 @@ C
       INCLUDE 'intparam_definition.inc'
 
 
-C     
+C
 couplings needed to be evaluated points by points
-C     
+C
       CALL COUP2()
 
       RETURN
@@ -56,7 +54,6 @@ C
       DOUBLE PRECISION PI
       PARAMETER  (PI=3.141592653589793D0)
       DOUBLE PRECISION MU_R2, AS2
-      INCLUDE 'model_functions.inc'
       INCLUDE 'input.inc'
       INCLUDE 'coupl.inc'
 

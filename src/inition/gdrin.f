@@ -23,7 +23,7 @@
       length=0
       CALL GETENV('SUPERCHIC_DATA_PATH', valuepath)
       length=len(trim(valuepath))
-   
+
       ! Check if the environment variable is set
       if (length > 0) then
         write(*,*) 'Reading data from(env. var.) ',valuepath(1:length)
@@ -42,7 +42,7 @@
       open(14,file=trim(defpath)// '/Caldwell.dat')
       open(50,file=trim(defpath)// '/Muccifora.dat')
       endif
-      
+
       i0=161 ! GDR, Veyssiere et al. Nucl. Phys. A159, 561 (1970)
       i1=189 ! 25-103 MeV, Lepretre, et al., Nucl. Phys. A367, 237 (1981)
       i2=210 ! 106-440 MeV, Carlos, et al., Nucl. Phys. A431, 573 (1984)
@@ -65,7 +65,7 @@
       lemin=dlog(16.4d0)
       ir=100
       leint=(lemax-lemin)/dble(ir)
-      
+
       if(nint(az).eq.82)then
          read(10,*)
          read(10,*)(sneut(2,j),j=1,i0)
@@ -103,7 +103,7 @@
 
       read(13,*)(sigt(1,j),j=1,62)
       read(13,*)(sigt(2,j),j=1,62)
-      
+
       do i=1,13
          read(50,*)mneut(1,i+i2),mneut(2,i+i2)
          mneut(1,i+i2)=mneut(1,i+i2)*1d3
@@ -116,19 +116,19 @@
       read(14,*)(mneut(2,j),j=i3+1,i4)
 
       do i=1,11
-         mneut(2,i3+i)=mneut(2,i3+i)*an      
-         e=mneut(1,i3+i)*1d-3 
+         mneut(2,i3+i)=mneut(2,i3+i)*an
+         e=mneut(1,i3+i)*1d-3
       enddo
 
       do i=i4+1,i5
          le=lemin+dble(i-i4)*leint
          e=dexp(le)
-         
+
          mneut(1,i)=e*1d3
          mneut(2,i)=Regge_gdr(e)*an
 
       enddo
-         
+
       return
       end
 
@@ -150,7 +150,7 @@
       endif
 
       gdrx_res=sig1*e**2*gam1**2/((e**2-e1**2)**2+e**2*gam1**2)
-      
+
       if(nint(az).eq.79)then
       elseif(nint(az).eq.82)then
       else
@@ -167,9 +167,9 @@
 
       include 'mion.f'
       include 'ion.f'
-      
+
       mn=0.94d0
-      
+
       x=0.0677d0
       y=0.129d0
       eps=0.0808d0

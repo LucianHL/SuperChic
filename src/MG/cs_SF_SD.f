@@ -18,8 +18,8 @@ c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
       complex*16 amptest
       double precision f1lo,f2lo,fk1
       common/amptest/amptest
-    
-      
+
+
       include 'mp.f'
       include 'pi.f'
       include 'x.f'
@@ -38,7 +38,7 @@ c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
       include 'pol.f'
       include 'ewsf.f'
 
-      
+
       pol=p
 
       sw=dsqrt(1d0-mw**2/mz**2)
@@ -49,11 +49,11 @@ c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
 cccc  qin gives initial state quark on diss side
 cccc  qin = 1 : up type
 cccc  qin = 2 : anti up type
-cccc  qin = 3 : down type  
+cccc  qin = 3 : down type
 cccc  qin = 4 : anti down type
 
-ccccc pflag=1, photon from proton 1, pflag=2, photon from proton 2      
-      
+ccccc pflag=1, photon from proton 1, pflag=2, photon from proton 2
+
       if(qin.eq.1)then
          api=ap
          apdi=apd
@@ -83,14 +83,14 @@ ccccc pflag=1, photon from proton 1, pflag=2, photon from proton 2
          eqi=eq(1)
          eqim=eq(2)
       endif
-      
+
 cccccccccc
 
       do i=1,4
          q1(i)=q(i,1)-q(i,3)
          q2(i)=q(i,2)-q(i,4)
       enddo
-         
+
       qsq1=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
      &     -(q(1,3)-q(1,1))**2
       qsq1=-qsq1
@@ -99,7 +99,7 @@ cccccccccc
       qsq2=-qsq2
 
 
-      
+
       do i=1,4
          p1(i)=q(i,1)
          p2(i)=q(i,2)
@@ -108,21 +108,21 @@ cccccccccc
       xi1=-qsq1/rts/(q1(4)-q1(3))
       xi2=-qsq2/rts/(q2(4)+q2(3))
 
-      
+
 cccccccccccccc
 
       do i=1,4
          pq1(i)=0d0
          pq2(i)=0d0
       enddo
-      
+
       pq1(4)=rts/2d0*xi1
       pq1(3)=pq1(4)
       pq2(4)=rts/2d0*xi2
       pq2(3)=-pq2(4)
 
-cccccccccccccccccc      
-      
+cccccccccccccccccc
+
       beta=q(3,1)/q(4,1)
 
       x1t=(q1(4)+q1(3)/beta)/rts
@@ -156,7 +156,7 @@ cccccccccccccccccc
       qsqi2=-(qi2(4)**2-qi2(3)**2-qi2(2)**2-qi2(1)**2)
 
 ccccccccccccccc
-      
+
       do i=1,3
          pmom(i,1)=qi2(i)
          pmom(i,2)=pqi(i)
@@ -178,7 +178,7 @@ c$$$         egam0(i)=-egam0(i)*dsqrt(qsqi2/(qdk**2+mp**2*qsqi2))
 c$$$  enddo
 
 ccccc Correct (stable) scal pol
-      
+
       egam0(4)=dsqrt(qi2(1)**2+qi2(2)**2+qi2(3)**2)/dsqrt(qsqi2)
       do i=1,3
          egam0(i)=qi2(i)*qi2(4)/dsqrt(qi2(1)**2+qi2(2)**2+qi2(3)**2)
@@ -186,7 +186,7 @@ ccccc Correct (stable) scal pol
       enddo
 
       scpol=.false.
-      
+
       if(qin.eq.1)call SMATRIX_au(Pmom,MATELEM)
       if(qin.eq.2)call SMATRIX_aub(Pmom,MATELEM)
       if(qin.eq.3)call SMATRIX_ad(Pmom,MATELEM)
@@ -201,7 +201,7 @@ ccccc Correct (stable) scal pol
       endif
 
 c      call F1F2el(qsqi2,f1,f2)
-         
+
       fl=(1d0+4d0*mp**2*xbi**2/qsqi2)*f2-2d0*xbi*f1
 
       out_tran=matelem
@@ -209,34 +209,34 @@ c      call F1F2el(qsqi2,f1,f2)
      &     +xit**2*mp**2/qsqi2)-fl*xit**2/2d0/xbi**2)   ! note divided by 2 to get averaging factor right for photons
 
 c      out_tran=out_tran*f2*(qi2(1)**2+qi2(2)**2)/qsqi2
-      
+
       scpol=.true.
-      
+
       if(qin.eq.1)call SMATRIX_au(Pmom,MATELEM)
       if(qin.eq.2)call SMATRIX_aub(Pmom,MATELEM)
       if(qin.eq.3)call SMATRIX_ad(Pmom,MATELEM)
       if(qin.eq.4)call SMATRIX_adb(Pmom,MATELEM)
-         
+
       out_long=matelem*2d0 ! only 1 pol -> no average factor
       out_long=out_long*(f2*(1d0-xit/xbi-xit**2*mp**2/qsqi2)
      &     +fl*xit**2/4d0/xbi**2)
 
       out_t=out_tran
       out_t=out_t+out_long
-      
-      
+
+
       out_t=out_t*conv
       out_t=out_t*alphaEM(qsqi2)
       out_t=out_t/qsqi2
 
 
-      
-      
+
+
 ccccccccccfrom rho's
 
       out_t=out_t/xit**2*xbi
-   
-      
+
+
 cccccccc quark side PDF
 
       call evolvePDFphoton(xi,dsqrt(qsq),garr,phot)
@@ -259,7 +259,7 @@ cccccccc quark side PDF
 
 ccccccccccc
 
-      call F1F2ev(xi,qsq,f1lo,f2lo)      
+      call F1F2ev(xi,qsq,f1lo,f2lo)
       call F1F2ap(xi,qsq,f2,fl)
       f1=f2-fl
       f1=f1/2d0/xi
@@ -269,10 +269,10 @@ c      fk1=f1/f1lo
 
       out_t=out_t*fk1  ! reweight so that pure SF part is ~ NNLO
 
-cccccccccccc      
-      
+cccccccccccc
+
       out=out_t
-      
+
       return
       end
 

@@ -1,5 +1,5 @@
 C--   Christy-Bosted fit to resonance sig(L+T) - 0712.3731
-      
+
       function sigtlnr(x,qsq)
       implicit double precision(a-z)
       integer i
@@ -52,7 +52,7 @@ C--   Christy-Bosted fit to resonance sig(L+T) - 0712.3731
      &     0.1446,0.215,0.215,0.215,0.215,0.215,0.215/
 
       sum=0d0
-      
+
       mp=0.938d0
       mpi=0.135d0
       meta=0.5479d0
@@ -60,16 +60,16 @@ C--   Christy-Bosted fit to resonance sig(L+T) - 0712.3731
       m0l=4.2802d0
       q0l=0.125d0
 
-      wsq=mp**2+qsq*(1d0-x)/x   
-      
+      wsq=mp**2+qsq*(1d0-x)/x
+
       k=(wsq-mp**2)/2d0/mp
       kcm=(wsq-mp**2)/2d0/dsqrt(wsq)
-      
+
       do i=1,7
 
          ki=(m(i)**2-mp**2)/2d0/mp
          kicm=(m(i)**2-mp**2)/2d0/m(i)
-         
+
          gamig=gam(i)*(kcm/kicm)**2*(kicm**2+xi(i)**2)
      &        /(kcm**2+xi(i)**2)
 
@@ -79,7 +79,7 @@ C--   Christy-Bosted fit to resonance sig(L+T) - 0712.3731
          ej2=(wsq-mp**2+4d0*mpi**2)/dsqrt(wsq)
          pj2=dsqrt(ej2**2-mpi**2)
 
-  
+
          ej1m=(m(i)**2-mp**2+mpi**2)/m(i)
          pj1m=dsqrt(ej1m**2-mpi**2)
 
@@ -107,20 +107,20 @@ C--   Christy-Bosted fit to resonance sig(L+T) - 0712.3731
             gam3=0d0
 
          endif
-            
+
          gamitot=betapi(i)*gam1+beta2pi(i)*gam2+betaeta(i)*gam3
 
-         
+
          bw=gamitot*gamig/((wsq-m(i)**2)**2+(m(i)*gamitot)**2)
          bw=bw*ki*kicm/k/kcm/gam(i)
-      
+
          atq=at(i)/(1d0+qsq/0.91d0)**c(i)
          atq=atq*(1d0+a(i)*qsq/(1d0+b(i)*qsq))
 
-         alq=al(i)*qsq*dexp(-e(i)*qsq)/(1d0+d(i)*qsq)     
-         
+         alq=al(i)*qsq*dexp(-e(i)*qsq)/(1d0+d(i)*qsq)
+
          sigi=dsqrt(wsq)*bw*(atq**2+alq**2)
-         
+
          sum=sum+sigi
 
       enddo
@@ -130,24 +130,24 @@ C--   Christy-Bosted fit to resonance sig(L+T) - 0712.3731
 
       snr1=signrt(1)*(dsqrt(wsq)-mpi-mp)**1.5d0
       snr1=snr1/(qsq+anr(1))**(bnr(1)+cnr(1)*qsq+dnr(1)*qsq**2)
-      
+
       snr2=signrt(2)*(dsqrt(wsq)-mpi-mp)**2.5d0
       snr2=snr2/(qsq+anr(2))**(bnr(2)+cnr(2)*qsq+dnr(2)*qsq**2)
- 
+
       nrt=(snr1+snr2)*xpt
 
       xpl=(1d0+(wsq-(mp+mpi)**2)/(qsq+q0l))
       xpl=1d0/xpl
-  
+
       tl=dlog(dlog((qsq+m0l)/0.33d0**2)/dlog(m0l/0.33d0**2))
-      
+
       snrl=signrl(1)*(1d0-xpl)**(anr(3)*tl+bnr(3))/(1d0-x)
       snrl=snrl*qsq**cnr(3)/(qsq+q0l)**(1d0+cnr(3))
      &     *xpl**(dnr(3)+enr(3)*tl)
-      
+
       sum=sum+nrt+snrl
-      
+
       sigtlnr=sum
-        
+
       return
       end

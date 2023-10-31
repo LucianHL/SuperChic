@@ -13,11 +13,10 @@ c************************************************************************
 
       include 'coupl.inc'
       include 'input.inc'
-      include 'model_functions.inc'
 
       integer maxpara
       parameter (maxpara=5000)
-      
+
       integer npara
       character*20 param(maxpara),value(maxpara)
 
@@ -29,8 +28,8 @@ c************************************************************************
       ! also loop parameters should be initialised here
       if (updateloop) then
          include 'param_read.inc'
-         call coup()         
-      else   
+         call coup()
+      else
          updateloop=.true.
          include 'param_read.inc'
          call coup()
@@ -83,7 +82,7 @@ c$$$      endif
 c$$$      if (param_name(1:1).eq.'*') then
 c$$$         ! Dummy call to printout so that it is available in the
 c$$$         ! dynamic library for MadLoop BLHA2
-c$$$         ! In principle the --whole-archive option of ld could be 
+c$$$         ! In principle the --whole-archive option of ld could be
 c$$$         ! used but it is not always supported
 c$$$         call printout()
 c$$$         call setParamLog(.True.)

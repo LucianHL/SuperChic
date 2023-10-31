@@ -5,7 +5,7 @@
       double precision b0,hbt0,sum0,btminb
       integer ibt,nbt,nbt0
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0 
+      double precision dbesj0
 !endif
       include 'pi.f'
       include 'ion.f'
@@ -22,7 +22,7 @@
 
       if(ionbreakup)then
          if(fAA.eq.'00')then
-            btmin=0d0            
+            btmin=0d0
          endif
          if(fAA.eq.'01')then
             nbt=3000
@@ -38,7 +38,7 @@
       b0=4d0*rzg
       hbt0=(b0-btmin)/dble(nbt0)
       sum0=0d0
-      
+
       do ibt=1,nbt0
 
          bt=btmin+(dble(ibt)-0.5d0)*hbt0
@@ -57,24 +57,24 @@
 
       hbt=(btmax-btminb)/dble(nbt)
       sum=0d0
-      
+
       do ibt=1,nbt
 
          bt=btminb+(dble(ibt)-0.5d0)*hbt
 
          if(beam.eq.'ion')wt=1d0-opacpbint(bt)
          if(beam.eq.'ionp')wt=1d0-opacpbpint(bt)
- 
+
          wt=wt*dbesj0(qt*bt)
          wt=-wt*bt*hbt/2d0/pi
 
          sum=sum+wt
-         
+
       enddo
 
       sum=sum+sum0
 
       screen=sum
-      
+
       return
       end

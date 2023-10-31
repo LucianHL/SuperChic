@@ -2775,7 +2775,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
-                     nhep=7
+         nhep=7
       elseif(proc.eq.61)then
          ndim=6
          pol=4
@@ -2803,7 +2803,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
-                     nhep=7
+         nhep=7
       elseif(proc.eq.68)then
          if(beam.eq.'prot')then
             offshell=.true.
