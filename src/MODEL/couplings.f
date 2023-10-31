@@ -9,7 +9,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       LOGICAL READLHA
       PARAMETER  (PI=3.141592653589793D0)
       PARAMETER  (ZERO=0D0)
-      INCLUDE 'model_functions.inc'
       LOGICAL UPDATELOOP
       COMMON /TO_UPDATELOOP/UPDATELOOP
       INCLUDE 'input.inc'
@@ -34,7 +33,6 @@ C
       PARAMETER  (ZERO=0D0)
       LOGICAL UPDATELOOP
       COMMON /TO_UPDATELOOP/UPDATELOOP
-      INCLUDE 'model_functions.inc'
       INCLUDE 'input.inc'
       INCLUDE 'coupl.inc'
       READLHA = .FALSE.
@@ -56,7 +54,6 @@ C
       DOUBLE PRECISION PI
       PARAMETER  (PI=3.141592653589793D0)
       DOUBLE PRECISION MU_R2, AS2
-      INCLUDE 'model_functions.inc'
       INCLUDE 'input.inc'
       INCLUDE 'coupl.inc'
 
