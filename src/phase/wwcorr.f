@@ -143,8 +143,9 @@ ccc   spin correlations in W+W- production (leptonic decays)
          enddo
          enddo
 
-         rho_rf(i)=4d0*(2d0*dreal(pl_e*dconjg(pn_e))-ep_epc*mw**2/2d0)
-     &        -4d0*eps
+         rho_rf(i)=dble(4d0*(2d0*dreal(pl_e*dconjg(pn_e))
+     &    -ep_epc*mw**2/2d0)
+     &        -4d0*eps)
          rho_rf(i)=rho_rf(i)/mw**2*3d0/4d0
 
       enddo
@@ -226,9 +227,9 @@ ccc   spin correlations in W+W- production (leptonic decays)
          enddo
 
          if(wgauge.eq.'unitary')then
-
-         rho_rf(i)=4d0*(2d0*dreal(pf_e*dconjg(paf_e))
-     &        +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps
+       
+         rho_rf(i)=dble(4d0*(2d0*dreal(pf_e*dconjg(paf_e))
+     &        +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps)
          rho_rf(i)=rho_rf(i)*3d0/4d0/(mw**2-ml**2/2d0-ml**4/mw**2/2d0)
 
          rho_rf(i)=dabs(rho_rf(i))
@@ -237,18 +238,19 @@ ccc   spin correlations in W+W- production (leptonic decays)
 
          if(iw.eq.1)then
 
-            rho_rf(i)=4d0*(2d0*dreal(pf_e*dconjg(paf_e))
+              rho_rf(i)=dble(4d0*(2d0*dreal(pf_e*dconjg(paf_e))
+
      &           -2d0*dreal(pf_e*dconjg(pw_e))*ml**2/mw**2
      &           +pw_e*dconjg(pw_e)*ml**2/mw**2*(1d0-ml**2/mw**2)/2d0
-     &           +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps
+     &           +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps)
            rho_rf(i)=rho_rf(i)*3d0/4d0/(mw**2-ml**2/2d0-ml**4/mw**2/2d0)
 
          else
 
-            rho_rf(i)=4d0*(2d0*dreal(pf_e*dconjg(paf_e))
+            rho_rf(i)=dble(4d0*(2d0*dreal(pf_e*dconjg(paf_e))
      &           +2d0*dreal(paf_e*dconjg(pw_e))*ml**2/mw**2
      &           +pw_e*dconjg(pw_e)*ml**2/mw**2*(1d0-ml**2/mw**2)/2d0
-     &           +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps
+     &           +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps)
            rho_rf(i)=rho_rf(i)*3d0/4d0/(mw**2-ml**2/2d0-ml**4/mw**2/2d0)
 
          endif
