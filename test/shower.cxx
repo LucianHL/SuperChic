@@ -19,8 +19,12 @@
 #endif
 #include "Pythia8/Pythia.h"
 using namespace Pythia8;
+bool is_semi_exclusive_photon_initiated(int i) {
+ return (( 48 <= i && i <=53 ) || ( 55 <= i && i <=83 ));
+
+}
 int main(int argc, char ** argv) {
-  if (argc!=3) return 1;
+  if (argc!=5) return 1;
  Pythia8::Pythia8ToHepMC topHepMC(argv[2]);
   // Generator. We here stick with default values, but changes
   // could be inserted with readString or readFile.
@@ -29,6 +33,32 @@ int main(int argc, char ** argv) {
   // Initialize Les Houches Event File run. List initialization information.
   pythia.readString("Beams:frameType = 4");
   pythia.readString(std::string("Beams:LHEF = ")+argv[1]);
+  pythia.readString("PartonLevel:ISR = off");
+  pythia.readString("PartonLevel:MPI = off");
+  pythia.readString("PartonLevel:Remnants = off");
+  pythia.readString("Check:event = off");
+  pythia.readString("LesHouches:matchInOut = off");
+  
+  if (std::string(argv[3]) != "dd" && std::string(argv[3]) != "sda" && std::string(argv[3]) != "sdb" && std::string(argv[3]) != "el") { return 7;}
+    printf("Running in %s mode\n",argv[3]);
+  
+  int processnumber = atoi(argv[4]);
+  if (is_semi_exclusive_photon_initiated(processnumber)) {
+    pythia.readString("BeamRemnants:primordialKT = off");
+    pythia.readString("PartonLevel:FSR = on");
+    pythia.readString("SpaceShower:dipoleRecoil = on");
+    pythia.readString("SpaceShower:pTmaxMatch = 2");
+    pythia.readString("SpaceShower:QEDshowerByQ = off");
+    pythia.readString("SpaceShower:pTdampMatch=1");
+    if (std::string(argv[3]) == "dd") pythia.readString("BeamRemnants:unresolvedHadron = 0");
+    if (std::string(argv[3]) == "sdb") pythia.readString("BeamRemnants:unresolvedHadron = 1");
+    if (std::string(argv[3]) == "sda") pythia.readString("BeamRemnants:unresolvedHadron = 2");
+    if (std::string(argv[3]) == "el") pythia.readString("BeamRemnants:unresolvedHadron = 3");
+  }
+  
+//BeamRemnants:unresolvedHadron = 0 for double dissociation (dd), 1 for
+//single dissociation (sdb), 2 for single dissociation (sda), 3 for elastic (el).
+
   pythia.init();
   size_t events=0;
   // Book histogram.
