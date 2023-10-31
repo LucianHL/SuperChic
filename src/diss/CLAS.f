@@ -228,4 +228,3 @@ CCCCCCC
       RESN=0.5D0*RESN*(1.D0-B1)*BKG2/(DM*PGRECO)
       RETURN
       END
-      

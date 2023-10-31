@@ -3,11 +3,11 @@
 *     input: x, Q2, W2
 *     output: sigmatot [barn], F2
 *----------------------------------------------------
-     
+
 c------------------------------------------------------------------------
 c      subroutine gd_fit_11(dx,dQ2,dW2,sigmatot,F2,dsigmatot,dF2)
       subroutine gd_fit_11(dx,dQ2,dW2,F2)
-      
+
 C      IMPLICIT NONE
       IMPLICIT DOUBLE PRECISION (A-H, O-Z)
       CHARACTER*1 TARGET
@@ -47,11 +47,11 @@ C      IMPLICIT NONE
       param( 22)=  2.255811
       param( 23)=  2.208822
 
-      
+
       t=dlog((dQ2+param(4))/param(5)) / dlog(param(4)/param(5))
       t=dlog(t)
 
-      if (dQ2.ne.0.d0) then         
+      if (dQ2.ne.0.d0) then
          XP=(dQ2+param(2))/(dQ2/dx+param(2))
          XR=(dQ2+param(3))/(dQ2/dx+param(3))
       else
@@ -71,8 +71,8 @@ C      IMPLICIT NONE
 
       F2P=CP*(XP**AP)*(1.d0-dX)**BP
       F2R=CR*(XR**AR)*(1.d0-dX)**BR
-      
-      if (dQ2.ne.0.d0) gam2=4.d0*aprmass*aprmass*dx*dx/dQ2   
+
+      if (dQ2.ne.0.d0) gam2=4.d0*aprmass*aprmass*dx*dx/dQ2
       if (dQ2.eq.0.d0) gam2=0.d0
 
       SigmaTot=4.d0*pi*pi*alpha_em*(1.d0+gam2)*(F2P+F2R)/(dQ2+param(1))/
@@ -81,7 +81,7 @@ C      IMPLICIT NONE
       F2=(F2P+F2R)*dQ2/(dQ2+param(1))
 
       call covariance(target,cov)
-      
+
       call allm_uncertainty(param,dx,dq2,dW2,cov,dF2,dSigmaTot)
 
       return
@@ -95,10 +95,10 @@ c------------------------------------------------------------------------
      c     dsigmatot,sigmatotfac,hbarc2
       parameter (alpha_em=0.007297352568d0,pi=3.141592653590d0,
      x     aprmass=0.938272029d0,hbarc2=389.379323d0)
-    
-      if (dQ2.ne.0.d0) gam2=4.d0*aprmass*aprmass*dx*dx/dQ2   
+
+      if (dQ2.ne.0.d0) gam2=4.d0*aprmass*aprmass*dx*dx/dQ2
       if (dQ2.eq.0.d0)  gam2=0.d0
-    
+
       if (dQ2.ne.0.d0) then
       t=dlog((dQ2+param(4))/param(5)) / dlog(param(4)/param(5))
       t=dlog(t)
@@ -115,34 +115,34 @@ c------------------------------------------------------------------------
       AR=param(15)+param(16)*t**param(17)
       BR=param(18)+param(19)*t**param(20)
       CR=param(21)+param(22)*t**param(23)
-      
+
       F2P=CP*(XP**AP)*(1.d0-dX)**BP
       F2R=CR*(XR**AR)*(1.d0-dX)**BR
-      
+
 
       dfd(1)=-(F2P+F2R)/(dQ2+param(1))/(dQ2+param(1))
       dFd(2)=AP*XP*F2P*(dW2-aprmass*aprmass)/(dQ2+param(1))
      c     /(dQ2+param(2))/(dQ2+param(2))
       dFd(3)=AR*XR*F2R*(dW2-aprmass*aprmass)/(dQ2+param(1))
      c     /(dQ2+param(3))/(dQ2+param(3))
-      dFd(4)=( 
-     c     -(xp**ap) * ((1.d0-dx)**BP) * (param(12)-param(13)) 
-     c     * param(14) * 
-     c     (t**(param(14)-1.d0)) / (1.d0+t**param(14)) / 
+      dFd(4)=(
+     c     -(xp**ap) * ((1.d0-dx)**BP) * (param(12)-param(13))
+     c     * param(14) *
+     c     (t**(param(14)-1.d0)) / (1.d0+t**param(14)) /
      c     (1.d0+t**param(14))
      c     -
-     c     F2P * dlog(XP) * (param(6)-param(7)) * param(8) * 
+     c     F2P * dlog(XP) * (param(6)-param(7)) * param(8) *
      c     (t**(param(8)-1.d0)) / (1.d0+t**param(8)) /(1.d0+t**param(8))
      c     +
      c     F2P * dlog(1.d0-dx) * param(10) * param(11) *
      c     (t**(param(11)-1.d0))
      c     +
-     c     (XR**AR) * ((1.d0-dx)**BR) * param(22) * param(23) * 
+     c     (XR**AR) * ((1.d0-dx)**BR) * param(22) * param(23) *
      c     (t**(param(23)-1.d0))
      c     +
      c     F2R * dlog(XR) *param(16) * param(17) * (t**(param(17)-1.d0))
      c     +
-     c     F2R * dlog(1.d0-dx) * param(19) * param(20) * 
+     c     F2R * dlog(1.d0-dx) * param(19) * param(20) *
      c     (t**(param(20)-1.d0))
      c     )*
      c     (
@@ -150,7 +150,7 @@ c------------------------------------------------------------------------
      c     1.d0/(param(4))/(dlog(param(4)/param(5)))
      c     )
      c     /(dQ2+param(1))
-      dFd(5)=  ( 
+      dFd(5)=  (
      c     -(XP**AP) * ((1.d0-dx)**BP) *(param(12)-param(13))*param(14)*
      c     (t**(param(14)-1.d0))/(1.d0+t**param(14))/(1.d0+t**param(14))
      c     -
@@ -158,7 +158,7 @@ c------------------------------------------------------------------------
      c     (t**(param(8)-1.d0))
      c     /(1.d0+t**param(8))/(1.d0+t**param(8))
      c     +
-     c     F2P * dlog(1.d0-dx) * param(10) * param(11) * 
+     c     F2P * dlog(1.d0-dx) * param(10) * param(11) *
      c     (t**(param(11)-1.d0))
      c     +
      c     (XR**AR) * ((1.d0-dx)**BR) * param(22) * param(23)*
@@ -178,7 +178,7 @@ c------------------------------------------------------------------------
       dFd(6)=   F2P * dlog(XP) /(dQ2+param(1))/(1.d0+t**param(8))
       dFd(7)=   F2P * dlog(XP) /(dQ2+param(1))*
      c     (1.d0-1.d0/(1.d0+t**param(8)))
-      dFd(8)= - F2P * (param(6)-param(7)) *(t**param(8)) * dlog(t) 
+      dFd(8)= - F2P * (param(6)-param(7)) *(t**param(8)) * dlog(t)
      c     * dlog(XP)
      c     /(dQ2+param(1))/(1.d0+t**param(8))/(1.d0+t**param(8))
       dFd(9)=   F2P * dlog(1.d0-dx) / (dQ2+param(1))
@@ -195,7 +195,7 @@ c------------------------------------------------------------------------
      c     / (dQ2+param(1))
       dFd(15)= F2R * dlog(XR)/ (dQ2+param(1))
       dFd(16)= F2R * dlog(XR) * (t**param(17))/ (dQ2+param(1))
-      dFd(17)= F2R * dlog(XR) * param(16) * (t**param(17))* dlog(t)/ 
+      dFd(17)= F2R * dlog(XR) * param(16) * (t**param(17))* dlog(t)/
      c     (dQ2+param(1))
       dFd(18)= F2R * dlog(1.d0-dx)/ (dQ2+param(1))
       dFd(19)= F2R * dlog(1.d0-dx) * (t**param(20))/ (dQ2+param(1))
@@ -205,7 +205,7 @@ c------------------------------------------------------------------------
       dFd(22)= (XR**AR)* ((1.d0-dx)**BR)*(t**param(23))/ (dQ2+param(1))
       dFd(23)= (XR**AR)* ((1.d0-dx)**BR)*param(22)*(t**param(23))*
      c     dlog(t)/ (dQ2+param(1))
-      
+
       sigmatotfac=16.d0*pi*pi*pi*pi*alpha_em*alpha_em*(1.d0+gam2)*
      c     (1.d0+gam2)/(1.d0-dx)/(1.d0-dx)
       df2=0.d0
@@ -231,16 +231,16 @@ c------------------------------------------------------------------------
 
        dFd(1)=-4.d0*pi*pi*alpha_em*(1.d0/param(1)/param(1))*(
      c        (param(12)*((param(2)+dW2-aprmass*aprmass)
-     c        /param(2))**(-param(6))+                                           
+     c        /param(2))**(-param(6))+
      c        param(21)*((param(3)+dW2-aprmass*aprmass)/
      c        param(3))**(-param(15))))
-    
+
 
          dFd(2)=4.d0*pi*pi*alpha_em*(1.d0/param(1))*param(12)*param(6)*
      c        ((param(2)+dW2-aprmass*aprmass)/param(2))**(-param(6)-1.)*
-     c        (dW2-aprmass*aprmass)/param(2)/param(2)                     
+     c        (dW2-aprmass*aprmass)/param(2)/param(2)
          dFd(3)=4.d0*pi*pi*alpha_em*(1.d0/param(1))*param(21)*param(15)*
-     c       ((param(3)+dW2-aprmass*aprmass)/param(3))**(-param(15)-1.)* 
+     c       ((param(3)+dW2-aprmass*aprmass)/param(3))**(-param(15)-1.)*
      c        (dW2-aprmass*aprmass)/param(3)/param(3)
 
          dFd(6)=-4.d0*pi*pi*alpha_em*(1.d0/param(1))*param(12)*
@@ -473,8 +473,8 @@ c------------------------------------------------------------------
             do j=1,23
                cov(i,j)=covd(i,j)
             enddo
-         enddo         
+         enddo
       endif
-      
+
       return
       end
