@@ -6,7 +6,7 @@ ccc   generate four body decay for particles of pair mass m1,m2
       integer i,k
       double precision pcm(4),pboo(4),px(4)
       double precision am(100),pout(4,100)
-  
+
       include 'mom.f'
       include 'wtinit.f'
 
@@ -21,18 +21,18 @@ ccc   generate four body decay for particles of pair mass m1,m2
 
       do i=1,4
          px(i)=q(i,5)
-      enddo 
+      enddo
 
       do k=1,4
          do i=1,4
             pcm(i)=pout(i,k)
-         enddo 
+         enddo
          call boost(ein,px,pcm,pboo)
          do i=1,4
             q(i,5+k)=pboo(i)
          enddo
       enddo
-      
+
       wt=wt/wt4i
 
       return

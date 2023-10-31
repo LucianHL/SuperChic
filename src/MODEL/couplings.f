@@ -17,9 +17,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       READLHA = .TRUE.
       INCLUDE 'intparam_definition.inc'
       CALL COUP1()
-C     
+C
 couplings needed to be evaluated points by points
-C     
+C
       CALL COUP2()
 
       RETURN
@@ -42,9 +42,9 @@ C
       INCLUDE 'intparam_definition.inc'
 
 
-C     
+C
 couplings needed to be evaluated points by points
-C     
+C
       CALL COUP2()
 
       RETURN

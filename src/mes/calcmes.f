@@ -15,7 +15,7 @@ ccc   and writes to array
       jytot=1000
       jxinc=1d0/dble(jxtot)
       jyinc=1d0/dble(jytot)
-      
+
       cmax=0.99d0
       cmin=0d0
       cmin=-0.99d0
@@ -26,7 +26,7 @@ ccc   and writes to array
       do p=1,pol
 
       do i=1,itot+1
-         
+
          cost=cmin+cinc*dble(i-1)
 
          sum=0d0
@@ -38,7 +38,7 @@ ccc   and writes to array
 
          do 555 jx=1,jxtot
          do 555 jy=1,jytot
-            
+
             x=(dble(jx)-0.5d0)*jxinc
             y=(dble(jy)-0.5d0)*jyinc
 
@@ -71,14 +71,14 @@ ccc   and writes to array
          mesamp(p,1,4,i)=cost
          mesamp(p,1,5,i)=cost
          mesamp(p,1,6,i)=cost
-   
+
          mesamp(p,2,1,i)=sum
          mesamp(p,2,2,i)=sum1
          mesamp(p,2,3,i)=sum2
          mesamp(p,2,4,i)=sum3
          mesamp(p,2,5,i)=sum4
          mesamp(p,2,6,i)=sum5
-     
+
       enddo
 
       enddo

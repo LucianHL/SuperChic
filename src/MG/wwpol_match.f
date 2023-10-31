@@ -4,7 +4,7 @@
       integer p,ip1,ip2
 
       match=.false.
-      
+
       if(p.eq.1)then
          if(ip1.eq.1.and.ip2.eq.1)match=.true.
       elseif(p.eq.2)then
@@ -32,6 +32,6 @@ c$$$         match=.false.
 c$$$      endif
 
 c      match=.true.
-      
+
       return
       end
