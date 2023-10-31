@@ -562,15 +562,17 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             vhep(j,k)=0d0
          enddo
       enddo
-      isthep(1)=2
-      isthep(2)=2
+      isthep(1)=4
+      isthep(2)=4
       isthep(3)=1
       isthep(4)=1
+      jmohep(1,5)=1
       jmohep(2,5)=2
-      jdahep(1,1)=0
-      jdahep(2,1)=0
-      jdahep(1,2)=0
-      jdahep(2,2)=0
+
+      jdahep(1,1)=3
+      jdahep(2,1)=5
+      jdahep(1,2)=3
+      jdahep(2,2)=5
       jdahep(1,3)=0
       jdahep(2,3)=0
       jdahep(1,4)=0
@@ -635,11 +637,6 @@ ccc   NEW LHE init
          spinup(i)=9
       enddo
 
-      do i=1,2
-         do j=1,5
-            jmohep(i,j)=mothup(i,j)
-         enddo
-      enddo
 
 ccccccccc
 
@@ -671,7 +668,6 @@ ccccccccc
          nup=5
       endif
 
-      nhep=nup
 
       if(diff.eq.'sd')nup=nup-1
       if(diff.eq.'el')nup=nup-2

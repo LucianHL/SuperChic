@@ -49,8 +49,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
 
 
             if(i.eq.1)then
-               write(45,*)'HepMC::Version 2.06.11'
-               write(45,*)'HepMC::IO_GenEvent-START_EVENT_LISTING'
+               write(45,'(A)')'HepMC::Version 2.06.11'
+               write(45,'(A)')'HepMC::IO_GenEvent-START_EVENT_LISTING'
             endif
             
            do k=3,nup+2
@@ -126,46 +126,18 @@ ccccccccc
             aqcdup=alphas(mx**2)
             aqedup=alpha
             
-            write(45,51)'E',i,0,scalup,aqcdup,aqedup,proc,0
-     &           ,nvert,1,2,0,0
-            write(45,55)'U GEV CM'
-            write(45,52)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0
-            
-            do n=1,nvert
-
-               write(45,53)'V',vert(n),0,0d0,0d0,0d0,0d0,
-     &           orph(n),nout(n)
-
-               do m=1,orph(n)+nout(n)
-                  write(45,54)'P',barv(n,m,1),pdgv(n,m),momv(n,m,1)
-     &                 ,momv(n,m,2),momv(n,m,3),momv(n,m,4),massv(n,m),
-     &                 statv(n,m),0d0,0d0,barv(n,m,2),0,0
-               enddo
-               
-            enddo
             
 
-            write(45,*)''
-
-            if(i.eq.nev)then
-               write(45,*)'HepMC::IO_GenEvent-END_EVENT_LISTING'
-            endif
+       call hmout(nup+1,i,nfl1,nfl2,x1,x2,proc) 
+       if(i.eq.nev)then
+         write(45,'(A)')'HepMC::IO_GenEvent-END_EVENT_LISTING'
+       endif
             
             goto 500
 
 
             
          endif
-
-c$$$ 51      format(1a,1x,i8,1x,i4,1x,E16.9,1x,E16.9,1x,E16.9,1x,i4,1x,i1
-c$$$     &        ,1x,i4,1x,i1,1x,i1,1x,i1,1x,i1,1x)
-c$$$ 52      format(1a,1x,i4,1x,i4,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x
-c$$$     &        ,E16.9,1x,i1,1x,i1)
-c$$$ 53      format(1a,1x,i2,1x,i1,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x
-c$$$     &        ,i2,1x,i2)
-c$$$ 54      format(1a,1x,i2,1x,i10,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x
-c$$$     &        ,E16.9,1x,i2,1x,E16.9,1x,E16.9,1x,i4,1x,i1,1x,i1)
-c$$$ 55      format(8a)
 
  51      format(A1,' ',I0,' ',I0,' ',E15.9,' ',E15.9,' ',E15.9,' ',I0
      &        ,' ',I0
@@ -266,8 +238,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
                enddo
             endif
             write(45,*)'</event>'
-            
-c            write(45,*)''
 
  304        format(i2,4x,i1,3x,F2.0,3x,E16.9,3x,E16.9,3x,E16.9)
             
@@ -343,7 +313,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             enddo
             endif
                
-            !write(45,*)''
             
          endif
                

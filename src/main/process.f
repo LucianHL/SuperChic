@@ -191,6 +191,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.2)then
          ndim=6
          pol=4
@@ -216,6 +217,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.3)then
          ndim=6
          pol=4
@@ -241,6 +243,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.4)then
          ndim=6
          pol=4
@@ -266,6 +269,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.5)then
          ndim=6
          pol=4
@@ -292,6 +296,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.6)then
          ndim=6
          pol=4
@@ -318,6 +323,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.7)then
          ndim=5
          pol=4
@@ -351,6 +357,7 @@ cccccccccccccccc
          isthep(8)=1
          jdahep(1,5)=6
          jdahep(2,5)=8
+         nhep=8
       elseif(proc.eq.8)then
          ndim=5
          pol=4
@@ -383,6 +390,7 @@ cccccccccccccccc
          isthep(8)=1
          jdahep(1,5)=6
          jdahep(2,5)=8
+         nhep=8
       elseif(proc.eq.9)then
          ndim=6
          pol=1
@@ -413,6 +421,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.10)then
          ndim=6
          pol=1
@@ -443,6 +452,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.11)then
          ndim=6
          pol=1
@@ -473,6 +483,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.12)then
          ndim=6
          pol=1
@@ -503,6 +514,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.13)then
          ndim=6
          pol=3
@@ -533,6 +545,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.14)then
          ndim=6
          pol=1
@@ -569,6 +582,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.15)then
          ndim=5
          pol=1
@@ -606,6 +620,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.16)then
          ndim=6
          pol=1
@@ -641,6 +656,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.17)then
          ndim=6
          pol=3
@@ -671,6 +687,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.18)then
          ndim=6
          mq=mpsi
@@ -729,6 +746,7 @@ cccccccccccccccc
          jdahep(2,6)=9
          jdahep(1,7)=10
          jdahep(2,7)=11
+         nhep=11
       elseif(proc.eq.19)then
          ndim=5
          mq=(mpsi+mpsip)/2d0
@@ -788,6 +806,7 @@ cccccccccccccccc
          jdahep(2,6)=9
          jdahep(1,7)=10
          jdahep(2,7)=11
+         nhep=11
       elseif(proc.eq.20)then
          ndim=6
          mq=mpsip
@@ -846,6 +865,7 @@ cccccccccccccccc
          jdahep(2,6)=9
          jdahep(1,7)=10
          jdahep(2,7)=11
+         nhep=11
       elseif(proc.eq.21)then
          ndim=4
          pol=1
@@ -889,13 +909,14 @@ cccccccccccccccc
          mchi=mres
          isthep(5)=2
          isthep(6)=1
-          isthep(7)=2
+         isthep(7)=2
          isthep(8)=1
          isthep(9)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
          jdahep(1,7)=8
          jdahep(2,7)=9
+         nhep=9
       elseif(proc.eq.22)then
          ndim=4
          pol=3
@@ -947,6 +968,7 @@ cccccccccccccccc
          jdahep(2,5)=7
          jdahep(1,7)=8
          jdahep(2,7)=9
+         nhep=9
       elseif(proc.eq.23)then
          ndim=4
          pol=5
@@ -997,6 +1019,7 @@ cccccccccccccccc
          jdahep(2,5)=7
          jdahep(1,7)=8
          jdahep(2,7)=9
+         nhep=9
       elseif(proc.eq.24)then
          ndim=4
          pol=1
@@ -1027,6 +1050,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.25)then
          ndim=4
          pol=3
@@ -1057,6 +1081,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.26)then
          ndim=4
          pol=5
@@ -1087,6 +1112,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.27)then
          ndim=4
          pol=3
@@ -1117,6 +1143,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.28)then
          ndim=4
          pol=5
@@ -1147,6 +1174,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.29)then
          ndim=4
          pol=1
@@ -1196,6 +1224,7 @@ cccccccccccccccc
          jdahep(2,5)=9
          decay4=.true.
          decays=.true.
+         nhep=9
       elseif(proc.eq.30)then
          ndim=4
          pol=3
@@ -1245,6 +1274,7 @@ cccccccccccccccc
          jdahep(2,5)=9
          decay4=.true.
          decays=.true.
+         nhep=9
       elseif(proc.eq.31)then
          ndim=4
          pol=5
@@ -1294,6 +1324,7 @@ cccccccccccccccc
          jdahep(2,5)=9
          decay4=.true.
          decays=.true.
+         nhep=9
       elseif(proc.eq.32)then
          ndim=4
          pol=1
@@ -1343,6 +1374,7 @@ cccccccccccccccc
          jdahep(2,5)=9
          decay4=.true.
          decays=.true.
+         nhep=9
       elseif(proc.eq.33)then
          ndim=4
          pol=3
@@ -1392,6 +1424,7 @@ cccccccccccccccc
          jdahep(2,5)=9
          decay4=.true.
          decays=.true.
+         nhep=9
       elseif(proc.eq.34)then
          ndim=4
          pol=5
@@ -1441,6 +1474,7 @@ cccccccccccccccc
          jdahep(2,5)=9
          decay4=.true.
          decays=.true.
+         nhep=9
       elseif(proc.eq.35)then
          ndim=4
          pol=1
@@ -1504,6 +1538,7 @@ cccccccccccccccc
          jdahep(2,5)=11
          decay6=.true.
          decays=.true.
+         nhep=11
       elseif(proc.eq.36)then
          ndim=4
          pol=3
@@ -1567,6 +1602,7 @@ cccccccccccccccc
          jdahep(2,5)=11
          decay6=.true.
          decays=.true.
+         nhep=11
       elseif(proc.eq.37)then
          ndim=4
          pol=5
@@ -1630,6 +1666,7 @@ cccccccccccccccc
          jdahep(2,5)=11
          decay6=.true.
          decays=.true.
+         nhep=11
       elseif(proc.eq.38)then
          ndim=4
          pol=1
@@ -1643,6 +1680,7 @@ cccccccccccccccc
          istup(5)=1
          mchi=mres
          isthep(5)=1
+         nhep=5
       elseif(proc.eq.39)then
          ndim=4
          pol=1
@@ -1692,6 +1730,7 @@ cccccccccccccccc
          jdahep(2,5)=7
          jdahep(1,7)=8
          jdahep(2,7)=9
+         nhep=9
       elseif(proc.eq.40)then
          ndim=4
          pol=3
@@ -1742,6 +1781,7 @@ cccccccccccccccc
          jdahep(2,5)=7
          jdahep(1,7)=8
          jdahep(2,7)=9
+         nhep=9
       elseif(proc.eq.41)then
          ndim=4
          pol=5
@@ -1791,6 +1831,7 @@ cccccccccccccccc
          jdahep(2,5)=7
          jdahep(1,7)=8
          jdahep(2,7)=9
+         nhep=9
       elseif(proc.eq.42)then
          ndim=4
          pol=1
@@ -1820,6 +1861,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.43)then
          ndim=4
          pol=3
@@ -1849,6 +1891,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.44)then
          ndim=4
          pol=5
@@ -1878,6 +1921,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.45)then
          ndim=4
          pol=3
@@ -1907,6 +1951,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.46)then
          ndim=4
          pol=5
@@ -1936,6 +1981,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.47)then
          ndim=4
          pol=1
@@ -1949,6 +1995,7 @@ cccccccccccccccc
          istup(5)=1
          mchi=mres
          isthep(5)=1
+         nhep=5
       elseif(proc.eq.48)then
          ndim=5
          pol=1
@@ -1990,6 +2037,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.49)then
          ndim=5
          pol=1
@@ -2045,6 +2093,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.50)then
 
          ndim=5
@@ -2100,6 +2149,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.51)then
          ndim=5
          pol=1
@@ -2140,6 +2190,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.52)then
          ndim=5
          pol=1
@@ -2195,6 +2246,7 @@ cccccccccccccccc
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
+         nhep=7
       elseif(proc.eq.53)then
          ndim=5
          pol=1
@@ -2262,6 +2314,7 @@ cccccccccccccccc
          jdahep(2,5)=7
          jdahep(1,6)=9
          jdahep(2,6)=10
+         nhep=10
       elseif(proc.eq.54)then
          ndim=6
          pol=9
@@ -2331,6 +2384,7 @@ cccccccccccccccc
          jdahep(1,7)=10
          jdahep(2,7)=11
          gamma=.true.
+         nhep=11
       elseif(proc.eq.55)then
          ndim=6
          pol=9
@@ -2364,6 +2418,7 @@ cccccccccccccccc
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
             if(diff.eq.'dd')i1=7
+            nhep=i1+1
             pdgid(i1)=24
             pdgid(i1+1)=-24
             istup(i1)=2
@@ -2467,6 +2522,7 @@ cccccccccccccccc
          jdahep(2,6)=9
          jdahep(1,7)=10
          jdahep(2,7)=11
+         nhep=11
          endif
          gamma=.true.
       elseif(proc.eq.56)then
@@ -2490,6 +2546,7 @@ cccccccccccccccc
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
             if(diff.eq.'dd')i1=7
+            nhep=i1+1
             pdgid(i1)=11
             pdgid(i1+1)=-11
             istup(i1)=1
@@ -2528,6 +2585,7 @@ cccccccccccccccc
             isthep(7)=1
             jdahep(1,5)=6
             jdahep(2,5)=7
+                        nhep=7
          endif
 
       elseif(proc.eq.57)then
@@ -2550,6 +2608,7 @@ cccccccccccccccc
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
             if(diff.eq.'dd')i1=7
+                        nhep=i1+1
             pdgid(i1)=13
             pdgid(i1+1)=-13
             istup(i1)=1
@@ -2588,6 +2647,7 @@ cccccccccccccccc
             isthep(7)=1
             jdahep(1,5)=6
             jdahep(2,5)=7
+                        nhep=7
          endif
 
 
@@ -2612,6 +2672,7 @@ cccccccccccccccc
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
             if(diff.eq.'dd')i1=7
+            nhep=i1+1
             pdgid(i1)=15
             pdgid(i1+1)=-15
             istup(i1)=1
@@ -2650,6 +2711,7 @@ cccccccccccccccc
             isthep(7)=1
             jdahep(1,5)=6
             jdahep(2,5)=7
+                        nhep=7
          endif
 
       elseif(proc.eq.59)then
@@ -2678,6 +2740,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
+                     nhep=7
       elseif(proc.eq.60)then
          ndim=4
          pol=1
@@ -2712,6 +2775,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
+         nhep=7
       elseif(proc.eq.61)then
          ndim=6
          pol=4
@@ -2739,6 +2803,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
+         nhep=7
       elseif(proc.eq.68)then
          if(beam.eq.'prot')then
             offshell=.true.
@@ -2772,6 +2837,7 @@ cccccccccccccccc
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
             if(diff.eq.'dd')i1=7
+                        nhep=i1+1
             pdgid(i1)=22
             pdgid(i1+1)=22
             istup(i1)=1
@@ -2807,6 +2873,7 @@ cccccccccccccccc
             isthep(7)=1
             jdahep(1,5)=6
             jdahep(2,5)=7
+                        nhep=7
          endif
          gamma=.true.
       elseif(proc.eq.69)then
@@ -2830,6 +2897,7 @@ cccccccccccccccc
          pdgid(5)=90
          inparticle='prot'
          gamma=.true.
+                     nhep=7
       elseif(proc.eq.70)then
          ndim=4
          if(fwidth)ndim=5
@@ -2851,6 +2919,7 @@ cccccccccccccccc
          pdgid(5)=90
          inparticle='prot'
          gamma=.true.
+         nhep=5
       elseif(proc.eq.71)then
          ndim=6
          pol=4
@@ -2878,6 +2947,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
+         nhep=7
       elseif(proc.eq.72)then
          ndim=6
          pol=4
@@ -2905,6 +2975,7 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          gamma=.true.
+         nhep=7
       elseif(proc.eq.73)then
          ndim=6
          pol=4
@@ -2980,6 +3051,7 @@ cccccccccccccccc
          jdahep(1,7)=11
          jdahep(2,7)=13
          gamma=.true.
+         nhep=13
       elseif(proc.eq.74)then
          ndim=6
          pol=4
@@ -3055,6 +3127,7 @@ cccccccccccccccc
          jdahep(1,7)=11
          jdahep(2,7)=13
          gamma=.true.
+         nhep=13
       elseif(proc.eq.75)then
          ndim=6
          pol=4
@@ -3131,6 +3204,7 @@ cccccccccccccccc
          jdahep(1,7)=11
          jdahep(2,7)=13
          gamma=.true.
+         nhep=13
       elseif(proc.eq.76)then
          ndim=6
          pol=1   ! slepton
@@ -3192,6 +3266,7 @@ cccccccccccccccc
          jdahep(1,7)=10
          jdahep(2,7)=11
          gamma=.true.
+         nhep=11
       elseif(proc.eq.82)then
          enew=.true.
          ndim=6
@@ -3214,6 +3289,8 @@ cccccccccccccccc
          isthep(5)=2
          isthep(6)=2
          gamma=.true.
+         nhep=6
+         !FIXME!!!
       elseif(proc.eq.83)then
          ndim=6
          pol=9
@@ -3249,6 +3326,8 @@ cccccccccccccccc
          icolup(1,8)=0
          icolup(2,8)=0
          gamma=.true.
+         nhep=8
+         !FIXME!!!
       elseif(proc.eq.84)then
          ndim=6
          pol=9
@@ -3284,6 +3363,8 @@ cccccccccccccccc
          icolup(1,8)=0
          icolup(2,8)=0
          gamma=.true.
+         nhep=8
+         !FIXME!!!
       endif
 
       return
