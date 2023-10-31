@@ -6,7 +6,7 @@ c     alpha_EM(Q^2)
       double precision alem,alem3pi,rpigg
 
       alem=1./137.
-      alem3pi=alem/(3.0*3.1415926535)      
+      alem3pi=alem/(3.0*3.1415926535)
       if (qsq.lt.2.0e-6) then
          rpigg=0.0
       elseif (qsq.lt.0.09) then
@@ -26,6 +26,6 @@ c     alpha_EM(Q^2)
 
 c      alphaEM=1d0/137d0
 
-      
+
       return
       end

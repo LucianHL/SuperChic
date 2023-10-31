@@ -32,20 +32,20 @@ ccc   generates three-body phase space
       do i=1,4
          px(i)=q(i,5)
          pcm(i)=pout(i,1)
-      enddo 
+      enddo
 
       call boost(mx,px,pcm,pboo)
 
       do i=1,4
          q(i,6)=pboo(i)
          pcm(i)=pout(i,2)
-      enddo 
+      enddo
 
       call boost(mx,px,pcm,pboo)
-      
+
       do i=1,4
          q(i,7)=pboo(i)
-      enddo 
+      enddo
 
       do i=1,4
          q(i,8)=q(i,5)-q(i,7)-q(i,6)

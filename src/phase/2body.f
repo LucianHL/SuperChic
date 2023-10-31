@@ -6,7 +6,7 @@ ccc   generates two-body decay to particles of mass m1,m2
       integer i,j
       double precision pcm(4),pboo(4),px(4)
       double precision am(100),pout(4,100)
-  
+
       include 'mom.f'
       include 'wtinit.f'
       include 'partonmom4.f'
@@ -23,16 +23,16 @@ ccc   generates two-body decay to particles of mass m1,m2
 
       if(elcollw)then
 
-         
+
          do i=1,4
             pcm(i)=paa(i)
             px(i)=q(i,in)
          enddo
-            
+
       else
-      
+
          call rambo(npart,ein,am,pout,wt)
-         
+
          do i=1,4
             px(i)=q(i,in)
             pcm(i)=pout(i,1)
@@ -47,18 +47,18 @@ ccc   generates two-body decay to particles of mass m1,m2
                pbb(i)=pcm(i)
             enddo
          endif
-         
+
       endif
 
-      
+
 
       call boost(ein,px,pcm,pboo)
-      
+
       do i=1,4
          q(i,i1)=pboo(i)
          q(i,i2)=q(i,in)-q(i,i1)
       enddo
-      
+
       wt=wt/wt2i(j)
 
       if(j.eq.1)then
@@ -66,6 +66,6 @@ ccc   generates two-body decay to particles of mass m1,m2
             if(fwidth)wt=1d0
          endif
       endif
-         
+
       return
       end

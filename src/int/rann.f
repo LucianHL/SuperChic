@@ -11,7 +11,7 @@ C--- Version where idum is passed via common block
       COMMON /ranno/ idum
       DATA iv /NTAB*0/, iy /0/
       SAVE iv,iy
- 
+
       if (idum.le.0.or.iy.eq.0) then
         idum=max(-idum,1)
         do 11 j=NTAB+8,1,-1
@@ -38,4 +38,4 @@ c      write(6,*) 'ran2',ran2
 
       return
       END
-      
+

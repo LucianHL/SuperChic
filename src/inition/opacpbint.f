@@ -3,9 +3,9 @@
       double precision r,del,m,rbin,rmin,rmax
       double precision opacpbint
       integer it
-      
+
       include 'opacpbpars.f'
-      
+
       rmax=opacpbarr(1,ioppb)
       rmin=opacpbarr(1,1)
 
@@ -24,7 +24,7 @@
          del=r-opacpbarr(1,it+1)
          opacpbint=m*del+opacpbarr(2,it+1)
       endif
-         
+
       return
       end
 
@@ -33,9 +33,9 @@
       double precision r,del,m,rbin,rmin,rmax
       double precision opacpbint_3
       integer it
-      
+
       include 'opacpbpars.f'
-      
+
       rmax=opacpbarr(1,ioppb)
       rmin=opacpbarr(1,1)
 
@@ -54,7 +54,7 @@
          del=r-opacpbarr(1,it+1)
          opacpbint_3=m*del+opacpbarr(3,it+1)
       endif
-     
-      
+
+
       return
       end

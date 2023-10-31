@@ -1,13 +1,13 @@
       function opacpbpint(r)
       implicit double precision(a-y)
       integer it
-      
+
       include 'opacpbppars.f'
-      
+
       rmax=opacpbparr(1,ioppbp)
       rmin=opacpbparr(1,1)
 
-      
+
       if(r.gt.rmax)then
          opacpbpint=1d0
       elseif(r.lt.rmin)then
@@ -23,6 +23,6 @@
          del=r-opacpbparr(1,it+1)
          opacpbpint=m*del+opacpbparr(2,it+1)
       endif
-         
+
       return
       end

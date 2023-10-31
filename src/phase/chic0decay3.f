@@ -23,30 +23,30 @@ cccccccccccccccc
 
       call genpol1(7,epsi1)
       mvec=dsqrt(q(4,7)**2-q(3,7)**2-q(2,7)**2-q(1,7)**2)
-      
-ccccccccccccccccccccc 
 
-      
+ccccccccccccccccccccc
+
+
 
         do k=1,3
             do j=1,3
-               
+
                do h=1,4
                   epsi(h)=epsi1(k,h)
                   cepsi(h)=conjg(epsi1(j,h))
                enddo
-               
+
                call cdot(epsi,q6,ze7q6)
                call cdot(cepsi,q6,zce7q6)
                call ccdot(epsi,cepsi,zce7e7)
 
 c     J/psi density matrix (unnormalised)
-               
+
                rho1psi(k,j)=(-zce7e7*sdot(q6,q7)**2-mvec**2
      &              *ze7q6*zce7q6)/(2d0*sdot(q6,q7)**2)
 
             enddo
-         enddo      
+         enddo
 
 ccccccccccccccc
 
@@ -58,7 +58,7 @@ ccccccccccccccc
       q8q9=sdot(q8,q9)
 
       wt1=0d0
-    
+
       do j=1,3
          do k=1,3
 

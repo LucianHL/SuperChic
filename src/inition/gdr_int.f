@@ -70,21 +70,21 @@
          if(dble(it).gt.((bt-btmin)/rbin))then
             it=it-1
          endif
-         
+
 
          if(bt.lt.btmin)it=0
-         
+
          m=(gdrarr(i,it+2)-gdrarr(i,it+1))
          m=m/(gdrarr(1,it+2)-gdrarr(1,it+1))
          del=bt-gdrarr(1,it+1)
-         out=m*del+gdrarr(i,it+1) 
+         out=m*del+gdrarr(i,it+1)
       endif
 
       pgdrint=out
 
       return
       end
-      
+
 
       subroutine gdrcalc(bt,sum1,sumX)
       implicit none
@@ -104,22 +104,22 @@
 
       do i=1,i0
 
-         wt1=sneut(2,i)/sneut(1,i)  
+         wt1=sneut(2,i)/sneut(1,i)
 
          x=2d0*mion*sneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
 
          wt1=wt1*gdrint(x,bt)
-         
-         if(i.lt.i0)then            
+
+         if(i.lt.i0)then
             wt1=wt1*(sneut(1,i+1)-sneut(1,i))
          else
             wt1=wt1*(sneut(1,i0)-sneut(1,i0-1))
          endif
 
          sum1=sum1+wt1
-        
+
       enddo
- 
+
       do i=1,i4
 
          wtX=mneut(2,i)/mneut(1,i)
@@ -127,8 +127,8 @@
          x=2d0*mion*mneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
 
          wtX=wtX*gdrint(x,bt)
-         
-         if(i.lt.i4)then            
+
+         if(i.lt.i4)then
             wtX=wtX*(mneut(1,i+1)-mneut(1,i))
          else
             wtX=wtX*(mneut(1,i4)-mneut(1,i4-1))
@@ -148,13 +148,13 @@
          sumx=sumx+wtx
 
       enddo
-      
+
       sum1=sum1/0.389389d0
       sumX=sumX/0.389389d0
 
       return
       end
-      
+
       function gdrint(x,bt)
       implicit none
       double precision x,bt,gdrint,wt,sum,sum1
@@ -172,7 +172,7 @@
       include 'gaussvars.f'
 
       q0=0.71d0
-      
+
       qtmin=0d0
 
       q2min=(qtmin**2+x**2*mion**2)/(1d0-x)
@@ -185,12 +185,12 @@
 
       lq2min=dlog(q2min)
       lq2max=dlog(q2max)
-      
+
       itot=1000
-      
+
       itot=nint(bt/2d0)
       if(itot.lt.1000)itot=1000
-      
+
       hlq2=(lq2max-lq2min)/dble(itot)
       hq2=(q2max-q2min)/dble(itot)
 
@@ -201,24 +201,24 @@
 
          lqsq=lq2min+hlq2*(dble(i)-0.5d0)
          qsq=dexp(lqsq)
-         
+
          qt=(1d0-x)*qsq-x**2*mion**2
          qt=dsqrt(qt)
 
          f1=1d0/(1d0+qsq/q0)**2
-         
+
          wt=tpint(1,dsqrt(qsq))*qt
          wt=wt*dbesj1(bt*qt)*f1
 
          wt=wt*hlq2
 
          sum=sum+wt
-         
+
       enddo
 
       sum=sum**2*(1d0-x)/4d0/pi**2/137d0
 
-      gdrint=sum     
-      
+      gdrint=sum
+
       return
       end

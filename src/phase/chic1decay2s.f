@@ -35,15 +35,15 @@ cccccccccccccccc
                  echi(m)=echi1(l,m)
                  cechi(m)=conjg(echi1(h,m))
               enddo
-              
+
               call cdot(echi,q6,zq6e5)
               call cdot(echi,q7,zq7e5)
               call cdot(cechi,q6,zq6ce5)
               call cdot(cechi,q7,zq7ce5)
-            
+
               wt1=wt1+dble((zq6e5-zq7e5)*(zq6ce5-zq7ce5)
      &             /(mchi**2-4d0*m2b**2)*3d0*rho1chi(l,h))
- 
+
            enddo
         enddo
 

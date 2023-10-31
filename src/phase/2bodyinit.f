@@ -1,4 +1,4 @@
-ccc   calculates normalization factor when using RAMBO 
+ccc   calculates normalization factor when using RAMBO
 ccc   for two-body phase space
       subroutine twobodyinit(i,ein,m1,m2)
       implicit none
@@ -7,7 +7,7 @@ ccc   for two-body phase space
       double precision am(100),pout(4,100)
 
       include 'wtinit.f'
-  
+
       nrun=100000
 
       npart=2
@@ -21,7 +21,7 @@ ccc   for two-body phase space
          sum=sum+wt
       enddo
 
-      wt2i(i)=sum/dfloat(nrun) 
-      
+      wt2i(i)=sum/dfloat(nrun)
+
       return
       end

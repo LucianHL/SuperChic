@@ -52,28 +52,28 @@ cccccccc
       do j=1,4
          pcm(j)=q(j,5)
       enddo
-      call boost(sh,pboo,pcm,plb)  
+      call boost(sh,pboo,pcm,plb)
       do j=1,4
          q(j,16)=plb(j)
       enddo
 
       do j=1,4
          pcm(j)=paa(j)
-      enddo          
+      enddo
       do i=1,3
          pboo(i)=q(i,16)
       enddo
       pboo(4)=q(4,16)
       sh=dsqrt(pboo(4)**2-pboo(3)**2-pboo(2)**2-pboo(1)**2)
 
-      call boost(sh,pboo,pcm,plb)  
+      call boost(sh,pboo,pcm,plb)
       do j=1,4
          q(j,18)=plb(j)
       enddo
 
       call genpol1(16,epsi1)
 
-ccccccccccccccccccc 
+ccccccccccccccccccc
 
       do k=1,4
          q8(k)=q(k,18)
@@ -85,10 +85,10 @@ ccccccccccccccccccc
 
       do j=1,3
          do k=1,3
-            
+
             do h=1,4
                epsi(h)=epsi1(k,h)
-               cepsi(h)=conjg(epsi1(j,h))           
+               cepsi(h)=conjg(epsi1(j,h))
             enddo
 
                call cdot(epsi,q8,zq8epsi1)

@@ -1,4 +1,4 @@
-ccc   generates rho meson invariant mass distribution according to modified BW 
+ccc   generates rho meson invariant mass distribution according to modified BW
       subroutine bwrho(mout,jrho)
       implicit none
       double precision rm1,ran2,mwidth,mminr,mmaxr,almin,almax,al1
@@ -23,7 +23,7 @@ ccc   generates rho meson invariant mass distribution according to modified BW
       jrho=jrho*width*mres
       jrho=jrho*(1d0+dtan(al1)**2)
       jrho=jrho/2d0/mout
- 
+
 cccccc up to this point just change of variables
 ccccc
 ccccc  now BW
@@ -34,6 +34,6 @@ ccccc  now BW
       jrho=jrho*2d0*mout**2*mwidth/pi
       jrho=jrho/((mres**2-mout**2)**2+mout**2*
      &     mwidth**2)
-      
+
       return
       end

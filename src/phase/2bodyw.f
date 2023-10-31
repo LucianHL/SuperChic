@@ -12,7 +12,7 @@ ccc   saved for spin correlations
       include 'partonmom4.f'
       include 'pi.f'
       include 'elcollw.f'
- 
+
       mx=dsqrt(q(4,in)**2-q(3,in)**2-q(2,in)**2-q(1,in)**2)
 
       if(elcollw)then
@@ -36,7 +36,7 @@ ccc   saved for spin correlations
       endif
 
 c      print*,in,ran9,ran10
-      
+
       cost=2d0*ran9-1d0
       phi=2d0*pi*ran10
       sint=dsqrt(1d0-cost**2)
@@ -46,7 +46,7 @@ c      print*,in,ran9,ran10
       pcmod=dsqrt(pcm(4)**2-m1**2)
       pcm(1)=pcmod*sint*sphi
       pcm(2)=pcmod*sint*cphi
-      pcm(3)=pcmod*cost   
+      pcm(3)=pcmod*cost
 
       do k=1,4
       pboo(k)=q(k,in)

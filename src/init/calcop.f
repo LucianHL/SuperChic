@@ -1,4 +1,4 @@
-ccc   writes proton opacity to array 
+ccc   writes proton opacity to array
       subroutine calcop
       implicit double precision(a-y)
       integer nb,i1,i2,ib

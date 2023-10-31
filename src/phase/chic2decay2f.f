@@ -25,17 +25,17 @@ ccc   spin correlations for chi_2 decay to 2 fermions
 cccccccccccccccccccc
 
       wt2=0d0
-      
+
       do k=1,4
          q6(k)=q(k,6)
          q7(k)=q(k,7)
       enddo
-      
+
       q6q7=sdot(q6,q7)
-      
+
       q6c(4)=q(4,6)
       q7c(4)=q(4,7)
-      
+
       do j=1,3
          q6c(j)=-q(j,6)
          q7c(j)=-q(j,7)
@@ -47,13 +47,13 @@ cccccccccccccccccccc
          q6c(i)=-paa(i)
          q7c(i)=paa(i)
       enddo
-      
+
       do j=1,4
          do k=1,4
             g(j,k)=0d0
          enddo
       enddo
-      
+
       g(1,1)=-1d0
       g(2,2)=-1d0
       g(3,3)=-1d0
@@ -82,12 +82,12 @@ cccccccccccccccccccc
                   enddo
                enddo
             enddo
-            
+
          enddo
       enddo
 
       pnorm=16d0*(mchi**2/4d0-m2b**2)*(mchi**2/2d0+4d0*m2b**2/3d0)/5d0
       wtt=wt2/pnorm
-         
+
       return
       end

@@ -46,7 +46,7 @@ cccccccccccccccccccc
        q(k,16)=p1(k)
        q(k,17)=p2(k)
       enddo
-      
+
       call genpol1(16,epsi1)
       call genpol1(17,epsi2)
 
@@ -59,7 +59,7 @@ cccccccccccccccccccc
       do k=1,4
          pcm(k)=paa(k)
       enddo
-      call boost(sh,pboo,pcm,plb) 
+      call boost(sh,pboo,pcm,plb)
       do k=1,4
          q8(k)=plb(k)
       enddo
@@ -75,16 +75,16 @@ ccccccccccccc
       do k=1,4
          pcm(k)=pbb(k)
       enddo
-      call boost(sh,pboo,pcm,plb) 
+      call boost(sh,pboo,pcm,plb)
       do k=1,4
          q10(k)=plb(k)
       enddo
 
 ccccccc
-   
+
       wt1=(0d0,0d0)
       pnorm=0d0
-      
+
       do j=1,pol
          do k=1,pol
 

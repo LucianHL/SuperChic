@@ -6,7 +6,7 @@
       double precision btmin,btmax,aj0,opac0,sumt
       integer ibt,nbt,nbt0
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0 
+      double precision dbesj0
 !endif
       include 'pi.f'
       include 'ion.f'
@@ -21,7 +21,7 @@
       b0=4d0*rzg
       hbt0=(b0-btmin)/dble(nbt0)
       sum0=0d0
-      
+
 cccccccccccc
 
       btminb=0d0
@@ -55,6 +55,6 @@ cccccccccccc
 ccccc Finally add in analytic integration of J0 over 0->Infty
 
       screen_01=sum+aj0/qt
-      
+
       return
       end
