@@ -8,7 +8,7 @@ ccc   Initialises grids for skewed PDFs and survival factors
       include 'intag.f'
       include 'pdfinf.f'
       include 'mp.f'
-       
+
       call system('mkdir -p inputs evrecs outputs')
       mp=0.938272046d0
       pi=dacos(-1d0)
@@ -33,7 +33,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccc
       call inpdf
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccc
-ccccccccccccccccccccccccccccccccccccccccccccccccccc 
+ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       call initpars(isurv)   ! Initialise soft survival parameters
       call calcop               ! proton opacity
@@ -45,9 +45,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
       call sdcoh
       call apfelinit
       call sdincoh
-      
+
 c      stop
-      
+
       call calcsud           ! sudakov factor
       call calchg            ! skewed PDF
 

@@ -3,18 +3,18 @@
       double precision sum,btmax,hb,qt,tpz,bt,wt,rhoxyint
       integer n,ntot
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0 
+      double precision dbesj0
 !endif
       include 'pi.f'
       include 'ion.f'
-      
+
       sum=0d0
 
       btmax=rzg*10d0
-      
+
       ntot=10000
       hb=btmax/dble(ntot)
-      
+
       do n=1,ntot
 
          bt=(dble(n)-0.5d0)*hb
@@ -24,7 +24,7 @@
          wt=wt*2d0*pi*hb
 
          sum=sum+wt
-         
+
       enddo
 
       tpz=sum
@@ -37,19 +37,19 @@
       double precision btmax,sum,hb,bt,qt,wt,rhoxyint,tpn
       integer n,ntot
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0 
+      double precision dbesj0
 !endif
       include 'pi.f'
       include 'ion.f'
-  
-      
+
+
       sum=0d0
 
       btmax=rzg*10d0
-      
+
       ntot=10000
       hb=btmax/dble(ntot)
-      
+
       do n=1,ntot
 
          bt=(dble(n)-0.5d0)*hb
@@ -59,9 +59,9 @@
          wt=wt*2d0*pi*hb
 
          sum=sum+wt
-         
+
       enddo
-      
+
       tpn=sum
 
       return

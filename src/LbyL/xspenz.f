@@ -20,7 +20,7 @@
         XSPENZ = SPENC(X)
       END IF
       END
- 
+
       FUNCTION SPENC(X)
       COMPLEX*16 X,SUM,Z,Z2,SPENC
       Z=-CDLOG(1D0-X)

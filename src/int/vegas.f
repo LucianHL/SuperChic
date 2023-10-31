@@ -1,5 +1,5 @@
 c      SUBROUTINE VEGAS(FXN,AVGI,SD,CHI2A)
-      SUBROUTINE VEGAS(AVGI,SD,CHI2A) 
+      SUBROUTINE VEGAS(AVGI,SD,CHI2A)
 C
 C   SUBROUTINE PERFORMS N-DIMENSIONAL MONTE CARLO INTEG'N
 C      - BY G.P. LEPAGE   SEPT 1976/(REV)APR 1978
@@ -12,16 +12,16 @@ C
      1   ,KG(10),IA(10)
       double precision QRAN(10),x(10)
       DATA NDMX/50/,ALPH/1.5D0/,ONE/1D0/,MDS/1/
-      
+
       include 'wmax.f'
       include 'genunw.f'
 C
-      NDO=1  
+      NDO=1
       DO 1 J=1,NDIM
 1     XI(1,J)=ONE
-C   
+C
 
-      ENTRY VEGAS1(AVGI,SD,CHI2A)   
+      ENTRY VEGAS1(AVGI,SD,CHI2A)
 c      ENTRY VEGAS1(FXN,AVGI,SD,CHI2A)
 C         - INITIALIZES CUMMULATIVE VARIABLES, BUT NOT GRID
       IT=0
@@ -30,7 +30,7 @@ C         - INITIALIZES CUMMULATIVE VARIABLES, BUT NOT GRID
       SWGT=SI
       SCHI=SI
 C
-      ENTRY VEGAS2(AVGI,SD,CHI2A)   
+      ENTRY VEGAS2(AVGI,SD,CHI2A)
 c      ENTRY VEGAS2(FXN,AVGI,SD,CHI2A)
 C         - NO INITIALIZATION
       ND=NDMX
@@ -138,7 +138,7 @@ C
 17    D(IA(J),J)=D(IA(J),J)+F2B
 18    K=NDIM
 19    KG(K)=MOD(KG(K),NG)+1
-      
+
 
       IF(KG(K).NE.1) GO TO 11
       K=K-1
@@ -169,7 +169,7 @@ c      WRITE(6,201) IT,TI,TSI,AVGI,SD,CHI2A
      &        CHI2A
       else
          WRITE(6,302) IT,INT(CALLS),TI,TSI,AVGI,SD,SD/AVGI*100d0,CHI2A
-      endif   
+      endif
 
       IF(NPRN.GE.0) GO TO 21
       DO 20 J=1,NDIM

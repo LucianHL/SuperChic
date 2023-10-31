@@ -98,7 +98,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE SIMPT(A1,B1,H1,REPS1,AEPS1,FUNCT,X,AI,AIH,AIABS)
 C SIMPT
 C A1,B1 -THE LIMITS OF INTEGRATION
@@ -198,7 +198,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE SIMPU(A1,B1,H1,REPS1,AEPS1,FUNCT,X,AI,AIH,AIABS)
 C SIMPU
 C A1,B1 -THE LIMITS OF INTEGRATION
@@ -298,7 +298,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE SIMPV(A1,B1,H1,REPS1,AEPS1,FUNCT,X,AI,AIH,AIABS)
 C SIMPV
 C A1,B1 -THE LIMITS OF INTEGRATION
@@ -398,7 +398,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE FDSIMP (AA1,BB1,HH1,REPS1,AEPS1,FUNCT,DFUN,DFUNIN,
      + DUMMY,AI,AIH,AIABS)
 *=======================================================================
@@ -507,7 +507,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       FUNCTION SPENCE(X)
 *
       IMPLICIT REAL*8(A-H,O-Z)
@@ -530,7 +530,7 @@ C
       RETURN
 10    SPENCE=-.5D0*LOG(1D0-X)*LOG(X**2/(1D0-X))-F1+FSPENS(1D0/(1D0-X))
       END
- 
+
       FUNCTION FSPENS(X)
 *
       IMPLICIT REAL*8(A-H,O-Z)
@@ -546,17 +546,17 @@ C
       IF(B-TCH)2,2,1
 2     FSPENS=F
       END
- 
+
       DOUBLE PRECISION FUNCTION DDILOG(X)
 *=======================================================================
- 
+
       DOUBLE PRECISION X,Y,T,S,A,PI3,PI6,ZERO,ONE,HALF,MALF,MONE,MTWO
       DOUBLE PRECISION C(0:18),H,ALFA,B0,B1,B2
- 
+
       DATA ZERO /0.0D0/, ONE /1.0D0/
       DATA HALF /0.5D0/, MALF /-0.5D0/, MONE /-1.0D0/, MTWO /-2.0D0/
       DATA PI3 /3.28986 81336 96453D0/, PI6 /1.64493 40668 48226D0/
- 
+
       DATA C( 0) / 0.42996 69356 08137 0D0/
       DATA C( 1) / 0.40975 98753 30771 1D0/
       DATA C( 2) /-0.01858 84366 50146 0D0/
@@ -576,7 +576,7 @@ C
       DATA C(16) /-0.00000 00000 00006 1D0/
       DATA C(17) / 0.00000 00000 00000 9D0/
       DATA C(18) /-0.00000 00000 00000 1D0/
- 
+
       IF(X .EQ. ONE) THEN
        DDILOG=PI6
        RETURN
@@ -612,7 +612,7 @@ C
        S=MONE
        A=PI6+HALF*LOG(T)**2
       END IF
- 
+
       H=Y+Y-ONE
       ALFA=H+H
       B1=ZERO
@@ -624,12 +624,12 @@ C
       DDILOG=-(S*(B0-H*B2)+A)
       RETURN
       END
- 
+
 c     FUNCTION DLI2(X)
 c     IMPLICIT REAL*8(A-Z)
 c     DLI2=DDILOG(X)
 c     END
- 
+
 c     FUNCTION DLI3(X)
 * This is Li3(x) for x<=1 only!
 c     IMPLICIT REAL*8(A-Z)
@@ -644,7 +644,7 @@ c     ELSE
 c     DLI3=TRILOG(X)
 c     ENDIF
 c     END
- 
+
 c     FUNCTION DS12(X)
 * This is S12(x) for x<=1 only!
 c     IMPLICIT REAL*8(A-Z)
@@ -658,7 +658,7 @@ c     ELSE
 c     DS12=S12(X)
 c     ENDIF
 c     END
- 
+
       DOUBLE PRECISION FUNCTION TRILOG(X)
 C Tsuyoshi Matsuura 1987
 C
@@ -722,7 +722,7 @@ c           LI3=-HELP+DLOG(X)*DILOG(X)+0.5D0*DLOG(1D0-X)*DLOG(X)**2+Z3
          ENDIF
       ENDIF
       END
- 
+
       DOUBLE PRECISION FUNCTION TRIS12(X)
 C Tsuyoshi Matsuura 1987
 C
@@ -786,12 +786,12 @@ C
          ENDIF
       ENDIF
       END
- 
+
       FUNCTION DLI2(X)
       IMPLICIT REAL*8(A-Z)
       DLI2=DDILOG(X)
       END
- 
+
       FUNCTION DLI3(X)
 * This is Li3(x) for x<=1 only!
       IMPLICIT REAL*8(A-Z)
@@ -819,7 +819,7 @@ C
      &       -DLOGX1*DLOGXM*(DLOGX1-DLOGXM)/2D0
       ENDIF
       END
- 
+
       FUNCTION DS12(X)
 * This is S12(x) for x<=1 only!
       IMPLICIT REAL*8(A-Z)
