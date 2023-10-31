@@ -1,8 +1,8 @@
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
-c                                                         c 
-c     SuperChic Monte Carlo generator for central         c 
+c                                                         c
+c     SuperChic Monte Carlo generator for central         c
 c     exclusive  production.                              c
-c                                                         c 
+c                                                         c
 ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 c
 c     ***********************************************
@@ -14,9 +14,9 @@ c     *                                             *
 c     *  For details see :                          *
 c     *                                             *
 c     *  arXiv 2303.04826 (ion dissiciation)        *
-c     *  arXiv 2201.08403 (WW)                      *      
+c     *  arXiv 2201.08403 (WW)                      *
 c     *  arXiv 2007.12704 (v4 updates)              *
-c     *  arXiv 1812.04886 (SUSY)                    * 
+c     *  arXiv 1812.04886 (SUSY)                    *
 c     *  arXiv 1810.06567                           *
 c     *  arXiv 1508.02718                           *
 c     *  arXiv 1405.0018 (review)                   *
@@ -28,7 +28,7 @@ c     *  arXiv 1306.6661 (Skewed PDF)               *
 c     *  arXiv 1306.2149 (Skewed PDF)               *
 c     *                                             *
 c     *  Available at :                             *
-c     *  http:://projects.hepforge.org/superchic    *                       
+c     *  http:://projects.hepforge.org/superchic    *
 c     *                                             *
 c     ***********************************************
 c
@@ -119,7 +119,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
-      
+
       call system('mkdir -p inputs evrecs outputs')
 
 ccccccc
@@ -287,9 +287,9 @@ c      read(*,*)elcoll
       read(*,*)mxs
 
       approx=.false.
-      
 
-ccccccccccccc      
+
+ccccccccccccc
 
       wpol='tot'
       ftype='tot'
@@ -297,9 +297,9 @@ ccccccccccccc
       sfonly=.false.
       addnsf=.true.
       wgauge='axial'
-           
+
 ccccccccc
-      
+
       if(sfaci.eqv..false.)then
          if(ionbreakup)then
             print*,'sfaci=.false. -> ionbreakup set to .false'
@@ -312,16 +312,16 @@ ccccccccc
             sfaci=.false.
          endif
       endif
-      
+
       diffsd=diff
       if(diff.eq.'sda'.or.diff.eq.'sdb')then
          diff='sd'
       else
          diffsd='n'
       endif
-      
+
       offshell=.false.
-      
+
       forward=.false.
 
       call length(outtag,outl)
@@ -329,7 +329,7 @@ ccccccccc
 
       open(45,file='evrecs/evrec'//outtag(1:outl)//'.dat')
       wmax=0d0
-      evnum=0    
+      evnum=0
 
       if(genunw)then
       else
@@ -341,7 +341,7 @@ ccccccccc
          erech=.true.
          erec='lhe'
       endif
-      
+
       iw=0
 
       gf=1.16639d-5
@@ -361,10 +361,10 @@ c      mwx=80.318d0
       mw=80.419d0
       me=0.511d-3
       mtau=1.77682d0
-      mpip=0.13957018d0 
+      mpip=0.13957018d0
       mkp=0.493677d0
       alpha=7.2974d-3
-      
+
       pi=dacos(-1d0)
       conv=389379d3
       zi=(0d0,1d0)
@@ -394,7 +394,7 @@ c      mwx=80.318d0
       rmf1( 7) = mc
       rmf1( 8) = mb
       rmf1( 9) = mt
-      
+
 
       mq=0d0
       hel=1
@@ -414,7 +414,7 @@ cccccccccccc
       enddo
 
 cccccccccccccccccccccccccc
-      
+
       call inpdf
       call supinit
 
@@ -425,8 +425,8 @@ cccccccccccccccccccccccccc
       s2int=8
       if(beam.eq.'ionp')s2int=16
       if(diff.eq.'el'.and.gamma.eqv..true.)s2int=16
-     
-      
+
+
       call header
       call gaminit
       call gaminit_comb
@@ -467,7 +467,7 @@ cccccccccccccccccccccccccc
          call apfelinit
          call calcs2diss
       endif
-      
+
 cccccccccccccccccccccccccc
 
       if(mes)then
@@ -478,8 +478,8 @@ cccccccccccccccccccccccccc
 ccccccccccccccccccccccccc
 
       if(beam.eq.'el')then
-         if(sfaci)then 
-            print*,'Error : must have sfaci = .false. for initial-state 
+         if(sfaci)then
+            print*,'Error : must have sfaci = .false. for initial-state
      &electrons'
             stop
          endif
@@ -498,9 +498,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 c     mion=mp*an
          mion=mp*az+(an-az)*mn
          rtsi=rts
-         si=s         
+         si=s
       endif
-      
+
       q(1,1)=0d0
       q(2,1)=0d0
       q(3,1)=rts/2d0*beta
@@ -513,7 +513,7 @@ c     mion=mp*an
 
       if(beam.eq.'ionp')call pAinit
       if(beam.eq.'ion')call AAinit
-      
+
       if(beam.eq.'prot')then
          pdgid(1)=2212
          pdgid(2)=2212
@@ -548,7 +548,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
          do j=1,4
             phep(j,k)=q(j,k)
          enddo
-         phep(5,k)=mass(k)   
+         phep(5,k)=mass(k)
          if(beam.eq.'el')then
             phep(5,k)=me
          elseif(beam.eq.'prot')then
@@ -599,7 +599,7 @@ ccc   NEW LHE init
       pdfsup(2)=247000
       pdfgup(1)=0
       pdfgup(2)=0
-      
+
       do k=1,2
          do j=1,4
             pup(j,k)=q(j,k)
@@ -616,12 +616,12 @@ ccc   NEW LHE init
       istup(1)=-1
       istup(2)=-1
       istup(3)=1
-      istup(4)=1   
+      istup(4)=1
       mothup(1,1)=0
       mothup(2,1)=0
       mothup(1,2)=0
       mothup(2,2)=0
-      
+
       icolup(1,1)=0
       icolup(2,1)=0
       icolup(1,2)=0
@@ -655,7 +655,7 @@ ccccccccc
             nup=10
          else
             nup=9
-         endif   
+         endif
       elseif(decay6)then
          nup=11
       elseif(dps.eq.2.or.decay2)then
@@ -668,7 +668,7 @@ ccccccccc
          nup=5
       endif
 
-      
+
       if(diff.eq.'sd')nup=nup-1
       if(diff.eq.'el')nup=nup-2
 
@@ -676,11 +676,11 @@ ccccccccc
 
       surv=1d0
       if(beam.eq.'prot'.or.ionqcd.eq.'coh'.or.ionqcd.eq.'incoh')then
-         call initparsr(isurv)   
+         call initparsr(isurv)
          call readscreen
          if(beam.eq.'prot'.or.ionqcd.eq.'incoh')surv=1d0/norm**2
       endif
-         
+
       if(qcd)then
 C         call calcsud
 C         call calchg
@@ -702,7 +702,7 @@ C         call calchg
       endif
 
 cccccccccccc
-     
+
       nhist=0
       nhistmax=20
 
@@ -713,13 +713,13 @@ ccccccccccccccc
 ccccccc    initialise histograms
 
       if(histol)call inithist(nhistmax)
-      
+
 cccccccccccccccc
 
       neff=0
       neff0=0
 
-      do i=1,10        
+      do i=1,10
          xu(i)=1d0
          xl(i)=0d0
       enddo
@@ -730,9 +730,9 @@ cccccccccccccccc
       idum=-abs(iseed)
       randum=ran2()
 
-      
+
       ITMX1=1
-      
+
       bin=.false.
       sfac=.false.
       unw=.false.
@@ -824,9 +824,9 @@ c      print*,'test'
  777  if(dabs(sd/avgi).gt.prec)then
 
 
-        
-         it=it+1    
-         ncall=ncall+inccall     
+
+         it=it+1
+         ncall=ncall+inccall
          ren=dble(ncall)
 
          CALL VEGAS2(AVGI,SD,CHI2A)
@@ -834,9 +834,9 @@ c         CALL VEGAS2(cs,AVGI,SD,CHI2A)
 
 
          call header_out(avgi,sd)
-         
+
          if(histol)then
-            
+
             do j=1,nhist
                call histo2(j,0)
             enddo
@@ -859,7 +859,7 @@ cccccccccccccc
 
          avgio=avgi
          sdo=sd
-      
+
       print*,''
       print*,'**********************************************************
      &**************'
@@ -873,8 +873,8 @@ c      ncall=nev
       if(ncall.lt.1000)ncall=1000
  566  ren=dble(ncall)
       itmx=1
-   
-      CALL VEGAS2(AVGI,SD,CHI2A)   
+
+      CALL VEGAS2(AVGI,SD,CHI2A)
 c      CALL VEGAS2(cs,AVGI,SD,CHI2A)
 
       if(evnum.lt.nev)then
@@ -885,14 +885,14 @@ c      CALL VEGAS2(cs,AVGI,SD,CHI2A)
       write(6,100)evnum,nev
       print*,'**********************************************************
      &**************'
-      
+
       endif
 
  100  format('  generated events so far = ',i7,'    total = ',i7)
 
 c      ncall=ncall+nev
       ncall=ncall+inccall
-     
+
       if(evnum.lt.nev)goto 566
 
       xsecup(1)=avgi
@@ -904,7 +904,7 @@ c      ncall=ncall+nev
       else
          call unwprint
       endif
-         
+
       if(readwt)then
       elseif((sdo/avgio).lt.(sd/avgi))then
          avgi=avgio
@@ -936,6 +936,6 @@ cccccccccccccccc
 
       call cpu_time(t2)
       print*,'time elapsed = ', t2, ' s'
-      
+
       stop
       end

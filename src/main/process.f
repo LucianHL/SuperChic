@@ -56,13 +56,13 @@ ccc   proc=51 - Upsilon(1S) --> mu+mu- photoproduction
 ccc   proc=52 - Psi(2S) --> mu+mu- photoproduction
 ccc   proc=53 - Psi(2S) --> J/psi pi pi --> mu+mu- pi+pi- photoproduction
 ccc   proc=54 - gamma gamma --> W+W- --> mu+nu mu-nub
-ccc   proc=55 - gamma gamma --> W+W- --> e+nu e-nub 
+ccc   proc=55 - gamma gamma --> W+W- --> e+nu e-nub
 ccc   proc=56 - gamma gamma --> e+e- production
 ccc   proc=57 - gamma gamma --> mu+mu- production
 ccc   proc=58- gamma gamma --> tau+tau- production
 ccc   proc=59 - gamma gamma --> gamma gamma production
 ccc   proc=60 - gamma gamma --> Higgs --> bbar production
-ccc   proc=61 - gamma gamma --> ttbar production      
+ccc   proc=61 - gamma gamma --> ttbar production
 ccc   proc=68 - gamma gamma --> ALP production
 ccc   proc=69 - gamma gamma --> Monopolium (Dirac coupling)
 ccc   proc=70 - gamma gamma --> Monopolium (Beta-g coupling)
@@ -73,19 +73,19 @@ ccc   proc=74 - gamma gamma --> Chargino pair (hadronic decay)
 ccc   proc=75 - gamma gamma --> Chargino pair (leptonic-hadronic decay)
 ccc   proc=76 - gamma gamma --> Slepton pair (leptonic decay)
 ccc   proc=77 - phi --> mu+mu- photoproduction
-ccc   proc=78 - J/psi --> e+e- photoproduction      
+ccc   proc=78 - J/psi --> e+e- photoproduction
 ccc   proc=79 - Psi(2S) --> e+e- photoproduction
 ccc   proc=82 - simplified X + gamma model
 ccc   proc=83 - simplified X + Z(->mu+ mu-) model
-ccc   proc=84 - simplified X + Z(->e+ e-) model    
+ccc   proc=84 - simplified X + Z(->e+ e-) model
 
 
 cccc ALL BRANCHING RATIOS CORRECT AS PER PDG 2020
-      
+
 cccccccccccccccc
 cccccccccccccccc
 
-      
+
 
       subroutine supinit
       implicit none
@@ -131,7 +131,7 @@ cccccccccccccccc
 
       psie=.false.
       phimu=.false.
-      
+
       if(proc.eq.77)then
          proc=49
          phimu=.true.
@@ -146,7 +146,7 @@ cccccccccccccccc
          proc=52
          psie=.true.
       endif
-      
+
       photo=.false.
       gamma=.false.
       decays=.false.
@@ -175,8 +175,8 @@ cccccccccccccccc
          pdgid(7)=-5
          decay2=.true.
          mq=mb
-         istup(5)=2  
-         istup(6)=1  
+         istup(5)=2
+         istup(6)=1
          istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
@@ -185,7 +185,7 @@ cccccccccccccccc
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=501   
+         icolup(2,7)=501
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -201,23 +201,23 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=22
          pdgid(7)=22
-         istup(5)=3  
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0  
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
-         nhep=7         
+         nhep=7
       elseif(proc.eq.3)then
          ndim=6
          pol=4
@@ -227,13 +227,13 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=21
          pdgid(7)=21
-         istup(5)=3 
-         istup(6)=1  
-         istup(7)=1    
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=501
          icolup(2,6)=502
          icolup(1,7)=502
@@ -253,13 +253,13 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=2
          pdgid(7)=-2
-         istup(5)=3    
-         istup(6)=1  
-         istup(7)=1 
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0  
+         mothup(2,7)=0
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
@@ -280,18 +280,18 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=4
          pdgid(7)=-4
-         istup(5)=3 
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=501  
-         isthep(5)=2 
+         icolup(2,7)=501
+         isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
@@ -307,18 +307,18 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=5
          pdgid(7)=-5
-         istup(5)=3 
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=501  
-         isthep(5)=2 
+         icolup(2,7)=501
+         isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
@@ -335,20 +335,20 @@ cccccccccccccccc
          pdgid(6)=21
          pdgid(7)=21
          pdgid(8)=21
-         istup(5)=3 
-         istup(6)=1  
-         istup(7)=1  
-         istup(8)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=3
-         mothup(2,8)=0 
+         mothup(2,8)=0
          icolup(1,6)=501
          icolup(2,6)=502
          icolup(1,7)=502
-         icolup(2,7)=503   
+         icolup(2,7)=503
          icolup(1,8)=503
          icolup(2,8)=501
          isthep(5)=2
@@ -368,20 +368,20 @@ cccccccccccccccc
          pdgid(6)=2
          pdgid(7)=-2
          pdgid(8)=21
-         istup(5)=3  
-         istup(6)=1  
-         istup(7)=1  
-         istup(8)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=3
-         mothup(2,8)=0 
+         mothup(2,8)=0
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=502   
+         icolup(2,7)=502
          icolup(1,8)=502
          icolup(2,8)=501
          isthep(5)=2
@@ -394,10 +394,10 @@ cccccccccccccccc
       elseif(proc.eq.9)then
          ndim=6
          pol=1
-         mq=0.13957018d0 
+         mq=0.13957018d0
          dps=2
          sym=1d0
-         fpi=0.133d0 
+         fpi=0.133d0
          a28=2d0/3d0
          a48=0d0
          mes=.true.
@@ -405,17 +405,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=211
          pdgid(7)=-211
-         istup(5)=3  
-         istup(6)=1  
-         istup(7)=1 
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0   
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -436,20 +436,20 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=111
          pdgid(7)=111
-         istup(5)=3    
-         istup(6)=1  
-         istup(7)=1 
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0  
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0 
-         isthep(5)=2 
+         icolup(2,7)=0
+         isthep(5)=2
          isthep(6)=1
-         isthep(7)=1 
+         isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
          nhep=7
@@ -459,7 +459,7 @@ cccccccccccccccc
          mq=0.493677d0
          dps=2
          sym=1d0
-         fpi=0.133d0 
+         fpi=0.133d0
          a28=2d0/3d0
          a48=0d0
          mes=.true.
@@ -467,17 +467,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=321
          pdgid(7)=-321
-         istup(5)=3   
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0    
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -490,7 +490,7 @@ cccccccccccccccc
          mq=0.497614d0
          dps=2
          sym=2d0
-         fpi=0.133d0 
+         fpi=0.133d0
          a28=2d0/3d0
          a48=0d0
          mes=.true.
@@ -498,18 +498,18 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=311
          pdgid(7)=311
-         istup(5)=3  
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0  
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
-         isthep(5)=2  
+         icolup(2,7)=0
+         isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
@@ -518,10 +518,10 @@ cccccccccccccccc
       elseif(proc.eq.13)then
          ndim=6
          pol=3
-         mq=0.77549d0   
+         mq=0.77549d0
          dps=2
          sym=2d0
-         fpi=0.2d0 
+         fpi=0.2d0
          a28=2d0/3d0
          a48=0d0
          mes=.true.
@@ -529,17 +529,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=113
          pdgid(7)=113
-         istup(5)=3    
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -549,7 +549,7 @@ cccccccccccccccc
       elseif(proc.eq.14)then
          ndim=6
          pol=1
-         mq=0.547853d0   
+         mq=0.547853d0
          dps=2
          sym=2d0
          fpi=0.133d0
@@ -558,7 +558,7 @@ cccccccccccccccc
          fpi8=1.26d0*fpi
          fpi1=1.17d0*fpi
          a21=2d0/3d0
-         a28=2d0/3d0 
+         a28=2d0/3d0
          a2g=0d0
          a48=0d0
          mes=.true.
@@ -566,18 +566,18 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=221
          pdgid(7)=221
-         istup(5)=3   
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0 
-         isthep(5)=2   
+         icolup(2,7)=0
+         isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
@@ -596,7 +596,7 @@ cccccccccccccccc
          fpi8=1.26d0*fpi
          fpi1=1.17d0*fpi
          a21=2d0/3d0
-         a28=2d0/3d0 
+         a28=2d0/3d0
          a2g=0d0
          a48=0d0
          mes=.true.
@@ -604,17 +604,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=221
          pdgid(7)=331
-         istup(5)=3    
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -633,25 +633,25 @@ cccccccccccccccc
          fpi8=1.26d0*fpi
          fpi1=1.17d0*fpi
          a21=2d0/3d0
-         a28=2d0/3d0 
+         a28=2d0/3d0
          a2g=0d0
          mes=.true.
          procn="eta' eta'"
          pdgid(5)=93
          pdgid(6)=331
          pdgid(7)=331
-         istup(5)=3  
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
-         isthep(5)=2  
+         icolup(2,7)=0
+         isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
@@ -660,10 +660,10 @@ cccccccccccccccc
       elseif(proc.eq.17)then
          ndim=6
          pol=3
-         mq=1.019461d0   
+         mq=1.019461d0
          dps=2
          sym=2d0
-         fpi=0.23d0 
+         fpi=0.23d0
          a28=-1d0/3d0
          a48=11d0/80d0
          mes=.true.
@@ -671,17 +671,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=333
          pdgid(7)=333
-         istup(5)=2  
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0    
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -710,29 +710,29 @@ cccccccccccccccc
          pdgid(9)=-13
          pdgid(10)=13
          pdgid(11)=-13
-         istup(5)=3    
-         istup(6)=2 
-         istup(7)=2 
-         istup(8)=1 
+         istup(5)=3
+         istup(6)=2
+         istup(7)=2
+         istup(8)=1
          istup(9)=1
-         istup(10)=1 
-         istup(11)=1 
+         istup(10)=1
+         istup(11)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=4
          mothup(2,8)=0
          mothup(1,9)=4
-         mothup(2,9)=0 
+         mothup(2,9)=0
          mothup(1,10)=5
          mothup(2,10)=0
          mothup(1,11)=5
-         mothup(2,11)=0 
+         mothup(2,11)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -770,29 +770,29 @@ cccccccccccccccc
          pdgid(9)=-13
          pdgid(10)=13
          pdgid(11)=-13
-         istup(5)=3    
-         istup(6)=2 
-         istup(7)=2 
-         istup(8)=1 
+         istup(5)=3
+         istup(6)=2
+         istup(7)=2
+         istup(8)=1
          istup(9)=1
-         istup(10)=1 
-         istup(11)=1 
+         istup(10)=1
+         istup(11)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=4
          mothup(2,8)=0
          mothup(1,9)=4
-         mothup(2,9)=0 
+         mothup(2,9)=0
          mothup(1,10)=5
          mothup(2,10)=0
          mothup(1,11)=5
-         mothup(2,11)=0 
+         mothup(2,11)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -829,29 +829,29 @@ cccccccccccccccc
          pdgid(9)=-13
          pdgid(10)=13
          pdgid(11)=-13
-         istup(5)=3    
-         istup(6)=2 
-         istup(7)=2 
-         istup(8)=1 
+         istup(5)=3
+         istup(6)=2
+         istup(7)=2
+         istup(8)=1
          istup(9)=1
-         istup(10)=1 
-         istup(11)=1 
+         istup(10)=1
+         istup(11)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=4
          mothup(2,8)=0
          mothup(1,9)=4
-         mothup(2,9)=0 
+         mothup(2,9)=0
          mothup(1,10)=5
          mothup(2,10)=0
          mothup(1,11)=5
-         mothup(2,11)=0 
+         mothup(2,11)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -887,14 +887,14 @@ cccccccccccccccc
          pdgid(7)=443
          pdgid(8)=13
          pdgid(9)=-13
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1 
-         istup(8)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
          icolup(2,8)=0
          mothup(1,6)=3
@@ -927,7 +927,7 @@ cccccccccccccccc
          gamchi0=10.4d-3/1.5d0
          width=0.84d-3
          call twobodyinit(1,mres,mpsi,0d0)
-         call twobodyinit(2,mpsi,mmu,mmu)  
+         call twobodyinit(2,mpsi,mmu,mmu)
          procn="chi_(c1) --> J/psi gamma --> mu+mu- gamma"
          decays=.true.
          jz2=.true.
@@ -940,15 +940,15 @@ cccccccccccccccc
          pdgid(8)=13
          pdgid(9)=-13
          istup(5)=2
-         istup(6)=1 
-         istup(7)=1 
-         istup(8)=1     
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
-         icolup(2,8)=0 
+         icolup(2,8)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -956,8 +956,8 @@ cccccccccccccccc
          mothup(1,8)=5
          mothup(2,8)=0
          mothup(1,9)=5
-         mothup(2,9)=0   
-         decay3=.true. 
+         mothup(2,9)=0
+         decay3=.true.
          mchi=mres
          isthep(5)=2
          isthep(6)=1
@@ -979,7 +979,7 @@ cccccccccccccccc
          gamchi0=10.4d-3/1.5d0
          width=1.93d-3
          call twobodyinit(1,mres,mpsi,0d0)
-         call twobodyinit(2,mpsi,mmu,mmu)  
+         call twobodyinit(2,mpsi,mmu,mmu)
          procn="chi_(c2) --> J/psi gamma --> mu+mu- gamma"
          decays=.true.
          nbr=2
@@ -990,14 +990,14 @@ cccccccccccccccc
          pdgid(7)=443
          pdgid(8)=13
          pdgid(9)=-13
-         istup(5)=2  
-         istup(6)=1 
-         istup(7)=1 
-         istup(8)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
          icolup(2,8)=0
          mothup(1,6)=3
@@ -1008,7 +1008,7 @@ cccccccccccccccc
          mothup(2,8)=0
          mothup(1,9)=5
          mothup(2,9)=0
-         decay3=.true.     
+         decay3=.true.
          mchi=mres
          isthep(5)=2
          isthep(6)=1
@@ -1024,7 +1024,7 @@ cccccccccccccccc
          ndim=4
          pol=1
          dps=1
-         mres=3.41475d0     
+         mres=3.41475d0
          sym=1d0
          hel=2
          gamchi0=10.4d-3/1.5d0
@@ -1032,13 +1032,13 @@ cccccccccccccccc
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(c0) --> 2 body"
          pdgid(5)=10441
-         istup(5)=2   
-         istup(6)=1 
-         istup(7)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -1064,12 +1064,12 @@ cccccccccccccccc
          procn="chi_(c1) --> 2 body (scalars)"
          pdgid(5)=20443
          istup(5)=2
-         istup(6)=1 
-         istup(7)=1 
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0 
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -1094,9 +1094,9 @@ cccccccccccccccc
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(c2) --> 2 body (scalars)"
          pdgid(5)=445
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1125,9 +1125,9 @@ cccccccccccccccc
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(c1) --> 2 body (fermions)"
          pdgid(5)=20443
-         istup(5)=2 
-         istup(6)=1 
-          istup(7)=1    
+         istup(5)=2
+         istup(6)=1
+          istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1156,9 +1156,9 @@ cccccccccccccccc
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(c2) --> 2 body (fermions)"
          pdgid(5)=445
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1175,11 +1175,11 @@ cccccccccccccccc
          jdahep(1,5)=6
          jdahep(2,5)=7
          nhep=7
-      elseif(proc.eq.29)then  
+      elseif(proc.eq.29)then
          ndim=4
          pol=1
          dps=1
-         mres=3.41475d0     
+         mres=3.41475d0
          sym=1d0
          hel=2
          gamchi0=10.4d-3/1.5d0
@@ -1193,110 +1193,10 @@ cccccccccccccccc
          pdgid(7)=-211
          pdgid(8)=211
          pdgid(9)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
-         icolup(1,6)=0
-         icolup(2,6)=0
-         icolup(1,7)=0
-         icolup(2,7)=0
-         icolup(1,8)=0
-         icolup(2,8)=0
-         icolup(1,9)=0
-         icolup(2,9)=0
-         mothup(1,6)=3
-         mothup(2,6)=0
-         mothup(1,7)=3
-         mothup(2,7)=0
-         mothup(1,8)=3
-         mothup(2,8)=0
-         mothup(1,9)=3
-         mothup(2,9)=0
-         mchi=mres
-         isthep(5)=2
-         isthep(6)=1
-         isthep(7)=1
-         isthep(8)=1
-         isthep(9)=1
-         jdahep(1,5)=6
-         jdahep(2,5)=9
-         decay4=.true.
-         decays=.true.
-         nhep=9
-      elseif(proc.eq.30)then  
-         ndim=4
-         pol=3
-         dps=1
-         mres=3.51066d0
-         hel=2
-         sym=1d0
-         gamchi0=10.4d-3/1.5d0
-         width=0.84d-3
-         call fourbodyinit(mres,mpip,mpip)
-         procn="chi_(c1) --> 2(pi+pi-)"
-         nbr=1
-         br(1)=7.6d-3
-         pdgid(5)=20443
-         pdgid(6)=211
-         pdgid(7)=-211
-         pdgid(8)=211
-         pdgid(9)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
-         icolup(1,6)=0
-         icolup(2,6)=0
-         icolup(1,7)=0
-         icolup(2,7)=0
-         icolup(1,8)=0
-         icolup(2,8)=0
-         icolup(1,9)=0
-         icolup(2,9)=0
-         mothup(1,6)=3
-         mothup(2,6)=0
-         mothup(1,7)=3
-         mothup(2,7)=0
-         mothup(1,8)=3
-         mothup(2,8)=0
-         mothup(1,9)=3
-         mothup(2,9)=0
-         mchi=mres
-         isthep(5)=2
-         isthep(6)=1
-         isthep(7)=1
-         isthep(8)=1
-         isthep(9)=1
-         jdahep(1,5)=6
-         jdahep(2,5)=9
-         decay4=.true.
-         decays=.true.
-         nhep=9
-      elseif(proc.eq.31)then  
-         ndim=4
-         pol=5
-         dps=1
-         mres=3.55620d0
-         hel=2
-         sym=1d0
-         gamchi0=10.4d-3/1.5d0
-         width=1.93d-3
-         call fourbodyinit(mres,mpip,mpip)    
-         procn="chi_(c2) --> 2(pi+pi-)"
-         nbr=1
-         br(1)=1.02d-2
-         pdgid(5)=445
-         pdgid(6)=211
-         pdgid(7)=-211
-         pdgid(8)=211
-         pdgid(9)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          istup(9)=1
          icolup(1,6)=0
          icolup(2,6)=0
@@ -1325,29 +1225,29 @@ cccccccccccccccc
          decay4=.true.
          decays=.true.
          nhep=9
-      elseif(proc.eq.32)then  
+      elseif(proc.eq.30)then
          ndim=4
-         pol=1
+         pol=3
          dps=1
-         mres=3.41475d0     
-         sym=1d0
+         mres=3.51066d0
          hel=2
+         sym=1d0
          gamchi0=10.4d-3/1.5d0
-         width=10.4d-3
-         call fourbodyinit(mres,mpip,mkp)  
-         procn="chi_(c0) --> pi+pi- + K+K-"
+         width=0.84d-3
+         call fourbodyinit(mres,mpip,mpip)
+         procn="chi_(c1) --> 2(pi+pi-)"
          nbr=1
-         br(1)=1.81d-2
-         pdgid(5)=10441
+         br(1)=7.6d-3
+         pdgid(5)=20443
          pdgid(6)=211
          pdgid(7)=-211
-         pdgid(8)=321
-         pdgid(9)=-321
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
+         pdgid(8)=211
+         pdgid(9)=-211
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1375,7 +1275,107 @@ cccccccccccccccc
          decay4=.true.
          decays=.true.
          nhep=9
-      elseif(proc.eq.33)then  
+      elseif(proc.eq.31)then
+         ndim=4
+         pol=5
+         dps=1
+         mres=3.55620d0
+         hel=2
+         sym=1d0
+         gamchi0=10.4d-3/1.5d0
+         width=1.93d-3
+         call fourbodyinit(mres,mpip,mpip)
+         procn="chi_(c2) --> 2(pi+pi-)"
+         nbr=1
+         br(1)=1.02d-2
+         pdgid(5)=445
+         pdgid(6)=211
+         pdgid(7)=-211
+         pdgid(8)=211
+         pdgid(9)=-211
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
+         icolup(1,6)=0
+         icolup(2,6)=0
+         icolup(1,7)=0
+         icolup(2,7)=0
+         icolup(1,8)=0
+         icolup(2,8)=0
+         icolup(1,9)=0
+         icolup(2,9)=0
+         mothup(1,6)=3
+         mothup(2,6)=0
+         mothup(1,7)=3
+         mothup(2,7)=0
+         mothup(1,8)=3
+         mothup(2,8)=0
+         mothup(1,9)=3
+         mothup(2,9)=0
+         mchi=mres
+         isthep(5)=2
+         isthep(6)=1
+         isthep(7)=1
+         isthep(8)=1
+         isthep(9)=1
+         jdahep(1,5)=6
+         jdahep(2,5)=9
+         decay4=.true.
+         decays=.true.
+         nhep=9
+      elseif(proc.eq.32)then
+         ndim=4
+         pol=1
+         dps=1
+         mres=3.41475d0
+         sym=1d0
+         hel=2
+         gamchi0=10.4d-3/1.5d0
+         width=10.4d-3
+         call fourbodyinit(mres,mpip,mkp)
+         procn="chi_(c0) --> pi+pi- + K+K-"
+         nbr=1
+         br(1)=1.81d-2
+         pdgid(5)=10441
+         pdgid(6)=211
+         pdgid(7)=-211
+         pdgid(8)=321
+         pdgid(9)=-321
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
+         icolup(1,6)=0
+         icolup(2,6)=0
+         icolup(1,7)=0
+         icolup(2,7)=0
+         icolup(1,8)=0
+         icolup(2,8)=0
+         icolup(1,9)=0
+         icolup(2,9)=0
+         mothup(1,6)=3
+         mothup(2,6)=0
+         mothup(1,7)=3
+         mothup(2,7)=0
+         mothup(1,8)=3
+         mothup(2,8)=0
+         mothup(1,9)=3
+         mothup(2,9)=0
+         mchi=mres
+         isthep(5)=2
+         isthep(6)=1
+         isthep(7)=1
+         isthep(8)=1
+         isthep(9)=1
+         jdahep(1,5)=6
+         jdahep(2,5)=9
+         decay4=.true.
+         decays=.true.
+         nhep=9
+      elseif(proc.eq.33)then
          ndim=4
          pol=3
          dps=1
@@ -1393,11 +1393,11 @@ cccccccccccccccc
          pdgid(7)=-211
          pdgid(8)=321
          pdgid(9)=-321
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1425,7 +1425,7 @@ cccccccccccccccc
          decay4=.true.
          decays=.true.
          nhep=9
-      elseif(proc.eq.34)then  
+      elseif(proc.eq.34)then
          ndim=4
          pol=5
          dps=1
@@ -1434,7 +1434,7 @@ cccccccccccccccc
          sym=1d0
          gamchi0=10.4d-3/1.5d0
          width=1.93d-3
-         call fourbodyinit(mres,mpip,mkp)     
+         call fourbodyinit(mres,mpip,mkp)
          procn="chi_(c2) --> pi+pi- + K+K-"
          nbr=1
          br(1)=8.4d-3
@@ -1443,11 +1443,11 @@ cccccccccccccccc
          pdgid(7)=-211
          pdgid(8)=321
          pdgid(9)=-321
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1475,11 +1475,11 @@ cccccccccccccccc
          decay4=.true.
          decays=.true.
          nhep=9
-      elseif(proc.eq.35)then  
+      elseif(proc.eq.35)then
          ndim=4
          pol=1
          dps=1
-         mres=3.41475d0     
+         mres=3.41475d0
          sym=1d0
          hel=2
          gamchi0=10.4d-3/1.5d0
@@ -1495,13 +1495,13 @@ cccccccccccccccc
          pdgid(9)=-211
          pdgid(10)=211
          pdgid(11)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
-         istup(10)=1 
-         istup(11)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
+         istup(10)=1
+         istup(11)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1539,7 +1539,7 @@ cccccccccccccccc
          decay6=.true.
          decays=.true.
          nhep=11
-      elseif(proc.eq.36)then  
+      elseif(proc.eq.36)then
          ndim=4
          pol=3
          dps=1
@@ -1548,7 +1548,7 @@ cccccccccccccccc
          sym=1d0
          gamchi0=10.4d-3/1.5d0
          width=0.84d-3
-         call sixbodyinit(mres,mpip)    
+         call sixbodyinit(mres,mpip)
          procn="chi_(c1) --> 3(pi+pi-)"
          nbr=1
          br(1)=5.8d-3
@@ -1559,13 +1559,13 @@ cccccccccccccccc
          pdgid(9)=-211
          pdgid(10)=211
          pdgid(11)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
-         istup(10)=1 
-         istup(11)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
+         istup(10)=1
+         istup(11)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1603,7 +1603,7 @@ cccccccccccccccc
          decay6=.true.
          decays=.true.
          nhep=11
-      elseif(proc.eq.37)then  
+      elseif(proc.eq.37)then
          ndim=4
          pol=5
          dps=1
@@ -1623,13 +1623,13 @@ cccccccccccccccc
          pdgid(9)=-211
          pdgid(10)=211
          pdgid(11)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
-         istup(10)=1 
-         istup(11)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
+         istup(10)=1
+         istup(11)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1685,12 +1685,12 @@ cccccccccccccccc
          ndim=4
          pol=1
          dps=1
-         mres=9.85944d0    
-         gamchi0=0.8d-3     
+         mres=9.85944d0
+         gamchi0=0.8d-3
          sym=1d0
          hel=2
          call twobodyinit(1,mres,mups,0d0)
-         call twobodyinit(2,mups,mmu,mmu) 
+         call twobodyinit(2,mups,mmu,mmu)
          procn="chi_(b0) --> Upsilon gamma --> mu+mu- gamma"
          decays=.true.
          nbr=2
@@ -1701,14 +1701,14 @@ cccccccccccccccc
          pdgid(7)=553
          pdgid(8)=13
          pdgid(9)=-13
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1 
-         istup(8)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
          icolup(2,8)=0
          mothup(1,6)=3
@@ -1738,9 +1738,9 @@ cccccccccccccccc
          mres=9.89278d0
          hel=2
          sym=1d0
-         gamchi0=0.8d-3     
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,mups,0d0)
-         call twobodyinit(2,mups,mmu,mmu) 
+         call twobodyinit(2,mups,mmu,mmu)
          procn="chi_(b1) --> Upsilon gamma --> mu+mu- gamma"
          decays=.true.
          jz2=.true.
@@ -1753,15 +1753,15 @@ cccccccccccccccc
          pdgid(8)=13
          pdgid(9)=-13
          istup(5)=2
-         istup(6)=1 
-         istup(7)=1 
-         istup(8)=1     
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
-         icolup(2,8)=0 
+         icolup(2,8)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -1769,8 +1769,8 @@ cccccccccccccccc
          mothup(1,8)=5
          mothup(2,8)=0
          mothup(1,9)=5
-         mothup(2,9)=0   
-         decay3=.true. 
+         mothup(2,9)=0
+         decay3=.true.
          mchi=mres
          isthep(5)=2
          isthep(6)=1
@@ -1789,9 +1789,9 @@ cccccccccccccccc
          mres=9.91221d0
          hel=2
          sym=1d0
-         gamchi0=0.8d-3     
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,mups,0d0)
-         call twobodyinit(2,mups,mmu,mmu) 
+         call twobodyinit(2,mups,mmu,mmu)
          procn="chi_(b2) --> Upsilon gamma --> mu+mu- gamma"
          decays=.true.
          nbr=2
@@ -1802,14 +1802,14 @@ cccccccccccccccc
          pdgid(7)=553
          pdgid(8)=13
          pdgid(9)=-13
-         istup(5)=2  
-         istup(6)=1 
-         istup(7)=1 
-         istup(8)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
+         istup(8)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
          icolup(2,8)=0
          mothup(1,6)=3
@@ -1820,7 +1820,7 @@ cccccccccccccccc
          mothup(2,8)=0
          mothup(1,9)=5
          mothup(2,9)=0
-         decay3=.true.     
+         decay3=.true.
          mchi=mres
          isthep(5)=2
          isthep(6)=1
@@ -1836,20 +1836,20 @@ cccccccccccccccc
          ndim=4
          pol=1
          dps=1
-         mres=9.85944d0     
+         mres=9.85944d0
          sym=1d0
          hel=2
-         gamchi0=0.8d-3   
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(b0) --> 2 body"
          pdgid(5)=10551
-         istup(5)=2   
-         istup(6)=1 
-         istup(7)=1 
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -1869,17 +1869,17 @@ cccccccccccccccc
          mres=9.89278d0
          hel=2
          sym=1d0
-         gamchi0=0.8d-3   
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(b1) --> 2 body (scalars)"
          pdgid(5)=20553
          istup(5)=2
-         istup(6)=1 
-         istup(7)=1 
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0 
+         icolup(2,7)=0
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -1899,13 +1899,13 @@ cccccccccccccccc
          mres=9.91221d0
          hel=2
          sym=1d0
-         gamchi0=0.8d-3   
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(b2) --> 2 body (scalars)"
          pdgid(5)=555
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1929,13 +1929,13 @@ cccccccccccccccc
          mres=9.89278d0
          hel=2
          sym=1d0
-         gamchi0=0.8d-3   
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(b1) --> 2 body (fermions)"
          pdgid(5)=20553
-         istup(5)=2 
-         istup(6)=1 
-          istup(7)=1    
+         istup(5)=2
+         istup(6)=1
+          istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -1959,13 +1959,13 @@ cccccccccccccccc
          mres=9.91221d0
          hel=2
          sym=1d0
-         gamchi0=0.8d-3   
+         gamchi0=0.8d-3
          call twobodyinit(1,mres,m2b,m2b)
          procn="chi_(b2) --> 2 body (fermions)"
          pdgid(5)=555
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2021,9 +2021,9 @@ cccccccccccccccc
          pdgid(5)=113
          pdgid(6)=211
          pdgid(7)=-211
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2077,9 +2077,9 @@ cccccccccccccccc
             pdgid(6)=321
             pdgid(7)=-321
          endif
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2133,9 +2133,9 @@ cccccccccccccccc
             pdgid(6)=13
             pdgid(7)=-13
          endif
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2174,9 +2174,9 @@ cccccccccccccccc
          pdgid(5)=553
          pdgid(6)=13
          pdgid(7)=-13
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2230,9 +2230,9 @@ cccccccccccccccc
             pdgid(6)=13
             pdgid(7)=-13
          endif
-         istup(5)=2 
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2254,7 +2254,7 @@ cccccccccccccccc
          mres=3.686108d0
          hel=2
          sym=1d0
-         procn='Psi(2S) --> J/psi pi+pi- --> mu+mu- 
+         procn='Psi(2S) --> J/psi pi+pi- --> mu+mu-
      &pi+pi- photoproduction'
          mchi=mres
          photo=.true.
@@ -2278,12 +2278,12 @@ cccccccccccccccc
          pdgid(8)=-211
          pdgid(9)=13
          pdgid(10)=-13
-         istup(5)=2 
-         istup(6)=2 
-         istup(7)=1  
-         istup(8)=1 
-         istup(9)=1  
-         istup(10)=1 
+         istup(5)=2
+         istup(6)=2
+         istup(7)=1
+         istup(8)=1
+         istup(9)=1
+         istup(10)=1
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2323,7 +2323,7 @@ cccccccccccccccc
             offshell=.true.
             if(erec.eq.'lhe')enew=.true.
          endif
-         
+
          mq=mw
          dps=2
          sym=1d0
@@ -2339,29 +2339,29 @@ cccccccccccccccc
          pdgid(9)=13
          pdgid(10)=14
          pdgid(11)=-13
-         istup(5)=2  
-         istup(6)=2  
-         istup(7)=2 
-         istup(8)=1  
+         istup(5)=2
+         istup(6)=2
+         istup(7)=2
+         istup(8)=1
          istup(9)=1
-         istup(10)=1  
-         istup(11)=1 
+         istup(10)=1
+         istup(11)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=4
          mothup(2,8)=0
          mothup(1,9)=4
-         mothup(2,9)=0   
+         mothup(2,9)=0
          mothup(1,10)=5
          mothup(2,10)=0
          mothup(1,11)=5
-         mothup(2,11)=0   
+         mothup(2,11)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
          icolup(2,8)=0
          icolup(1,9)=0
@@ -2369,7 +2369,7 @@ cccccccccccccccc
          icolup(1,10)=0
          icolup(2,10)=0
          icolup(1,11)=0
-         icolup(2,11)=0      
+         icolup(2,11)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -2393,7 +2393,7 @@ cccccccccccccccc
             offshell=.true.
             if(erec.eq.'lhe')enew=.true.
          endif
-         
+
          mq=mw
          dps=2
          sym=1d0
@@ -2412,8 +2412,8 @@ cccccccccccccccc
          else
             br(2)=10.71d-2
          endif
-         
-         
+
+
         if(enew)then
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
@@ -2468,9 +2468,9 @@ cccccccccccccccc
             mothup(2,i1+4)=0
             mothup(1,i1+5)=i1-1
             mothup(2,i1+5)=0
-            
+
          else
-         
+
          pdgid(5)=93
          pdgid(6)=24
          pdgid(7)=-24
@@ -2478,29 +2478,29 @@ cccccccccccccccc
          pdgid(9)=13
          pdgid(10)=12
          pdgid(11)=-11
-         istup(5)=2  
-         istup(6)=2  
-         istup(7)=2 
-         istup(8)=1  
+         istup(5)=2
+         istup(6)=2
+         istup(7)=2
+         istup(8)=1
          istup(9)=1
-         istup(10)=1  
-         istup(11)=1 
+         istup(10)=1
+         istup(11)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          mothup(1,8)=4
          mothup(2,8)=0
          mothup(1,9)=4
-         mothup(2,9)=0   
+         mothup(2,9)=0
          mothup(1,10)=5
          mothup(2,10)=0
          mothup(1,11)=5
-         mothup(2,11)=0   
+         mothup(2,11)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          icolup(1,8)=0
          icolup(2,8)=0
          icolup(1,9)=0
@@ -2508,7 +2508,7 @@ cccccccccccccccc
          icolup(1,10)=0
          icolup(2,10)=0
          icolup(1,11)=0
-         icolup(2,11)=0      
+         icolup(2,11)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -2533,7 +2533,7 @@ cccccccccccccccc
             offshell=.true.
             if(erec.eq.'lhe')enew=.true.
          endif
-         
+
          offshell=.true.
 
          if(erec.eq.'lhe')enew=.true.
@@ -2548,11 +2548,11 @@ cccccccccccccccc
             if(diff.eq.'dd')i1=7
             nhep=i1+1
             pdgid(i1)=11
-            pdgid(i1+1)=-11 
-            istup(i1)=1  
+            pdgid(i1+1)=-11
+            istup(i1)=1
             istup(i1+1)=1
             mothup(1,i1)=1
-            mothup(1,i1+1)=1 
+            mothup(1,i1+1)=1
             mothup(2,i1)=2
             mothup(2,i1+1)=2
             if(diff.eq.'sd')then
@@ -2562,24 +2562,24 @@ cccccccccccccccc
             icolup(1,i1)=0
             icolup(2,i1)=0
             icolup(1,i1+1)=0
-            icolup(2,i1+1)=0   
+            icolup(2,i1+1)=0
             isthep(i1)=1
             isthep(i1+1)=1
          else
             pdgid(5)=93
             pdgid(6)=11
             pdgid(7)=-11
-            istup(5)=2  
-            istup(6)=1  
+            istup(5)=2
+            istup(6)=1
             istup(7)=1
             mothup(1,6)=3
             mothup(2,6)=0
             mothup(1,7)=3
-            mothup(2,7)=0 
+            mothup(2,7)=0
             icolup(1,6)=0
             icolup(2,6)=0
             icolup(1,7)=0
-            icolup(2,7)=0   
+            icolup(2,7)=0
             isthep(5)=2
             isthep(6)=1
             isthep(7)=1
@@ -2610,11 +2610,11 @@ cccccccccccccccc
             if(diff.eq.'dd')i1=7
                         nhep=i1+1
             pdgid(i1)=13
-            pdgid(i1+1)=-13 
-            istup(i1)=1  
+            pdgid(i1+1)=-13
+            istup(i1)=1
             istup(i1+1)=1
             mothup(1,i1)=1
-            mothup(1,i1+1)=1 
+            mothup(1,i1+1)=1
             mothup(2,i1)=2
             mothup(2,i1+1)=2
             if(diff.eq.'sd')then
@@ -2624,24 +2624,24 @@ cccccccccccccccc
             icolup(1,i1)=0
             icolup(2,i1)=0
             icolup(1,i1+1)=0
-            icolup(2,i1+1)=0   
+            icolup(2,i1+1)=0
             isthep(i1)=1
             isthep(i1+1)=1
          else
             pdgid(5)=93
             pdgid(6)=13
             pdgid(7)=-13
-            istup(5)=2  
-            istup(6)=1  
+            istup(5)=2
+            istup(6)=1
             istup(7)=1
             mothup(1,6)=3
             mothup(2,6)=0
             mothup(1,7)=3
-            mothup(2,7)=0 
+            mothup(2,7)=0
             icolup(1,6)=0
             icolup(2,6)=0
             icolup(1,7)=0
-            icolup(2,7)=0   
+            icolup(2,7)=0
             isthep(5)=2
             isthep(6)=1
             isthep(7)=1
@@ -2650,7 +2650,7 @@ cccccccccccccccc
                         nhep=7
          endif
 
-         
+
       elseif(proc.eq.58)then
          ndim=6
          pol=4
@@ -2667,7 +2667,7 @@ cccccccccccccccc
          sym=1d0
          procn='gamma gamma --> tau+ tau-'
          gamma=.true.
-         
+
          if(enew)then
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
@@ -2675,10 +2675,10 @@ cccccccccccccccc
             nhep=i1+1
             pdgid(i1)=15
             pdgid(i1+1)=-15
-            istup(i1)=1  
+            istup(i1)=1
             istup(i1+1)=1
             mothup(1,i1)=1
-            mothup(1,i1+1)=1 
+            mothup(1,i1+1)=1
             mothup(2,i1)=2
             mothup(2,i1+1)=2
             if(diff.eq.'sd')then
@@ -2688,24 +2688,24 @@ cccccccccccccccc
             icolup(1,i1)=0
             icolup(2,i1)=0
             icolup(1,i1+1)=0
-            icolup(2,i1+1)=0   
+            icolup(2,i1+1)=0
             isthep(i1)=1
             isthep(i1+1)=1
          else
             pdgid(5)=93
             pdgid(6)=15
             pdgid(7)=-15
-            istup(5)=2  
-            istup(6)=1  
+            istup(5)=2
+            istup(6)=1
             istup(7)=1
             mothup(1,6)=3
             mothup(2,6)=0
             mothup(1,7)=3
-            mothup(2,7)=0 
+            mothup(2,7)=0
             icolup(1,6)=0
             icolup(2,6)=0
             icolup(1,7)=0
-            icolup(2,7)=0   
+            icolup(2,7)=0
             isthep(5)=2
             isthep(6)=1
             isthep(7)=1
@@ -2723,17 +2723,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=22
          pdgid(7)=22
-         istup(5)=3  
-         istup(6)=1  
-         istup(7)=1  
+         istup(5)=3
+         istup(6)=1
+         istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0  
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -2758,8 +2758,8 @@ cccccccccccccccc
          pdgid(7)=-5
          decay2=.true.
          mq=mb
-         istup(5)=2  
-         istup(6)=1  
+         istup(5)=2
+         istup(6)=1
          istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
@@ -2768,7 +2768,7 @@ cccccccccccccccc
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=501   
+         icolup(2,7)=501
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -2786,13 +2786,13 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=6
          pdgid(7)=-6
-         istup(5)=2  
-         istup(6)=1  
+         istup(5)=2
+         istup(6)=1
          istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=501
          icolup(2,6)=0
          icolup(1,7)=0
@@ -2817,7 +2817,7 @@ cccccccccccccccc
          mres=malp
          call twobodyinit(1,mres,0d0,0d0)
          nbr=1
-         br(1)=1d0     
+         br(1)=1d0
          decays=.true.
          if(alpt.eq.'ps')then
             procn='Pseudoscalar ALP production'
@@ -2840,10 +2840,10 @@ cccccccccccccccc
                         nhep=i1+1
             pdgid(i1)=22
             pdgid(i1+1)=22
-            istup(i1)=1  
+            istup(i1)=1
             istup(i1+1)=1
             mothup(1,i1)=1
-            mothup(1,i1+1)=1 
+            mothup(1,i1+1)=1
             mothup(2,i1)=2
             mothup(2,i1+1)=2
             if(diff.eq.'sd')then
@@ -2853,12 +2853,12 @@ cccccccccccccccc
             icolup(1,i1)=0
             icolup(2,i1)=0
             icolup(1,i1+1)=0
-            icolup(2,i1+1)=0   
+            icolup(2,i1+1)=0
             isthep(i1)=1
             isthep(i1+1)=1
          else
-            istup(5)=2  
-            istup(6)=1  
+            istup(5)=2
+            istup(6)=1
             istup(7)=1
             mothup(1,6)=3
             mothup(2,6)=0
@@ -2867,7 +2867,7 @@ cccccccccccccccc
             icolup(1,6)=0
             icolup(2,6)=0
             icolup(1,7)=0
-            icolup(2,7)=0   
+            icolup(2,7)=0
             isthep(5)=2
             isthep(6)=1
             isthep(7)=1
@@ -2885,7 +2885,7 @@ cccccccccccccccc
          mres=mmon
          call twobodyinit(1,mres,0d0,0d0)
          nbr=1
-         br(1)=1d0     
+         br(1)=1d0
          decays=.true.
          pdgid(5)=90
          pdgid(6)=22
@@ -2907,7 +2907,7 @@ cccccccccccccccc
          mres=mmon
          call twobodyinit(1,mres,0d0,0d0)
          nbr=1
-         br(1)=1d0     
+         br(1)=1d0
          decays=.true.
          pdgid(5)=90
          pdgid(6)=22
@@ -2930,24 +2930,24 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=91
          pdgid(7)=-91
-         istup(5)=2  
-         istup(6)=1  
+         istup(5)=2
+         istup(6)=1
          istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
          jdahep(1,5)=6
          jdahep(2,5)=7
-         gamma=.true.   
-         nhep=7      
+         gamma=.true.
+         nhep=7
       elseif(proc.eq.72)then
          ndim=6
          pol=4
@@ -2958,17 +2958,17 @@ cccccccccccccccc
          pdgid(5)=93
          pdgid(6)=91
          pdgid(7)=-91
-         istup(5)=2  
-         istup(6)=1  
+         istup(5)=2
+         istup(6)=1
          istup(7)=1
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
-         mothup(2,7)=0 
+         mothup(2,7)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
-         icolup(2,7)=0   
+         icolup(2,7)=0
          isthep(5)=2
          isthep(6)=1
          isthep(7)=1
@@ -2994,8 +2994,8 @@ cccccccccccccccc
          pdgid(11)=1000022
          pdgid(12)=-13
          pdgid(13)=14
-         istup(5)=2  
-         istup(6)=2  
+         istup(5)=2
+         istup(6)=2
          istup(7)=2
          istup(8)=1
          istup(9)=1
@@ -3034,7 +3034,7 @@ cccccccccccccccc
          icolup(1,12)=0
          icolup(2,12)=0
          icolup(1,13)=0
-         icolup(2,13)=0   
+         icolup(2,13)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -3070,8 +3070,8 @@ cccccccccccccccc
          pdgid(11)=1000022
          pdgid(12)=-2
          pdgid(13)=1
-         istup(5)=2  
-         istup(6)=2  
+         istup(5)=2
+         istup(6)=2
          istup(7)=2
          istup(8)=1
          istup(9)=1
@@ -3110,7 +3110,7 @@ cccccccccccccccc
          icolup(1,12)=501
          icolup(2,12)=0
          icolup(1,13)=0
-         icolup(2,13)=501  
+         icolup(2,13)=501
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -3147,8 +3147,8 @@ cccccccccccccccc
          pdgid(11)=1000022
          pdgid(12)=2
          pdgid(13)=-1
-         istup(5)=2  
-         istup(6)=2  
+         istup(5)=2
+         istup(6)=2
          istup(7)=2
          istup(8)=1
          istup(9)=1
@@ -3187,7 +3187,7 @@ cccccccccccccccc
          icolup(1,12)=501
          icolup(2,12)=0
          icolup(1,13)=0
-         icolup(2,13)=501  
+         icolup(2,13)=501
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
@@ -3221,8 +3221,8 @@ cccccccccccccccc
          pdgid(9)=13
          pdgid(10)=1000022
          pdgid(11)=-13
-         istup(5)=2  
-         istup(6)=2  
+         istup(5)=2
+         istup(6)=2
          istup(7)=2
          istup(8)=1
          istup(9)=1
@@ -3239,7 +3239,7 @@ cccccccccccccccc
          mothup(1,10)=5
          mothup(2,10)=0
          mothup(1,11)=5
-         mothup(2,11)=0 
+         mothup(2,11)=0
          icolup(1,6)=0
          icolup(2,6)=0
          icolup(1,7)=0
@@ -3265,7 +3265,7 @@ cccccccccccccccc
          jdahep(2,6)=9
          jdahep(1,7)=10
          jdahep(2,7)=11
-         gamma=.true. 
+         gamma=.true.
          nhep=11
       elseif(proc.eq.82)then
          enew=.true.
@@ -3305,26 +3305,26 @@ cccccccccccccccc
          pdgid(6)=1000022
          pdgid(7)=-13
          pdgid(8)=13
-         istup(5)=2  
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          istup(8)=1
          mothup(1,5)=1
          mothup(2,5)=2
          mothup(1,6)=1
-         mothup(2,6)=2 
+         mothup(2,6)=2
          mothup(1,7)=3
          mothup(2,7)=0
          mothup(1,8)=3
-         mothup(2,8)=0   
+         mothup(2,8)=0
          icolup(1,5)=0
          icolup(2,5)=0
          icolup(1,6)=0
-         icolup(2,6)=0   
+         icolup(2,6)=0
          icolup(1,7)=0
          icolup(2,7)=0
          icolup(1,8)=0
-         icolup(2,8)=0                       
+         icolup(2,8)=0
          gamma=.true.
          nhep=8
          !FIXME!!!
@@ -3342,30 +3342,30 @@ cccccccccccccccc
          pdgid(6)=1000022
          pdgid(7)=-11
          pdgid(8)=11
-         istup(5)=2  
-         istup(6)=1 
-         istup(7)=1  
+         istup(5)=2
+         istup(6)=1
+         istup(7)=1
          istup(8)=1
          mothup(1,5)=1
          mothup(2,5)=2
          mothup(1,6)=1
-         mothup(2,6)=2 
+         mothup(2,6)=2
          mothup(1,7)=3
          mothup(2,7)=0
          mothup(1,8)=3
-         mothup(2,8)=0   
+         mothup(2,8)=0
          icolup(1,5)=0
          icolup(2,5)=0
          icolup(1,6)=0
-         icolup(2,6)=0   
+         icolup(2,6)=0
          icolup(1,7)=0
          icolup(2,7)=0
          icolup(1,8)=0
-         icolup(2,8)=0                       
+         icolup(2,8)=0
          gamma=.true.
          nhep=8
          !FIXME!!!
       endif
-      
+
       return
       end
