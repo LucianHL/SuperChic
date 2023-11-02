@@ -48,7 +48,7 @@ ccc   gg --> rhorho subprocess amplitude
       call mesint(pa,7,cost,out7a)
 
       call wfoctet(mx,2,a28,a28n)
-      call wfoctet(mx,4,a48,a48n)  
+      call wfoctet(mx,4,a48,a48n)
 
       out2=out2*(a28n/a28)
       out3=out3*(a28n/a28)**2
@@ -65,7 +65,7 @@ ccc   gg --> rhorho subprocess amplitude
       out5a=out5a*(a48n/a48)*(a28n/a28)
       out6a=out6a*(a48n/a48)*(a28n/a28)
       out7a=out7a*(a48n/a48)**2
-      
+
       if(dabs(a28n).lt.1d-4)then
          out2=0d0
          out3=0d0

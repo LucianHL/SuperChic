@@ -24,7 +24,7 @@ ccc   diffhg : dhg/dQ^2
       yinc=(1d0-x/4d0)/dble(ytot)
 
       do iy=1,ytot
-        
+
          y=x/4d0+(dble(iy)-0.5d0)*yinc
          xg0=xg(x/4d0/y,qsq)
          xgp=xg(x/4d0/y,qsq+eps)
@@ -43,7 +43,7 @@ ccc   diffhg : dhg/dQ^2
 
          sum=sum+wt*yinc
          sum1=sum1+wt1*yinc
-      
+
       enddo
 
       hg=sum*16d0/pi

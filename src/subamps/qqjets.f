@@ -5,7 +5,7 @@ ccc   gg --> qqbar subprocess amplitude
       double precision normp,u,t,mx,alphas,mq
       complex*16 pp,mm,pm,mp
       integer p
-      
+
       include 'pi.f'
       include 'partonmom2.f'
       include 'zi.f'
@@ -43,7 +43,7 @@ ccc   gg --> qqbar subprocess amplitude
          pm=beta*sintt*(1d0+costt)/(1d0-beta**2*costt**2)
       endif
 
-      normp=8d0*pi*alphas(mx**2)/2d0/dsqrt(3d0)  
+      normp=8d0*pi*alphas(mx**2)/2d0/dsqrt(3d0)
 
       pm=pm*(cphi+zi*sphi)**2
       mp=mp*(cphi-zi*sphi)**2
@@ -52,7 +52,7 @@ ccc   gg --> qqbar subprocess amplitude
       mm=mm*normp
       pm=pm*normp
       mp=mp*normp
-    
+
       return
       end
 

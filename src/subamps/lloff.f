@@ -7,7 +7,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       complex*16 uelb(4),vpos(4),zt2,zt1,zout1,zout2,zout
       integer i1,i2
       integer i,j,l,p
-      
+
       include 'mom.f'
       include 'gmatrices.f'
       include 'gmatrices_comb.f'
@@ -38,16 +38,16 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       q2m(4)=q2(4)
 
       al=0d0
-      
+
       beta=dsqrt(1d0-4d0*mq**2/mx**2)
-      
+
       qsq1=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
      &     -(q(1,3)-q(1,1))**2
       qsq1=-qsq1
       qsq2=(q(4,4)-q(4,2))**2-(q(3,4)-q(3,2))**2-(q(2,4)-q(2,2))**2
      &     -(q(1,4)-q(1,2))**2
       qsq2=-qsq2
-      
+
       if(p.eq.1)then ! ++
          call upb(6,uelb)
          call vp(7,vpos)
@@ -66,16 +66,16 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
      &     -(q1(2)-ppos(2))**2-(q1(1)-ppos(1))**2
       tl=(q2(4)-ppos(4))**2-(q2(3)-ppos(3))**2
      &     -(q2(2)-ppos(2))**2-(q2(1)-ppos(1))**2
-            
+
       do i1=1,4
          do i2=1,4
 
             zout1=0d0
             zout2=0d0
-            
+
       do 900 i=1,4
       do 900 l=1,4
-            
+
          do j=1,4
 
             zt1=uelb(i)*gmatrix_3(i2,j,i1,i,l)*
@@ -84,7 +84,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
             zt2=uelb(i)*gmatrix_3(i1,j,i2,i,l)*
      &           vpos(l)*(q2(j)-ppos(j))
             if(j.lt.4)zt2=-zt2
-            
+
             zout1=zout1+zt1
             zout2=zout2+zt2
 
@@ -104,9 +104,9 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       zout=zout*dsqrt(conv)
 
       zoutarr(p,i1,i2)=zout
-  
+
       enddo
       enddo
-      
+
       return
       end

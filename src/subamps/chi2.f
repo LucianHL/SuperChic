@@ -24,7 +24,7 @@ ccc   gg --> chi_0 subprocess amplitude
          qt1(i)=q1(i)
          qt2(i)=q2(i)
       enddo
-      
+
       do i=1,4
          pboo(i)=-q(i,5)
       enddo
@@ -61,7 +61,7 @@ ccc   gg --> chi_0 subprocess amplitude
       q1q2=(mx**2+qt1sq+qt2sq)/2d0
 
       cchi=dsqrt(pi*mx**3*gamchi0/3d0)
-      
+
       do i=1,3
          qt1(i)=-qt1(i)
          qt2(i)=-qt2(i)
@@ -70,12 +70,12 @@ ccc   gg --> chi_0 subprocess amplitude
       enddo
 
       cpp=(0d0,0d0)
-      
+
       do i=1,4
          do j=1,4
             cpp=cpp+s*qt1(i)*qt2(j)*echi2(p,i,j)-2d0*(qt1(1)*qt2(1)+
      &           qt1(2)*qt2(2)+qt1(3)*qt2(3)-qt1(4)*qt2(4))*
-     &           q1b(i)*q2b(j)*echi2(p,i,j)  
+     &           q1b(i)*q2b(j)*echi2(p,i,j)
          enddo
       enddo
 

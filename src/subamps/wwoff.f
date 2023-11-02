@@ -5,7 +5,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell axial gauge
       complex*16 ep(4),em(4)
       complex*16 ep_em,ep_q1,ep_q2,em_q1,em_q2
      &,pm_ep,pp_em,pp_ep,pm_em
-      complex*16 
+      complex*16
      &     zout
      &     ,ampWWt_fun,ampWWu_fun,ampWWs_fun,
      &     ampaxial_fun
@@ -15,7 +15,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell axial gauge
       double precision alphaEM
       integer i,p,mu,nu
       logical onshell
-      
+
       include 'mom.f'
       include 'gmatrices.f'
       include 'ewpars.f'
@@ -30,10 +30,10 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell axial gauge
       include 'wwpars.f'
 
       onshell=.false.
-      
+
       beta=dsqrt(1d0-4d0*mw**2/mx**2)
 
-      
+
       do i=1,4
          q1(i)=q(i,1)-q(i,3)
          q2(i)=q(i,2)-q(i,4)
@@ -73,12 +73,12 @@ c     endif
          q1(3)=mx/2d0
          q2(4)=mx/2d0
          q2(3)=-mx/2d0
-         
-         
-      endif 
-      
+
+
+      endif
+
       do i=1,4
-            
+
          if(p.eq.1)then         ! ++
             ep(i)=ewp(1,i)
             em(i)=ewm(1,i)
@@ -107,7 +107,7 @@ c     endif
             ep(i)=ewp(3,i)
             em(i)=ewm(3,i)
          endif
-            
+
       enddo
 
 
@@ -133,10 +133,10 @@ c     endif
       ul=(q2(4)-pp(4))**2-(q2(3)-pp(3))**2
      &     -(q2(2)-pp(2))**2-(q2(1)-pp(1))**2
 
-      
+
       n_q1 = n(4)*q1(4)-n(3)*q1(3)-n(2)*q1(2)-n(1)*q1(1)
       n_q2 = n(4)*q2(4)-n(3)*q2(3)-n(2)*q2(2)-n(1)*q2(1)
-      n_pp = n(4)*pp(4)-n(3)*pp(3)-n(2)*pp(2)-n(1)*pp(1) 
+      n_pp = n(4)*pp(4)-n(3)*pp(3)-n(2)*pp(2)-n(1)*pp(1)
       n_pm = n(4)*pm(4)-n(3)*pm(3)-n(2)*pm(2)-n(1)*pm(1)
       n_n = n(4)*n(4) - n(3)*n(3) - n(2)*n(2) - n(1)*n(1)
 
@@ -146,42 +146,42 @@ c     endif
 cccc  Unitary (need to change pol vectors as well though)
 
             if(wgauge.eq.'unitary')then
-            
+
             ampWWt = ampWWt_fun(pp,pm,ep,em,q1,q2,ep_em,ep_q1,ep_q2,
      &           em_q1,em_q2,pp_q1,pp_q2,pm_q1,pm_q2,q1_q2,pp_pm,
      &           qsq1,qsq2,mw,d_,mu,nu,tl,ul)
-            
-            
+
+
             ampWWu = ampWWu_fun(pp,pm,ep,em,q1,q2,ep_em,ep_q1,ep_q2,
      &           em_q1,em_q2,pp_q1,pp_q2,pm_q1,pm_q2,q1_q2,pp_pm,
      &           qsq1,qsq2,mw,d_,mu,nu,tl,ul)
             ampWWs = ampWWs_fun(ep,em,ep_em,d_,mu,nu)
-      
-            
+
+
             zout=ampWWt/(tl-mw**2)+ampWWu/(ul-mw**2)+ampWWs
 
             else
 
 cccc Axial
-            
+
             zout = ampaxial_fun(pp,pm,ep,em,q1,q2,ep_em,ep_q1,ep_q2,
      &           em_q1,em_q2,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul,qsq1,qsq2,
      &           mw,d_,mu,nu,pp_em,pp_ep,n,n_q1,n_q2,n_pp,n_pm,n_n)
 
 
             endif
-            
+
             zout=zout*4d0*pi*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
             zout=zout*dsqrt(conv)
             zout=zout*dsqrt(beta)
 
-            
+
 cx            print*,mu,nu,zout
-            
+
             zoutarr(p,mu,nu)=zout
-            
+
          enddo
       enddo
-            
+
       return
       end

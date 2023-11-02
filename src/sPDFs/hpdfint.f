@@ -19,8 +19,8 @@ ccc   interpolator for skewed pdf
       if(i.eq.0)i=i+1
       if(j.eq.0)j=j+1
 
-cccccccccccc  
-      
+cccccccccccc
+
       m1=(hgint(3,i+1,j)-hgint(3,i,j))/qinc
       tg1=hgint(3,i,j)+m1*(qtsq-hgint(1,i,j))
 
@@ -34,12 +34,12 @@ cccccccccccc
 
       m2=(hgint(4,i+1,j+1)-hgint(4,i,j+1))/qinc
       dtg2=hgint(4,i,j+1)+m2*(qtsq-hgint(1,i,j+1))
-      
+
 ccccccccccccc
 
       mf=(tg2-tg1)/lxinc
       tg=tg1+mf*(x-hgint(2,i,j))
-    
+
       mf=(dtg2-dtg1)/lxinc
       dtg=dtg1+mf*(x-hgint(2,i,j))
 

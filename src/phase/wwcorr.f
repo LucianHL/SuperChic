@@ -227,7 +227,7 @@ ccc   spin correlations in W+W- production (leptonic decays)
          enddo
 
          if(wgauge.eq.'unitary')then
-       
+
          rho_rf(i)=dble(4d0*(2d0*dreal(pf_e*dconjg(paf_e))
      &        +ep_epc*(ml**2-mw**2)/2d0)-4d0*eps)
          rho_rf(i)=rho_rf(i)*3d0/4d0/(mw**2-ml**2/2d0-ml**4/mw**2/2d0)
