@@ -6,7 +6,7 @@ ccc   gg --> qqbarg subprocess amplitude
       complex*16 zout45,zout35,zout13,zout14,zout23,zout24
       double precision mx,alphas,normp
       integer p
-   
+
       include 'partonmom3.f'
       include 'pi.f'
       include 'zi.f'
@@ -28,8 +28,8 @@ ccc   gg --> qqbarg subprocess amplitude
 
          zpp=zout45**3*zout35*zdenp
          zmm=0d0
-         zpm=zout13**3*zout14*zdenm         
-         zmp=zout23**3*zout24*zdenm     
+         zpm=zout13**3*zout14*zdenm
+         zmp=zout23**3*zout24*zdenm
 
         elseif(p.eq.2)then      ! g(+)q(+)qbar(-) final state
 
@@ -42,8 +42,8 @@ ccc   gg --> qqbarg subprocess amplitude
 
          zpp=zout45*zout35**3*zdenp
          zmm=0d0
-         zpm=zout13*zout14**3*zdenm         
-         zmp=zout23*zout24**3*zdenm    
+         zpm=zout13*zout14**3*zdenm
+         zmp=zout23*zout24**3*zdenm
 
         elseif(p.eq.3)then      ! g(-)q(-)qbar(+) final state
 
@@ -53,7 +53,7 @@ ccc   gg --> qqbarg subprocess amplitude
         call prodp(pb,p4,zout24)
         call prodp(pa,p3,zout13)
         call prodp(pa,p4,zout14)
-  
+
         zpp=0d0
         zmm=zout45*zout35**3*zdenm
         zpm=zout23*zout24**3*zdenp

@@ -14,7 +14,7 @@ ccc   gamma gamma --> MM subprocess amplitude
       include 'mom.f'
       include 'norm.f'
       include 'proc.f'
-      
+
       beta=dsqrt(1d0-4d0*mq**2/mx**2)
       gam=mx**2/mq**2
       costt=(t-u)/beta/mx**2
@@ -30,7 +30,7 @@ ccc   gamma gamma --> MM subprocess amplitude
          mm=mm*mx**4/4d0/(t-mq**2)/(u-mq**2)
          pm=4d0*mq/mx*beta*sintt**2/(1d0-beta**2*costt**2)
          mp=4d0*mq/mx*beta*sintt**2/(1d0-beta**2*costt**2)
-         
+
       elseif(p.eq.2)then !--
 
          pp=4d0*mq*(1d0-beta)/mx
@@ -41,7 +41,7 @@ ccc   gamma gamma --> MM subprocess amplitude
          mp=-4d0*mq/mx*beta*sintt**2/(1d0-beta**2*costt**2)
 
       elseif(p.eq.3)then   !+-
-         
+
          pp=0d0
          mm=0d0
          pm=-2d0*beta*sintt*(1d0-costt)/(1d0-beta**2*costt**2)
@@ -60,9 +60,9 @@ ccc   gamma gamma --> MM subprocess amplitude
       normp=normp/32d0/pi/mx**2*beta/4d0
       normp=normp*2d0
       normp=normp*conv
-      if(proc.eq.72)normp=normp*beta**4 
+      if(proc.eq.72)normp=normp*beta**4
       normp=dsqrt(normp)
-      
+
       pm=pm*(cphi+zi*sphi)**2
       mp=mp*(cphi-zi*sphi)**2
 

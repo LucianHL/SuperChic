@@ -11,7 +11,7 @@ ccc   gg --> gg subprocess amplitude
 
       cphi=p1(1)/dsqrt(p1(1)**2+p1(2)**2)
       sphi=p1(2)/dsqrt(p1(1)**2+p1(2)**2)
-      
+
       if(p.eq.1)then            ! ++ final state
          pp=3d0/dsqrt(8d0)*8d0*pi*alphas(mx**2)
          pp=pp*mx**4/u/t

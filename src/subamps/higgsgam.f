@@ -13,7 +13,7 @@ ccc   gamgam --> SM higgs subprocess amplitude
       mm=normh*dsqrt(conv/4d0)
       mp=0d0
       pm=0d0
-      
+
       return
       end
 

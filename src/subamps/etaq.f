@@ -14,7 +14,7 @@ ccc   gg --> eta_{c,b} subprocess amplitude
       q1q2=(mx**2+qt1sq+qt2sq)/2d0
 
       ceta=dsqrt(2d0*pi*mx*gameta)
-      
+
       cpp=(qt1(1)*qt2(2)-qt1(2)*qt2(1))
       cpp=cpp*mx**2/2d0*ceta
       cpp=cpp/q1q2

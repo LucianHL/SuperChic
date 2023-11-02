@@ -6,7 +6,7 @@ ccc   gg --> eta'eta' subprocess amplitude
       double precision ppqqs,ppqg,ppgg,pmqqs,pmqqns
       complex*16 pp,mm,pm,mp
       integer p
- 
+
       include 'mixing.f'
       include 'partonmom2.f'
       include 'zi.f'
@@ -24,7 +24,7 @@ ccccccc
       pp=dcos(thetap1)**2*(ppqqs+ppqg+ppgg)*fpi1**2
       mm=pp
       pm=fpi1**2*dcos(thetap1)**2*pmqqs
-     &+(fpi8**2*dsin(thetap8)**2+fpi1**2*dcos(thetap1)**2)*pmqqns   
+     &+(fpi8**2*dsin(thetap8)**2+fpi1**2*dcos(thetap1)**2)*pmqqns
       mp=pm
 
       pm=pm*(cphi+zi*sphi)**2

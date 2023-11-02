@@ -16,19 +16,19 @@ ccc   gamma gamma --> l+l- subprocess amplitude
       include 'proc.f'
 
 c      print*,1d0/alpha
-      
+
       beta=dsqrt(1d0-4d0*mq**2/mx**2)
       costt=(t-u)/beta/mx**2
 
       cost_test=p1(3)/dsqrt(p1(1)**2+p1(2)**2+p1(3)**2)
 c      print*,costt,cost_test
 c      print*,'beta =',beta,mq,mq/mx
- 
+
 c      costt=cost_test
-     
+
       if(costt.gt.1d0)costt=1d0
       if(costt.lt.-1d0)costt=-1d0
-      
+
       sintt=dsqrt(1d0-costt**2)
 
       if((p1(1)**2+p1(2)**2).gt.0d0)then
@@ -46,7 +46,7 @@ c      costt=cost_test
          mm=mm*mx**4/4d0/(t-mq**2)/(u-mq**2)
          pm=4d0*mq/mx*beta*sintt**2/(1d0-beta**2*costt**2)
          mp=4d0*mq/mx*beta*sintt**2/(1d0-beta**2*costt**2)
-         
+
       elseif(p.eq.2)then !--
 
          pp=4d0*mq*(1d0-beta)/mx
@@ -57,7 +57,7 @@ c      costt=cost_test
          mp=-4d0*mq/mx*beta*sintt**2/(1d0-beta**2*costt**2)
 
       elseif(p.eq.3)then   !+-
-         
+
          pp=0d0
          mm=0d0
          pm=-2d0*beta*sintt*(1d0-costt)/(1d0-beta**2*costt**2)
@@ -94,7 +94,7 @@ c      normp=16d0*pi**2*alpha**2
 
       if(proc.eq.61)normp=normp*dsqrt(3d0)*(2d0/3d0)**2 ! ttbar
       if(proc.eq.76)normp=normp*dsqrt(2d0) ! L + R sleptons
-      
+
       pm=pm*(cphi+zi*sphi)**2
       mp=mp*(cphi-zi*sphi)**2
 
@@ -102,10 +102,10 @@ c      normp=16d0*pi**2*alpha**2
       mm=mm*normp
       pm=pm*normp
       mp=mp*normp
- 
+
 c      pp=0d0
 c      mm=0d0
-      
+
       if(p.eq.1)then
 c         pm=0d0
 c         mp=0d0

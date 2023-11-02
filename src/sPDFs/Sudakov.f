@@ -3,7 +3,7 @@ ccc   calculates Sudakov factor
       implicit double precision (a-z)
       integer i,itot
 
-      include 'pi.f'    
+      include 'pi.f'
 
       lam=0.5d0
       llam=dlog(lam**2)
@@ -16,7 +16,7 @@ ccc   calculates Sudakov factor
       lnktmin=dlog(qtsq)
       llnktmax=dlog(lnktmax-llam)
       llnktmin=dlog(lnktmin-llam)
-      hllnkt=(llnktmax-llnktmin)/dble(itot)    
+      hllnkt=(llnktmax-llnktmin)/dble(itot)
 
       do i=1,itot
 
@@ -34,7 +34,7 @@ ccc   calculates Sudakov factor
          wt=wt*hllnkt
 
          sum=sum+wt
- 
+
       enddo
 
       Tg=dexp(-sum)
@@ -50,5 +50,5 @@ ccc   calculates Sudakov factor
       return
       end
 
-   
-  
+
+

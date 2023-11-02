@@ -9,7 +9,7 @@ ccc   gamgam --> SM higgs subprocess amplitude
       include 'ewpars.f'
       include 'monopar.f'
       include 'proc.f'
-      
+
       game=(2d0-mmon/mpol)**1.5d0*mpol**3d0
       game=game*2d0/mmon**2/alpha**2
       game=game/2d0
@@ -22,11 +22,11 @@ ccc   gamgam --> SM higgs subprocess amplitude
       else
          betags=0d0
       endif
-      
+
       if(proc.eq.70)msq=msq*betags**2
-      
+
       normh=dsqrt(msq)
-      
+
       pp=normh*dsqrt(conv/4d0)
       mm=normh*dsqrt(conv/4d0)
       mp=0d0

@@ -12,7 +12,7 @@ ccc   gg --> ggg subprocess amplitude
       include 'mhvpars.f'
       include 'partonmom3.f'
       include 'ewpars.f'
-      
+
       znorm=dsqrt(24d0)/8d0/8d0
       znorm=znorm*(4d0*dsqrt(2d0))
       znorm=znorm*(4d0*pi*alphas(mx**2))**(1.5d0)
@@ -24,7 +24,7 @@ ccc   gg --> ggg subprocess amplitude
 
       if(p.eq.1)then            ! +++ fs
          call prodp(pa,pb,zout12)
-         
+
          mm=0d0
          pm=0d0
          mp=0d0
@@ -35,8 +35,8 @@ ccc   gg --> ggg subprocess amplitude
          call prodp(p3,p4,zout34)
          call prodm(pa,p5,zout15)
          call prodm(pb,p5,zout25)
-    
-         
+
+
          pp=zdenp*zout34**4
          mm=0d0
          pm=zdenm*zout15**4
@@ -56,7 +56,7 @@ ccc   gg --> ggg subprocess amplitude
          call prodp(p4,p5,zout45)
          call prodm(pa,p3,zout13)
          call prodm(pb,p3,zout23)
- 
+
          pp=zdenp*zout45**4
          mm=0d0
          pm=zdenm*zout13**4
@@ -64,7 +64,7 @@ ccc   gg --> ggg subprocess amplitude
 
       elseif(p.eq.5)then        ! --- fs
          call prodm(pa,pb,zout12)
-         
+
          pp=0d0
          mm=zdenm*zout12**4
          pm=0d0

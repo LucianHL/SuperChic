@@ -12,7 +12,7 @@ ccc   gg --> SM higgs subprocess amplitude
       mm=normh
       mp=0d0
       pm=0d0
-      
+
       return
       end
 

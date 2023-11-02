@@ -12,7 +12,7 @@ ccc   gg --> pipi subprocess amplitude
       include 'zi.f'
       include 'mq.f'
       include 'mixing.f'
- 
+
 cccccc
 
       phi=datan(p1(2)/p1(1))
@@ -35,10 +35,10 @@ ccccccc
       call mesint(p,3,cost,out3)
 
       call wfoctet(mx,2,a28,a28n)
-      
+
       out2=out2*(a28n/a28)
       out3=out3*(a28n/a28)**2
-      
+
       if(dabs(a28n).lt.1d-4)then
          out2=0d0
          out3=0d0
