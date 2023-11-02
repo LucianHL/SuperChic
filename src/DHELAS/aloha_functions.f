@@ -551,11 +551,6 @@ c
       integer nhel, nst
       double complex tc(18)
 
-      double precision rZero, rHalf, rOne, rTwo
-      parameter( rZero = 0.0d0, rHalf = 0.5d0 )
-      parameter( rOne = 1.0d0, rTwo = 2.0d0 )
-
-
       tc(3)=NHEL
       tc(1) = dcmplx(p(0),p(3))*nst
       tc(2) = dcmplx(p(1),p(2))*nst
@@ -810,9 +805,9 @@ c
       double precision p(0:3),vmass,hel,hel0,pt,pt2,pp,pzpt,emp,sqh
       integer nhel,nsv,nsvahl,i
 
-      double precision rZero, rHalf, rOne, rTwo
+      double precision rZero, rHalf, rOne
       parameter( rZero = 0.0d0, rHalf = 0.5d0 )
-      parameter( rOne = 1.0d0, rTwo = 2.0d0 )
+      parameter( rOne = 1.0d0)
 
 
       include 'egam0.f'

@@ -46,9 +46,11 @@ ccccccccc
 ccc   prints histograms
       subroutine histo1(ih,ib,x0,x1,x,w,labin)
       implicit real*8(a-h,o-z)
+      integer ix,iz,iv,ic,ih,ib,il,i,ib1
       character *(*) labin
       integer outl
       character*1 regel(30),blank,star
+      integer io,iu,ii
       dimension h(20,100),hx(20),io(20),iu(20),ii(20)
       dimension y0(20),y1(20),ic(20)
       data regel / 30*' ' /,blank /' ' /,star /'*'/

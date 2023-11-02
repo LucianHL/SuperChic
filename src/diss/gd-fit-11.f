@@ -90,6 +90,7 @@ C      IMPLICIT NONE
 c------------------------------------------------------------------------
       subroutine allm_uncertainty(param,dx,dq2,dW2,cov,dF2,dSigmaTot)
       IMPLICIT DOUBLE PRECISION (A-H, O-Z)
+      integer i,j
       double precision param(23),dx,dW2,dq2,dfd(23),cov(23,23),t,F2P,F2R
       double precision xp,xr,CP,CR,AP,AR,BP,BR,dF2,alpha_em,pi,aprmass,
      c     dsigmatot,sigmatotfac,hbarc2
@@ -279,6 +280,7 @@ c------------------------------------------------------------------
       subroutine covariance(target,cov)
       IMPLICIT DOUBLE PRECISION (A-H, O-Z)
       character*1 target
+      integer i,j
       double precision cov(23,23), covp(23,23),covd(23,23)
       data covp/
      c 0.557E-03,-0.451E-02,-0.200E-04,-0.316E-02, 0.000E+00,-0.505E-04,

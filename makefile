@@ -16,7 +16,7 @@ OBJ_PATH = $(PWD)/obj/
 $(shell mkdir -p lib/)
 
 # FFLAGS 	= -fno-automatic -fno-f2c -O2 -g  -I$(INCPATH) 
-FFLAGS 	= -fno-automatic -fno-f2c -fPIC -O2 -g  -I$(INCPATH)
+FFLAGS 	= -fno-automatic -fno-f2c -fPIC -O2 -g  -I$(INCPATH) -fimplicit-none -Wall -Wextra -Wno-unused-dummy-argument
 
 DIRS	 =	$(SOURCEDIR)/int:\
 		$(SOURCEDIR)/main:\
