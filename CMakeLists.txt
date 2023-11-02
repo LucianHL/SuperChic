@@ -98,7 +98,7 @@ list(TRANSFORM Mainf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/main/")
 set(sPDFsf calchg.f hpdfint.f calcsud.f sudint.f sPDF.f )
 list(TRANSFORM sPDFsf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/sPDFs/")
 
-set(Unwf unweight.f headerlhe.f hepmcfunc.f unweight_q.f unwprint_q.f 
+set(Unwf unweight.f headerlhe.f  unweight_q.f unwprint_q.f 
          unwprint.f unweight.f )
 list(TRANSFORM Unwf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/unw/")
          

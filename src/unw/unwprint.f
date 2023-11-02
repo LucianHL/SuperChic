@@ -2,7 +2,7 @@ ccc   randomizes order of VEGAS unweighted events and
 ccc   prints nev events to record
       subroutine unwprint
       implicit double precision(a-y)
-      integer i,j,k,l,m,n
+      integer i,j,k,l,m
       integer evfill(2000000)
 
       include 'pdg.f'
@@ -19,8 +19,6 @@ ccc   prints nev events to record
       include 'beam.f'
       include 'mion.f'
       include 'x.f'
-      include 'vertex.f'
-      include 'pvert.f'
       include 'rech.f'
       include 'ion.f'
 
@@ -82,46 +80,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &              -pup(2,4)**2-pup(1,4)**2))
             endif
 
-cccccc incoming proton vertices
-
-            call vertinc(1,barv,vert,orph,nout,momv,statv,pdgv,massv)
-            call vertinc(2,barv,vert,orph,nout,momv,statv,pdgv,massv)
-
-cccccccccc Central production vertex
-
-            call vertcent(3,barv,vert,orph,nout,momv,statv,pdgv,massv)
-
-ccccccccc Outgoing vertices
-
-            nvert=3
-            mv1=0
-            mv2=0
-            
-            do m=6,nup+2
-               
-               vert(nvert+1)=nvert+1
-               orph(nvert+1)=0
-               nout(nvert+1)=0
-               
-               if(mothup(1,m).eq.mv1.and.mothup(2,m).eq.mv2)then
-                  ip=ip+1
-                  call passign(m,ip,nvert,nout,barv,pdgv,momv,
-     &                 massv,statv)                  
-               else
-                  mv1=mothup(1,m)
-                  mv2=mothup(2,m)
-                  ip=1
-                  call passign(m,ip,nvert+1,nout,barv,pdgv,momv,
-     &                 massv,statv)
-                  nvert=nvert+1
-               endif
-                  
-            enddo
-
-ccccccccc            
-
-            call vertidscan(nvert,orph,nout,barv)   ! Assign vertex barcodes
-                        
             scalup=mx
             aqcdup=alphas(mx**2)
             aqedup=alpha
@@ -139,17 +97,6 @@ ccccccccc
             
          endif
 
- 51      format(A1,' ',I0,' ',I0,' ',E15.9,' ',E15.9,' ',E15.9,' ',I0
-     &        ,' ',I0
-     &        ,' ',I0,' ',I0,' ',I0,' ',I0,' ',I0,' ')
- 52      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9,' '
-     &        ,E15.9,' ',E15.9,' ',i0,' ',i0)
- 53      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9,' '
-     &        ,E15.9,' ',i0,' ',i0)
- 54      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9
-     &        ,' ',E15.9,' ',E15.9,' ',i0,' ',E15.9,' ',E15.9,' ',i0
-     &        ,' ',i0,' ',i0)
- 55      format(8a)
 
 ccccccccccccccccccccccccccccccccccccccccccccccc
 ccccc Les Houches
