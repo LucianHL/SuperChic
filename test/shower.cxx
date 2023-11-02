@@ -24,7 +24,7 @@ bool is_semi_exclusive_photon_initiated(int i) {
 
 }
 int main(int argc, char ** argv) {
-  if (argc!=5) return 1;
+  if (argc!=6) return 1;
  Pythia8::Pythia8ToHepMC topHepMC(argv[2]);
   // Generator. We here stick with default values, but changes
   // could be inserted with readString or readFile.
@@ -33,6 +33,7 @@ int main(int argc, char ** argv) {
   // Initialize Les Houches Event File run. List initialization information.
   pythia.readString("Beams:frameType = 4");
   pythia.readString(std::string("Beams:LHEF = ")+argv[1]);
+  if ( std::string(argv[5]) != "dummy" ) {
   pythia.readString("PartonLevel:ISR = off");
   pythia.readString("PartonLevel:MPI = off");
   pythia.readString("PartonLevel:Remnants = off");
@@ -55,6 +56,7 @@ int main(int argc, char ** argv) {
     if (std::string(argv[3]) == "sda") pythia.readString("BeamRemnants:unresolvedHadron = 2");
     if (std::string(argv[3]) == "el") pythia.readString("BeamRemnants:unresolvedHadron = 3");
   }
+}
   
 //BeamRemnants:unresolvedHadron = 0 for double dissociation (dd), 1 for
 //single dissociation (sdb), 2 for single dissociation (sda), 3 for elastic (el).
