@@ -1,4 +1,4 @@
-ccc   integrates bare + screened amplitude over k_t 
+ccc   integrates bare + screened amplitude over k_t
 ccc   (two-photon induced processes)
       subroutine schimcgamion(p1x,p1y,p2x,p2y,outg)
       implicit none
@@ -40,7 +40,7 @@ ccc   (two-photon induced processes)
       nk=s2int*4
 
       del=0.5d0
-      
+
       qtmax=0.5d0
       qtmin=0d0
 
@@ -48,7 +48,7 @@ ccc   (two-photon induced processes)
          if(fAA.eq.'01')then
             xggmin=1d-4         ! 01
          else
-            xggmin=1d-2         ! otherwise 
+            xggmin=1d-2         ! otherwise
          endif
       else
          xggmin=1d-2            ! otherwise
@@ -56,12 +56,12 @@ ccc   (two-photon induced processes)
 
       ypmax=dlog(xggmin**2+qtmax**2)
       ypmin=dlog(xggmin**2+qtmin**2)
-      
+
       hphi=2d0*pi/dble(nphi)
 
       hy=(ypmax-ypmin)/dble(nk)
       hqt=qtmax/dble(nk)
-      
+
       zoutg=0d0
 
       do p=1,pol
@@ -72,17 +72,17 @@ ccc   (two-photon induced processes)
       enddo
 
       call wtgengam
- 
+
       if(sfac)then
 
          do jqt=1,nk
 
-            yp=((ypmax-ypmin)*xikt4(jqt)+ypmax+ypmin)/2d0                     
+            yp=((ypmax-ypmin)*xikt4(jqt)+ypmax+ypmin)/2d0
 
             qt=dexp(yp)-xggmin**2
             tp2=qt
             qt=dsqrt(dabs(qt))
- 
+
             sc=screeningionint(qt)
 
 
@@ -90,15 +90,15 @@ ccc   (two-photon induced processes)
             zouttest1=0d0
 
             do jphi=1,nphi
-               
+
                phiq=pi*(xiphi4(jphi)+1d0)
-               
+
                tpx=qt*dcos(phiq)
                tpy=qt*dsin(phiq)
-               
+
                wt=(tp2+xggmin**2)/2d0*(ypmax-ypmin)/2d0*pi
-               wt=wt*wiphi4(jphi)*wikt4(jqt) 
-      
+               wt=wt*wiphi4(jphi)*wikt4(jqt)
+
                p1xp=p1x-tpx
                p1yp=p1y-tpy
                t12=p1xp**2+p1yp**2
@@ -115,11 +115,11 @@ ccc   (two-photon induced processes)
                   call formfacgamionp(1,t12,t22,x00p)
                   call formfacgamionp(2,t12,t22,x00p2)
                endif
-               
+
            do p=1,pol
 
               if(offshell)then
-                 
+
                  call formfacgamoff_ion_surv(p,p1xp,p1yp,p2xp,p2yp
      &                ,zout1)
                  zout=zout1
@@ -131,16 +131,16 @@ ccc   (two-photon induced processes)
               else
 
                  x0(p)=x00p
-                 
+
                  zout=-0.5d0*(ppa(p)+mma(p))*(p1xp*p2xp+p1yp*p2yp)
      &                -0.5d0*zi*(ppa(p)-mma(p))*(p1xp*p2yp-p2xp*p1yp)
      &                +0.5d0*(p1xp*p2xp-p1yp*p2yp
      &                +zi*(p1xp*p2yp+p1yp*p2xp))*mpa(p)
      &                +0.5d0*(p1xp*p2xp-p1yp*p2yp
      &                -zi*(p1xp*p2yp+p1yp*p2xp))*pma(p)
-                 
+
                  zout=zout*2d0
-                 
+
                  outg(p)=outg(p)+x0(p)*wt
      &                *sc*zout
 
@@ -154,13 +154,13 @@ ccc   (two-photon induced processes)
 
               endif
 
-              
+
            enddo
 
         enddo
 
       enddo
-      
+
       endif
 
       t11=p1x**2+p1y**2
@@ -173,7 +173,7 @@ ccc   (two-photon induced processes)
          call formfacgamionp(1,t11,t22,x00p)
          call formfacgamionp(2,t11,t22,x00p2)
       endif
-         
+
       do p=1,pol
 
          if(offshell)then
@@ -182,7 +182,7 @@ ccc   (two-photon induced processes)
 
             if(ionbreakup)then
                if(sfac)then
-                  if(fAA.eq.'00')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases               
+                  if(fAA.eq.'00')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases
                      outg(p)=outg(p)+zoutoff2
                   endif
                else
@@ -200,7 +200,7 @@ ccc   (two-photon induced processes)
      &           -0.5d0*zi*(ppa(p)-mma(p))*(p1x*p2y-p2x*p1y)
      &           +0.5d0*(p1x*p2x-p1y*p2y+zi*(p1x*p2y+p1y*p2x))*mpa(p)
      &           +0.5d0*(p1x*p2x-p1y*p2y-zi*(p1x*p2y+p1y*p2x))*pma(p)
-            
+
             if(ionbreakup)then
                if(sfac)then
                   if(fAA.eq.'00')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases
@@ -212,15 +212,15 @@ ccc   (two-photon induced processes)
             else
                outg(p)=outg(p)+zout*x00p*2d0
             endif
-         
+
             if(cdabs(zout*x00p*2d0).lt.cdabs(outg(p))*del)
      &           outg(p)=zout*x00p*2d0
-            
+
             dbl=cdabs(outg(p))
             if(dabs(x00p2).lt.cdabs(zoutg)*del)zoutg=x00p2
             dbl=dsqrt(dbl**2+cdabs(zoutg+x00p2)**2*pincarr(p))
             outg(p)=dbl
-         
+
          endif
 
       enddo

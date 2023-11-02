@@ -2,7 +2,7 @@
       implicit none
       double precision tpint,rmin,rmax,rbin,r,ri,m,del
       integer it,ia
-      
+
       include 'tppars.f'
       tpint=0.0d0
 
@@ -14,10 +14,10 @@
          if(ia.eq.2)tpint=tparr(3,1)
          return
       endif
-      
+
       r=dlog(ri)
       r=r-rmin
-      
+
       if(ri.gt.dexp(rmax))then
          tpint=0d0
       else
@@ -31,6 +31,6 @@
          del=r-tparr(1,it+1)+rmin
          tpint=m*del+tparr(ia+1,it+1)
       endif
-         
+
       return
       end

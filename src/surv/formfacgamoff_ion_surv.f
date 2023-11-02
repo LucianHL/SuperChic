@@ -7,7 +7,7 @@ ccccc EPA form factors (proton)
       double precision out,out22,f2
       double precision q1(2),q2(2)
       integer p,i,j
- 
+
       include 'photo.f'
       include 'mp.f'
       include 'pi.f'
@@ -27,17 +27,17 @@ ccccc EPA form factors (proton)
       include 'mion.f'
 
       q0=0.71d0
-      
+
       t1=q1x**2+q1y**2
       t2=q2x**2+q2y**2
-      
+
 c      qsq=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
 c     &     -(q(1,3)-q(1,1))**2
 c      qsq=-qsq
 c      qsqp=(q(4,4)-q(4,2))**2-(q(3,4)-q(3,2))**2-(q(2,4)-q(2,2))**2
 c     &     -(q(1,4)-q(1,2))**2
 c      qsqp=-qsqp
-      
+
       q1(1)=q1x
       q1(2)=q1y
       q2(1)=q2x
@@ -56,32 +56,32 @@ c       qsqp=-qsqp
 
 c       qsq=qsq*(1d0-qsq*mp**2/4d0/s**2/xb1**2/(1d0-x1))
 c       qsqp=qsqp*(1d0-qsqp*mp**2/4d0/s**2/xb2**2/(1d0-x2))
-       
+
 ccccccccc
 
-       
+
        f2=1d0/(1d0+qsq/q0)**2
        f2=f2*tpint(1,dsqrt(qsq))
        f2=f2**2
-       
+
 
        ww1=2d0*f2/qsq
        ww1pa=0d0
-      
+
 cccccccccc
-       
+
        f2=1d0/(1d0+qsqp/q0)**2
        f2=f2*tpint(1,dsqrt(qsqp))
        f2=f2**2
-       
+
        ww2=2d0*f2/qsqp
        ww2pa=0d0
-       
+
 ccccccccc
 
 c      if(io.eq.2)goto 111
-      
-      zout22=0d0               
+
+      zout22=0d0
 
       do i=1,2
          do j=1,2
@@ -91,10 +91,10 @@ c      if(io.eq.2)goto 111
       enddo
 
       out22=dsqrt(ww1*ww2)
-      zout22=zout22*out22      
+      zout22=zout22*out22
 
 c      if(io.eq.1)goto 222
-      
+
 c 111  zout11=0d0
 c      do i=1,4
 c         do j=1,4
@@ -125,10 +125,10 @@ c      enddo
 
 c      out12=ww1pa*ww2
 c      zout12=zout12*out12
-      
+
       zout12=0d0
 
-      
+
 c      zout21=0d0
 c      do i=1,2
 c         do j=1,2
@@ -141,7 +141,7 @@ c               zout21=zout21+zt
 c            enddo
 c         enddo
 c      enddo
-      
+
 c      out21=ww1*ww2pa
 c      zout21=zout21*out21
 
@@ -155,7 +155,7 @@ c      elseif(io.eq.2)then
 c         zout=dsqrt(cdabs(zout11)+cdabs(zout12)+cdabs(zout21))
 c         zout=dsqrt(cdabs(zout11-zout12-zout21))
 c      endif
-      
+
       out=dsqrt(cdabs(zout22)**2+cdabs(zout11)+cdabs(zout12)
      &     +cdabs(zout21))
 
@@ -164,8 +164,8 @@ c      endif
 
       zout=zout*dsqrt(alphaEM(qsq)*alphaEM(qsqp)/qsq/qsqp)
       zout=zout*dsqrt(4d0)        ! rho normalisation
- 
+
 c      print*,alphaEM(qsq),1d0/137d0
-     
+
       return
       end

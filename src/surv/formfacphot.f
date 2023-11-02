@@ -11,12 +11,12 @@ ccccc between eigenstates
       include 'photo.f'
       include 'mp.f'
       include 'pi.f'
-      
+
       if(prot.eq.1)then
          wt=dexp(-bpsi*t2)
          qsq=(xgam**2*mp**2+t1)/(1d0-xgam)
       else
-         wt=dexp(-bpsi*t1) 
+         wt=dexp(-bpsi*t1)
          qsq=(xgam**2*mp**2+t2)/(1d0-xgam)
       endif
 
@@ -31,7 +31,7 @@ ccccc between eigenstates
       ge=(a0e/(1d0+qsq/a1e)**2+(1d0-a0e)/(1d0+qsq/a2e)**2)**2
       gm=(a0m/(1d0+qsq/a1m)**2+(1d0-a0m)/(1d0+qsq/a2m)**2)**2
       gm=gm*7.78d0
-      
+
       fe=(4d0*mp**2*ge+qsq*gm)/(4d0*mp**2+qsq)
       fm=gm
 

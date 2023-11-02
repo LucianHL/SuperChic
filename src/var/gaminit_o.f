@@ -1,10 +1,10 @@
       subroutine gaminit
       implicit double precision (a-z)
       integer i,j,k
-      
+
       include 'gmatrices.f'
       include 'zi.f'
-      
+
 
       do i=1,4
          do j=1,4
@@ -44,6 +44,6 @@
       ident(2,2)=1d0
       ident(3,3)=1d0
       ident(4,4)=1d0
-      
+
       return
       end

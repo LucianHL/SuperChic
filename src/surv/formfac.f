@@ -14,7 +14,7 @@ ccc   Pomeron -- diffrative eignstate i form factor
 
       do i1=1,nch
          do i2=1,nch
-            
+
             wt=gaa(i1)*gaa(i2)*pp0(i1)*pp0(i2)/dble(nch)**2
             wt=wt*dexp(-((t1+0.08d0+bb0(i1))*bex(i1))**cc0(i1)+
      &     (bex(i1)*(bb0(i1)+0.08d0))**cc0(i1))
@@ -25,6 +25,6 @@ ccc   Pomeron -- diffrative eignstate i form factor
 
          enddo
       enddo
-      
+
       return
       end

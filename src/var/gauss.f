@@ -1,14 +1,14 @@
       subroutine gaussinit
       implicit none
       integer nkt,nphi,nb,nphib,nphi4,nkt4
-      
+
       include 'nsurv.f'
       include 'gaussvars.f'
 
       nphi4=s2int*4
       nkt4=s2int*4
       nphi=s2int*2
-      nkt=s2int*2      
+      nkt=s2int*2
 
       nphi=s2int*4
       nkt=s2int*4
@@ -17,7 +17,7 @@
       nphib=s2int
 
 c      print*,nphi,nkt,s2int
-      
+
       if(nphi.eq.96)then
          call gauss96(xiphi,wiphi)
       elseif(nphi.eq.64)then
@@ -40,7 +40,7 @@ c      print*,nphi,nkt,s2int
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
          stop
       endif
-      
+
       if(nkt.eq.96)then
          call gauss96(xikt,wikt)
       elseif(nkt.eq.64)then
@@ -86,7 +86,7 @@ c      print*,nphi,nkt,s2int
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
          stop
       endif
-      
+
       if(nkt4.eq.96)then
          call gauss96(xikt4,wikt4)
       elseif(nkt4.eq.64)then
@@ -155,7 +155,7 @@ c      print*,nphi,nkt,s2int
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
          stop
       endif
-         
+
       return
       end
 
@@ -261,7 +261,7 @@ c      print*,nphi,nkt,s2int
       W(47)=   0.00185396078894924657
       W(48)=   0.00079679206555731759
 
-      
+
       DO I=1,48
       XI(I)=-X(49-I)
       WI(I)=W(49-I)
@@ -275,7 +275,7 @@ c      print*,nphi,nkt,s2int
       implicit none
       double precision X(32),W(32),xi(100),wi(100)
       integer i
-     
+
       W( 1)=  0.0486909570091397
       W( 2)=  0.0485754674415034
       W( 3)=  0.0483447622348030
@@ -308,12 +308,12 @@ c      print*,nphi,nkt,s2int
       W(30)=  0.0065044579689784
       W(31)=  0.0041470332605625
       W(32)=  0.0017832807216964
-      
+
       X( 1)=0.0243502926634244
       X( 2)=0.0729931217877990
       X( 3)=0.1214628192961206
       X( 4)=0.1696444204239928
-      X( 5)=0.2174236437400071   
+      X( 5)=0.2174236437400071
       X( 6)=0.2646871622087674
       X( 7)=0.3113228719902110
       X( 8)=0.3572201583376681
@@ -341,14 +341,14 @@ c      print*,nphi,nkt,s2int
       X(30)=0.9910133714767443
       X(31)=0.9963401167719553
       X(32)=0.9993050417357722
-         
+
       DO I=1,32
       XI(I)=-X(33-I)
       WI(I)=W(33-I)
       XI(I+32)=X(I)
       WI(I+32)=W(I)
       enddo
-      
+
       return
       end
 
@@ -356,7 +356,7 @@ c      print*,nphi,nkt,s2int
       implicit none
       double precision X(16),W(16),xi(100),wi(100)
       integer i
-      
+
       X(1)=0.048307665687738316235
       X(2)=0.144471961582796493485
       X(3)=0.239287362252137074545
@@ -402,19 +402,19 @@ c      print*,nphi,nkt,s2int
       implicit none
       double precision X(12),W(12),xi(100),wi(100)
       integer i
-      
-      W(1)=0.1279381953467522  
-      W(2)=0.1258374563468283  
-      W(3)=0.1216704729278034  
-      W(4)=0.1155056680537256  
-      W(5)=0.1074442701159656  
-      W(6)=0.0976186521041139  
-      W(7)=0.0861901615319533  
-      W(8)=0.0733464814110803  
-      W(9)=0.0592985849154368  
-      W(10)=0.0442774388174198  
-      W(11)=0.0285313886289337  
-      W(12)=0.0123412297999872  
+
+      W(1)=0.1279381953467522
+      W(2)=0.1258374563468283
+      W(3)=0.1216704729278034
+      W(4)=0.1155056680537256
+      W(5)=0.1074442701159656
+      W(6)=0.0976186521041139
+      W(7)=0.0861901615319533
+      W(8)=0.0733464814110803
+      W(9)=0.0592985849154368
+      W(10)=0.0442774388174198
+      W(11)=0.0285313886289337
+      W(12)=0.0123412297999872
 
       X(1)=0.0640568928626056
       X(2)=0.1911188674736163
@@ -428,7 +428,7 @@ c      print*,nphi,nkt,s2int
       X(10)=0.9382745520027328
       X(11)=0.9747285559713095
       X(12)=0.9951872199970213
-      
+
       DO I=1,12
       XI(I)=-X(13-I)
       WI(I)=W(13-I)
@@ -437,7 +437,7 @@ c      print*,nphi,nkt,s2int
       enddo
       RETURN
       END
-      
+
       SUBROUTINE gauss16(xi,wi)
       implicit none
       double precision X(16),W(16),xi(100),wi(100)
@@ -486,8 +486,8 @@ c      print*,nphi,nkt,s2int
       X(2)=0.3678314989981802
       X(3)=0.5873179542866175
       X(4)=0.7699026741943047
-      X(5)=0.9041172563704749      
-      X(6)=0.9815606342467192      
+      X(5)=0.9041172563704749
+      X(6)=0.9815606342467192
 
       DO I=1,6
       XI(I)=-X(7-I)
@@ -498,12 +498,12 @@ c      print*,nphi,nkt,s2int
 
       RETURN
       END
-      
+
       SUBROUTINE gauss8(xi,wi)
       implicit none
       double precision X(8),W(8),xi(100),wi(100)
       integer i
-      
+
       X(1)=0.1834346424956498
       X(2)=0.5255324099163290
       X(3)=0.7966664774136267
@@ -520,7 +520,7 @@ c      print*,nphi,nkt,s2int
       XI(I+4)=X(I)
       WI(I+4)=W(I)
       enddo
-      
+
       RETURN
       END
 
@@ -528,7 +528,7 @@ c      print*,nphi,nkt,s2int
       implicit none
       double precision X(6),W(6),xi(100),wi(100)
       integer i
-      
+
       W(1)=0.3607615730481386
       W(2)=0.4679139345726910
       W(3)=0.1713244923791704
@@ -536,14 +536,14 @@ c      print*,nphi,nkt,s2int
       X(1)=0.6612093864662645
       X(2)=0.2386191860831969
       X(3)=0.9324695142031521
-  
+
       DO I=1,3
       XI(I)=-X(4-I)
       WI(I)=W(4-I)
       XI(I+3)=X(I)
       WI(I+3)=W(I)
       enddo
-      
+
       RETURN
       END
 
@@ -556,13 +556,13 @@ c      print*,nphi,nkt,s2int
       W(2)=0.3478548451374538
       X(1)=0.3399810435848563
       X(2)=0.8611363115940526
- 
+
       DO I=1,2
       XI(I)=-X(3-I)
       WI(I)=W(3-I)
       XI(I+2)=X(I)
       WI(I+2)=W(I)
       enddo
-      
+
       RETURN
       END
