@@ -206,7 +206,6 @@ sPDF.o \
 Unwf = \
 unweight.o \
 headerlhe.o \
-hepmcfunc.o \
 unweight_q.o \
 unwprint_q.o \
 unwprint.o \
