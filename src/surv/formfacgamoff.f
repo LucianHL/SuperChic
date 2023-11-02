@@ -11,7 +11,7 @@ ccccc EPA form factors (proton)
       complex*16 zw(9),zoutt
       common/zw/zw
       common/sffull/sf1_g,sf2_g
-      
+
       include 'photo.f'
       include 'mp.f'
       include 'pi.f'
@@ -29,17 +29,17 @@ ccccc EPA form factors (proton)
       include 'surv.f'
       include 'diff.f'
       include 'fbeam.f'
-      
+
       t1=q1x**2+q1y**2
       t2=q2x**2+q2y**2
-      
+
       qsq1=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
      &     -(q(1,3)-q(1,1))**2
       qsq1=-qsq1
       qsq2=(q(4,4)-q(4,2))**2-(q(3,4)-q(3,2))**2-(q(2,4)-q(2,2))**2
      &     -(q(1,4)-q(1,2))**2
       qsq2=-qsq2
-      
+
       q1(1)=q1x
       q1(2)=q1y
       q2(1)=q2x
@@ -53,26 +53,26 @@ ccccccccccc
       if(proc.eq.54.or.proc.eq.55)then ! for WW production only
 
       if(diff.eq.'dd')then  ! interpolate with full amplitude at higher Q^2
-         
+
          if(qsq1.gt.1d0.and.qsq2.gt.1d0.and.mdiss1.gt.dsqrt(3.5d0)
      &        .and.mdiss2.gt.dsqrt(3.5d0))then
 
-            
+
             call MGcross(p,out)
-            
+
             out=out/xb1/xb2     ! normalize so consistent with above
             out=out*dsqrt(1d0-4d0*mw**2/mx**2) ! normalize so consistent with above
 
             zout=dsqrt(dabs(out))
-            
+
             zout=zout*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))*132.5d0
 
             zoutt=zout
-            
+
             return
 
          elseif(qsq1.gt.1d0.and.mdiss1.gt.dsqrt(3.5d0))then
-            
+
             out=0d0
             do qin=1,4
                call SFcalc_SD(p,2,qin,outi)
@@ -83,9 +83,9 @@ ccccccccccc
             zout=dsqrt(dabs(out))
 
             zout=zout*dsqrt(alphaEM(qsq1)*132.5d0)
-            
+
             return
-            
+
          elseif(qsq2.gt.1d0.and.mdiss2.gt.dsqrt(3.5d0))then
 
             out=0d0
@@ -96,11 +96,11 @@ ccccccccccc
             out=out/xb1/xb2     ! normalize so consistent with above
             out=out*dsqrt(1d0-4d0*mw**2/mx**2) ! normalize so consistent with above
             zout=dsqrt(dabs(out))
-            
-            zout=zout*dsqrt(alphaEM(qsq2)*132.5d0) 
-            
+
+            zout=zout*dsqrt(alphaEM(qsq2)*132.5d0)
+
             return
-            
+
          endif
 
       endif
@@ -117,10 +117,10 @@ ccccccccccc
                out=out/xb1/xb2  ! normalize so consistent with above
                out=out*dsqrt(1d0-4d0*mw**2/mx**2) ! normalize so consistent with above
                zout=dsqrt(dabs(out))
-               
-               zout=zout*dsqrt(alphaEM(qsq1)*132.5d0) 
 
-               
+               zout=zout*dsqrt(alphaEM(qsq1)*132.5d0)
+
+
                return
             endif
          else
@@ -134,16 +134,16 @@ ccccccccccc
                out=out*dsqrt(1d0-4d0*mw**2/mx**2) ! normalize so consistent with above
                zout=dsqrt(dabs(out))
 
-               zout=zout*dsqrt(alphaEM(qsq2)*132.5d0) 
-               
+               zout=zout*dsqrt(alphaEM(qsq2)*132.5d0)
+
                return
             endif
          endif
-  
+
       endif
 
       endif
-      
+
 cccccccccc
 
       if(p.eq.1)then            ! gam-gam density matrices
@@ -164,7 +164,7 @@ cccccccccc
          xi1=-qsq1/rts/(q1p(4)-q1p(3))
          xi2=-qsq2/rts/(q2p(4)+q2p(3))
 
-        
+
          do mu=1,4
             do mup=1,4
                fb1=.true.
@@ -172,17 +172,17 @@ cccccccccc
                sf1_g(mu,mup)=SF_g(diss1,mu,mup,xb1,x1t,x1tt,p1,q1p,mx)
                fb1=.false.
                fb2=.true.
-               sf2_g(mu,mup)=SF_g(diss2,mu,mup,xb2,x2t,x2tt,p2,q2p,mx)         
+               sf2_g(mu,mup)=SF_g(diss2,mu,mup,xb2,x2t,x2tt,p2,q2p,mx)
             enddo
          enddo
-         
+
       endif
 
 
 cccccccc
 
       zoutsf=0d0
-      
+
       do mu=1,4
       do mup=1,4
             do nu=1,4
@@ -203,19 +203,19 @@ cccccccc
          enddo
       enddo
 
-      
+
       zoutsf=zoutsf/xb1/xb2  ! multiplied by this later
       zout=dsqrt(cdabs(zoutsf))
 
       zout=zout*dsqrt(alphaEM(qsq1)*alphaEM(qsq2)/qsq1/qsq2)
       zout=zout*dsqrt(4d0)        ! rho normalisation
-      
+
       zw(p)=zout
 
       return
       end
 
-      
+
       function SF_g(diss,mu,mup,xb,x,xt,p1,q1,muf)
       double precision xb,x,xt,muf,qsq1,mdiss
       double precision f1,f2,sf_g
@@ -247,11 +247,11 @@ cccccccc
       mdiss=dsqrt(mdiss)
       call F1F2(diss,xb,qsq1,mdiss,f1,f2)
 
-      
+
       SF_g = dble(-(d_(mu,mup))*f1+(q1t(mu)+xt*p1t(mu))*
      &     (q1t(mup)+xt*p1t(mup))*2d0*xb*f2/qsq1/x**2)
 
-c      SF_g=SF_g*2d0                 ! In def of rho - removed as included above                                                                  
+c      SF_g=SF_g*2d0                 ! In def of rho - removed as included above
 
       return
       end

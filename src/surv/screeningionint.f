@@ -6,7 +6,7 @@
 
       include 'scionpars.f'
       include 'p0Xn.f'
-      
+
       is=2
       if(paavar)is=ifaa+1
 
@@ -17,10 +17,10 @@
          screeningionint=scionarr(is,1)
          return
       endif
-      
+
       r=dlog(ri)
       r=r-rmin
-      
+
       if(ri.gt.dexp(rmax))then
          screeningionint=0d0
       else

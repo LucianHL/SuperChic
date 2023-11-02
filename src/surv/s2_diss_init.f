@@ -5,7 +5,7 @@ ccc   reads Sudakov factor from file
 
       include 's2_diss.f'
       include 'intag.f'
-      
+
       nx=5
       nqt=10
 
@@ -20,7 +20,7 @@ ccc   reads Sudakov factor from file
             read(43,*)siearr(1,ix,iqt),siearr(2,ix,iqt),siearr(3,ix,iqt)
          enddo
       enddo
-         
+
       close(42)
       close(43)
 
@@ -29,6 +29,6 @@ ccc   reads Sudakov factor from file
       read(44,*)s2dd
 
       close(44)
-      
+
       return
       end

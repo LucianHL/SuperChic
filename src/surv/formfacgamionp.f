@@ -20,14 +20,14 @@ ccccc EPA form factors (proton)
 c      mion=mp*az+(an-az)*mn
 c      mion=an*mp
 c      x2i=x2/an
-      
+
       x2i=x2
-      
+
       qsq1=(x1**2*mp**2+t1)/(1d0-x1)
       qsq2=(x2i**2*mion**2+t2)/(1d0-x2i)
-      
+
       q0=0.71d0
-      
+
 ccccccccc
 
       qsqmin=mp**2*x1**2/(1d0-x1)
@@ -41,7 +41,7 @@ ccccccccc
       ge=(a0e/(1d0+qsq1/a1e)**2+(1d0-a0e)/(1d0+qsq1/a2e)**2)**2
       gm=(a0m/(1d0+qsq1/a1m)**2+(1d0-a0m)/(1d0+qsq1/a2m)**2)**2
       gm=gm*7.78d0
-      
+
       fe=(4d0*mp**2*ge+qsq1*gm)/(4d0*mp**2+qsq1)
       fm=gm
 
@@ -61,7 +61,7 @@ cccccccccc
       f2=f2/(t2+x2i**2*mion**2)
       f2=f2*tpint(1,dsqrt(qsq2))
       f2=f2*dsqrt((1d0-x2i)/137d0/pi)
-      
+
       ww2=f2
       ww2p=f2*dsqrt(t2)
 
@@ -70,6 +70,6 @@ cccccccccc
       elseif(io.eq.2)then
          out=dsqrt(ww1pa)*ww2p
       endif
-      
+
       return
       end

@@ -22,7 +22,7 @@ ccc   binning subroutine
       include 'proc.f'
       include 'decay.f'
       include 'pi.f'
-      include 'partonmom3.f'   
+      include 'partonmom3.f'
       include 'x.f'
       include 'diss.f'
       include 'mp.f'
@@ -31,7 +31,7 @@ ccc   binning subroutine
       include 'partonmom2.f'
 
 ccccccccc
-      
+
       if(dps.eq.1)then
          call histo1(1,30,ymin,ymax,yx,wt,'yx')
       else
@@ -53,7 +53,7 @@ ccc   prints histograms
       dimension y0(20),y1(20),ic(20)
       data regel / 30*' ' /,blank /' ' /,star /'*'/
       save
-      
+
       include 'output.f'
       include 'iteration.f'
       include 'lab.f'
@@ -70,15 +70,15 @@ ccc   prints histograms
       ic(ih)=ib
       if(x.lt.x0) goto 11
       if(x.gt.x1 .or. isnan(x) ) goto 12
-    
+
       ix=idint((x-x0)/(x1-x0)*dble(ib))+1
 
-      
+
       h(ih,ix)=h(ih,ix)+w
       if(h(ih,ix).gt.hx(ih)) hx(ih)=h(ih,ix)
       ii(ih)=ii(ih)+1
 
-         
+
       return
    11 iu(ih)=iu(ih)+1
       return
@@ -91,7 +91,7 @@ ccc   prints histograms
      &     Access='append',Status='old')
 
        call length(lab(ih),outl)
-     
+
 
       ib1=ic(ih)
       x01=y0(ih)
@@ -104,13 +104,13 @@ ccc   prints histograms
       write(6,*)'***************************************'
       write(6,21)ii(ih),iu(ih),io(ih)
       write(6,*)'***************************************'
-      
+
    21 format(' inside,under,over : ',3i6)
-  
+
       if(ii(ih).eq.0) goto 28
       write(6,23)
    23 format(35(1h ),3(10h----+----i))
-      do 27 iv=1,ib1       
+      do 27 iv=1,ib1
          z=(dble(iv)-0.5d0)/dble(ib1)*(x11-x01)+x01
          zl=(dble(iv)-1d0)/dble(ib1)*(x11-x01)+x01
          zh=(dble(iv))/dble(ib1)*(x11-x01)+x01
@@ -123,8 +123,8 @@ ccc   prints histograms
    25 if(iz.gt.0.and.iz.le.30) regel(iz)=star
       h(ih,iv)=h(ih,iv)
       write(6,26) z,h(ih,iv)/bsize/dble(it),(regel(i),i=1,30)
-      write(10,*)z,zl,zh,h(ih,iv)/bsize/dble(it)        
-     
+      write(10,*)z,zl,zh,h(ih,iv)/bsize/dble(it)
+
    26 format(1h ,2g15.6,4h   i,30a1,1hi)
       if(iz.gt.0.and.iz.le.30) regel(iz)=blank
    27 continue
@@ -146,6 +146,6 @@ ccc   prints histograms
       io(ih)=0
       iu(ih)=0
       ii(ih)=0
-      return 
+      return
       end
 

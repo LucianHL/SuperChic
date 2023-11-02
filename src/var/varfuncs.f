@@ -50,7 +50,7 @@ c         if(dphi.gt.pi)dphi=dphi-pi
 
       return
       end
-      
+
 
       function phi(i)
       implicit none
@@ -80,7 +80,7 @@ c         if(dphi.gt.pi)dphi=dphi-pi
       implicit none
       double precision phip,sphi,et1
       double precision p(4)
-  
+
       et1=dsqrt(p(1)**2+p(2)**2)
       sphi=p(1)/et1
       phip=dasin(sphi)
@@ -92,7 +92,7 @@ c         if(dphi.gt.pi)dphi=dphi-pi
       function sdot(pa,pb)
       implicit none
       double precision sdot
-      double precision pa(4),pb(4)   
+      double precision pa(4),pb(4)
 
       sdot=(pa(4)*pb(4)-pa(3)*pb(3)-pa(2)*pb(2)-pa(1)*pb(1))
 
@@ -104,7 +104,7 @@ c         if(dphi.gt.pi)dphi=dphi-pi
       double precision pb(4)
 
       zout=pa(4)*pb(4)-pa(3)*pb(3)-pa(2)*pb(2)-pa(1)*pb(1)
-      
+
       return
       end
 
@@ -112,7 +112,7 @@ c         if(dphi.gt.pi)dphi=dphi-pi
       complex*16 pa(4),pb(4),zout
 
       zout=pa(4)*pb(4)-pa(3)*pb(3)-pa(2)*pb(2)-pa(1)*pb(1)
-      
+
       return
       end
 
