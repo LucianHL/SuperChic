@@ -14,8 +14,8 @@ ccc   generates two-body phase space for particles of equal mass mq
       include 'mom.f'
 
       if ( 2d0*mq .GE. mx ) then
-      u=mx**2/4.0d0
-      t=mx**2/4.0d0
+      u=-mx**2/4.0d0
+      t=-mx**2/4.0d0
       ps=0.0d0
       return 
       endif
