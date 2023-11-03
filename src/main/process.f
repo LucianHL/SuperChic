@@ -109,6 +109,7 @@ cccccccccccccccc
       include 'quarkonia.f'
       include 'gamma.f'
       include 'vegas.f'
+      include 'vegaspars.f'
       include 'brs.f'
       include 'jz2.f'
       include 'mixing.f'
