@@ -437,7 +437,7 @@ cccccccccccccccccccccccccc
          if(offshell.eqv..false.)then
             print*,'Dissociation not currently supported'//
      &           ' for this process/beam - STOP'
-            stop
+            STOP 1, QUIET=.TRUE.
          endif
          if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
             print*,'Dissociation currently only supported with LHE'

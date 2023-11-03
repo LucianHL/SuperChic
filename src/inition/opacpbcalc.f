@@ -144,7 +144,7 @@ cccccc
                opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*pX)
             else
                print*,'fAA option not allowed - STOP'
-               stop
+               STOP 1, QUIET=.TRUE.
             endif
 
          endif

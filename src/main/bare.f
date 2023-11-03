@@ -225,7 +225,5 @@ cccccc
 
 c      print*,out(1)
 
-c      stop
-
       return
       end

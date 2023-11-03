@@ -88,7 +88,7 @@
         GO TO 100
        ELSE
         PRINT *,'Something wrong in c0_sp'
-        STOP
+        STOP 1, QUIET=.TRUE.
        ENDIF
       ENDIF
 *
@@ -389,7 +389,7 @@ c      print *,'I YM(I)=',I,YM(I)
 *
       ELSE
        PRINT *,'Combination of arguments is not yet foreseen!'
-       STOP
+       STOP 1, QUIET=.TRUE.
       ENDIF
 *
       RETURN

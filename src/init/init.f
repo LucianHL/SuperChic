@@ -46,12 +46,11 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
       call apfelinit
       call sdincoh
 
-c      stop
 
       call calcsud           ! sudakov factor
       call calchg            ! skewed PDF
 
       print*,'Now run ./superchic'
 
-      stop
+      STOP 1, QUIET=.TRUE.
       end

@@ -47,7 +47,6 @@
       hb=btmax/dble(ntot)
 
 c      write(6,*)dbesj0(0d0)
-c      stop
 
       do n=1,ntot
 
