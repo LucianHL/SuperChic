@@ -284,7 +284,6 @@ c     &           ,nhel(4,ihel),nhel(5,ihel),nhel(6,ihel)
         ENDDO
       ENDIF
 
-c      stop
 
       END
 

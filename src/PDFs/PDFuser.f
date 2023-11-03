@@ -149,12 +149,12 @@ C--   heavy quark masses and alphaS parameters in COMMON block.
 
       if (f.lt.-6.or.f.gt.13) then
          print *,"Error: invalid parton flavour = ",f
-         stop
+         STOP 1, QUIET=.TRUE.
       end if
 
       if (ih.lt.0.or.ih.gt.nhess) then
          print *,"Error: invalid eigenvector number = ",ih
-         stop
+         STOP 1, QUIET=.TRUE.
       end if
 
 C--   Check if the requested parton set is already in memory.
@@ -168,10 +168,10 @@ C--   Check that the character arrays "oldprefix" and "filename"
 C--   are large enough.
          if (lentrim(prefix).gt.len(oldprefix(ih))) then
             print *,"Error in GetOnePDF: increase size of oldprefix"
-            stop
+            STOP 1, QUIET=.TRUE.
          else if (lentrim(prefix)+7.gt.len(filename)) then
             print *,"Error in GetOnePDF: increase size of filename"
-            stop
+            STOP 1, QUIET=.TRUE.
          end if
 
          write(set,'(I2.2)') ih  ! convert integer to string
@@ -183,7 +183,7 @@ C--   Line below can be commented out if you don't want this message.
          if (io.ne.0) then
             print *,"Error in GetOnePDF: can't open ",
      &           filename(1:lentrim(filename))
-            stop
+            STOP 1, QUIET=.TRUE.
          end if
 
 C--   Read header containing heavy quark masses and alphaS values.
@@ -210,7 +210,7 @@ C--   Redistribute grid points if not in usual range.
          end do
          if (mc2.le.qq(1).or.mc2+eps.ge.qq(8)) then
             print *,"Error in GetOnePDF: invalid mCharm = ",mCharm
-            stop
+            STOP 1, QUIET=.TRUE.
          else if (mc2.lt.qq(2)) then
             nqc0=2
             qq(4)=qq(2)
@@ -230,7 +230,7 @@ C--   Redistribute grid points if not in usual range.
          end if
          if (mb2.le.qq(12).or.mb2+eps.ge.qq(17)) then
             print *,"Error in GetOnePDF: invalid mBottom = ",mBottom
-            stop
+            STOP 1, QUIET=.TRUE.
          else if (mb2.lt.qq(13)) then
             nqb0=13
             qq(15)=qq(13)
@@ -251,7 +251,7 @@ C--   might be provided (cf. the MRST2004QED PDFs).
          if (nExtraFlavours.lt.0.or.nExtraFlavours.gt.1) then
             print *,"Error in GetOnePDF: invalid nExtraFlavours = ",
      &           nExtraFlavours
-            stop
+            STOP 1, QUIET=.TRUE.
          end if
 
 C--   Now read in the grids from the grid file.
@@ -282,7 +282,7 @@ C--   Now read in the grids from the grid file.
                end if
                if (io.ne.0) then
                   print *,"Error in GetOnePDF reading ",filename
-                  stop
+                  STOP 1, QUIET=.TRUE.
                end if
             enddo
          enddo
@@ -291,7 +291,7 @@ C--   Check that ALL the file contents have been read in.
          read(33,*,iostat=io) dummy
          if (io.eq.0) then
             print *,"Error in GetOnePDF: not at end of ",filename
-            stop
+            STOP 1, QUIET=.TRUE.
          end if
          close(unit=33)
 
@@ -346,14 +346,18 @@ C--   If mb2 < qsq < mb2+eps, then qsq = mb2+eps.
          ip = 12
       else if (abs(f).ne.6.and.f.ne.12) then
          if (warn.or.fatal) print *,"Error in GetOnePDF: f = ",f
-         if (fatal) stop
+         if (fatal) THEN
+         STOP 1, QUIET=.TRUE.
+         ENDIF
       end if
 
       if (x.le.0.d0.or.x.gt.xmax.or.q.le.0.d0) then
 
          if (warn.or.fatal) print *,"Error in GetOnePDF: x,qsq = ",
      &        x,qsq
-         if (fatal) stop
+         if (fatal) THEN
+         STOP 1, QUIET=.TRUE.
+         ENDIF
 
       else if (abs(f).eq.6.or.f.eq.12) then ! set top quarks to zero
 
@@ -676,7 +680,7 @@ C--   If extrapolation into large q AND small x:
          end if
       else
          print *,"Error in ExtrapolatePDF"
-         stop
+         STOP 1, QUIET=.TRUE.
       end if
 
       ExtrapolatePDF = z

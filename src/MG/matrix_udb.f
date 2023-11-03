@@ -365,7 +365,6 @@ C     BEGIN CODE
 C     ----------
 
 C      print*,mdl_mw
-C      stop
 
 C     ----------
 C     BEGIN CODE

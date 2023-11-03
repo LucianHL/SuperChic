@@ -439,7 +439,7 @@ cccccccccccccccccccccccccc
          if(offshell.eqv..false.)then
             print*,'Dissociation not currently supported'//
      &           ' for this process/beam - STOP'
-            stop
+            STOP 1, QUIET=.TRUE.
          endif
          if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
             print*,'Dissociation currently only supported with LHE'
@@ -481,7 +481,7 @@ ccccccccccccccccccccccccc
          if(sfaci)then
             print*,'Error : must have sfaci = .false. for initial-state
      &electrons'
-            stop
+            STOP 1, QUIET=.TRUE.
          endif
       endif
 
@@ -937,5 +937,5 @@ cccccccccccccccc
       call cpu_time(t2)
       print*,'time elapsed = ', t2, ' s'
 
-      stop
+      STOP 1, QUIET=.TRUE.
       end

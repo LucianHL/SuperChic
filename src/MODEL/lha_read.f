@@ -205,7 +205,7 @@ c +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
       if(.not.fopened) then
          write(*,*) 'Error: Could not open file',param_name
          write(*,*) 'Exiting'
-         stop
+         STOP 1, QUIET=.TRUE.
       endif
 
       ! Try to open log file
@@ -398,7 +398,7 @@ c        write(*,*) 'read model file ',tempname
         if (i.eq.5)then
            write(*,*) 'Warning: file ',filename,
      &  ' not found in the parent directories!(lha_read)'
-           stop
+           STOP 1, QUIET=.TRUE.
         endif
       enddo
 
