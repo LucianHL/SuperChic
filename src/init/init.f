@@ -52,5 +52,4 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       print*,'Now run ./superchic'
 
-      STOP 1, QUIET=.TRUE.
       end
