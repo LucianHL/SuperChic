@@ -759,7 +759,7 @@ c construct eps0
            end do
         else
            write(stdo,*) 'invalid helicity in TXXXXX'
-           STOP 1, QUIET=.TRUE.
+           STOP 1
         end if
       end if
 
