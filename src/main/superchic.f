@@ -936,6 +936,4 @@ cccccccccccccccc
 
       call cpu_time(t2)
       print*,'time elapsed = ', t2, ' s'
-
-      STOP 1, QUIET=.TRUE.
       end
