@@ -1,5 +1,6 @@
 ccc   initialises number of histograms
       subroutine inithist(nhist)
+      implicit none
       integer nhist,i
 
       do i=1,nhist
