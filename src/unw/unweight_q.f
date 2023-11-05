@@ -15,7 +15,7 @@ ccc   writes event information to array for unweighted generation
       include 'diff.f'
       include 'pdg.f'
 
-      if(wt/wmax.gt.r)then
+      if (wt.gt.r*wmax) then
 
          evnum=evnum+1
 
