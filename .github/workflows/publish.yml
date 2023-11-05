@@ -111,8 +111,7 @@ jobs:
       run : |
          brew install wget coreutils gcc
          brew tap davidchall/hep
-         brew install hepmc3 pythia8 lhapdf git gsed
-         git clone https://github.com/scarrazza/apfel.git  && cd  apfel && FC=gfortran-13 ./configure  --disable-pywrap  && make && make install && cd  ../ && rm -rf apfel
+         brew install hepmc3 pythia8 lhapdf git gsed apfel
          mkdir -p obj lib
          gsed -i 's/gfortran/gfortran-13/g' makefile
          gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile
