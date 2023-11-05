@@ -439,7 +439,7 @@ cccccccccccccccccccccccccc
          if(offshell.eqv..false.)then
             print*,'Dissociation not currently supported'//
      &           ' for this process/beam - STOP'
-            STOP 1, QUIET=.TRUE.
+            STOP 1
          endif
          if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
             print*,'Dissociation currently only supported with LHE'
@@ -481,7 +481,7 @@ ccccccccccccccccccccccccc
          if(sfaci)then
             print*,'Error : must have sfaci = .false. for initial-state
      &electrons'
-            STOP 1, QUIET=.TRUE.
+            STOP 1
          endif
       endif
 

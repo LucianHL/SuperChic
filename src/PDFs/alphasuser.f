@@ -168,40 +168,40 @@ C      IVFNS = 0                 ! fixed flavour-number scheme (FFNS)
 *
       IF ( (IVFNS .EQ. 0) .AND. (NFF .LT. 3) ) THEN
          WRITE (6,*) 'Wrong flavour number for FFNS evolution. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
       IF ( (IVFNS .EQ. 0) .AND. (NFF .GT. 5) ) THEN
          WRITE (6,*) 'Wrong flavour number for FFNS evolution. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
 *
       IF ( NAORD .GT. 3 ) THEN
          WRITE (6,*) 'Specified order in a_s too high. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
 *
       IF ( (IVFNS .NE. 0) .AND. (FR2 .GT. 4.001D0) ) THEN
          WRITE (6,*) 'Too low mu_r for VFNS evolution. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
 *
       IF ( (IVFNS .EQ. 1) .AND. (M20 .GT. MC2) ) THEN
          WRITE (6,*) 'Too high mu_0 for VFNS evolution. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
 *
       IF ( (ASI .GT. 2.D0) .OR. (ASI .LT. 2.D-2) ) THEN
          WRITE (6,*) 'alpha_s out of range. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
 *
       IF ( (IVFNS .EQ. 1) .AND. (MC2 .GT. MB2) ) THEN
          WRITE (6,*) 'Wrong charm-bottom mass hierarchy. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
       IF ( (IVFNS .EQ. 1) .AND. (MB2 .GT. MT2) ) THEN
          WRITE (6,*) 'Wrong bottom-top mass hierarchy. STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       END IF
 *
 

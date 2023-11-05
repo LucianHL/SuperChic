@@ -105,7 +105,7 @@ c   calculates CEP cross section
             if(mmin.lt.2d0)then
                print*,'WARNING: need mmin > 2 GeV for QCD processes'
                print*,'Please edit in input card'
-               STOP 1, QUIET=.TRUE.
+               STOP 1
             endif
          endif
          if(mmax.gt.rts)mmax=rts
@@ -700,7 +700,7 @@ ccccccccc
                 call schimcphotionp(pt1x,pt1y,pt2x,pt2y,wt)
              elseif(beam.eq.'ion')then
                 print*,'Photoproduction not currently available for AA'
-                STOP 1, QUIET=.TRUE.
+                STOP 1
              endif
           elseif(gamma)then
              if(beam.eq.'prot'.or.beam.eq.'el')then
