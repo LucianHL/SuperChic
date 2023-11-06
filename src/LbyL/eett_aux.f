@@ -700,7 +700,7 @@ C
          WRITE(*,*)' Li3 called with X = ',X
          WRITE(*,*)' This should lie between 0 and 1 !!!'
          WRITE(*,*)' The program stops right here !!!'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       ENDIF
       IF (X.LT.0.5D0) THEN
          IF (X.GT.0.0D0) THEN
@@ -766,7 +766,7 @@ C
          WRITE(*,*)' TRIS12 called with X = ',X
          WRITE(*,*)' This should lie between 0 and 1 !!!'
          WRITE(*,*)' The program stops right here !!!'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       ENDIF
       IF (X.LT.0.5D0) THEN
          IF (X.GT.0.0D0) THEN

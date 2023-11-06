@@ -38,7 +38,7 @@ c      print*,nphi,nkt,s2int
          call gauss4(xiphi,wiphi)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       endif
 
       if(nkt.eq.96)then
@@ -61,7 +61,7 @@ c      print*,nphi,nkt,s2int
          call gauss4(xikt,wikt)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       endif
 
       if(nphi4.eq.96)then
@@ -84,7 +84,7 @@ c      print*,nphi,nkt,s2int
          call gauss4(xiphi4,wiphi4)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       endif
 
       if(nkt4.eq.96)then
@@ -107,7 +107,7 @@ c      print*,nphi,nkt,s2int
          call gauss4(xikt4,wikt4)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       endif
 
       if(nb.eq.96)then
@@ -130,7 +130,7 @@ c      print*,nphi,nkt,s2int
          call gauss4(xib,wib)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       endif
 
       if(nphib.eq.96)then
@@ -153,7 +153,7 @@ c      print*,nphi,nkt,s2int
          call gauss4(xiphib,wiphib)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
-         STOP 1, QUIET=.TRUE.
+         STOP 1
       endif
 
       return
