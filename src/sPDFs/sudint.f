@@ -21,8 +21,8 @@ ccc   interpolator for Sudakov factor
       if(i.eq.0)i=i+1
       if(j.eq.0)j=j+1
 
-cccccccccccc  
-      
+cccccccccccc
+
       m1=(tgint(3,i+1,j)-tgint(3,i,j))/qinc
       tg1=tgint(3,i,j)+m1*(qtsq-tgint(1,i,j))
 
@@ -34,7 +34,7 @@ cccccccccccc
 
       m2=(tgint(4,i+1,j+1)-tgint(4,i,j+1))/qinc
       dtg2=tgint(4,i,j+1)+m2*(qtsq-tgint(1,i,j+1))
-      
+
 ccccccccccccc
 
       mf=(tg2-tg1)/minc

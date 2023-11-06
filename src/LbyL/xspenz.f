@@ -20,7 +20,7 @@
         XSPENZ = SPENC(X)
       END IF
       END
- 
+
       FUNCTION SPENC(X)
       COMPLEX*16 X,SUM,Z,Z2,SPENC
       Z=-CDLOG(1D0-X)
@@ -48,6 +48,7 @@ C---------------------------------------------------------------------C
 C       20.07.83    UE 20.08.85                                       C
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 C       COMPLEX*16 XSPENZ,W,SUM,Z,U
+        INTEGER K,II
         COMPLEX*16 CSPEN ,W,SUM,Z,U
         REAL*8 RZ,AZ,A1
         REAL*8 B(9)
@@ -122,7 +123,6 @@ c      II = 9
 31    CONTINUE
       CSPEN=SUM+3.28986813369645287D0
      *               +.5D0*CDLOG(Z-1D0)**2-CDLOG(Z)*CDLOG(1D0-Z)
-50    CONTINUE
       RETURN
 40    CSPEN=DCMPLX(1.64493406684822643D0,0D0)
         RETURN

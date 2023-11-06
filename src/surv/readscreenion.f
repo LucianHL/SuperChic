@@ -13,7 +13,7 @@ ccc   read in ion form factor from file
       lqmax=dlog(qmax)
 
       itot=1900
-      
+
       call length(intag,outl)
 
       open(40,file='inputs/screeningion'//intag(1:outl)//'.dat')
@@ -25,7 +25,7 @@ ccc   read in ion form factor from file
          qt=dexp(lq)
 
          read(40,*)scionarr(1,i),scionarr(2,i)
-         
+
       enddo
 
       close(40)
@@ -34,4 +34,4 @@ ccc   read in ion form factor from file
       end
 
 
-  
+

@@ -3,7 +3,7 @@ ccc   prints out header information
       subroutine header
       implicit none
       integer outl,outl1
-    
+
       include 'gencuts.f'
       include 'range.f'
       include 'unweighted.f'
@@ -17,7 +17,7 @@ ccc   prints out header information
       include 'procn.f'
       include 'vars.f'
       include 'pdg.f'
-      include 'jetalg.f'     
+      include 'jetalg.f'
       include 'record.f'
       include 'output.f'
       include 'nsurv.f'
@@ -27,7 +27,7 @@ ccc   prints out header information
       include 'rech.f'
       include 'diff.f'
       include 'quarkonia.f'
-      
+
       call length(procn,outl)
 
       print*,'***********************************************'
@@ -41,9 +41,9 @@ ccc   prints out header information
       print*,'* For details see                             *'
       print*,'*                                             *'
       print*,'* arXiv 2303.04826 (ion dissociation)         *'
-      print*,'* arXiv 2201.08403 (WW updates)               *'   
-      print*,'* arXiv 2007.12704 (v4 updates)               *'  
-      print*,'* arXiv 1812.04886 (SUSY)                     *'   
+      print*,'* arXiv 2201.08403 (WW updates)               *'
+      print*,'* arXiv 2007.12704 (v4 updates)               *'
+      print*,'* arXiv 1812.04886 (SUSY)                     *'
       print*,'* arXiv 1810.06567                            *'
       print*,'* arXiv 1508.02718                            *'
       print*,'* arXiv 1405.0018 (review)                    *'
@@ -93,7 +93,7 @@ ccc   prints out header information
       print*,'**********************************************************
      &**************'
       print*,''
-      print*,'********************* Integration parameters  ******************
+      print*,'********************* Integration parameters  ************
      &**************'
       write(*,97)' *',ncall,' :  Preconditioning calls'
       write(*,97)' *',itmx,' :  Preconditioning iterations'
@@ -185,7 +185,7 @@ ccc   prints out header information
      &**************'
       write(*,99)' *',rjet,' :  Jet Radius'
       call length(jalg,outl)
-      write(*,96)' *',jalg(1:outl),' :  Jet alg.'       
+      write(*,96)' *',jalg(1:outl),' :  Jet alg.'
       print*,'**********************************************************
      &**************'
       print*,''

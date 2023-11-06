@@ -1,7 +1,7 @@
 ccc   read in screened amplitude from file
       subroutine readscreen
       implicit none
-      double precision ksqma,inck,lgksq,lginck,lgskq,ksqmin,
+      double precision ksqma,inck,lgksq,lginck,ksqmin,
      &     ksq
       integer ns,i1,i2,ib,outl
 
@@ -51,4 +51,4 @@ ccc   read in screened amplitude from file
       end
 
 
-  
+

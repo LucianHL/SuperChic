@@ -19,6 +19,7 @@ C WHEN AEPS1=REPS1=0. THEN CALCULATION WITH THE CONSTANT STEP H1
 C
       IMPLICIT REAL*8(A-H,O-Z)
       DIMENSION F(7),P(5)
+      INTEGER K
       H=DSIGN(H1,B1-A1)
       S=DSIGN(1.D0,H)
       A=A1
@@ -98,7 +99,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE SIMPT(A1,B1,H1,REPS1,AEPS1,FUNCT,X,AI,AIH,AIABS)
 C SIMPT
 C A1,B1 -THE LIMITS OF INTEGRATION
@@ -119,6 +120,7 @@ C WHEN AEPS1=REPS1=0. THEN CALCULATION WITH THE CONSTANT STEP H1
 C
       IMPLICIT REAL*8(A-H,O-Z)
       DIMENSION F(7),P(5)
+      INTEGER K      
       H=DSIGN(H1,B1-A1)
       S=DSIGN(1.D0,H)
       A=A1
@@ -198,7 +200,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE SIMPU(A1,B1,H1,REPS1,AEPS1,FUNCT,X,AI,AIH,AIABS)
 C SIMPU
 C A1,B1 -THE LIMITS OF INTEGRATION
@@ -218,6 +220,7 @@ C OF INTEGRAL WITH AEPS1
 C WHEN AEPS1=REPS1=0. THEN CALCULATION WITH THE CONSTANT STEP H1
 C
       IMPLICIT REAL*8(A-H,O-Z)
+      INTEGER K
       DIMENSION F(7),P(5)
       H=DSIGN(H1,B1-A1)
       S=DSIGN(1.D0,H)
@@ -298,7 +301,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE SIMPV(A1,B1,H1,REPS1,AEPS1,FUNCT,X,AI,AIH,AIABS)
 C SIMPV
 C A1,B1 -THE LIMITS OF INTEGRATION
@@ -319,6 +322,7 @@ C WHEN AEPS1=REPS1=0. THEN CALCULATION WITH THE CONSTANT STEP H1
 C
       IMPLICIT REAL*8(A-H,O-Z)
       DIMENSION F(7),P(5)
+      INTEGER K      
       H=DSIGN(H1,B1-A1)
       S=DSIGN(1.D0,H)
       A=A1
@@ -398,19 +402,19 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       SUBROUTINE FDSIMP (AA1,BB1,HH1,REPS1,AEPS1,FUNCT,DFUN,DFUNIN,
      + DUMMY,AI,AIH,AIABS)
 *=======================================================================
 C        B1
-C AI=INT {FUNCT(X)*DDFUN(X)Y}
+C AI=INT {FUNCT(X)*DDFUN(X)Y}
 C        A1
 C A1,B1 -THE LIMITS OF INTEGRATION
 C H1    -AN INITIAL STEP OF INTEGRATION
 C REPS1,AEPS1 - RELATIVE AND ABSOLUTE PRECISION OF INTEGRATION
 C FUNCT -A NAME OF FUNCTION SUBPROGRAM FOR CALCULATION OF INTEGRAND +
 C X - AN ARGUMENT OF THE INTEGRAND
-C DFUNIN - INVERSE ( DFUN ). SHOULD BE DFUNINDFUN(X)Y=X.
+C DFUNIN - INVERSE ( DFUN ). SHOULD BE DFUNINDFUN(X)Y=X.
 C AI - THE VALUE OF INTEGRAL
 C AIH- THE VALUE OF INTEGRAL WITH THE STEP OF INTEGRATION
 C AIABS- THE VALUE OF INTEGRAL FOR MODULE OF THE INTEGRAND
@@ -424,6 +428,7 @@ C WHEN  AEPS1=REPS1=0. THEN CALCULATION WITH THE CONSTANT STEP H1
 C
       IMPLICIT REAL*8(A-H,O-Z)
       DIMENSION F(7),P(5)
+      INTEGER K
       DUM=DUMMY
       H1=(DFUN(BB1)-DFUN(AA1))/(BB1-AA1+1.654876596E-20)*HH1
       A1=DFUN(AA1)
@@ -507,7 +512,7 @@ C
    22 IF(C) 2,4,2
     2 RETURN
       END
- 
+
       FUNCTION SPENCE(X)
 *
       IMPLICIT REAL*8(A-H,O-Z)
@@ -530,7 +535,7 @@ C
       RETURN
 10    SPENCE=-.5D0*LOG(1D0-X)*LOG(X**2/(1D0-X))-F1+FSPENS(1D0/(1D0-X))
       END
- 
+
       FUNCTION FSPENS(X)
 *
       IMPLICIT REAL*8(A-H,O-Z)
@@ -546,17 +551,17 @@ C
       IF(B-TCH)2,2,1
 2     FSPENS=F
       END
- 
+
       DOUBLE PRECISION FUNCTION DDILOG(X)
 *=======================================================================
- 
+
       DOUBLE PRECISION X,Y,T,S,A,PI3,PI6,ZERO,ONE,HALF,MALF,MONE,MTWO
       DOUBLE PRECISION C(0:18),H,ALFA,B0,B1,B2
- 
+      INTEGER I
       DATA ZERO /0.0D0/, ONE /1.0D0/
       DATA HALF /0.5D0/, MALF /-0.5D0/, MONE /-1.0D0/, MTWO /-2.0D0/
       DATA PI3 /3.28986 81336 96453D0/, PI6 /1.64493 40668 48226D0/
- 
+
       DATA C( 0) / 0.42996 69356 08137 0D0/
       DATA C( 1) / 0.40975 98753 30771 1D0/
       DATA C( 2) /-0.01858 84366 50146 0D0/
@@ -576,7 +581,7 @@ C
       DATA C(16) /-0.00000 00000 00006 1D0/
       DATA C(17) / 0.00000 00000 00000 9D0/
       DATA C(18) /-0.00000 00000 00000 1D0/
- 
+
       IF(X .EQ. ONE) THEN
        DDILOG=PI6
        RETURN
@@ -612,7 +617,7 @@ C
        S=MONE
        A=PI6+HALF*LOG(T)**2
       END IF
- 
+
       H=Y+Y-ONE
       ALFA=H+H
       B1=ZERO
@@ -624,12 +629,12 @@ C
       DDILOG=-(S*(B0-H*B2)+A)
       RETURN
       END
- 
+
 c     FUNCTION DLI2(X)
 c     IMPLICIT REAL*8(A-Z)
 c     DLI2=DDILOG(X)
 c     END
- 
+
 c     FUNCTION DLI3(X)
 * This is Li3(x) for x<=1 only!
 c     IMPLICIT REAL*8(A-Z)
@@ -644,7 +649,7 @@ c     ELSE
 c     DLI3=TRILOG(X)
 c     ENDIF
 c     END
- 
+
 c     FUNCTION DS12(X)
 * This is S12(x) for x<=1 only!
 c     IMPLICIT REAL*8(A-Z)
@@ -658,7 +663,7 @@ c     ELSE
 c     DS12=S12(X)
 c     ENDIF
 c     END
- 
+
       DOUBLE PRECISION FUNCTION TRILOG(X)
 C Tsuyoshi Matsuura 1987
 C
@@ -666,6 +671,7 @@ C     TRILOG: Li3   between 0 and 1  !!!
 C
       DOUBLE PRECISION X,S(0:10),L(0:20),U,Z,HELP,Z3
       DOUBLE PRECISION DDILOG
+      INTEGER I
 C
 C     S: COEFFICIENTS OF S1,2
 C     L: COEFFICIENTS OF Li3
@@ -693,7 +699,8 @@ C
          WRITE(*,*)' **************************************'
          WRITE(*,*)' Li3 called with X = ',X
          WRITE(*,*)' This should lie between 0 and 1 !!!'
-         STOP' The program stops right here !!!'
+         WRITE(*,*)' The program stops right here !!!'
+         STOP 1, QUIET=.TRUE.
       ENDIF
       IF (X.LT.0.5D0) THEN
          IF (X.GT.0.0D0) THEN
@@ -722,12 +729,13 @@ c           LI3=-HELP+DLOG(X)*DILOG(X)+0.5D0*DLOG(1D0-X)*DLOG(X)**2+Z3
          ENDIF
       ENDIF
       END
- 
+
       DOUBLE PRECISION FUNCTION TRIS12(X)
 C Tsuyoshi Matsuura 1987
 C
 C     S1,2   between 0 and 1  !!!
 C
+      INTEGER I
       REAL*8 X,S(0:10),L(0:20),U,Z,HELP,Z3
       REAL*8 DDILOG
 C
@@ -757,7 +765,8 @@ C
          WRITE(*,*)' **************************************'
          WRITE(*,*)' TRIS12 called with X = ',X
          WRITE(*,*)' This should lie between 0 and 1 !!!'
-         STOP' The program stops right here !!!'
+         WRITE(*,*)' The program stops right here !!!'
+         STOP 1, QUIET=.TRUE.
       ENDIF
       IF (X.LT.0.5D0) THEN
          IF (X.GT.0.0D0) THEN
@@ -786,12 +795,12 @@ C
          ENDIF
       ENDIF
       END
- 
+
       FUNCTION DLI2(X)
       IMPLICIT REAL*8(A-Z)
       DLI2=DDILOG(X)
       END
- 
+
       FUNCTION DLI3(X)
 * This is Li3(x) for x<=1 only!
       IMPLICIT REAL*8(A-Z)
@@ -819,7 +828,7 @@ C
      &       -DLOGX1*DLOGXM*(DLOGX1-DLOGXM)/2D0
       ENDIF
       END
- 
+
       FUNCTION DS12(X)
 * This is S12(x) for x<=1 only!
       IMPLICIT REAL*8(A-Z)

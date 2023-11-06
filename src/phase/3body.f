@@ -6,7 +6,7 @@ ccc   generate three body decay for particles of mass m1,m2,m3
       integer i,j
       double precision pcm(4),pboo(4),px(4)
       double precision am(100),pout(4,100)
-  
+
       include 'mom.f'
       include 'wtinit.f'
 
@@ -20,11 +20,11 @@ ccc   generate three body decay for particles of mass m1,m2,m3
 
       do i=1,4
          px(i)=q(i,in)
-      enddo 
+      enddo
 
       do i=1,4
          pcm(i)=pout(i,1)
-      enddo 
+      enddo
       call boost(ein,px,pcm,pboo)
       do i=1,4
          q(i,i1)=pboo(i)
@@ -32,7 +32,7 @@ ccc   generate three body decay for particles of mass m1,m2,m3
 
       do i=1,4
          pcm(i)=pout(i,2)
-      enddo 
+      enddo
       call boost(ein,px,pcm,pboo)
       do i=1,4
          q(i,i2)=pboo(i)
@@ -40,12 +40,12 @@ ccc   generate three body decay for particles of mass m1,m2,m3
 
       do i=1,4
          pcm(i)=pout(i,3)
-      enddo 
+      enddo
       call boost(ein,px,pcm,pboo)
       do i=1,4
          q(i,i3)=pboo(i)
       enddo
-      
+
       wt=wt/wt3i(j)
 
       return

@@ -16,7 +16,7 @@ ccc   generates two-body phase space for particles of equal mass mq
 c      rphi=ran2()
 
 c      print*,rphi,rtheta
-      
+
       phi=2d0*pi*rphi
       ctheta=-1d0+2d0*rtheta
       stheta=dsqrt(1d0-ctheta**2)
@@ -26,7 +26,7 @@ c      print*,rphi,rtheta
       pcm(1)=stheta*dcos(phi)*pcm(4)*beta
       pcm(2)=stheta*dsin(phi)*pcm(4)*beta
       pcm(3)=ctheta*pcm(4)*beta
-      
+
       u=mq**2-mx*(pcm(4)+pcm(3))
       t=mq**2-mx*(pcm(4)-pcm(3))
 
@@ -54,7 +54,7 @@ c      print*,rphi,rtheta
       return
       end
 
-ccc   generates two-body phase space for particles of differing mass mq1,mq2      
+ccc   generates two-body phase space for particles of differing mass mq1,mq2
       subroutine twojetps_rm(mx,mq1,mq2,rtheta,rphi,ps,u,t)
       implicit double precision(a-y)
       double precision px(4),pcm(4)
@@ -66,7 +66,7 @@ ccc   generates two-body phase space for particles of differing mass mq1,mq2
       include 'pi.f'
       include 'mom.f'
 
-      
+
       phi=2d0*pi*rphi
       ctheta=-1d0+2d0*rtheta
       stheta=dsqrt(1d0-ctheta**2)
@@ -74,7 +74,7 @@ ccc   generates two-body phase space for particles of differing mass mq1,mq2
 
       pcm(4)=(mx+(mq1**2-mq2**2)/mx)/2d0
       beta=dsqrt(1d0-mq1**2/pcm(4)**2)
-      
+
       pcm(1)=stheta*dcos(phi)*pcm(4)*beta
       pcm(2)=stheta*dsin(phi)*pcm(4)*beta
       pcm(3)=ctheta*pcm(4)*beta

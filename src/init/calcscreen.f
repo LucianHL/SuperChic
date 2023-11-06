@@ -44,7 +44,7 @@ ccc   writes screened amplitude (in k_t space) to file
 
       close(40)
 
-      print*,'Done!' 
+      print*,'Done!'
 
       return
       end

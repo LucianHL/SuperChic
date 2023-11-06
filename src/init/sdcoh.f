@@ -1,10 +1,6 @@
       subroutine sdcoh
       implicit double precision(a-y)
-      integer ikt,nkt,nbt,ibt,ikt1,ikt2
-      integer iin,i1,i2,i3,i4
-      integer iphi1,iphi2,nphi,iphi
-      integer ibt1,ibt2
-      integer ipt,npt,ipphi,npphi
+      integer i1,i2,i3,i4
       integer n,ntotal,ntotal1
       integer ix1,nx1,outl
       integer iq,iqtot
@@ -26,24 +22,24 @@ cccccccc
 
       ntotal=1000000
       ntotal1=200
-    
+
       ktmax=3d0
- 
+
 
       crossb=0d0
       cross=0d0
 
       sige=sigo*dexp(dlog(rts)*2d0*ep)
 
-   
+
 ccccccccccc
 
       xmin=1d-2
       xmax=0.6d0
-      
+
       lxmin=dlog(xmin)
       lxmax=dlog(xmax)
-      
+
       nx1=4
       iqtot=10
 
@@ -53,13 +49,13 @@ ccccccccccc
          x=dexp(lnx1)
 
       do 902 iq=1,iqtot
-                  
+
          qtmax=3d0
          qtmin=0.1d-1
 
          lqtmax=dlog(qtmax)
          lqtmin=dlog(qtmin)
-         
+
          lqt=(lqtmax-lqtmin)*(dble(iq))/dble(iqtot)+lqtmin
          qt=dexp(lqt)
 
@@ -78,23 +74,23 @@ ccccccccccc
 
          rphi=(dble(in1)-0.5d0)/dble(ntotal1)
          rkt=(dble(in2)-0.5d0)/dble(ntotal1)
-         
+
          phi=2d0*pi*rphi
          kt=ktmax*rkt
 
          pt=qt
          ktc=(kt**2+x**2*mp**2)/(1d0-x)
-  
+
          opac=0d0
          do i1=1,nch
             do i2=1,nch
-               call screeningint(i1,i2,kt**2,sc,sc1) 
+               call screeningint(i1,i2,kt**2,sc,sc1)
                opac=opac+sc*pp0(i1)*pp0(i2)/dble(nch)**2
      &              /(gaa(i1)*gaa(i2))
      &              *fe(ktc,i1)
             enddo
          enddo
-         
+
          wt=2d0*pi*ktmax*kt
          wt=wt/(1d0-x)
 
@@ -119,32 +115,32 @@ ccccccccccc
             rkt2=ran2()
             rphi1=ran2()
             rphi2=ran2()
-            
+
             pt=qt
-            
-            
+
+
             kt1=ktmax*rkt1
             kt2=ktmax*rkt2
             phi1=2d0*pi*rphi1
             phi2=2d0*pi*rphi2
 
- 
+
             wt=ktmax**2*4d0*pi**2
             wt=wt*kt1*kt2
 
             wt=wt/(1d0-x)
-       
+
          ktc=kt1**2+kt2**2+2d0*kt1*kt2*dcos(phi1-phi2)
          ktc=(ktc+x**2*mp**2)/(1d0-x)
 
          opac=0d0
-         
+
          do i1=1,nch
             do i2=1,nch
                do i3=1,nch
                   do i4=1,nch
-                     call screeningint(i1,i2,kt1**2,sca,sc1) 
-                     call screeningint(i3,i4,kt2**2,scb,sc1) 
+                     call screeningint(i1,i2,kt1**2,sca,sc1)
+                     call screeningint(i3,i4,kt2**2,scb,sc1)
                      opac=opac+sca*scb*pp0(i1)*pp0(i2)/dble(nch)**2
      &                    *pp0(i3)*pp0(i4)/dble(nch)**2
      &                    /(gaa(i1)*gaa(i2))/(gaa(i3)*gaa(i4))
@@ -153,16 +149,16 @@ ccccccccccc
                enddo
             enddo
          enddo
-         
+
          pt1=dsqrt(pt**2+kt1**2+2d0*kt1*pt*dcos(phi1))
          pt2=dsqrt(pt**2+kt2**2+2d0*kt2*pt*dcos(phi2))
-         
+
          ptp=pt**2+pt*kt1*dcos(phi1)+pt*kt2*dcos(phi2)+kt1*
      &        kt2*dcos(phi2-phi1)
 
-         
+
          sum1=sum1+wt*opac*fem(x,pt1**2,1)*fem(x,pt2**2,1)*ptp
-         
+
  810  enddo
 
       sum1=sum1/dfloat(ntotal)
@@ -181,10 +177,10 @@ c          print*,x,qt,surv
       endif
 
  902  enddo
-     
- 887  close(10)
 
-      
+      close(10)
+
+
 cccccccccccccccccc
 
 
@@ -200,10 +196,10 @@ cccccccccccccccccc
 
       qsq=(qtsq+x**2*mp**2)/(1d0-x)
 
-      
+
       call F1F2el(qsq,f1,fem)
 c      call F1F2el(qtsq,f1,fem)
-      
+
       fem=dsqrt(fem)/qsq
 
       return
@@ -217,5 +213,5 @@ c      call F1F2el(qtsq,f1,fem)
       fe=dsqrt(fout)
 c      fe=fout
 
-      return 
+      return
       end

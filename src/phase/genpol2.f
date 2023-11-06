@@ -50,7 +50,7 @@ ccc   generates polarization vectors for chi_2
          enddo
       enddo
 
-            
+
 
       return
       end

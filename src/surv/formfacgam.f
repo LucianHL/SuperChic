@@ -3,8 +3,7 @@ ccccc EPA form factors (proton)
       implicit none
       double precision ww1pa,ww2pa,ww1p,ww2p,ww1,ww2
       double precision qsq,qsqp,f1,f2,out,t1,t2
-      integer i1,i2,io
-      double precision garr(-6:6)
+      integer io
 
       include 'photo.f'
       include 'mp.f'
@@ -15,14 +14,14 @@ ccccc EPA form factors (proton)
       include 'vars.f'
       include 'mom.f'
       include 'ewpars.f'
-      
+
       qsq=(x1**2*mp**2+t1)/(1d0-x1)
-      qsqp=(x2**2*mp**2+t2)/(1d0-x2) 
-      
+      qsqp=(x2**2*mp**2+t2)/(1d0-x2)
+
 ccccccccc
-      
+
       call F1F2(diss1,xb1,qsq,mdiss1,f1,f2)
-      
+
       ww1p=t1/qsq**2*f2
       ww1pa=x1**2/xb1*f1/qsq
 
@@ -33,7 +32,7 @@ ccccccccc
       ww1pa=ww1pa/pi*alpha
 
 cccccccccc
-      
+
       call F1F2(diss2,xb2,qsqp,mdiss2,f1,f2)
 
       ww2p=t2/qsqp**2*f2
@@ -50,6 +49,6 @@ cccccccccc
       elseif(io.eq.2)then
          out=dsqrt(ww1p*ww2pa+ww2p*ww1pa+ww1pa*ww2pa)
       endif
-      
+
       return
       end

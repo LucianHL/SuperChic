@@ -6,7 +6,7 @@
 
       include 'scionpars.f'
       include 'p0Xn.f'
-      
+
       qmin=1d-5
       qmax=1.5d0
 
@@ -14,7 +14,7 @@
       lqmax=dlog(qmax)
 
       itot=400
-    
+
       do i=1,itot+1
 
          lq=lqmin+(lqmax-lqmin)*dble(i-1)/dble(itot)
@@ -32,6 +32,6 @@
          endif
 
       enddo
- 
+
       return
       end

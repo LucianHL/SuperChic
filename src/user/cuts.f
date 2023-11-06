@@ -1,12 +1,7 @@
       subroutine cut(icut)
       implicit double precision(a-y)
-      double precision p1(4),p2(4),p3(4)
-      integer icut,jflag,i,j
-      logical accut
-      double precision pj1(4),pj2(4),pl1(4),pl2(4)
-      double precision pq1(4),pq2(4)
-      double precision q1(4),q2(4)
-      
+      integer icut,jflag,ijet
+
       include 'gencuts.f'
       include 'vars.f'
       include 'mom.f'
@@ -16,7 +11,7 @@
       include 'pi.f'
       include 'ptXcuts.f'
       include 'range.f'
-      
+
       icut=0
 
 ccccccccccccccccccccccccccccccccccccccccccccc
@@ -26,25 +21,25 @@ cc
 cc    if(..)return - return for failed cut
 cc
 cccccccccccccccccccccccccccccccccccccccccccccc
-      
+
       if(yx.gt.ymax)return
       if(yx.lt.ymin)return
       if(dsqrt(q(1,5)**2+q(2,5)**2).gt.ptxmax)return
-      
+
       if(decay4)then
 
          if(proc.eq.53)then
-            
+
             et1=dsqrt(q(1,7)**2+q(2,7)**2)
             et2=dsqrt(q(1,8)**2+q(2,8)**2)
             et3=dsqrt(q(1,9)**2+q(2,9)**2)
             et4=dsqrt(q(1,10)**2+q(2,10)**2)
-            
+
             pmod1=dsqrt(q(1,7)**2+q(2,7)**2+q(3,7)**2)
             pmod2=dsqrt(q(1,8)**2+q(2,8)**2+q(3,8)**2)
             pmod3=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
             pmod4=dsqrt(q(1,10)**2+q(2,10)**2+q(3,10)**2)
-            
+
             eta1=0.5d0*dlog((pmod1+q(3,7))/(pmod1-q(3,7)))
             eta2=0.5d0*dlog((pmod2+q(3,8))/(pmod2-q(3,8)))
             eta3=0.5d0*dlog((pmod3+q(3,9))/(pmod3-q(3,9)))
@@ -56,12 +51,12 @@ cccccccccccccccccccccccccccccccccccccccccccccc
             et2=dsqrt(q(1,9)**2+q(2,9)**2)
             et3=dsqrt(q(1,10)**2+q(2,10)**2)
             et4=dsqrt(q(1,11)**2+q(2,11)**2)
-            
+
             pmod1=dsqrt(q(1,8)**2+q(2,8)**2+q(3,8)**2)
             pmod2=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
             pmod3=dsqrt(q(1,10)**2+q(2,10)**2+q(3,10)**2)
             pmod4=dsqrt(q(1,11)**2+q(2,11)**2+q(3,11)**2)
-            
+
             eta1=0.5d0*dlog((pmod1+q(3,8))/(pmod1-q(3,8)))
             eta2=0.5d0*dlog((pmod2+q(3,9))/(pmod2-q(3,9)))
             eta3=0.5d0*dlog((pmod3+q(3,10))/(pmod3-q(3,10)))
@@ -73,12 +68,12 @@ cccccccccccccccccccccccccccccccccccccccccccccc
             et2=dsqrt(q(1,7)**2+q(2,7)**2)
             et3=dsqrt(q(1,8)**2+q(2,8)**2)
             et4=dsqrt(q(1,9)**2+q(2,9)**2)
-            
+
             pmod1=dsqrt(q(1,6)**2+q(2,6)**2+q(3,6)**2)
             pmod2=dsqrt(q(1,7)**2+q(2,7)**2+q(3,7)**2)
             pmod3=dsqrt(q(1,8)**2+q(2,8)**2+q(3,8)**2)
             pmod4=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
-            
+
             eta1=0.5d0*dlog((pmod1+q(3,6))/(pmod1-q(3,6)))
             eta2=0.5d0*dlog((pmod2+q(3,7))/(pmod2-q(3,7)))
             eta3=0.5d0*dlog((pmod3+q(3,8))/(pmod3-q(3,8)))
@@ -90,19 +85,19 @@ cccccccccccccccccccccccccccccccccccccccccccccc
             et2=dsqrt(q(1,10)**2+q(2,10)**2)
             et3=dsqrt(q(1,12)**2+q(2,12)**2)
             et4=dsqrt(q(1,13)**2+q(2,13)**2)
-            
+
             pmod1=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
             pmod2=dsqrt(q(1,10)**2+q(2,10)**2+q(3,10)**2)
             pmod3=dsqrt(q(1,12)**2+q(2,12)**2+q(3,12)**2)
             pmod4=dsqrt(q(1,13)**2+q(2,13)**2+q(3,13)**2)
-            
+
             eta1=0.5d0*dlog((pmod1+q(3,9))/(pmod1-q(3,9)))
             eta2=0.5d0*dlog((pmod2+q(3,10))/(pmod2-q(3,10)))
             eta3=0.5d0*dlog((pmod3+q(3,12))/(pmod3-q(3,12)))
             eta4=0.5d0*dlog((pmod4+q(3,13))/(pmod4-q(3,13)))
-            
+
          endif
-         
+
          if(et1.lt.ptamin4)return
          if(et2.lt.ptbmin4)return
          if(et3.lt.ptcmin4)return
@@ -116,23 +111,23 @@ cccccccccccccccccccccccccccccccccccccccccccccc
          if(eta3.lt.etacmin4)return
          if(eta4.lt.etadmin4)return
 
-         
+
       elseif(decay6)then
-         
+
          et1=dsqrt(q(1,6)**2+q(2,6)**2)
          et2=dsqrt(q(1,7)**2+q(2,7)**2)
          et3=dsqrt(q(1,8)**2+q(2,8)**2)
          et4=dsqrt(q(1,9)**2+q(2,9)**2)
          et5=dsqrt(q(1,10)**2+q(2,10)**2)
          et6=dsqrt(q(1,11)**2+q(2,11)**2)
-         
+
          pmod1=dsqrt(q(1,6)**2+q(2,6)**2+q(3,6)**2)
          pmod2=dsqrt(q(1,7)**2+q(2,7)**2+q(3,7)**2)
          pmod3=dsqrt(q(1,8)**2+q(2,8)**2+q(3,8)**2)
          pmod4=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
          pmod5=dsqrt(q(1,10)**2+q(2,10)**2+q(3,10)**2)
          pmod6=dsqrt(q(1,11)**2+q(2,11)**2+q(3,11)**2)
-            
+
          eta1=0.5d0*dlog((pmod1+q(3,6))/(pmod1-q(3,6)))
          eta2=0.5d0*dlog((pmod2+q(3,7))/(pmod2-q(3,7)))
          eta3=0.5d0*dlog((pmod3+q(3,8))/(pmod3-q(3,8)))
@@ -166,32 +161,32 @@ cccccccccccccccccccccccccccccccccccccccccccccc
             et1=dsqrt(q(1,9)**2+q(2,9)**2)
             et2=dsqrt(q(1,12)**2+q(2,12)**2)
             et3=dsqrt(q(1,13)**2+q(2,13)**2)
-            
+
             pmod1=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
             pmod2=dsqrt(q(1,12)**2+q(2,12)**2+q(3,12)**2)
             pmod3=dsqrt(q(1,13)**2+q(2,13)**2+q(3,13)**2)
-            
+
             eta1=0.5d0*dlog((pmod1+q(3,9))/(pmod1-q(3,9)))
             eta2=0.5d0*dlog((pmod2+q(3,12))/(pmod2-q(3,12)))
             eta3=0.5d0*dlog((pmod3+q(3,13))/(pmod3-q(3,13)))
 
-            
+
          else
-            
+
             et1=dsqrt(q(1,6)**2+q(2,6)**2)
             et2=dsqrt(q(1,8)**2+q(2,8)**2)
             et3=dsqrt(q(1,9)**2+q(2,9)**2)
-            
+
             pmod1=dsqrt(q(1,6)**2+q(2,6)**2+q(3,6)**2)
             pmod2=dsqrt(q(1,8)**2+q(2,8)**2+q(3,8)**2)
             pmod3=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
-            
+
             eta1=0.5d0*dlog((pmod1+q(3,6))/(pmod1-q(3,6)))
             eta2=0.5d0*dlog((pmod2+q(3,8))/(pmod2-q(3,8)))
-            eta3=0.5d0*dlog((pmod3+q(3,9))/(pmod3-q(3,9)))            
+            eta3=0.5d0*dlog((pmod3+q(3,9))/(pmod3-q(3,9)))
 
       endif
-      
+
       if(et1.lt.ptamin3)return
       if(et2.lt.ptbmin3)return
       if(et3.lt.ptcmin3)return
@@ -201,8 +196,8 @@ cccccccccccccccccccccccccccccccccccccccccccccc
       if(eta1.lt.etaamin3)return
       if(eta2.lt.etabmin3)return
       if(eta3.lt.etacmin3)return
-           
-         
+
+
       elseif(dps.eq.2.or.dps.eq.12.or.decay2)then
 
       delphi=(q(1,6)*q(1,7)+q(2,6)*q(2,7))/dsqrt((q(1,6)**2+q(2,6)**2))
@@ -210,9 +205,9 @@ cccccccccccccccccccccccccccccccccccccccccccccc
       if(dabs(delphi).gt.1d0)delphi=delphi/dabs(delphi)
       delphi=dacos(delphi)
       acoab=1d0-delphi/pi
-      if(acoab.gt.acoabmax)return 
-      
-         
+      if(acoab.gt.acoabmax)return
+
+
          if(proc.eq.54.or.proc.eq.55.or.proc.eq.76)then
             pmod6=dsqrt(q(1,9)**2+q(2,9)**2+q(3,9)**2)
             pmod7=dsqrt(q(1,11)**2+q(2,11)**2+q(3,11)**2)
@@ -256,7 +251,7 @@ cccccccccccccccccccccccccccccccccccccccccccccc
 cc lhl
 c      if(pt6.lt.40d0.and.pt7.lt.40d0)return
 
-      
+
       if(eta6.lt.etaamin)return
       if(eta7.lt.etabmin)return
       if(eta6.gt.etaamax)return
@@ -285,7 +280,7 @@ c      if(pt6.lt.40d0.and.pt7.lt.40d0)return
       if(eta1.lt.etaamin3)return
       if(eta2.lt.etabmin3)return
       if(eta3.lt.etacmin3)return
-     
+
 cccccccccc kt/anti-kt/durham alg
 
       if(jalg.eq.'kt')then
@@ -301,9 +296,9 @@ cccccccccc kt/anti-kt/durham alg
       dmin1=min(d3,dmin1)
 
       elseif(jalg.eq.'antikt')then
-         
+
       d1=1d0/(q(1,6)**2+q(2,6)**2)
-      ijet=1   
+      ijet=1
       dmin1=d1
       d2=1d0/(q(1,7)**2+q(2,7)**2)
       if(d2.lt.dmin1)ijet=2
@@ -314,7 +309,7 @@ cccccccccc kt/anti-kt/durham alg
 
       endif
 
-ccccccccc  
+ccccccccc
 
       d12=min(d1,d2)*((eta1-eta2)**2+dphi(6,7)**2)/rjet**2
       dmin2=d12
@@ -334,16 +329,16 @@ ccccccccc
          if(ijet.eq.3)dmin2p=d12
 
          jflag=1
-         
+
          if(dmin1p.gt.dmin2p)jflag=2
       endif
 
       if(jflag.eq.2)return
-           
+
       endif
 
- 777  icut=1
+      icut=1
 
       return
       end
- 
+

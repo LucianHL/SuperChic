@@ -6,7 +6,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccc   Init LHAPDF
 cccccccccccccccccccccccccccccccccccccccccccccccccccc
 
-  
+
 
       call initpdfset
      &     ('PDFsets/'//PDFname)

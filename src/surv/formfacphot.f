@@ -5,18 +5,18 @@ ccccc between eigenstates
       double precision ww1,ww2,wt
       double precision qsq,qsqmin,out1,out2,t1,t2,out
       double precision ge,gm,fe,fm,a2e,a2m,a1m,a1e,a0e,a0m
-      integer i1,i2,io
+      integer io
 
       include 'bpsi.f'
       include 'photo.f'
       include 'mp.f'
       include 'pi.f'
-      
+
       if(prot.eq.1)then
          wt=dexp(-bpsi*t2)
          qsq=(xgam**2*mp**2+t1)/(1d0-xgam)
       else
-         wt=dexp(-bpsi*t1) 
+         wt=dexp(-bpsi*t1)
          qsq=(xgam**2*mp**2+t2)/(1d0-xgam)
       endif
 
@@ -31,7 +31,7 @@ ccccc between eigenstates
       ge=(a0e/(1d0+qsq/a1e)**2+(1d0-a0e)/(1d0+qsq/a2e)**2)**2
       gm=(a0m/(1d0+qsq/a1m)**2+(1d0-a0m)/(1d0+qsq/a2m)**2)**2
       gm=gm*7.78d0
-      
+
       fe=(4d0*mp**2*ge+qsq*gm)/(4d0*mp**2+qsq)
       fm=gm
 

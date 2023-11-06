@@ -16,7 +16,7 @@ ccc   writes event information to array for unweighted generation
       include 'pdg.f'
 
       if(wt/wmax.gt.r)then
-         
+
          evnum=evnum+1
 
          if(diff.eq.'dd')then
@@ -36,13 +36,13 @@ ccc   writes event information to array for unweighted generation
             pdgid(3)=22
             istup(3)=-1
             pdgid(4)=22
-            istup(4)=-1 
+            istup(4)=-1
             do i=1,4
                evrec(evnum,3,i)=q(i,1)-q(i,3)
                evrec(evnum,4,i)=q(i,2)-q(i,4)
             enddo
          endif
-         
+
          if(diss1.and.diss2)then
             do j=7,nup+1
                do i=1,4
@@ -64,8 +64,8 @@ ccc   writes event information to array for unweighted generation
                enddo
             enddo
          endif
-         
+
       endif
-            
+
       return
       end

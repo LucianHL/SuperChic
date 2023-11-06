@@ -1,10 +1,10 @@
       COMPLEX*16 FUNCTION C01(p12,p22,Q2,m12,m22,m32)
 *     ----------------------------------------------
 * general C01; CalpHEP group, version 17/01/01
-* Attention!  It doesn't work under physical treshold! To be improved!!! 
+* Attention!  It doesn't work under physical treshold! To be improved!!!
 *
-  
-      implicit double precision(a-y)  
+
+      implicit double precision(a-y)
       INTEGER I
       REAL*8 eps,p12,p22,Q2,p1dp2,DET3,SQD3,alpha,N,d,e,r0,pi,zet2
       REAL*8 rm12,rm22,rm32,rmb2,YR,RLOG,TMI,YPL,YMI,YDE,SIG
@@ -88,7 +88,7 @@
         GO TO 100
        ELSE
         PRINT *,'Something wrong in c0_sp'
-        STOP
+        STOP 1, QUIET=.TRUE.
        ENDIF
       ENDIF
 *
@@ -96,21 +96,21 @@
 *
 * Cases p12=p22=0
 *
-      IF(p12.EQ.0D0.AND.p22.EQ.0D0.AND.rm12.EQ.rm32.AND.rm22.EQ.rm32) 
-     &                                                              THEN     
+      IF(p12.EQ.0D0.AND.p22.EQ.0D0.AND.rm12.EQ.rm32.AND.rm22.EQ.rm32)
+     &                                                              THEN
 *
 * Case p12=p22=0 and m12=m22=m32
-*                          
+*
        SQR=SQRT(1D0+4D0*m12/Q2)
        X1Q=(1D0+SQR)/2D0
        X2Q=(1D0-SQR)/2D0
        C01 =-1D0/Q2*(XSPENZ(1D0/X1Q)+XSPENZ(-Q2/m12*X1Q))
        RETURN
 *
-      ELSEIF(p12.EQ.0D0.AND.p22.EQ.0D0.AND.rm12.EQ.rm32) THEN     
+      ELSEIF(p12.EQ.0D0.AND.p22.EQ.0D0.AND.rm12.EQ.rm32) THEN
 *
 * Case p12=p22=0 and m12,m22,m12
-*                          
+*
        SQR=SQRT(1D0+4D0*m12/Q2)
        X1=(1D0-SQR)/2D0
        X2=(1D0+SQR)/2D0
@@ -127,7 +127,7 @@
      &           -XSPENZ(1D0/(1D0-Y5))+XSPENZ(1D0/(1D0-Y6)))
        RETURN
 *
-      ELSEIF(p12.EQ.0D0.AND.p22.EQ.0D0) THEN     
+      ELSEIF(p12.EQ.0D0.AND.p22.EQ.0D0) THEN
 *
 * Case p12=p22=0 and arbitrary non-equal m12,m22,m32
 *
@@ -135,7 +135,7 @@
        SQR=SQRT(LAMBDA)
        SQS=Q2+m12-m32
        X0=1D0+(m12-m22)/Q2
-       X1=(SQS-SQR)/(2D0*Q2)      
+       X1=(SQS-SQR)/(2D0*Q2)
        X2=(SQS+SQR)/(2D0*Q2)
        X3=m32/(m32-m22)
        C01=1D0/Q2*(XSPENZ((X0-1D0)/(X0-X1))-XSPENZ(X0/(X0-X1))
@@ -175,7 +175,7 @@
        RETURN
 *
 * Two W-decay cases
-* 
+*
       ELSEIF(-p12.EQ.rm22.AND.p22.EQ.0D0.AND.-Q2.EQ.rm32) THEN
 *
        R21=m22/m12
@@ -186,7 +186,7 @@
      &      LOG((1D0+BETA31)/2D0)*LOG(2D0*R31/(1D0+BETA31))
      &      -LOG((1D0+BETA21)/2D0)*LOG(2D0*R21/(1D0+BETA21)))
        RETURN
-* 
+*
       ELSEIF(p12.EQ.0D0.AND.-p22.EQ.rm22.AND.-Q2.EQ.rm12) THEN
 *
        R13=m12/m32
@@ -303,7 +303,7 @@
 * 7)
       ELSEIF(p12.NE.0D0.AND.p22.NE.0D0) THEN
 *
-* Case p12.ne.0.and.p22.ne.0; or GENERAL case  
+* Case p12.ne.0.and.p22.ne.0; or GENERAL case
 *
       IMI =DCMPLX(0D0,1D0)
       p1dp2=(Q2-p12-p22)/2D0
@@ -328,11 +328,11 @@ c     print *,'Roots=',YR(0),YR(1),YR(2)
       AP(0) =-p22
       BP(0) = p22+m22-m32
       CP(0) = m32
-*       
+*
       AP(1) =-Q2
       BP(1) = Q2+m12-m32
       CP(1) = m32
-*  
+*
       AP(2) =-p12
       BP(2) = p12+m12-m22
       CP(2) = m22
@@ -350,7 +350,7 @@ c     print *,'Roots=',YR(0),YR(1),YR(2)
       DO I=0,2,1
       DP(I)=BP(I)**2-4D0*AP(I)*CP(I)
 c     print *,'I DP(I)=',I,DP(I)
-      SQDP(I)=SQRT(DP(I))      
+      SQDP(I)=SQRT(DP(I))
       YP(I)=(-BP(I)+SQDP(I))/2D0/AP(I)
 c     print *,'I YP(I)=',I,YP(I)
       IF(DABS(DREAL(YP(I))).LT.1D-7) THEN
@@ -364,9 +364,9 @@ c     print *,'I YM(I)=',I,YM(I)
 c      print *,'I YM(I)=',I,YM(I)
       ENDIF
       IF(Q2.GT.0D0) THEN
-        RLOG=DLOG(DABS(1D0-1D0/YR(I))) 
+        RLOG=DLOG(DABS(1D0-1D0/YR(I)))
       ELSE
-        RLOG=DLOG(DABS(1D0-1D0/YR(I))) 
+        RLOG=DLOG(DABS(1D0-1D0/YR(I)))
       ENDIF
       SKERN1(I)=-(+VELTET(-YP(I),-YM(I))-VELTET(YR(I)-YP(I),YR(I)-YM(I))
      &           )*RLOG
@@ -375,12 +375,12 @@ c      print *,'I YM(I)=',I,YM(I)
 *
 * Analyser SKERN1
 *
-*     IF(DREAL(SKERN1(I)).NE.0D0.OR.DIMAG(SKERN1(I)).NE.0D0) 
+*     IF(DREAL(SKERN1(I)).NE.0D0.OR.DIMAG(SKERN1(I)).NE.0D0)
 *    &              PRINT *,'I,Re(SKERN1(I)),Im(SKERN1(I))=',I,SKERN1(I)
 *
 * Analyser SKERN2
 *
-*     IF(DREAL(SKERN2(I)).NE.0D0.OR.DIMAG(SKERN2(I)).NE.0D0) 
+*     IF(DREAL(SKERN2(I)).NE.0D0.OR.DIMAG(SKERN2(I)).NE.0D0)
 *    &              PRINT *,'I,Re(SKERN2(I)),Im(SKERN2(I))=',I,SKERN2(I)
 *
       TERM=(-1)**I/N*(RKERN(YR(I),YP(I))+RKERN(YR(I),YM(I))+SKERN(I))
@@ -389,7 +389,7 @@ c      print *,'I YM(I)=',I,YM(I)
 *
       ELSE
        PRINT *,'Combination of arguments is not yet foreseen!'
-       STOP
+       STOP 1, QUIET=.TRUE.
       ENDIF
 *
       RETURN
@@ -408,7 +408,7 @@ c      print *,'I YM(I)=',I,YM(I)
 *
 * Analyser RKERN
 *
-      IF(DREAL(RKERNI).NE.0D0.OR.DIMAG(RKERNI).NE.0D0) 
+      IF(DREAL(RKERNI).NE.0D0.OR.DIMAG(RKERNI).NE.0D0)
      &                                   PRINT *,'Re(RI),Im(RI)=',RKERNI
 *
       RETURN

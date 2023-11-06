@@ -2,7 +2,7 @@ ccc   prints out header information
       subroutine headerlhe
       implicit double precision(a-y)
       integer outl
-    
+
       include 'gencuts.f'
       include 'range.f'
       include 'unweighted.f'
@@ -16,13 +16,13 @@ ccc   prints out header information
       include 'procn.f'
       include 'vars.f'
       include 'pdg.f'
-      include 'jetalg.f'     
+      include 'jetalg.f'
       include 'record.f'
       include 'output.f'
       include 'nsurv.f'
       include 'prec.f'
       include 'intag.f'
-      
+
       call length(procn,outl)
 
       write(45,*)'***********************************************'
@@ -38,7 +38,7 @@ ccc   prints out header information
       write(45,*)'*  arXiv 2303.04826 (ion dissociation)        *'
       write(45,*)'*  arXiv 2201.08403 (WW updates)              *'
       write(45,*)'*  arXiv 2007.12704 (v4 updates)              *'
-      write(45,*)'*  arXiv 1812.04886 (SUSY)                    *'  
+      write(45,*)'*  arXiv 1812.04886 (SUSY)                    *'
       write(45,*)'*  arXiv 1810.06567                           *'
       write(45,*)'*  arXiv 1508.02718                           *'
       write(45,*)'*  arXiv 1405.0018 (review)                   *'
@@ -165,7 +165,7 @@ ccc   prints out header information
      &******************'
       write(45,99)' *',rjet,' :  Jet Radius'
       call length(jalg,outl)
-      write(45,96)' *',jalg(1:outl),' :  Jet alg.'       
+      write(45,96)' *',jalg(1:outl),' :  Jet alg.'
       write(45,*)'******************************************************
      &******************'
       write(45,*)''

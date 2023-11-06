@@ -1,4 +1,4 @@
-    
+
       function ampWWt_fun(pp,pm,ep,em,q1,q2,ep_em,ep_q1,ep_q2,em_q1,
      &     em_q2,pp_q1,pp_q2,pm_q1,pm_q2,q1_q2,pp_pm,qsq1,qsq2,mw,d_,
      &     mu,nu,tl,ul)
@@ -6,13 +6,13 @@
       complex*16 ep(4),em(4),ep_em,ep_q1,ep_q2,em_q1,em_q2,
      &     ampWWt_fun,ampWWt,d_(4,4)
       double precision pp(4),pm(4),q1(4),q2(4),q1_q2,pp_pm,qsq1,
-     &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul,tl2
+     &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul
       integer mu,nu
 
       ampWWt =
      & 4*pp(mu)*pp(nu)*ep_em - 4*pp(mu)*ep(nu)*em_q2 + 4*pp(mu)*em(nu)*
      & ep_q2 - 4*pp(mu)*q1(nu)*ep_em - 2*pp(mu)*q2(nu)*ep_em - 4*pp(nu)
-     & *ep(mu)*em_q1 + 4*pp(nu)*em(mu)*ep_q1 - 2*pp(nu)*q1(mu)*ep_em - 
+     & *ep(mu)*em_q1 + 4*pp(nu)*em(mu)*ep_q1 - 2*pp(nu)*q1(mu)*ep_em -
      & ep(mu)*em(nu)*mw**(-2)*qsq2*qsq1 + 2*ep(mu)*em(nu)*ul + ep(mu)*
      & em(nu)*tl - 3*ep(mu)*em(nu)*mw**2 + 4*ep(mu)*q1(nu)*em_q1 + 4*
      & ep(mu)*q1(nu)*em_q2 + 2*ep(mu)*q2(nu)*em_q1 - ep(mu)*q2(nu)*
@@ -22,8 +22,8 @@
      & q1(nu)*ep_em + q1(mu)*q2(nu)*ep_em - q1(mu)*q2(nu)*ep_q1*em_q2*
      & mw**(-2) - 4*d_(mu,nu)*ep_q1*em_q2
 
-      
-      
+
+
       ampWWt_fun = ampWWt
       return
       end
@@ -38,25 +38,25 @@
      &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul
       integer mu,nu
 
-      
+
       ampWWu =
      & 4*pp(mu)*pp(nu)*ep_em - 4*pp(mu)*ep(nu)*em_q2 + 4*pp(mu)*em(nu)*
      & ep_q2 - 2*pp(mu)*q2(nu)*ep_em - 4*pp(nu)*ep(mu)*em_q1 + 4*pp(nu)
-     & *em(mu)*ep_q1 - 2*pp(nu)*q1(mu)*ep_em - 4*pp(nu)*q2(mu)*ep_em + 
-     & 2*ep(mu)*q2(nu)*em_q1 - ep(nu)*em(mu)*mw**(-2)*qsq2*qsq1 + 
-     & ep(nu)*em(mu)*ul + 2*ep(nu)*em(mu)*tl - 3*ep(nu)*em(mu)*mw**2 - 
+     & *em(mu)*ep_q1 - 2*pp(nu)*q1(mu)*ep_em - 4*pp(nu)*q2(mu)*ep_em +
+     & 2*ep(mu)*q2(nu)*em_q1 - ep(nu)*em(mu)*mw**(-2)*qsq2*qsq1 +
+     & ep(nu)*em(mu)*ul + 2*ep(nu)*em(mu)*tl - 3*ep(nu)*em(mu)*mw**2 -
      & ep(nu)*q1(mu)*em_q1*mw**(-2)*qsq2 + 2*ep(nu)*q1(mu)*em_q2 + 4*
      & ep(nu)*q2(mu)*em_q1 + 4*ep(nu)*q2(mu)*em_q2 + 4*em(mu)*q1(nu)*
      & ep_q2 - 2*em(mu)*q2(nu)*ep_q1 - em(mu)*q2(nu)*ep_q2*mw**(-2)*
      & qsq1 - 2*em(nu)*q1(mu)*ep_q2 - 4*em(nu)*q2(mu)*ep_q2 + q1(mu)*
      & q2(nu)*ep_em - q1(mu)*q2(nu)*ep_q2*em_q1*mw**(-2) + 2*q2(mu)*
      & q2(nu)*ep_em - 4*d_(mu,nu)*ep_q2*em_q1
-      
+
       ampWWu_fun = ampWWu
       return
       end
 
-      
+
       function ampWWs_fun(ep,em,ep_em,d_,mu,nu)
       implicit none
       complex*16 ep(4),em(4),ep_em,ampWWs_fun,ampWWs,d_(4,4)
@@ -67,25 +67,24 @@
       return
       end
 
-      
+
       function ampax_fun(pp,pm,ep,em,q1,q2,ep_em,ep_q1,ep_q2,
      &              em_q1,em_q2,pp_q1,pp_q2,pm_q1,pm_q2,tl,ul,qsq1,qsq2,
      &     mw,d_,mu,nu,pp_em,pp_ep,n,n_q1,n_q2,n_pp,n_pm,n_n)
       implicit none
       complex*16 ep_em,ep_q1,ep_q2,em_q1,em_q2,pp_em,pp_ep,ep(4),em(4)
      &     ,ampax_fun,amp1ax,amp2ax,amp3ax,amp4ax,d_(4,4),
-     &     amp5ax,amp3axn,amp4axn,amp3axnn,amp4axnn,pm_em,zt,ztest,
-     &     zt1,zt2,zt3,zt4,zt5,zt6,ztest1,ztest2,ztest3,ztest4,ztest5,
-     &     ztest6,zt7,zt8,ztest7,ztest8,amp3axnind,amp4axnind
+     &     amp5ax,amp3axn,amp4axn,amp3axnn,amp4axnn,
+     &     amp3axnind,amp4axnind
       double precision tl,ul,qsq1,pp(4),pm(4),q1(4),q2(4),
      &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,n_q1,n_q2
      &     ,den1ax,den2ax,den3ax,den4ax,den5ax,n(4),
      &     den3axn,den4axn,den3axnn,den4axnn,n_pp,n_pm,n_n
-      integer mu,nu,nu2,mu2
-      logical test,n_ind
+      integer mu,nu
+      logical n_ind
 
       n_ind = .true.
-      
+
       amp1ax =
      &  + n_q1*n_q2 * (  - 4*pp(mu)*pp(nu)*pp_ep*pp_em + 4*pp(mu)*
      &    pp(nu)*pp_ep*em_q1 + 4*pp(mu)*pp(nu)*pp_ep*em_q2 + 2*pp(mu)*
@@ -118,7 +117,7 @@
      &    pp_ep*pp_em*tl - 2*q1(nu)*pp_ep*pp_em*mw**2 - 2*q1(nu)*pp_ep*
      &    em_q1*tl + 2*q1(nu)*pp_ep*em_q1*mw**2 - 2*q1(nu)*pp_ep*em_q2*
      &    tl + 2*q1(nu)*pp_ep*em_q2*mw**2 + 2*q1(nu)*pp_em*ep_q1*mw**2
-     &     - 2*q1(nu)*ep_q1*em_q1*mw**2 - 2*q1(nu)*ep_q1*em_q2*mw**2 + 
+     &     - 2*q1(nu)*ep_q1*em_q1*mw**2 - 2*q1(nu)*ep_q1*em_q2*mw**2 +
      &    q2(nu)*pp_ep*pp_em*tl - q2(nu)*pp_ep*pp_em*mw**2 - q2(nu)*
      &    pp_ep*em_q1*tl + q2(nu)*pp_ep*em_q1*mw**2 - q2(nu)*pp_ep*
      &    em_q2*tl + q2(nu)*pp_ep*em_q2*mw**2 + q2(nu)*pp_em*ep_q1*
@@ -126,7 +125,7 @@
       amp1ax = amp1ax + n(nu)*n_q1 * ( 2*pp(mu)*pp_ep*pp_em*tl - 2*
      &    pp(mu)*pp_ep*pp_em*mw**2 - 2*pp(mu)*pp_ep*em_q1*tl + 2*pp(mu)
      &    *pp_ep*em_q1*mw**2 - 2*pp(mu)*pp_ep*em_q2*tl - ep(mu)*pp_em*
-     &    mw**2*tl + ep(mu)*pp_em*mw**4 + ep(mu)*em_q1*mw**2*tl - 
+     &    mw**2*tl + ep(mu)*pp_em*mw**4 + ep(mu)*em_q1*mw**2*tl -
      &    ep(mu)*em_q1*mw**4 + ep(mu)*em_q2*mw**2*tl - q1(mu)*pp_ep*
      &    pp_em*tl + q1(mu)*pp_ep*pp_em*mw**2 + q1(mu)*pp_ep*em_q1*tl
      &     - q1(mu)*pp_ep*em_q1*mw**2 + q1(mu)*pp_ep*em_q2*tl )
@@ -145,18 +144,18 @@
      &    *mw**2 - 2*ep(nu)*q2(mu)*pp_em*mw**2 + 2*ep(nu)*q2(mu)*em_q1*
      &    mw**2 + 2*ep(nu)*q2(mu)*em_q2*mw**2 - em(mu)*q2(nu)*pp_ep*
      &    mw**2 - q1(mu)*q2(nu)*pp_ep*pp_em + q1(mu)*q2(nu)*pp_ep*em_q1
-     &     + q1(mu)*q2(nu)*pp_ep*em_q2 - 2*q2(mu)*q2(nu)*pp_ep*pp_em + 
+     &     + q1(mu)*q2(nu)*pp_ep*em_q2 - 2*q2(mu)*q2(nu)*pp_ep*pp_em +
      &    2*q2(mu)*q2(nu)*pp_ep*em_q1 + 2*q2(mu)*q2(nu)*pp_ep*em_q2 )
       amp2ax = amp2ax + n(mu)*n(nu) * ( pp_ep*pp_em*ul**2 - 2*pp_ep*
-     &    pp_em*mw**2*ul + pp_ep*pp_em*mw**4 - pp_ep*em_q1*ul**2 + 
+     &    pp_em*mw**2*ul + pp_ep*pp_em*mw**4 - pp_ep*em_q1*ul**2 +
      &    pp_ep*em_q1*mw**2*ul - pp_ep*em_q2*ul**2 + 2*pp_ep*em_q2*
      &    mw**2*ul - pp_ep*em_q2*mw**4 + pp_em*ep_q2*mw**2*ul - pp_em*
-     &    ep_q2*mw**4 - ep_q2*em_q1*mw**2*ul - ep_q2*em_q2*mw**2*ul + 
+     &    ep_q2*mw**4 - ep_q2*em_q1*mw**2*ul - ep_q2*em_q2*mw**2*ul +
      &    ep_q2*em_q2*mw**4 )
       amp2ax = amp2ax + n(mu)*n_q2 * ( 2*pp(nu)*pp_ep*pp_em*ul - 2*
      &    pp(nu)*pp_ep*pp_em*mw**2 - 2*pp(nu)*pp_ep*em_q1*ul - 2*pp(nu)
      &    *pp_ep*em_q2*ul + 2*pp(nu)*pp_ep*em_q2*mw**2 - ep(nu)*pp_em*
-     &    mw**2*ul + ep(nu)*pp_em*mw**4 + ep(nu)*em_q1*mw**2*ul + 
+     &    mw**2*ul + ep(nu)*pp_em*mw**4 + ep(nu)*em_q1*mw**2*ul +
      &    ep(nu)*em_q2*mw**2*ul - ep(nu)*em_q2*mw**4 - q2(nu)*pp_ep*
      &    pp_em*ul + q2(nu)*pp_ep*pp_em*mw**2 + q2(nu)*pp_ep*em_q1*ul
      &     + q2(nu)*pp_ep*em_q2*ul - q2(nu)*pp_ep*em_q2*mw**2 )
@@ -170,18 +169,18 @@
      &     + q1(mu)*pp_ep*em_q1*mw**2 - q1(mu)*pp_ep*em_q2*ul + q1(mu)*
      &    pp_ep*em_q2*mw**2 + q1(mu)*pp_em*ep_q2*mw**2 - q1(mu)*ep_q2*
      &    em_q1*mw**2 - q1(mu)*ep_q2*em_q2*mw**2 + 2*q2(mu)*pp_ep*pp_em
-     &    *ul - 2*q2(mu)*pp_ep*pp_em*mw**2 - 2*q2(mu)*pp_ep*em_q1*ul + 
+     &    *ul - 2*q2(mu)*pp_ep*pp_em*mw**2 - 2*q2(mu)*pp_ep*em_q1*ul +
      &    2*q2(mu)*pp_ep*em_q1*mw**2 - 2*q2(mu)*pp_ep*em_q2*ul + 2*
      &    q2(mu)*pp_ep*em_q2*mw**2 + 2*q2(mu)*pp_em*ep_q2*mw**2 - 2*
      &    q2(mu)*ep_q2*em_q1*mw**2 - 2*q2(mu)*ep_q2*em_q2*mw**2 )
 
       amp3ax =
      &  + n_q1*n_q2*qsq1 * ( 2*pp(nu)*ep(mu)*pp_em*tl - 2*pp(nu)*ep(mu)
-     &    *em_q1*tl - 2*pp(nu)*ep(mu)*em_q2*tl + ep(mu)*em(nu)*tl**2 - 
+     &    *em_q1*tl - 2*pp(nu)*ep(mu)*em_q2*tl + ep(mu)*em(nu)*tl**2 -
      &    ep(mu)*em(nu)*mw**2*tl - 2*ep(mu)*q1(nu)*pp_em*tl + 2*ep(mu)*
      &    q1(nu)*em_q1*tl + 2*ep(mu)*q1(nu)*em_q2*tl - ep(mu)*q2(nu)*
      &    pp_em*tl + ep(mu)*q2(nu)*em_q1*tl + ep(mu)*q2(nu)*em_q2*tl )
-      amp3ax = amp3ax + n_q1*n_q2*qsq2 * ( 2*pp(mu)*em(nu)*pp_ep*tl + 
+      amp3ax = amp3ax + n_q1*n_q2*qsq2 * ( 2*pp(mu)*em(nu)*pp_ep*tl +
      &    ep(mu)*em(nu)*tl**2 - ep(mu)*em(nu)*mw**2*tl - em(nu)*q1(mu)*
      &    pp_ep*tl )
       amp3ax = amp3ax + n_q1*n_q2 * (  - 4*pp(mu)*pp(nu)*pp_ep*pp_em*tl
@@ -190,13 +189,13 @@
      &    em_q2*tl**2 - 2*pp(mu)*em(nu)*pp_ep*tl**2 + 2*pp(mu)*em(nu)*
      &    pp_ep*mw**2*tl + 4*pp(mu)*em(nu)*ep_q2*tl**2 + 4*pp(mu)*
      &    q1(nu)*pp_ep*pp_em*tl - 4*pp(mu)*q1(nu)*pp_ep*em_q1*tl - 4*
-     &    pp(mu)*q1(nu)*pp_ep*em_q2*tl - 4*pp(mu)*q1(nu)*ep_em*tl**2 + 
+     &    pp(mu)*q1(nu)*pp_ep*em_q2*tl - 4*pp(mu)*q1(nu)*ep_em*tl**2 +
      &    2*pp(mu)*q2(nu)*pp_ep*pp_em*tl - 2*pp(mu)*q2(nu)*pp_ep*em_q1*
      &    tl - 2*pp(mu)*q2(nu)*ep_em*tl**2 - 2*pp(nu)*ep(mu)*pp_em*
      &    tl**2 + 2*pp(nu)*ep(mu)*pp_em*mw**2*tl - 2*pp(nu)*ep(mu)*
      &    em_q1*tl**2 - 2*pp(nu)*ep(mu)*em_q1*mw**2*tl + 2*pp(nu)*
      &    ep(mu)*em_q2*tl**2 - 2*pp(nu)*ep(mu)*em_q2*mw**2*tl + 4*
-     &    pp(nu)*em(mu)*ep_q1*tl**2 + 2*pp(nu)*q1(mu)*pp_ep*pp_em*tl - 
+     &    pp(nu)*em(mu)*ep_q1*tl**2 + 2*pp(nu)*q1(mu)*pp_ep*pp_em*tl -
      &    2*pp(nu)*q1(mu)*pp_ep*em_q1*tl - 2*pp(nu)*q1(mu)*pp_ep*em_q2*
      &    tl + 2*pp(nu)*q1(mu)*pp_em*ep_q1*tl - 2*pp(nu)*q1(mu)*ep_em*
      &    tl**2 )
@@ -205,12 +204,12 @@
      &     + ep(mu)*em(nu)*tl**3 - 2*ep(mu)*em(nu)*mw**2*tl**2 - ep(mu)
      &    *em(nu)*mw**4*tl + 2*ep(mu)*q1(nu)*pp_em*tl**2 - 2*ep(mu)*
      &    q1(nu)*pp_em*mw**2*tl + 2*ep(mu)*q1(nu)*em_q1*tl**2 + 2*
-     &    ep(mu)*q1(nu)*em_q1*mw**2*tl + 2*ep(mu)*q1(nu)*em_q2*tl**2 + 
-     &    2*ep(mu)*q1(nu)*em_q2*mw**2*tl + ep(mu)*q2(nu)*pp_em*tl**2 - 
-     &    ep(mu)*q2(nu)*pp_em*mw**2*tl + ep(mu)*q2(nu)*em_q1*tl**2 + 
-     &    ep(mu)*q2(nu)*em_q1*mw**2*tl + 2*ep(nu)*q1(mu)*em_q2*tl**2 - 
-     &    4*em(mu)*q1(nu)*ep_q1*tl**2 - 2*em(mu)*q2(nu)*ep_q1*tl**2 + 
-     &    em(nu)*q1(mu)*pp_ep*tl**2 - em(nu)*q1(mu)*pp_ep*mw**2*tl + 
+     &    ep(mu)*q1(nu)*em_q1*mw**2*tl + 2*ep(mu)*q1(nu)*em_q2*tl**2 +
+     &    2*ep(mu)*q1(nu)*em_q2*mw**2*tl + ep(mu)*q2(nu)*pp_em*tl**2 -
+     &    ep(mu)*q2(nu)*pp_em*mw**2*tl + ep(mu)*q2(nu)*em_q1*tl**2 +
+     &    ep(mu)*q2(nu)*em_q1*mw**2*tl + 2*ep(nu)*q1(mu)*em_q2*tl**2 -
+     &    4*em(mu)*q1(nu)*ep_q1*tl**2 - 2*em(mu)*q2(nu)*ep_q1*tl**2 +
+     &    em(nu)*q1(mu)*pp_ep*tl**2 - em(nu)*q1(mu)*pp_ep*mw**2*tl +
      &    em(nu)*q1(mu)*ep_q1*tl**2 - em(nu)*q1(mu)*ep_q1*mw**2*tl - 2*
      &    em(nu)*q1(mu)*ep_q2*tl**2 + 4*em(nu)*q2(mu)*ep_q1*tl**2 - 2*
      &    q1(mu)*q1(nu)*pp_ep*pp_em*tl + 2*q1(mu)*q1(nu)*pp_ep*em_q1*tl
@@ -226,16 +225,16 @@
      &    pp_em*mw**2*tl**2 + pp_ep*pp_em*mw**4*tl - pp_ep*em_q1*tl**3
      &     + 2*pp_ep*em_q1*mw**2*tl**2 - pp_ep*em_q1*mw**4*tl - pp_em*
      &    ep_q1*tl**3 + 2*pp_em*ep_q1*mw**2*tl**2 - pp_em*ep_q1*mw**4*
-     &    tl - ep_em*tl**4 + 2*ep_em*mw**2*tl**3 - ep_em*mw**4*tl**2 + 
+     &    tl - ep_em*tl**4 + 2*ep_em*mw**2*tl**3 - ep_em*mw**4*tl**2 +
      &    ep_q1*em_q1*tl**3 - 2*ep_q1*em_q1*mw**2*tl**2 + ep_q1*em_q1*
      &    mw**4*tl )
       amp3ax = amp3ax + n(mu)*n_q2*qsq2 * ( em(nu)*pp_ep*tl**2 - em(nu)
      &    *pp_ep*mw**2*tl - em(nu)*ep_q1*tl**2 + em(nu)*ep_q1*mw**2*tl
      &     )
-      amp3ax = amp3ax + n(mu)*n_q2 * (  - 2*pp(nu)*pp_ep*pp_em*tl**2 + 
-     &    2*pp(nu)*pp_ep*pp_em*mw**2*tl + 2*pp(nu)*pp_ep*em_q1*tl**2 - 
-     &    2*pp(nu)*pp_ep*em_q1*mw**2*tl + 2*pp(nu)*pp_ep*em_q2*tl**2 - 
-     &    2*pp(nu)*pp_ep*em_q2*mw**2*tl + 2*pp(nu)*pp_em*ep_q1*tl**2 - 
+      amp3ax = amp3ax + n(mu)*n_q2 * (  - 2*pp(nu)*pp_ep*pp_em*tl**2 +
+     &    2*pp(nu)*pp_ep*pp_em*mw**2*tl + 2*pp(nu)*pp_ep*em_q1*tl**2 -
+     &    2*pp(nu)*pp_ep*em_q1*mw**2*tl + 2*pp(nu)*pp_ep*em_q2*tl**2 -
+     &    2*pp(nu)*pp_ep*em_q2*mw**2*tl + 2*pp(nu)*pp_em*ep_q1*tl**2 -
      &    2*pp(nu)*pp_em*ep_q1*mw**2*tl + 2*pp(nu)*ep_em*tl**3 - 2*
      &    pp(nu)*ep_em*mw**2*tl**2 - 2*pp(nu)*ep_q1*em_q1*tl**2 + 2*
      &    pp(nu)*ep_q1*em_q1*mw**2*tl - 2*pp(nu)*ep_q1*em_q2*tl**2 + 2*
@@ -248,7 +247,7 @@
      &    em_q1*tl**2 + 2*q1(nu)*pp_ep*em_q1*mw**2*tl - 2*q1(nu)*pp_ep*
      &    em_q2*tl**2 + 2*q1(nu)*pp_ep*em_q2*mw**2*tl - 2*q1(nu)*pp_em*
      &    ep_q1*tl**2 )
-      amp3ax = amp3ax + n(mu)*n_q2 * ( 2*q1(nu)*pp_em*ep_q1*mw**2*tl - 
+      amp3ax = amp3ax + n(mu)*n_q2 * ( 2*q1(nu)*pp_em*ep_q1*mw**2*tl -
      &    2*q1(nu)*ep_em*tl**3 + 2*q1(nu)*ep_em*mw**2*tl**2 + 2*q1(nu)*
      &    ep_q1*em_q1*tl**2 - 2*q1(nu)*ep_q1*em_q1*mw**2*tl + 2*q1(nu)*
      &    ep_q1*em_q2*tl**2 - 2*q1(nu)*ep_q1*em_q2*mw**2*tl + q2(nu)*
@@ -257,19 +256,19 @@
      &    pp_em*ep_q1*tl**2 + q2(nu)*pp_em*ep_q1*mw**2*tl - q2(nu)*
      &    ep_em*tl**3 + q2(nu)*ep_em*mw**2*tl**2 + q2(nu)*ep_q1*em_q1*
      &    tl**2 - q2(nu)*ep_q1*em_q1*mw**2*tl )
-      amp3ax = amp3ax + n(nu)*n_q1*qsq1 * (  - ep(mu)*pp_em*tl**2 + 
+      amp3ax = amp3ax + n(nu)*n_q1*qsq1 * (  - ep(mu)*pp_em*tl**2 +
      &    ep(mu)*pp_em*mw**2*tl + ep(mu)*em_q1*tl**2 - ep(mu)*em_q1*
      &    mw**2*tl )
       amp3ax = amp3ax + n(nu)*n_q1 * ( 2*pp(mu)*pp_ep*pp_em*tl**2 - 2*
      &    pp(mu)*pp_ep*pp_em*mw**2*tl - 2*pp(mu)*pp_ep*em_q1*tl**2 + 2*
      &    pp(mu)*pp_ep*em_q1*mw**2*tl - 2*pp(mu)*ep_em*tl**3 + 2*pp(mu)
      &    *ep_em*mw**2*tl**2 + ep(mu)*pp_em*tl**3 - 2*ep(mu)*pp_em*
-     &    mw**2*tl**2 + ep(mu)*pp_em*mw**4*tl + ep(mu)*em_q1*tl**3 - 
+     &    mw**2*tl**2 + ep(mu)*pp_em*mw**4*tl + ep(mu)*em_q1*tl**3 -
      &    ep(mu)*em_q1*mw**4*tl - 2*em(mu)*ep_q1*tl**3 + 2*em(mu)*ep_q1
      &    *mw**2*tl**2 - q1(mu)*pp_ep*pp_em*tl**2 + q1(mu)*pp_ep*pp_em*
      &    mw**2*tl + q1(mu)*pp_ep*em_q1*tl**2 - q1(mu)*pp_ep*em_q1*
      &    mw**2*tl - q1(mu)*pp_em*ep_q1*tl**2 + q1(mu)*pp_em*ep_q1*
-     &    mw**2*tl + q1(mu)*ep_em*tl**3 - q1(mu)*ep_em*mw**2*tl**2 + 
+     &    mw**2*tl + q1(mu)*ep_em*tl**3 - q1(mu)*ep_em*mw**2*tl**2 +
      &    q1(mu)*ep_q1*em_q1*tl**2 - q1(mu)*ep_q1*em_q1*mw**2*tl )
 
       amp4ax =
@@ -286,13 +285,13 @@
      &    em_q2*ul + 4*pp(mu)*pp(nu)*ep_em*ul**2 - 2*pp(mu)*ep(nu)*
      &    pp_em*ul**2 + 2*pp(mu)*ep(nu)*pp_em*mw**2*ul + 2*pp(mu)*
      &    ep(nu)*em_q1*ul**2 - 2*pp(mu)*ep(nu)*em_q1*mw**2*ul - 2*
-     &    pp(mu)*ep(nu)*em_q2*ul**2 - 2*pp(mu)*ep(nu)*em_q2*mw**2*ul + 
+     &    pp(mu)*ep(nu)*em_q2*ul**2 - 2*pp(mu)*ep(nu)*em_q2*mw**2*ul +
      &    4*pp(mu)*em(nu)*ep_q2*ul**2 + 2*pp(mu)*q2(nu)*pp_ep*pp_em*ul
      &     - 2*pp(mu)*q2(nu)*pp_ep*em_q1*ul - 2*pp(mu)*q2(nu)*pp_ep*
      &    em_q2*ul + 2*pp(mu)*q2(nu)*pp_em*ep_q2*ul - 2*pp(mu)*q2(nu)*
      &    ep_em*ul**2 - 2*pp(mu)*q2(nu)*ep_q2*em_q1*ul - 2*pp(mu)*
      &    q2(nu)*ep_q2*em_q2*ul - 4*pp(nu)*ep(mu)*em_q1*ul**2 - 2*
-     &    pp(nu)*em(mu)*pp_ep*ul**2 + 2*pp(nu)*em(mu)*pp_ep*mw**2*ul + 
+     &    pp(nu)*em(mu)*pp_ep*ul**2 + 2*pp(nu)*em(mu)*pp_ep*mw**2*ul +
      &    4*pp(nu)*em(mu)*ep_q1*ul**2 + 2*pp(nu)*q1(mu)*pp_ep*pp_em*ul
      &     - 2*pp(nu)*q1(mu)*pp_ep*em_q2*ul - 2*pp(nu)*q1(mu)*ep_em*
      &    ul**2 + 4*pp(nu)*q2(mu)*pp_ep*pp_em*ul - 4*pp(nu)*q2(mu)*
@@ -305,11 +304,11 @@
      &    em_q2*ul**2 + ep(nu)*q1(mu)*em_q2*mw**2*ul + 2*ep(nu)*q2(mu)*
      &    pp_em*ul**2 - 2*ep(nu)*q2(mu)*pp_em*mw**2*ul + 2*ep(nu)*
      &    q2(mu)*em_q1*ul**2 + 2*ep(nu)*q2(mu)*em_q1*mw**2*ul + 2*
-     &    ep(nu)*q2(mu)*em_q2*ul**2 + 2*ep(nu)*q2(mu)*em_q2*mw**2*ul + 
-     &    4*em(mu)*q1(nu)*ep_q2*ul**2 + em(mu)*q2(nu)*pp_ep*ul**2 - 
-     &    em(mu)*q2(nu)*pp_ep*mw**2*ul - 2*em(mu)*q2(nu)*ep_q1*ul**2 + 
+     &    ep(nu)*q2(mu)*em_q2*ul**2 + 2*ep(nu)*q2(mu)*em_q2*mw**2*ul +
+     &    4*em(mu)*q1(nu)*ep_q2*ul**2 + em(mu)*q2(nu)*pp_ep*ul**2 -
+     &    em(mu)*q2(nu)*pp_ep*mw**2*ul - 2*em(mu)*q2(nu)*ep_q1*ul**2 +
      &    em(mu)*q2(nu)*ep_q2*ul**2 - em(mu)*q2(nu)*ep_q2*mw**2*ul - 2*
-     &    em(nu)*q1(mu)*ep_q2*ul**2 - 4*em(nu)*q2(mu)*ep_q2*ul**2 - 
+     &    em(nu)*q1(mu)*ep_q2*ul**2 - 4*em(nu)*q2(mu)*ep_q2*ul**2 -
      &    q1(mu)*q2(nu)*pp_ep*pp_em*ul + q1(mu)*q2(nu)*pp_ep*em_q2*ul
      &     - q1(mu)*q2(nu)*pp_em*ep_q2*ul + q1(mu)*q2(nu)*ep_em*ul**2
      &     + q1(mu)*q2(nu)*ep_q2*em_q1*ul )
@@ -323,43 +322,43 @@
      &    pp_em*mw**2*ul**2 + pp_ep*pp_em*mw**4*ul - pp_ep*em_q2*ul**3
      &     + 2*pp_ep*em_q2*mw**2*ul**2 - pp_ep*em_q2*mw**4*ul - pp_em*
      &    ep_q2*ul**3 + 2*pp_em*ep_q2*mw**2*ul**2 - pp_em*ep_q2*mw**4*
-     &    ul - ep_em*ul**4 + 2*ep_em*mw**2*ul**3 - ep_em*mw**4*ul**2 + 
+     &    ul - ep_em*ul**4 + 2*ep_em*mw**2*ul**3 - ep_em*mw**4*ul**2 +
      &    ep_q2*em_q2*ul**3 - 2*ep_q2*em_q2*mw**2*ul**2 + ep_q2*em_q2*
      &    mw**4*ul )
-      amp4ax = amp4ax + n(mu)*n_q2*qsq2 * (  - ep(nu)*pp_em*ul**2 + 
+      amp4ax = amp4ax + n(mu)*n_q2*qsq2 * (  - ep(nu)*pp_em*ul**2 +
      &    ep(nu)*pp_em*mw**2*ul + ep(nu)*em_q2*ul**2 - ep(nu)*em_q2*
      &    mw**2*ul )
       amp4ax = amp4ax + n(mu)*n_q2 * ( 2*pp(nu)*pp_ep*pp_em*ul**2 - 2*
      &    pp(nu)*pp_ep*pp_em*mw**2*ul - 2*pp(nu)*pp_ep*em_q2*ul**2 + 2*
      &    pp(nu)*pp_ep*em_q2*mw**2*ul - 2*pp(nu)*ep_em*ul**3 + 2*pp(nu)
      &    *ep_em*mw**2*ul**2 + ep(nu)*pp_em*ul**3 - 2*ep(nu)*pp_em*
-     &    mw**2*ul**2 + ep(nu)*pp_em*mw**4*ul + ep(nu)*em_q2*ul**3 - 
+     &    mw**2*ul**2 + ep(nu)*pp_em*mw**4*ul + ep(nu)*em_q2*ul**3 -
      &    ep(nu)*em_q2*mw**4*ul - 2*em(nu)*ep_q2*ul**3 + 2*em(nu)*ep_q2
      &    *mw**2*ul**2 - q2(nu)*pp_ep*pp_em*ul**2 + q2(nu)*pp_ep*pp_em*
      &    mw**2*ul + q2(nu)*pp_ep*em_q2*ul**2 - q2(nu)*pp_ep*em_q2*
      &    mw**2*ul - q2(nu)*pp_em*ep_q2*ul**2 + q2(nu)*pp_em*ep_q2*
-     &    mw**2*ul + q2(nu)*ep_em*ul**3 - q2(nu)*ep_em*mw**2*ul**2 + 
+     &    mw**2*ul + q2(nu)*ep_em*ul**3 - q2(nu)*ep_em*mw**2*ul**2 +
      &    q2(nu)*ep_q2*em_q2*ul**2 - q2(nu)*ep_q2*em_q2*mw**2*ul )
       amp4ax = amp4ax + n(nu)*n_q1*qsq1 * ( em(mu)*pp_ep*ul**2 - em(mu)
      &    *pp_ep*mw**2*ul - em(mu)*ep_q2*ul**2 + em(mu)*ep_q2*mw**2*ul
      &     )
-      amp4ax = amp4ax + n(nu)*n_q1 * (  - 2*pp(mu)*pp_ep*pp_em*ul**2 + 
-     &    2*pp(mu)*pp_ep*pp_em*mw**2*ul + 2*pp(mu)*pp_ep*em_q1*ul**2 - 
-     &    2*pp(mu)*pp_ep*em_q1*mw**2*ul + 2*pp(mu)*pp_ep*em_q2*ul**2 - 
-     &    2*pp(mu)*pp_ep*em_q2*mw**2*ul + 2*pp(mu)*pp_em*ep_q2*ul**2 - 
+      amp4ax = amp4ax + n(nu)*n_q1 * (  - 2*pp(mu)*pp_ep*pp_em*ul**2 +
+     &    2*pp(mu)*pp_ep*pp_em*mw**2*ul + 2*pp(mu)*pp_ep*em_q1*ul**2 -
+     &    2*pp(mu)*pp_ep*em_q1*mw**2*ul + 2*pp(mu)*pp_ep*em_q2*ul**2 -
+     &    2*pp(mu)*pp_ep*em_q2*mw**2*ul + 2*pp(mu)*pp_em*ep_q2*ul**2 -
      &    2*pp(mu)*pp_em*ep_q2*mw**2*ul + 2*pp(mu)*ep_em*ul**3 - 2*
      &    pp(mu)*ep_em*mw**2*ul**2 - 2*pp(mu)*ep_q2*em_q1*ul**2 + 2*
      &    pp(mu)*ep_q2*em_q1*mw**2*ul - 2*pp(mu)*ep_q2*em_q2*ul**2 + 2*
      &    pp(mu)*ep_q2*em_q2*mw**2*ul - 2*ep(mu)*em_q1*ul**3 + 2*ep(mu)
      &    *em_q1*mw**2*ul**2 - em(mu)*pp_ep*ul**3 + 2*em(mu)*pp_ep*
-     &    mw**2*ul**2 - em(mu)*pp_ep*mw**4*ul + 2*em(mu)*ep_q1*ul**3 - 
+     &    mw**2*ul**2 - em(mu)*pp_ep*mw**4*ul + 2*em(mu)*ep_q1*ul**3 -
      &    2*em(mu)*ep_q1*mw**2*ul**2 + em(mu)*ep_q2*ul**3 - 2*em(mu)*
      &    ep_q2*mw**2*ul**2 + em(mu)*ep_q2*mw**4*ul + q1(mu)*pp_ep*
      &    pp_em*ul**2 - q1(mu)*pp_ep*pp_em*mw**2*ul - q1(mu)*pp_ep*
      &    em_q2*ul**2 + q1(mu)*pp_ep*em_q2*mw**2*ul - q1(mu)*pp_em*
      &    ep_q2*ul**2 + q1(mu)*pp_em*ep_q2*mw**2*ul - q1(mu)*ep_em*
      &    ul**3 )
-      amp4ax = amp4ax + n(nu)*n_q1 * ( q1(mu)*ep_em*mw**2*ul**2 + 
+      amp4ax = amp4ax + n(nu)*n_q1 * ( q1(mu)*ep_em*mw**2*ul**2 +
      &    q1(mu)*ep_q2*em_q2*ul**2 - q1(mu)*ep_q2*em_q2*mw**2*ul + 2*
      &    q2(mu)*pp_ep*pp_em*ul**2 - 2*q2(mu)*pp_ep*pp_em*mw**2*ul - 2*
      &    q2(mu)*pp_ep*em_q1*ul**2 + 2*q2(mu)*pp_ep*em_q1*mw**2*ul - 2*
@@ -386,7 +385,7 @@
      &    *q2(mu)*pp_ep*em_q2 + 2*q2(mu)*ep_em*mw**2 )
 
       if (.not.n_ind) then
-      
+
       amp3axn =
      &  + n_pp*n_q1*n_q2*qsq1 * ( 2*pp(nu)*ep(mu)*pp_em*tl - 2*pp(nu)*
      &    ep(mu)*em_q1*tl - 2*pp(nu)*ep(mu)*em_q2*tl + ep(mu)*em(nu)*
@@ -414,10 +413,10 @@
      &    pp_em*tl + 2*pp(nu)*ep(mu)*em_q1*tl + 2*pp(nu)*ep(mu)*em_q2*
      &    tl - ep(mu)*em(nu)*tl**2 + ep(mu)*em(nu)*mw**2*tl + 2*ep(mu)*
      &    q1(nu)*pp_em*tl - 2*ep(mu)*q1(nu)*em_q1*tl - 2*ep(mu)*q1(nu)*
-     &    em_q2*tl + ep(mu)*q2(nu)*pp_em*tl - ep(mu)*q2(nu)*em_q1*tl - 
+     &    em_q2*tl + ep(mu)*q2(nu)*pp_em*tl - ep(mu)*q2(nu)*em_q1*tl -
      &    ep(mu)*q2(nu)*em_q2*tl )
       amp3axn = amp3axn + n_q1**2*n_q2*qsq2 * (  - 2*pp(mu)*em(nu)*
-     &    pp_ep*tl + ep(mu)*em(nu)*tl**2 + ep(mu)*em(nu)*mw**2*tl + 
+     &    pp_ep*tl + ep(mu)*em(nu)*tl**2 + ep(mu)*em(nu)*mw**2*tl +
      &    em(nu)*q1(mu)*pp_ep*tl )
       amp3axn = amp3axn + n_q1**2*n_q2 * (  - 2*pp(mu)*q2(nu)*pp_ep*
      &    em_q2*tl - 2*pp(nu)*q1(mu)*pp_em*ep_q1*tl + 2*pp(nu)*q1(mu)*
@@ -432,7 +431,7 @@
      &     - em(nu)*pp_ep*mw**2*tl - em(nu)*ep_q1*tl**2 + em(nu)*ep_q1*
      &    mw**2*tl )
       amp3axn = amp3axn + n(mu)*n_pp*n_q2 * ( q2(nu)*pp_ep*em_q2*tl**2
-     &     - q2(nu)*pp_ep*em_q2*mw**2*tl - q2(nu)*ep_q1*em_q2*tl**2 + 
+     &     - q2(nu)*pp_ep*em_q2*mw**2*tl - q2(nu)*ep_q1*em_q2*tl**2 +
      &    q2(nu)*ep_q1*em_q2*mw**2*tl )
       amp3axn = amp3axn + n(mu)*n_q1*n_q2*qsq2 * (  - em(nu)*pp_ep*
      &    tl**2 + em(nu)*pp_ep*mw**2*tl - em(nu)*ep_q1*tl**2 - em(nu)*
@@ -450,11 +449,11 @@
      &     )
       amp3axn = amp3axn + n(nu)*n_q1*n_q2 * ( 2*q1(mu)*ep_q1*em_q2*
      &    tl**2 )
-      amp3axn = amp3axn + n(nu)*n_q1**2*qsq1 * ( ep(mu)*pp_em*tl**2 - 
+      amp3axn = amp3axn + n(nu)*n_q1**2*qsq1 * ( ep(mu)*pp_em*tl**2 -
      &    ep(mu)*pp_em*mw**2*tl - ep(mu)*em_q1*tl**2 + ep(mu)*em_q1*
      &    mw**2*tl )
-      amp3axn = amp3axn + n(nu)*n_q1**2 * ( q1(mu)*pp_em*ep_q1*tl**2 - 
-     &    q1(mu)*pp_em*ep_q1*mw**2*tl - q1(mu)*ep_q1*em_q1*tl**2 + 
+      amp3axn = amp3axn + n(nu)*n_q1**2 * ( q1(mu)*pp_em*ep_q1*tl**2 -
+     &    q1(mu)*pp_em*ep_q1*mw**2*tl - q1(mu)*ep_q1*em_q1*tl**2 +
      &    q1(mu)*ep_q1*em_q1*mw**2*tl )
 
       amp4axn =
@@ -480,9 +479,9 @@
      &    ul - ep(nu)*em(mu)*ul**2 - ep(nu)*em(mu)*mw**2*ul - em(mu)*
      &    q2(nu)*pp_ep*ul )
       amp4axn = amp4axn + n_q1*n_q2**2*qsq2 * ( 2*pp(mu)*ep(nu)*pp_em*
-     &    ul - 2*pp(mu)*ep(nu)*em_q1*ul - 2*pp(mu)*ep(nu)*em_q2*ul + 
+     &    ul - 2*pp(mu)*ep(nu)*em_q1*ul - 2*pp(mu)*ep(nu)*em_q2*ul +
      &    ep(nu)*em(mu)*ul**2 - ep(nu)*em(mu)*mw**2*ul - ep(nu)*q1(mu)*
-     &    pp_em*ul + ep(nu)*q1(mu)*em_q1*ul + ep(nu)*q1(mu)*em_q2*ul - 
+     &    pp_em*ul + ep(nu)*q1(mu)*em_q1*ul + ep(nu)*q1(mu)*em_q2*ul -
      &    2*ep(nu)*q2(mu)*pp_em*ul + 2*ep(nu)*q2(mu)*em_q1*ul + 2*
      &    ep(nu)*q2(mu)*em_q2*ul )
       amp4axn = amp4axn + n_q1*n_q2**2 * ( 2*pp(mu)*q2(nu)*pp_em*ep_q2*
@@ -501,7 +500,7 @@
      &     - ep(nu)*pp_em*mw**2*ul - ep(nu)*em_q2*ul**2 + ep(nu)*em_q2*
      &    mw**2*ul )
       amp4axn = amp4axn + n(mu)*n_pp*n_q2 * ( q2(nu)*pp_em*ep_q2*ul**2
-     &     - q2(nu)*pp_em*ep_q2*mw**2*ul - q2(nu)*ep_q2*em_q2*ul**2 + 
+     &     - q2(nu)*pp_em*ep_q2*mw**2*ul - q2(nu)*ep_q2*em_q2*ul**2 +
      &    q2(nu)*ep_q2*em_q2*mw**2*ul )
       amp4axn = amp4axn + n(mu)*n_q1*n_q2*qsq2 * (  - 2*ep(nu)*em_q1*
      &    ul**2 )
@@ -511,7 +510,7 @@
      &     + ep(nu)*pp_em*mw**2*ul + ep(nu)*em_q2*ul**2 - ep(nu)*em_q2*
      &    mw**2*ul )
       amp4axn = amp4axn + n(mu)*n_q2**2 * (  - q2(nu)*pp_em*ep_q2*ul**2
-     &     + q2(nu)*pp_em*ep_q2*mw**2*ul + q2(nu)*ep_q2*em_q2*ul**2 - 
+     &     + q2(nu)*pp_em*ep_q2*mw**2*ul + q2(nu)*ep_q2*em_q2*ul**2 -
      &    q2(nu)*ep_q2*em_q2*mw**2*ul )
       amp4axn = amp4axn + n(nu)*n_pp*n_q1*qsq1 * (  - em(mu)*pp_ep*
      &    ul**2 + em(mu)*pp_ep*mw**2*ul + em(mu)*ep_q2*ul**2 - em(mu)*
@@ -523,7 +522,7 @@
      &     - em(mu)*pp_ep*mw**2*ul + em(mu)*ep_q2*ul**2 + em(mu)*ep_q2*
      &    mw**2*ul )
       amp4axn = amp4axn + n(nu)*n_q1*n_q2 * ( q1(mu)*pp_ep*em_q1*ul**2
-     &     - q1(mu)*pp_ep*em_q1*mw**2*ul + q1(mu)*ep_q2*em_q1*ul**2 + 
+     &     - q1(mu)*pp_ep*em_q1*mw**2*ul + q1(mu)*ep_q2*em_q1*ul**2 +
      &    q1(mu)*ep_q2*em_q1*mw**2*ul )
 
       amp3axnn =
@@ -562,11 +561,11 @@
      &    ep_q1*mw**2*tl - 2*pp(mu)*em(nu)*n_q1*n_q2*pp_ep*tl + ep(mu)*
      &    em(nu)*n_q1*n_q2*mw**2*tl + em(nu)*q1(mu)*n_q1*n_q2*pp_ep*tl
      &     )
-      amp3axnind = amp3axnind - n(mu)*q2(nu)*n_q2*pp_ep*em_q2*tl**2 + 
+      amp3axnind = amp3axnind - n(mu)*q2(nu)*n_q2*pp_ep*em_q2*tl**2 +
      &    n(mu)*q2(nu)*n_q2*pp_ep*em_q2*mw**2*tl - n(mu)*q2(nu)*n_q2*
-     &    ep_q1*em_q2*mw**2*tl + n(nu)*q1(mu)*n_q1*pp_em*ep_q1*tl**2 - 
+     &    ep_q1*em_q2*mw**2*tl + n(nu)*q1(mu)*n_q1*pp_em*ep_q1*tl**2 -
      &    n(nu)*q1(mu)*n_q1*pp_em*ep_q1*mw**2*tl - n(nu)*q1(mu)*n_q1*
-     &    ep_q1*em_q1*tl**2 + n(nu)*q1(mu)*n_q1*ep_q1*em_q1*mw**2*tl - 
+     &    ep_q1*em_q1*tl**2 + n(nu)*q1(mu)*n_q1*ep_q1*em_q1*mw**2*tl -
      &    n(nu)*q1(mu)*n_q1*ep_q1*em_q2*tl**2 - 2*pp(mu)*q2(nu)*n_q1*
      &    n_q2*pp_ep*em_q2*tl - 2*pp(nu)*q1(mu)*n_q1*n_q2*pp_em*ep_q1*
      &    tl + 2*pp(nu)*q1(mu)*n_q1*n_q2*ep_q1*em_q1*tl + 2*pp(nu)*
@@ -589,20 +588,20 @@
      &    em_q2*mw**2*ul - 2*pp(mu)*ep(nu)*n_q1*n_q2*pp_em*ul + 2*
      &    pp(mu)*ep(nu)*n_q1*n_q2*em_q1*ul + 2*pp(mu)*ep(nu)*n_q1*n_q2*
      &    em_q2*ul + ep(nu)*em(mu)*n_q1*n_q2*mw**2*ul + ep(nu)*q1(mu)*
-     &    n_q1*n_q2*pp_em*ul - ep(nu)*q1(mu)*n_q1*n_q2*em_q1*ul - 
+     &    n_q1*n_q2*pp_em*ul - ep(nu)*q1(mu)*n_q1*n_q2*em_q1*ul -
      &    ep(nu)*q1(mu)*n_q1*n_q2*em_q2*ul + 2*ep(nu)*q2(mu)*n_q1*n_q2*
      &    pp_em*ul - 2*ep(nu)*q2(mu)*n_q1*n_q2*em_q1*ul - 2*ep(nu)*
      &    q2(mu)*n_q1*n_q2*em_q2*ul )
-      amp4axnind = amp4axnind + n(mu)*q2(nu)*n_q2*pp_em*ep_q2*ul**2 - 
+      amp4axnind = amp4axnind + n(mu)*q2(nu)*n_q2*pp_em*ep_q2*ul**2 -
      &    n(mu)*q2(nu)*n_q2*pp_em*ep_q2*mw**2*ul - n(mu)*q2(nu)*n_q2*
-     &    ep_q2*em_q1*ul**2 - n(mu)*q2(nu)*n_q2*ep_q2*em_q2*ul**2 + 
+     &    ep_q2*em_q1*ul**2 - n(mu)*q2(nu)*n_q2*ep_q2*em_q2*ul**2 +
      &    n(mu)*q2(nu)*n_q2*ep_q2*em_q2*mw**2*ul - n(nu)*q1(mu)*n_q1*
-     &    pp_ep*em_q1*ul**2 + n(nu)*q1(mu)*n_q1*pp_ep*em_q1*mw**2*ul - 
+     &    pp_ep*em_q1*ul**2 + n(nu)*q1(mu)*n_q1*pp_ep*em_q1*mw**2*ul -
      &    n(nu)*q1(mu)*n_q1*ep_q2*em_q1*mw**2*ul - 2*pp(mu)*q2(nu)*n_q1
      &    *n_q2*pp_em*ep_q2*ul + 2*pp(mu)*q2(nu)*n_q1*n_q2*ep_q2*em_q1*
      &    ul + 2*pp(mu)*q2(nu)*n_q1*n_q2*ep_q2*em_q2*ul - 2*pp(nu)*
      &    q1(mu)*n_q1*n_q2*pp_ep*em_q1*ul + ep(nu)*q1(mu)*n_q1*n_q2*
-     &    em_q1*mw**2*ul + em(mu)*q2(nu)*n_q1*n_q2*ep_q2*mw**2*ul + 
+     &    em_q1*mw**2*ul + em(mu)*q2(nu)*n_q1*n_q2*ep_q2*mw**2*ul +
      &    q1(mu)*q2(nu)*n_q1*n_q2*pp_ep*em_q1*ul + q1(mu)*q2(nu)*n_q1*
      &    n_q2*pp_em*ep_q2*ul - q1(mu)*q2(nu)*n_q1*n_q2*ep_q2*em_q1*ul
      &     - q1(mu)*q2(nu)*n_q1*n_q2*ep_q2*em_q2*ul + 2*q2(mu)*q2(nu)*
@@ -611,7 +610,7 @@
 
 
       endif
-      
+
       den1ax =
      &  + mw**2*tl
 
@@ -633,10 +632,10 @@
       den3axnn = den3axnn + n_pp**2 * ( tl**3 - mw**2*tl**2 )
       den3axnn = den3axnn + n_q1**2 * ( tl**3 - mw**2*tl**2 )
 
-      
+
       den3axn = (n_pp-n_q1)*tl**2*(mw**2-tl);
 
-      
+
       den4axn = (n_pp-n_q2)*ul**2*(mw**2-ul);
 
 
@@ -674,8 +673,7 @@
       double precision tl,ul,qsq1,pp(4),pm(4),q1(4),q2(4),
      &     qsq2,mw,pp_q1,pp_q2,pm_q1,pm_q2,n_q1,n_q2
      &     ,n(4),n_pp,n_pm,n_n,den1,den2,den3,den4,den5
-      integer mu,nu,nu2,mu2
-      logical test,n_ind
+      integer mu,nu
 
       amp1 =
      &  - 4*pp(mu)*pp(nu)*pp_ep*pp_em + 4*pp(mu)*pp(nu)*pp_ep*em_q1 + 4
@@ -685,7 +683,7 @@
      &    pp(mu)*q2(nu)*pp_ep*em_q1 - 2*pp(mu)*q2(nu)*pp_ep*em_q2 + 2*
      &    pp(nu)*ep(mu)*pp_em*mw**2 - 2*pp(nu)*ep(mu)*em_q1*mw**2 - 2*
      &    pp(nu)*ep(mu)*em_q2*mw**2 + 2*pp(nu)*q1(mu)*pp_ep*pp_em - 2*
-     &    pp(nu)*q1(mu)*pp_ep*em_q1 - 2*pp(nu)*q1(mu)*pp_ep*em_q2 - 
+     &    pp(nu)*q1(mu)*pp_ep*em_q1 - 2*pp(nu)*q1(mu)*pp_ep*em_q2 -
      &    ep(mu)*em(nu)*mw**4 - 2*ep(mu)*q1(nu)*pp_em*mw**2 + 2*ep(mu)*
      &    q1(nu)*em_q1*mw**2 + 2*ep(mu)*q1(nu)*em_q2*mw**2 - ep(mu)*
      &    q2(nu)*pp_em*mw**2 + ep(mu)*q2(nu)*em_q1*mw**2 + ep(mu)*
@@ -706,7 +704,7 @@
      &    pp(mu)*q2(nu)*pp_ep*em_q2 + 2*pp(nu)*em(mu)*pp_ep*mw**2 + 2*
      &    pp(nu)*q1(mu)*pp_ep*pp_em - 2*pp(nu)*q1(mu)*pp_ep*em_q1 - 2*
      &    pp(nu)*q1(mu)*pp_ep*em_q2 + 4*pp(nu)*q2(mu)*pp_ep*pp_em - 4*
-     &    pp(nu)*q2(mu)*pp_ep*em_q1 - 4*pp(nu)*q2(mu)*pp_ep*em_q2 - 
+     &    pp(nu)*q2(mu)*pp_ep*em_q1 - 4*pp(nu)*q2(mu)*pp_ep*em_q2 -
      &    ep(nu)*em(mu)*mw**4 - ep(nu)*q1(mu)*pp_em*mw**2 + ep(nu)*
      &    q1(mu)*em_q1*mw**2 + ep(nu)*q1(mu)*em_q2*mw**2 - 2*ep(nu)*
      &    q2(mu)*pp_em*mw**2 + 2*ep(nu)*q2(mu)*em_q1*mw**2 + 2*ep(nu)*
@@ -716,7 +714,7 @@
      &    q2(nu)*pp_ep*em_q1
       amp2 = amp2 + 2*q2(mu)*q2(nu)*pp_ep*em_q2
 
-      
+
       den2 =
      &  + mw**2*ul
 
@@ -734,7 +732,7 @@
      &    pp_em*tl + 8*pp(mu)*q1(nu)*pp_ep*em_q1*tl + 8*pp(mu)*q1(nu)*
      &    pp_ep*em_q2*tl + 8*pp(mu)*q1(nu)*ep_em*tl**2 - 4*pp(mu)*
      &    q2(nu)*pp_ep*pp_em*tl + 4*pp(mu)*q2(nu)*pp_ep*em_q1*tl + 4*
-     &    pp(mu)*q2(nu)*pp_ep*em_q2*tl + 4*pp(mu)*q2(nu)*ep_em*tl**2 + 
+     &    pp(mu)*q2(nu)*pp_ep*em_q2*tl + 4*pp(mu)*q2(nu)*ep_em*tl**2 +
      &    4*pp(nu)*ep(mu)*pp_em*tl**2 - 4*pp(nu)*ep(mu)*pp_em*mw**2*tl
      &     + 4*pp(nu)*ep(mu)*em_q1*tl**2 + 4*pp(nu)*ep(mu)*em_q1*mw**2*
      &    tl - 4*pp(nu)*ep(mu)*em_q2*tl**2 + 4*pp(nu)*ep(mu)*em_q2*
@@ -745,7 +743,7 @@
       amp3 = amp3 + n_pp*n_q1 * (  - 2*ep(mu)*em(nu)*tl**3 + 4*ep(mu)*
      &    em(nu)*mw**2*tl**2 + 2*ep(mu)*em(nu)*mw**4*tl - 4*ep(mu)*
      &    q1(nu)*pp_em*tl**2 + 4*ep(mu)*q1(nu)*pp_em*mw**2*tl - 4*
-     &    ep(mu)*q1(nu)*em_q1*tl**2 - 4*ep(mu)*q1(nu)*em_q1*mw**2*tl - 
+     &    ep(mu)*q1(nu)*em_q1*tl**2 - 4*ep(mu)*q1(nu)*em_q1*mw**2*tl -
      &    4*ep(mu)*q1(nu)*em_q2*tl**2 - 4*ep(mu)*q1(nu)*em_q2*mw**2*tl
      &     - 2*ep(mu)*q2(nu)*pp_em*tl**2 + 2*ep(mu)*q2(nu)*pp_em*mw**2*
      &    tl - 2*ep(mu)*q2(nu)*em_q1*tl**2 - 2*ep(mu)*q2(nu)*em_q1*
@@ -770,7 +768,7 @@
      &    pp_em*tl - 4*pp(mu)*q1(nu)*pp_ep*em_q1*tl - 4*pp(mu)*q1(nu)*
      &    pp_ep*em_q2*tl - 4*pp(mu)*q1(nu)*ep_em*tl**2 + 2*pp(mu)*
      &    q2(nu)*pp_ep*pp_em*tl - 2*pp(mu)*q2(nu)*pp_ep*em_q1*tl - 2*
-     &    pp(mu)*q2(nu)*pp_ep*em_q2*tl - 2*pp(mu)*q2(nu)*ep_em*tl**2 - 
+     &    pp(mu)*q2(nu)*pp_ep*em_q2*tl - 2*pp(mu)*q2(nu)*ep_em*tl**2 -
      &    2*pp(nu)*ep(mu)*pp_em*tl**2 + 2*pp(nu)*ep(mu)*pp_em*mw**2*tl
      &     - 2*pp(nu)*ep(mu)*em_q1*tl**2 - 2*pp(nu)*ep(mu)*em_q1*mw**2*
      &    tl + 2*pp(nu)*ep(mu)*em_q2*tl**2 - 2*pp(nu)*ep(mu)*em_q2*
@@ -789,7 +787,7 @@
      &    q1(mu)*em_q2*tl**2 - 4*em(mu)*q1(nu)*ep_q1*tl**2 - 2*em(mu)*
      &    q2(nu)*ep_q1*tl**2 + em(nu)*q1(mu)*pp_ep*tl**2 - em(nu)*
      &    q1(mu)*pp_ep*mw**2*tl - 2*em(nu)*q1(mu)*ep_q2*tl**2 + 4*
-     &    em(nu)*q2(mu)*ep_q1*tl**2 - 2*q1(mu)*q1(nu)*pp_ep*pp_em*tl + 
+     &    em(nu)*q2(mu)*ep_q1*tl**2 - 2*q1(mu)*q1(nu)*pp_ep*pp_em*tl +
      &    2*q1(mu)*q1(nu)*pp_ep*em_q1*tl + 2*q1(mu)*q1(nu)*pp_ep*em_q2*
      &    tl + 2*q1(mu)*q1(nu)*ep_em*tl**2 - q1(mu)*q2(nu)*pp_ep*pp_em*
      &    tl + q1(mu)*q2(nu)*pp_ep*em_q1*tl + q1(mu)*q2(nu)*pp_ep*em_q2
@@ -807,7 +805,7 @@
      &    pp_em*tl - 4*pp(mu)*q1(nu)*pp_ep*em_q1*tl - 4*pp(mu)*q1(nu)*
      &    pp_ep*em_q2*tl - 4*pp(mu)*q1(nu)*ep_em*tl**2 + 2*pp(mu)*
      &    q2(nu)*pp_ep*pp_em*tl - 2*pp(mu)*q2(nu)*pp_ep*em_q1*tl - 2*
-     &    pp(mu)*q2(nu)*pp_ep*em_q2*tl - 2*pp(mu)*q2(nu)*ep_em*tl**2 - 
+     &    pp(mu)*q2(nu)*pp_ep*em_q2*tl - 2*pp(mu)*q2(nu)*ep_em*tl**2 -
      &    2*pp(nu)*ep(mu)*pp_em*tl**2 + 2*pp(nu)*ep(mu)*pp_em*mw**2*tl
      &     - 2*pp(nu)*ep(mu)*em_q1*tl**2 - 2*pp(nu)*ep(mu)*em_q1*mw**2*
      &    tl + 2*pp(nu)*ep(mu)*em_q2*tl**2 - 2*pp(nu)*ep(mu)*em_q2*
@@ -826,7 +824,7 @@
      &    q1(mu)*em_q2*tl**2 - 4*em(mu)*q1(nu)*ep_q1*tl**2 - 2*em(mu)*
      &    q2(nu)*ep_q1*tl**2 + em(nu)*q1(mu)*pp_ep*tl**2 - em(nu)*
      &    q1(mu)*pp_ep*mw**2*tl - 2*em(nu)*q1(mu)*ep_q2*tl**2 + 4*
-     &    em(nu)*q2(mu)*ep_q1*tl**2 - 2*q1(mu)*q1(nu)*pp_ep*pp_em*tl + 
+     &    em(nu)*q2(mu)*ep_q1*tl**2 - 2*q1(mu)*q1(nu)*pp_ep*pp_em*tl +
      &    2*q1(mu)*q1(nu)*pp_ep*em_q1*tl + 2*q1(mu)*q1(nu)*pp_ep*em_q2*
      &    tl + 2*q1(mu)*q1(nu)*ep_em*tl**2 - q1(mu)*q2(nu)*pp_ep*pp_em*
      &    tl + q1(mu)*q2(nu)*pp_ep*em_q1*tl + q1(mu)*q2(nu)*pp_ep*em_q2
@@ -842,13 +840,13 @@
       amp3 = amp3 + n(nu)*n_q1*qsq1 * ( 2*ep(mu)*em_q2*tl**2 )
       amp3 = amp3 + n(nu)*n_q1 * ( 2*q1(mu)*ep_q1*em_q2*tl**2 )
 
-      
+
       den3 =
      &  + n_pp*n_q1 * (  - 2*tl**3 + 2*mw**2*tl**2 )
       den3 = den3 + n_pp**2 * ( tl**3 - mw**2*tl**2 )
       den3 = den3 + n_q1**2 * ( tl**3 - mw**2*tl**2 )
 
-      
+
       amp4 =
      &  + n_n*qsq1 * ( em(mu)*q2(nu)*ep_q2*ul**2 )
       amp4 = amp4 + n_n*qsq2 * ( ep(nu)*q1(mu)*em_q1*ul**2 )
@@ -871,13 +869,13 @@
      &    pp_em*ul + 4*pp(nu)*q1(mu)*pp_ep*em_q1*ul + 4*pp(nu)*q1(mu)*
      &    pp_ep*em_q2*ul + 4*pp(nu)*q1(mu)*ep_em*ul**2 - 8*pp(nu)*
      &    q2(mu)*pp_ep*pp_em*ul + 8*pp(nu)*q2(mu)*pp_ep*em_q1*ul + 8*
-     &    pp(nu)*q2(mu)*pp_ep*em_q2*ul + 8*pp(nu)*q2(mu)*ep_em*ul**2 - 
+     &    pp(nu)*q2(mu)*pp_ep*em_q2*ul + 8*pp(nu)*q2(mu)*ep_em*ul**2 -
      &    4*ep(mu)*q2(nu)*em_q1*ul**2 )
       amp4 = amp4 + n_pp*n_q2 * (  - 2*ep(nu)*em(mu)*ul**3 - 4*ep(nu)*
      &    em(mu)*tl*ul**2 + 4*ep(nu)*em(mu)*mw**2*ul**2 + 2*ep(nu)*
      &    em(mu)*mw**4*ul - 2*ep(nu)*q1(mu)*pp_em*ul**2 + 2*ep(nu)*
      &    q1(mu)*pp_em*mw**2*ul - 2*ep(nu)*q1(mu)*em_q1*mw**2*ul - 2*
-     &    ep(nu)*q1(mu)*em_q2*ul**2 - 2*ep(nu)*q1(mu)*em_q2*mw**2*ul - 
+     &    ep(nu)*q1(mu)*em_q2*ul**2 - 2*ep(nu)*q1(mu)*em_q2*mw**2*ul -
      &    4*ep(nu)*q2(mu)*pp_em*ul**2 + 4*ep(nu)*q2(mu)*pp_em*mw**2*ul
      &     - 4*ep(nu)*q2(mu)*em_q1*ul**2 - 4*ep(nu)*q2(mu)*em_q1*mw**2*
      &    ul - 4*ep(nu)*q2(mu)*em_q2*ul**2 - 4*ep(nu)*q2(mu)*em_q2*
@@ -905,7 +903,7 @@
      &    pp_em*ul - 2*pp(nu)*q1(mu)*pp_ep*em_q1*ul - 2*pp(nu)*q1(mu)*
      &    pp_ep*em_q2*ul - 2*pp(nu)*q1(mu)*ep_em*ul**2 + 4*pp(nu)*
      &    q2(mu)*pp_ep*pp_em*ul - 4*pp(nu)*q2(mu)*pp_ep*em_q1*ul - 4*
-     &    pp(nu)*q2(mu)*pp_ep*em_q2*ul - 4*pp(nu)*q2(mu)*ep_em*ul**2 + 
+     &    pp(nu)*q2(mu)*pp_ep*em_q2*ul - 4*pp(nu)*q2(mu)*ep_em*ul**2 +
      &    2*ep(mu)*q2(nu)*em_q1*ul**2 )
       amp4 = amp4 + n_pp**2 * ( ep(nu)*em(mu)*ul**3 + 2*ep(nu)*em(mu)*
      &    tl*ul**2 - 2*ep(nu)*em(mu)*mw**2*ul**2 - ep(nu)*em(mu)*mw**4*
@@ -941,7 +939,7 @@
      &    pp_em*ul - 2*pp(nu)*q1(mu)*pp_ep*em_q1*ul - 2*pp(nu)*q1(mu)*
      &    pp_ep*em_q2*ul - 2*pp(nu)*q1(mu)*ep_em*ul**2 + 4*pp(nu)*
      &    q2(mu)*pp_ep*pp_em*ul - 4*pp(nu)*q2(mu)*pp_ep*em_q1*ul - 4*
-     &    pp(nu)*q2(mu)*pp_ep*em_q2*ul - 4*pp(nu)*q2(mu)*ep_em*ul**2 + 
+     &    pp(nu)*q2(mu)*pp_ep*em_q2*ul - 4*pp(nu)*q2(mu)*ep_em*ul**2 +
      &    2*ep(mu)*q2(nu)*em_q1*ul**2 )
       amp4 = amp4 + n_q2**2 * ( ep(nu)*em(mu)*ul**3 + 2*ep(nu)*em(mu)*
      &    tl*ul**2 - 2*ep(nu)*em(mu)*mw**2*ul**2 - ep(nu)*em(mu)*mw**4*
@@ -969,27 +967,27 @@
       amp4 = amp4 + n(nu)*n_q2*qsq1 * (  - 2*em(mu)*ep_q2*ul**2 )
       amp4 = amp4 + n(nu)*n_q2 * (  - 2*q1(mu)*ep_q2*em_q1*ul**2 )
 
-      
+
       den4 =
      &  + n_pp*n_q2 * (  - 2*ul**3 + 2*mw**2*ul**2 )
       den4 = den4 + n_pp**2 * ( ul**3 - mw**2*ul**2 )
       den4 = den4 + n_q2**2 * ( ul**3 - mw**2*ul**2 )
 
-      
+
       amp5 =
      &  + ep(mu)*em(nu)*mw**2 + ep(nu)*em(mu)*mw**2 + 2*d_(mu,nu)*pp_ep
-     &    *pp_em - 2*d_(mu,nu)*pp_ep*em_q1 - 2*d_(mu,nu)*pp_ep*em_q2 - 
+     &    *pp_em - 2*d_(mu,nu)*pp_ep*em_q1 - 2*d_(mu,nu)*pp_ep*em_q2 -
      &    2*d_(mu,nu)*ep_em*mw**2
 
       den5 =
      &  + mw**2
-      
 
-      
+
+
       ampaxial_fun = amp1/den1+amp2/den2+amp3/den3+amp4/den4
      &     +amp5/den5
       return
       end
 
 
-      
+

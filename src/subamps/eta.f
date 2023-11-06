@@ -53,7 +53,7 @@ cccccccc
       pmqqs=qqn1**2*pmn
       pmqqs=pmqqs*(6d0/(2d0*dsqrt(6d0)))**2
       pmqqs=pmqqs*norm/3d0/mx**2
-      pmqqs=pmqqs*3d0 
+      pmqqs=pmqqs*3d0
 
 ccccccccc
 
@@ -74,4 +74,4 @@ ccccccccc
       return
       end
 
-    
+

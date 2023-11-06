@@ -35,29 +35,29 @@ cccccccccccccccc
 
       pnorm=2d0*sdot(q6,q7)**2*(mchi**2+mvec**2)/(mchi**2*mvec**2)/3d0
 
-ccccccccccccccccccccc 
-      
+ccccccccccccccccccccc
+
       do k=1,3
          do j=1,3
-            
+
             do h=1,4
                epsi(h)=epsi1(k,h)
                cepsi(h)=conjg(epsi1(j,h))
             enddo
-            
+
             call cdot(epsi,q6,ze7q6)
             call cdot(cepsi,q6,zce7q6)
-            
+
             rho1psi(k,j)=0d0
-            
+
             do l=1,3
                do h=1,3
-                  
+
                   do m=1,4
-                     echi(m)=echi1(l,m)            
+                     echi(m)=echi1(l,m)
                      cechi(m)=conjg(echi1(h,m))
                   enddo
-   
+
                   call ccdot(echi,epsi,ze5e7)
                   call ccdot(cechi,cepsi,zce5ce7)
                   call ccdot(epsi,cepsi,zce7e7)
@@ -70,7 +70,7 @@ ccccccccccccccccccccc
      &                 *zce7q6+ze5q6*zce5ce7*ze7q6)*rho1chi(l,h)
 
                enddo
-            enddo     
+            enddo
          enddo
       enddo
 
@@ -84,7 +84,7 @@ ccccccccccc
       q8q9=sdot(q8,q9)
 
       wt1=0d0
-    
+
       do j=1,3
          do k=1,3
 
@@ -97,8 +97,8 @@ ccccccccccc
                call cdot(cepsi,q8,zce7q8)
                call ccdot(epsi,cepsi,zce7e7)
 
-            wt1=wt1+(-(q8q9+mmu**2)*zce7e7-2d0*ze7q8*
-     &zce7q8)*rho1psi(k,j)/(2d0*(q8q9+2d0*mmu**2))*3d0
+            wt1=wt1+dble((-(q8q9+mmu**2)*zce7e7-2d0*ze7q8*
+     &zce7q8)*rho1psi(k,j)/(2d0*(q8q9+2d0*mmu**2))*3d0)
 
          enddo
       enddo

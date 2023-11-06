@@ -1,5 +1,5 @@
 c      SUBROUTINE VEGAS(FXN,AVGI,SD,CHI2A)
-      SUBROUTINE VEGAS(AVGI,SD,CHI2A) 
+      SUBROUTINE VEGAS(AVGI,SD,CHI2A)
 C
 C   SUBROUTINE PERFORMS N-DIMENSIONAL MONTE CARLO INTEG'N
 C      - BY G.P. LEPAGE   SEPT 1976/(REV)APR 1978
@@ -12,16 +12,16 @@ C
      1   ,KG(10),IA(10)
       double precision QRAN(10),x(10)
       DATA NDMX/50/,ALPH/1.5D0/,ONE/1D0/,MDS/1/
-      
+
       include 'wmax.f'
       include 'genunw.f'
 C
-      NDO=1  
+      NDO=1
       DO 1 J=1,NDIM
 1     XI(1,J)=ONE
-C   
+C
 
-      ENTRY VEGAS1(AVGI,SD,CHI2A)   
+      ENTRY VEGAS1(AVGI,SD,CHI2A)
 c      ENTRY VEGAS1(FXN,AVGI,SD,CHI2A)
 C         - INITIALIZES CUMMULATIVE VARIABLES, BUT NOT GRID
       IT=0
@@ -30,7 +30,7 @@ C         - INITIALIZES CUMMULATIVE VARIABLES, BUT NOT GRID
       SWGT=SI
       SCHI=SI
 C
-      ENTRY VEGAS2(AVGI,SD,CHI2A)   
+      ENTRY VEGAS2(AVGI,SD,CHI2A)
 c      ENTRY VEGAS2(FXN,AVGI,SD,CHI2A)
 C         - NO INITIALIZATION
       ND=NDMX
@@ -138,7 +138,7 @@ C
 17    D(IA(J),J)=D(IA(J),J)+F2B
 18    K=NDIM
 19    KG(K)=MOD(KG(K),NG)+1
-      
+
 
       IF(KG(K).NE.1) GO TO 11
       K=K-1
@@ -169,7 +169,7 @@ c      WRITE(6,201) IT,TI,TSI,AVGI,SD,CHI2A
      &        CHI2A
       else
          WRITE(6,302) IT,INT(CALLS),TI,TSI,AVGI,SD,SD/AVGI*100d0,CHI2A
-      endif   
+      endif
 
       IF(NPRN.GE.0) GO TO 21
       DO 20 J=1,NDIM
@@ -218,21 +218,21 @@ C
 28    XI(ND,J)=ONE
 C
       IF(IT.LT.ITMX.AND.ACC*DABS(AVGI).LT.SD) GO TO 9
-200   FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
-     1    /28X,'  IT=',I5,'  ITMX=',I5/28X,'  ACC=',G9.3
-     2    /28X,'  MDS=',I3,'   ND=',I4/28X,'  (XL,XU)=',
-     3    (T40,'( ',G12.6,' , ',G12.6,' )'))
-201   FORMAT(///' INTEGRATION BY VEGAS' / ' ITERATION NO.',I3,
-     1    ':   INTEGRAL =',G14.8/21X,'STD DEV  = ',G10.4 /
-     2    ' ACCUMULATED RESULTS:   INTEGRAL =',G14.8 /
-     3    24X,'STD DEV  = ',G10.4 / 24X,'CHI**2 PER IT''N =',G10.4)
+C209   FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
+C     1    /28X,'  IT=',I5,'  ITMX=',I5/28X,'  ACC=',G9.3
+C     2    /28X,'  MDS=',I3,'   ND=',I4/28X,'  (XL,XU)=',
+C     3    (T40,'( ',G12.6,' , ',G12.6,' )'))
+C201   FORMAT(///' INTEGRATION BY VEGAS' / ' ITERATION NO.',I3,
+C     1    ':   INTEGRAL =',G14.8/21X,'STD DEV  = ',G10.4 /
+C     2    ' ACCUMULATED RESULTS:   INTEGRAL =',G14.8 /
+C     3    24X,'STD DEV  = ',G10.4 / 24X,'CHI**2 PER IT''N =',G10.4)
 202   FORMAT(' DATA FOR AXIS',I2 / ' ',6X,'X',7X,'  DELT I  ',
      1    2X,' CONV''CE  ',11X,'X',7X,'  DELT I  ',2X,' CONV''CE  '
      2   ,11X,'X',7X,'  DELT I  ',2X,' CONV''CE  ' /
      2    (' ',3G12.4,5X,3G12.4,5X,3G12.4))
 
- 300  FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
-     1    /28X,'  IT=',I5)
+C 300  FORMAT(' INPUT PARAMETERS FOR VEGAS:  NDIM=',I3,'  NCALL=',F9.0
+C     1    /28X,'  IT=',I5)
  301  FORMAT(//' ************** Integration by Vegas (iteration',I4,') '
      .      ,'*************',/,' ******************** ',1X,I7,2X
      .     ,' calls','   *************************',/,' *',63X,'*'
@@ -265,6 +265,8 @@ C
       END
       SUBROUTINE SAVE(NDIM)
       IMPLICIT REAL*8(A-H,O-Z)
+      INTEGER NDIM,I,J
+      INTEGER NDO,IT
       COMMON/BVEG2/XI(50,10),SI,SI2,SWGT,SCHI,NDO,IT
 C
 C   STORES VEGAS DATA (UNIT 7) FOR LATER RE-INITIALIZATION
@@ -283,6 +285,7 @@ C
       END
 C
       SUBROUTINE ARAN9(QRAN,NDIM)
+      INTEGER NDIM,I
       REAL*8 QRAN(10)
       double precision ran2
       DO I=1,NDIM

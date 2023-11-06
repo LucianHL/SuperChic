@@ -1,8 +1,10 @@
-cmake_minimum_required(VERSION 3.12.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 #----------------------------------------------------------------------------
 project(SuperChic LANGUAGES  Fortran)
 set(PROJECT_VERSION 4.2)
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
+option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
+option(SUPERCHIC_ENABLE_ALL_TESTS    "Enables building of all tests." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
@@ -10,19 +12,61 @@ find_package(LHAPDF REQUIRED)
 message(STATUS "SuperChic: LHAPDF_VERSION=${LHAPDF_VERSION} LHAPDF_LIBRARIES=${LHAPDF_LIBRARIES} LHAPDF_INCLUDE_DIRS=${LHAPDF_INCLUDE_DIRS}")
 find_package(APFEL REQUIRED)
 message(STATUS "SuperChic: APFEL_VERSION=${APFEL_VERSION} APFEL_LIBRARIES=${APFEL_LIBRARIES} APFEL_INCLUDE_DIRS=${APFEL_INCLUDE_DIRS}")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-std=legacy>")
-add_compile_options("$<$<Fortran_COMPILER_ID:GNU>:-fno-automatic>")
-add_compile_options("$<$<Fortran_COMPILER_ID:Intel>:-noauto>")
-add_compile_options("$<$<Fortran_COMPILER_ID:IntelLLVM>:-noauto>")
-add_compile_options("$<$<Fortran_COMPILER_ID:NVHPC>:-Msave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:PGI>:-Msave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:XL>:-qsave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:LLVMFlang>:-Msave>")
-add_compile_options("$<$<Fortran_COMPILER_ID:Flang>:-Msave>")
+#GNU
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fbacktrace>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fcheck=all>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fno-automatic>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wextra>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fimplicit-none>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-unused-dummy-argument>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-compare-reals>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-do-subscript>")
+#Classical Intel
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-noauto>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-traceback>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-check>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-warn>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 8889>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 6717>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 8291>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 7712>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 5194>") #truncation
+#Intel LLVM
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-noauto>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-traceback>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-check>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 8889>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 6717>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 8291>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 7712>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 5194>") #truncation
+#NVHPC
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Mbounds>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-traceback>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Minform=inform>")
+#Tier 2 support compilers
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,XL>:-qsave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,LLVMFlang>:-Msave>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Flang>:-Msave>")
+if (SUPERCHIC_ENABLE_FPES)
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-ffpe-trap=zero,overflow,underflow,invalid,denormal>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-fpe0>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-fpe0>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Ktrap=divz,denorm,fp,inexact,inv,none,ovf,unf>")
+endif()
+
+add_definitions("-DDATA_PATH=\'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/SuperChic\'")
 
 message(STATUS "SuperChic: CMAKE_Fortran_COMPILER_ID ${CMAKE_Fortran_COMPILER_ID} " )
 message(STATUS "SuperChic: CMAKE_Fortran_FLAGS ${CMAKE_Fortran_FLAGS} ${CMAKE_Fortran_FLAGS_${CMAKE_BUILD_TYPE}}  " )
+message(STATUS "SuperChic: SUPERCHIC_ENABLE_ALL_TESTS=${SUPERCHIC_ENABLE_ALL_TESTS}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
+message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
 
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
@@ -81,7 +125,7 @@ list(TRANSFORM Mainf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/main/")
 set(sPDFsf calchg.f hpdfint.f calcsud.f sudint.f sPDF.f )
 list(TRANSFORM sPDFsf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/sPDFs/")
 
-set(Unwf unweight.f headerlhe.f hepmcfunc.f unweight_q.f unwprint_q.f 
+set(Unwf unweight.f headerlhe.f  unweight_q.f unwprint_q.f 
          unwprint.f unweight.f )
 list(TRANSFORM Unwf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/unw/")
          
@@ -139,31 +183,83 @@ set( sCODELHA ${Mainf} ${Mesf} ${EW} ${PDFsfLHA} ${Intf} ${Phasef}
               ${LbyLf} ${InitfION} ${Dissf} ${Helas} ${Model} ${MG})
 
 set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/src/inc)
-set(sccompile_options "$<$<Fortran_COMPILER_ID:GNU>:-mcmodel=large>" 
-                      "$<$<Fortran_COMPILER_ID:Intel>:-mcmodel=large>"
-                      "$<$<Fortran_COMPILER_ID:IntelLLVM>:-mcmodel=large>" 
-                      "$<$<Fortran_COMPILER_ID:NVHPC>:-mcmodel=medium>"
-                      "$<$<Fortran_COMPILER_ID:PGI>:-mcmodel=medium>")
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+  set(sccompile_options )
+else()
+  set(sccompile_options "$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-mcmodel=large>" 
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-mcmodel=large>"
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-mcmodel=large>" 
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-mcmodel=medium>"
+                        "$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-mcmodel=medium>")
+endif()
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                             PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)
+
+
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                             PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
+endif()
+
 add_library(superchicLib SHARED ${sCODELHA})
 target_include_directories(superchicLib PRIVATE  ${scincludes})
 target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
 target_compile_options(superchicLib PRIVATE ${sccompile_options})
+set_target_properties(superchicLib PROPERTIES 
+  ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+  LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+  RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+  )
 
+add_library(superchicLibstatic STATIC ${sCODELHA})
+target_include_directories(superchicLibstatic PRIVATE  ${scincludes})
+target_link_libraries(superchicLibstatic PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
+target_compile_options(superchicLibstatic PRIVATE ${sccompile_options})
+set_target_properties(superchicLibstatic PROPERTIES  OUTPUT_NAME superchicLib-static
+  ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+  LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+  RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+  )
+  
 add_executable(superchic ${CMAKE_CURRENT_SOURCE_DIR}/src/main/superchic.f  ${InitfLHA} )
 target_include_directories(superchic PRIVATE  ${scincludes})
-target_link_libraries(superchic PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol superchicLib)
+target_link_libraries(superchic PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol superchicLibstatic)
 target_compile_options(superchic PRIVATE ${sccompile_options})
+set_target_properties(superchic PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
 add_executable(init ${CMAKE_CURRENT_SOURCE_DIR}/src/init/init.f ${InitfLHA})
 target_include_directories(init PRIVATE  ${scincludes})
 target_link_libraries(init PRIVATE LHAPDF::LHAPDF APFEL::APFEL  APFEL::APFELevol )
 target_compile_options(init PRIVATE ${sccompile_options})
+set_target_properties(init PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
 install(TARGETS superchic init DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT bin)
 install(TARGETS superchicLib   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
+install(TARGETS superchicLibstatic   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Cards/ DESTINATION  ${CMAKE_INSTALL_DOCDIR}/Cards COMPONENT doc)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/doc/superchic4.2.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR}/ COMPONENT doc)
+if ( NOT "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
+   file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/SplinesWithVariableKnots.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Carlos_106_440.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/gampgamn.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Veyssiere_singleneut.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Muccifora.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Lepretre25_103.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Caldwell.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Lepretre_25_103.dat 
+              DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/share/SuperChic/)
+endif()
+
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/SplinesWithVariableKnots.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Carlos_106_440.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/gampgamn.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Veyssiere_singleneut.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Muccifora.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Lepretre25_103.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Caldwell.dat
+              ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Lepretre_25_103.dat 
+              DESTINATION ${CMAKE_INSTALL_DATADIR}/SuperChic COMPONENT data)
 
 if (SUPERCHIC_ENABLE_TESTS)
   ENABLE_TESTING()

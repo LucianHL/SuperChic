@@ -23,7 +23,7 @@ ccc   MHV amplitudes
       complex*16 zout,zouta,zoutb,zoutc,zoutd
      &     ,zoute,zoutf
       double precision p1(4),p2(4),p3(4),p4(4),p5(4)
-    
+
       call zmhvgm(p1,p3,p4,p5,p2,zouta)
       call zmhvgm(p1,p3,p5,p4,p2,zoutb)
       call zmhvgm(p1,p4,p3,p5,p2,zoutc)

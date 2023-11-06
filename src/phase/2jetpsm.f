@@ -25,7 +25,7 @@ ccc   generates two-body phase space for particles of mass mq1,mq2
       pcm(1)=stheta*dcos(phi)*pcm(4)*beta
       pcm(2)=stheta*dsin(phi)*pcm(4)*beta
       pcm(3)=ctheta*pcm(4)*beta
-      
+
       u=mq1**2-mx*(pcm(4)+pcm(3))
       t=mq1**2-mx*(pcm(4)-pcm(3))
 

@@ -25,7 +25,7 @@ ccc   gamgam --> SM higgs subprocess amplitude : normalisation
       normh=normh*alpha*mx**2/4d0/pi/v
 
 c      print*,normh**2*2d0/(16d0*pi*mx)/2d0
-      
+
       return
       end
 

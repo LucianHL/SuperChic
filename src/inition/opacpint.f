@@ -2,9 +2,9 @@
       implicit none
       double precision opacpint,rmax,rbin,m,del,r
       integer it
-      
+
       include 'opacppars.f'
-      
+
       rmax=opacparr(1,iopp)
 
       if(r.gt.rmax)then
@@ -20,6 +20,6 @@
          del=r-opacparr(1,it+1)
          opacpint=m*del+opacparr(2,it+1)
       endif
-         
+
       return
       end

@@ -2,7 +2,8 @@ ccc   randomizes order of VEGAS unweighted events and
 ccc   prints nev events to record
       subroutine unwprint
       implicit double precision(a-y)
-      integer i,j,k,l,m,n
+      integer i,j,k,l,m
+      integer nfl1, nfl2
       integer evfill(2000000)
 
       include 'pdg.f'
@@ -19,8 +20,6 @@ ccc   prints nev events to record
       include 'beam.f'
       include 'mion.f'
       include 'x.f'
-      include 'vertex.f'
-      include 'pvert.f'
       include 'rech.f'
       include 'ion.f'
 
@@ -49,8 +48,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
 
 
             if(i.eq.1)then
-               write(45,*)'HepMC::Version 2.06.11'
-               write(45,*)'HepMC::IO_GenEvent-START_EVENT_LISTING'
+               write(45,'(A)')'HepMC::Version 2.06.11'
+               write(45,'(A)')'HepMC::IO_GenEvent-START_EVENT_LISTING'
             endif
             
            do k=3,nup+2
@@ -82,74 +81,16 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &              -pup(2,4)**2-pup(1,4)**2))
             endif
 
-cccccc incoming proton vertices
-
-            call vertinc(1,barv,vert,orph,nout,momv,statv,pdgv,massv)
-            call vertinc(2,barv,vert,orph,nout,momv,statv,pdgv,massv)
-
-cccccccccc Central production vertex
-
-            call vertcent(3,barv,vert,orph,nout,momv,statv,pdgv,massv)
-
-ccccccccc Outgoing vertices
-
-            nvert=3
-            mv1=0
-            mv2=0
-            
-            do m=6,nup+2
-               
-               vert(nvert+1)=nvert+1
-               orph(nvert+1)=0
-               nout(nvert+1)=0
-               
-               if(mothup(1,m).eq.mv1.and.mothup(2,m).eq.mv2)then
-                  ip=ip+1
-                  call passign(m,ip,nvert,nout,barv,pdgv,momv,
-     &                 massv,statv)                  
-               else
-                  mv1=mothup(1,m)
-                  mv2=mothup(2,m)
-                  ip=1
-                  call passign(m,ip,nvert+1,nout,barv,pdgv,momv,
-     &                 massv,statv)
-                  nvert=nvert+1
-               endif
-                  
-            enddo
-
-ccccccccc            
-
-            call vertidscan(nvert,orph,nout,barv)   ! Assign vertex barcodes
-                        
             scalup=mx
             aqcdup=alphas(mx**2)
             aqedup=alpha
             
-            write(45,51)'E',i,0,scalup,aqcdup,aqedup,proc,0
-     &           ,nvert,1,2,0,0
-            write(45,55)'U GEV CM'
-            write(45,52)'F',nfl1,nfl2,x1,x2,scalup,0d0,0d0,0,0
-            
-            do n=1,nvert
-
-               write(45,53)'V',vert(n),0,0d0,0d0,0d0,0d0,
-     &           orph(n),nout(n)
-
-               do m=1,orph(n)+nout(n)
-                  write(45,54)'P',barv(n,m,1),pdgv(n,m),momv(n,m,1)
-     &                 ,momv(n,m,2),momv(n,m,3),momv(n,m,4),massv(n,m),
-     &                 statv(n,m),0d0,0d0,barv(n,m,2),0,0
-               enddo
-               
-            enddo
             
 
-            write(45,*)''
-
-            if(i.eq.nev)then
-               write(45,*)'HepMC::IO_GenEvent-END_EVENT_LISTING'
-            endif
+       call hmout(nup+1,i,nfl1,nfl2,x1,x2,proc) 
+       if(i.eq.nev)then
+         write(45,'(A)')'HepMC::IO_GenEvent-END_EVENT_LISTING'
+       endif
             
             goto 500
 
@@ -157,27 +98,6 @@ ccccccccc
             
          endif
 
-c$$$ 51      format(1a,1x,i8,1x,i4,1x,E16.9,1x,E16.9,1x,E16.9,1x,i4,1x,i1
-c$$$     &        ,1x,i4,1x,i1,1x,i1,1x,i1,1x,i1,1x)
-c$$$ 52      format(1a,1x,i4,1x,i4,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x
-c$$$     &        ,E16.9,1x,i1,1x,i1)
-c$$$ 53      format(1a,1x,i2,1x,i1,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x
-c$$$     &        ,i2,1x,i2)
-c$$$ 54      format(1a,1x,i2,1x,i10,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x
-c$$$     &        ,E16.9,1x,i2,1x,E16.9,1x,E16.9,1x,i4,1x,i1,1x,i1)
-c$$$ 55      format(8a)
-
- 51      format(A1,' ',I0,' ',I0,' ',E15.9,' ',E15.9,' ',E15.9,' ',I0
-     &        ,' ',I0
-     &        ,' ',I0,' ',I0,' ',I0,' ',I0,' ',I0,' ')
- 52      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9,' '
-     &        ,E15.9,' ',E15.9,' ',i0,' ',i0)
- 53      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9,' '
-     &        ,E15.9,' ',i0,' ',i0)
- 54      format(A1,' ',i0,' ',i0,' ',E15.9,' ',E15.9,' ',E15.9
-     &        ,' ',E15.9,' ',E15.9,' ',i0,' ',E15.9,' ',E15.9,' ',i0
-     &        ,' ',i0,' ',i0)
- 55      format(8a)
 
 ccccccccccccccccccccccccccccccccccccccccccccccc
 ccccc Les Houches
@@ -266,8 +186,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
                enddo
             endif
             write(45,*)'</event>'
-            
-c            write(45,*)''
 
  304        format(i2,4x,i1,3x,F2.0,3x,E16.9,3x,E16.9,3x,E16.9)
             
@@ -316,33 +234,33 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
                enddo
             enddo
                
-            write(45,*)i
-
+            write(45,201)'E ',i,nhep
+            isthep(1)=4
+            isthep(2)=4
 
             if(beam.eq.'el'.or.beam.eq.'prot')then
             do m=1,nhep
-               write(45,300)m,idhep(m),isthep(m),jmohep(1,m),
+               write(45,300)isthep(m),idhep(m),jmohep(1,m),
      &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
      &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
      &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
             enddo
             elseif(beam.eq.'ion')then
             do m=1,nhep
-               write(45,200)m,idhep(m),isthep(m),jmohep(1,m),
+               write(45,200)isthep(m),idhep(m),jmohep(1,m),
      &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
      &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
      &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
             enddo
             elseif(beam.eq.'ionp')then
             do m=1,nhep
-            write(45,300)m,idhep(m),isthep(m),jmohep(1,m),
+            write(45,300)isthep(m),idhep(m),jmohep(1,m),
      &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
      &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
      &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
             enddo
             endif
                
-            write(45,*)''
             
          endif
                
@@ -354,17 +272,15 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             write(45,*)'</LesHouchesEvents>'
          endif
       endif
+ 201  format(A1,i8,1x,i8)
 
- 200  format(i4,1x,i10,1x,i4,1x,i4,1x,i4,1x,i4,1x,i4,1x,E18.11,1x,E18.11
-     &,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x
-     &,E18.11)
+ 200  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
+     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
+     & E19.8,E19.8)
 
- 300  format(i4,1x,i10,1x,i4,1x,i4,1x,i4,1x,i4,1x,i4,1x,E18.11,1x,E18.11
-     &,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x,E18.11,1x
-     &     ,E18.11)
-
- 301  format(i5,1x,i4,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
-     &E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,E16.9)
+ 300  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
+     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
+     & E19.8,E19.8)
 
  303  format(7x,i10,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
      &     E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,F2.0,1x,F2.0)

@@ -3,44 +3,46 @@
       double precision gdrx_res,regge_gdr
       double precision xmax,lemax,lemin,leint,le
       double precision o0,emax,e,shad
-      double precision sigt(2,62),test
+      double precision sigt(2,62)
       integer i,j,ir
 
       include 'mion.f'
       include 'ion.f'
       include 'gdr.f'
       include 'sAA.f'
-      
+      character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'share/SuperChic'/
+#endif
+
       integer length
       character*500 valuepath
       length = 500
       length=0
-      CALL GETENV('SUPERCHIC_SOURCE_PATH', valuepath)
+      CALL GETENV('SUPERCHIC_DATA_PATH', valuepath)
       length=len(trim(valuepath))
-   
+
       ! Check if the environment variable is set
-      if (length > 0) then      
-        open(10,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Veyssiere_singleneut.dat')
-        open(11,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Lepretre25_103.dat')
-        open(12,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Carlos_106_440.dat')
-        open(13,file=valuepath(1:length) //
-     &'/src/inition/GDR/gampgamn.dat')
-        open(14,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Caldwell.dat')
-        open(50,file=valuepath(1:length) // 
-     &'/src/inition/GDR/Muccifora.dat')
+      if (length > 0) then
+        write(*,*) 'Reading data from(env. var.) ',valuepath(1:length)
+        open(10,file=valuepath(1:length) // '/Veyssiere_singleneut.dat')
+        open(11,file=valuepath(1:length) // '/Lepretre25_103.dat')
+        open(12,file=valuepath(1:length) // '/Carlos_106_440.dat')
+        open(13,file=valuepath(1:length) // '/gampgamn.dat')
+        open(14,file=valuepath(1:length) // '/Caldwell.dat')
+        open(50,file=valuepath(1:length) // '/Muccifora.dat')
       else
-      open(10,file='../src/inition/GDR/Veyssiere_singleneut.dat')
-      open(11,file='../src/inition/GDR/Lepretre25_103.dat')
-      open(12,file='../src/inition/GDR/Carlos_106_440.dat')
-      open(13,file='../src/inition/GDR/gampgamn.dat')
-      open(14,file='../src/inition/GDR/Caldwell.dat')
-      open(50,file='../src/inition/GDR/Muccifora.dat')
+      write(*,*) 'Reading data from ',trim(defpath)
+      open(10,file=trim(defpath)// '/Veyssiere_singleneut.dat')
+      open(11,file=trim(defpath)// '/Lepretre25_103.dat')
+      open(12,file=trim(defpath)// '/Carlos_106_440.dat')
+      open(13,file=trim(defpath)// '/gampgamn.dat')
+      open(14,file=trim(defpath)// '/Caldwell.dat')
+      open(50,file=trim(defpath)// '/Muccifora.dat')
       endif
-      
+
       i0=161 ! GDR, Veyssiere et al. Nucl. Phys. A159, 561 (1970)
       i1=189 ! 25-103 MeV, Lepretre, et al., Nucl. Phys. A367, 237 (1981)
       i2=210 ! 106-440 MeV, Carlos, et al., Nucl. Phys. A431, 573 (1984)
@@ -63,7 +65,7 @@
       lemin=dlog(16.4d0)
       ir=100
       leint=(lemax-lemin)/dble(ir)
-      
+
       if(nint(az).eq.82)then
          read(10,*)
          read(10,*)(sneut(2,j),j=1,i0)
@@ -101,7 +103,7 @@
 
       read(13,*)(sigt(1,j),j=1,62)
       read(13,*)(sigt(2,j),j=1,62)
-      
+
       do i=1,13
          read(50,*)mneut(1,i+i2),mneut(2,i+i2)
          mneut(1,i+i2)=mneut(1,i+i2)*1d3
@@ -114,19 +116,19 @@
       read(14,*)(mneut(2,j),j=i3+1,i4)
 
       do i=1,11
-         mneut(2,i3+i)=mneut(2,i3+i)*an      
-         e=mneut(1,i3+i)*1d-3 
+         mneut(2,i3+i)=mneut(2,i3+i)*an
+         e=mneut(1,i3+i)*1d-3
       enddo
 
       do i=i4+1,i5
          le=lemin+dble(i-i4)*leint
          e=dexp(le)
-         
+
          mneut(1,i)=e*1d3
          mneut(2,i)=Regge_gdr(e)*an
 
       enddo
-         
+
       return
       end
 
@@ -147,9 +149,8 @@
          gam1=4.05d0
       endif
 
-      gdrx_res=sig1*e**2*gam1**2/((e**2-e1**2)**2
-     &        +e**2*gam1**2)
-      
+      gdrx_res=sig1*e**2*gam1**2/((e**2-e1**2)**2+e**2*gam1**2)
+
       if(nint(az).eq.79)then
       elseif(nint(az).eq.82)then
       else
@@ -166,9 +167,9 @@
 
       include 'mion.f'
       include 'ion.f'
-      
+
       mn=0.94d0
-      
+
       x=0.0677d0
       y=0.129d0
       eps=0.0808d0

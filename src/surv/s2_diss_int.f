@@ -5,17 +5,17 @@ ccc   interpolator for Sudakov factor
       double precision lxinc,lxmin,lx,lqtmin,lqtinc,lqt
       double precision qt,x,tg
       integer i,j,ii
-      integer nx,nqt
+      integer nqt
 
       include 's2_diss.f'
 
       if(ii.eq.3)then
-         tg=s2dd        
+         tg=s2dd
          return
       endif
-      
+
       nqt=10
-      
+
       lx=dlog(x)
       lqt=dlog(qt)
 
@@ -27,7 +27,7 @@ ccc   interpolator for Sudakov factor
       if(ii.eq.2)lqtinc=siearr(2,1,2)-siearr(2,1,1)
       if(ii.eq.1)lxinc=scearr(1,2,1)-scearr(1,1,1)
       if(ii.eq.2)lxinc=siearr(1,2,1)-siearr(1,1,1)
-      
+
       j=nint((lqt-lqtmin)/lqtinc)
       i=nint((lx-lxmin)/lxinc)
 
@@ -44,53 +44,53 @@ ccc   interpolator for Sudakov factor
 
 c      print*,i,j
 
-cccccccccccc  
+cccccccccccc
 
       if(ii.eq.1)then
 
          if(j.gt.nqt)then
-            
+
             m1=(scearr(3,i+1,nqt)-scearr(3,i,nqt))/lxinc
             tg=scearr(3,i,nqt)+m1*(lx-scearr(1,i,nqt))
 
          else
-            
+
             m1=(scearr(3,i+1,j)-scearr(3,i,j))/lxinc
             tg1=scearr(3,i,j)+m1*(lx-scearr(1,i,j))
-            
+
             m2=(scearr(3,i+1,j+1)-scearr(3,i,j+1))/lxinc
             tg2=scearr(3,i,j+1)+m2*(lx-scearr(1,i,j+1))
-            
+
             mf=(tg2-tg1)/lqtinc
             tg=tg1+mf*(lqt-scearr(2,i,j))
 
          endif
-            
+
       else
 
          if(j.gt.nqt)then
-            
+
             m1=(siearr(3,i+1,nqt)-siearr(3,i,nqt))/lxinc
             tg=siearr(3,i,nqt)+m1*(lx-siearr(1,i,nqt))
 
          else
-            
+
             m1=(siearr(3,i+1,j)-siearr(3,i,j))/lxinc
             tg1=siearr(3,i,j)+m1*(lx-siearr(1,i,j))
-            
+
             m2=(siearr(3,i+1,j+1)-siearr(3,i,j+1))/lxinc
             tg2=siearr(3,i,j+1)+m2*(lx-siearr(1,i,j+1))
-            
+
             mf=(tg2-tg1)/lqtinc
             tg=tg1+mf*(lqt-siearr(2,i,j))
 
          endif
-            
+
       endif
 
       if(tg.lt.0d0)tg=0d0
       if(tg.gt.1d0)tg=1d0
-      
+
       return
       end
 
@@ -105,7 +105,7 @@ cccccccccccc
       return
       end
 
-      
+
       subroutine s2exp2(qt1,qt2,s2ll,s2lh,s2hl,s2hh,s2out)
       implicit none
       double precision qt0,qt1,qt2,s2ll,s2lh,s2hl,s2hh,s2out

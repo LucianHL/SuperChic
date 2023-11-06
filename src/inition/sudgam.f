@@ -11,7 +11,7 @@
       lqtmax=dlog(qtmax)
 
       do i=1,iqtot
-         
+
          lqt=lqtmin+(lqtmax-lqtmin)*dble(i)/dble(iqtot)
          qt=dexp(lqt)
 
@@ -33,22 +33,21 @@
       double precision sudgam_bt
       integer n,ntot
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0 
+      double precision dbesj0
 !endif
       include 'pi.f'
       include 'ion.f'
-      
+
       sum=0d0
 
       btmax=rzg*1000d0
       btmax=1d20
-      
+
       ntot=1000
       hb=btmax/dble(ntot)
 
 c      write(6,*)dbesj0(0d0)
-c      stop
-      
+
       do n=1,ntot
 
          bt=(dble(n)-0.5d0)*hb
@@ -61,12 +60,12 @@ c         write(6,*)'bt',bt,sudgam_bt(bt,mll)
 c         write(6,*)bt*dbesj0(bt*lt),bt*dbesj0(bt*lt)*hb
 
          sum=sum+wt
-         
+
       enddo
 
       sudgam=sum
 
-      
+
 
       return
       end
@@ -99,7 +98,7 @@ c         sud=sud**(pow)
 c         sud=dlog(sud)
 c         write(6,*)'sud',mll,mub,mq,mll**2/mub**2,dlog(mll**2/mub**2)
       endif
-      
+
       sudgam_bt=dexp(-sud)
 
 c      sudgam_bt=1d0/sud

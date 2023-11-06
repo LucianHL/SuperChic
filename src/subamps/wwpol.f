@@ -20,7 +20,7 @@ ccc   gamma gamma --> W+W- subprocess amplitude
 
       beta=dsqrt(1d0-4d0*mw**2/mx**2)
       gam=mx**2/mw**2
-    
+
       costt=(t-u)/beta/mx**2
       sintt=dsqrt(1d0-costt**2)
 
@@ -85,7 +85,7 @@ ccc   gamma gamma --> W+W- subprocess amplitude
             elseif(l1.eq.-1.and.l2.eq.1)then
                mp=m
             endif
-            
+
          enddo
       enddo
 

@@ -1,12 +1,12 @@
       function screen_01(qt)
       implicit none
-      double precision screen_01,wt,sum,bt,hbt,qt,lbt,lbtmin,lbtmax,hlbt
-      double precision opacpbint,opacpbint_3
+      double precision screen_01,wt,sum,bt,hbt,qt
+      double precision opacpbint_3
       double precision b0,hbt0,sum0,btminb
-      double precision btmin,btmax,aj0,aj0t,opac0,sumt
-      integer iphi,ibt,nphi,nbt,nbt1,nbt2,nbt0
+      double precision btmin,btmax,aj0,opac0,sumt
+      integer ibt,nbt,nbt0
 !if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0 
+      double precision dbesj0
 !endif
       include 'pi.f'
       include 'ion.f'
@@ -21,10 +21,10 @@
       b0=4d0*rzg
       hbt0=(b0-btmin)/dble(nbt0)
       sum0=0d0
-      
+
 cccccccccccc
 
- 111  btminb=0d0
+      btminb=0d0
       btmax=4d0*rzg
 
       aj0=(1d0-opacpbint_3(rzg*40d0))*rzg*40d0
@@ -55,6 +55,6 @@ cccccccccccc
 ccccc Finally add in analytic integration of J0 over 0->Infty
 
       screen_01=sum+aj0/qt
-      
+
       return
       end

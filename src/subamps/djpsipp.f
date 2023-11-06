@@ -51,7 +51,7 @@ cccccccccccc
      &  - 17./16.*s**3*m**2*beta*cost**3 - 15./8.*s**3*m**2*beta**2*
      & cost**2 - 15./4.*s**3*m**2*beta**2*cost**3 - 15./8.*s**3*m**2*
      & beta**2*cost**4 + 15./16.*s**3*m**2*beta**3*cost**3 + 15./8.*
-     & s**3*m**2*beta**3*cost**4 + 15./16.*s**3*m**2*beta**3*cost**5 + 
+     & s**3*m**2*beta**3*cost**4 + 15./16.*s**3*m**2*beta**3*cost**5 +
      & 9./8.*s**4*beta + 9./8.*s**4*beta*cost - 9./8.*s**4*beta*cost**2
      &  - 9./8.*s**4*beta*cost**3 - 9./8.*s**4*beta**3*cost**2 - 9./8.*
      & s**4*beta**3*cost**3 + 9./8.*s**4*beta**3*cost**4 + 9./8.*s**4*
@@ -63,7 +63,7 @@ cccccccccccc
      &  + 17./16.*s**3*m**2*beta*cost**3 - 15./8.*s**3*m**2*beta**2*
      & cost**2 - 15./4.*s**3*m**2*beta**2*cost**3 - 15./8.*s**3*m**2*
      & beta**2*cost**4 - 15./16.*s**3*m**2*beta**3*cost**3 - 15./8.*
-     & s**3*m**2*beta**3*cost**4 - 15./16.*s**3*m**2*beta**3*cost**5 - 
+     & s**3*m**2*beta**3*cost**4 - 15./16.*s**3*m**2*beta**3*cost**5 -
      & 9./8.*s**4*beta - 9./8.*s**4*beta*cost + 9./8.*s**4*beta*cost**2
      &  + 9./8.*s**4*beta*cost**3 + 9./8.*s**4*beta**3*cost**2 + 9./8.*
      & s**4*beta**3*cost**3 - 9./8.*s**4*beta**3*cost**4 - 9./8.*s**4*
@@ -75,7 +75,7 @@ cccccccccccc
      &  - 17./16.*s**3*m**2*beta*cost**3 - 15./8.*s**3*m**2*beta**2*
      & cost**2 + 15./4.*s**3*m**2*beta**2*cost**3 - 15./8.*s**3*m**2*
      & beta**2*cost**4 + 15./16.*s**3*m**2*beta**3*cost**3 - 15./8.*
-     & s**3*m**2*beta**3*cost**4 + 15./16.*s**3*m**2*beta**3*cost**5 - 
+     & s**3*m**2*beta**3*cost**4 + 15./16.*s**3*m**2*beta**3*cost**5 -
      & 9./8.*s**4*beta + 9./8.*s**4*beta*cost + 9./8.*s**4*beta*cost**2
      &  - 9./8.*s**4*beta*cost**3 + 9./8.*s**4*beta**3*cost**2 - 9./8.*
      & s**4*beta**3*cost**3 - 9./8.*s**4*beta**3*cost**4 + 9./8.*s**4*
@@ -87,14 +87,14 @@ cccccccccccc
      &  + 17./16.*s**3*m**2*beta*cost**3 - 15./8.*s**3*m**2*beta**2*
      & cost**2 + 15./4.*s**3*m**2*beta**2*cost**3 - 15./8.*s**3*m**2*
      & beta**2*cost**4 - 15./16.*s**3*m**2*beta**3*cost**3 + 15./8.*
-     & s**3*m**2*beta**3*cost**4 - 15./16.*s**3*m**2*beta**3*cost**5 + 
+     & s**3*m**2*beta**3*cost**4 - 15./16.*s**3*m**2*beta**3*cost**5 +
      & 9./8.*s**4*beta - 9./8.*s**4*beta*cost - 9./8.*s**4*beta*cost**2
      &  + 9./8.*s**4*beta*cost**3 - 9./8.*s**4*beta**3*cost**2 + 9./8.*
      & s**4*beta**3*cost**3 + 9./8.*s**4*beta**3*cost**4 - 9./8.*s**4*
      & beta**3*cost**5
 
       ppuu =
-     & 15./16.*s**3*m**2*beta*cost - 15./16.*s**3*m**2*beta*cost**3 - 
+     & 15./16.*s**3*m**2*beta*cost - 15./16.*s**3*m**2*beta*cost**3 -
      & 15./8.*s**3*m**2*beta**2*cost**2 + 15./8.*s**3*m**2*beta**2*
      & cost**4 + 15./16.*s**3*m**2*beta**3*cost**3 - 15./16.*s**3*m**2*
      & beta**3*cost**5
@@ -106,7 +106,7 @@ cccccccccccc
      & beta**3*cost**5
 
       mmuu =
-     & 15./16.*s**3*m**2*beta*cost - 15./16.*s**3*m**2*beta*cost**3 - 
+     & 15./16.*s**3*m**2*beta*cost - 15./16.*s**3*m**2*beta*cost**3 -
      & 15./8.*s**3*m**2*beta**2*cost**2 + 15./8.*s**3*m**2*beta**2*
      & cost**4 + 15./16.*s**3*m**2*beta**3*cost**3 - 15./16.*s**3*m**2*
      & beta**3*cost**5
@@ -179,7 +179,7 @@ ccc
      & beta*cost**3 - 9./8.*s**4*beta**3*cost + 9./8.*s**4*beta**3*
      & cost**5 + 9./8.*s**4*beta**5*cost**3 - 9./8.*s**4*beta**5*
      & cost**5
- 
+
       pmuu =
      & 7./4.*s**3*m**2 - 7./4.*s**3*m**2*cost**2 - 17./16.*s**3*m**2*
      & beta*cost + 17./16.*s**3*m**2*beta*cost**3 + 1./4.*s**3*m**2*
@@ -206,7 +206,7 @@ ccc
      & cost**2 + 15./16.*s**3*m**2*beta*cost**3 - 1./4.*s**3*m**2*
      & beta**2 + 17./8.*s**3*m**2*beta**2*cost**2 + 17./8.*s**3*m**2*
      & beta**2*cost**3 - 15./8.*s**3*m**2*beta**2*cost**4 + 19./16.*
-     & s**3*m**2*beta**3*cost**3 + 15./16.*s**3*m**2*beta**3*cost**5 + 
+     & s**3*m**2*beta**3*cost**3 + 15./16.*s**3*m**2*beta**3*cost**5 +
      & 9./8.*s**4*cost + 9./4.*s**4*beta*cost - 9./8.*s**4*beta**2*cost
      &  - 9./4.*s**4*beta**2*cost**2 - 9./8.*s**4*beta**2*cost**3 - 9./
      & 8.*s**4*beta**3*cost - 9./8.*s**4*beta**3*cost**3 + 9./8.*s**4*
@@ -219,7 +219,7 @@ ccc
      & cost**2 - 15./16.*s**3*m**2*beta*cost**3 - 1./4.*s**3*m**2*
      & beta**2 + 17./8.*s**3*m**2*beta**2*cost**2 - 17./8.*s**3*m**2*
      & beta**2*cost**3 - 15./8.*s**3*m**2*beta**2*cost**4 - 19./16.*
-     & s**3*m**2*beta**3*cost**3 - 15./16.*s**3*m**2*beta**3*cost**5 - 
+     & s**3*m**2*beta**3*cost**3 - 15./16.*s**3*m**2*beta**3*cost**5 -
      & 9./8.*s**4*cost - 9./4.*s**4*beta*cost + 9./8.*s**4*beta**2*cost
      &  - 9./4.*s**4*beta**2*cost**2 + 9./8.*s**4*beta**2*cost**3 + 9./
      & 8.*s**4*beta**3*cost + 9./8.*s**4*beta**3*cost**3 - 9./8.*s**4*
@@ -232,7 +232,7 @@ ccc
      & cost**2 + 15./16.*s**3*m**2*beta*cost**3 - 1./4.*s**3*m**2*
      & beta**2 + 17./8.*s**3*m**2*beta**2*cost**2 - 17./8.*s**3*m**2*
      & beta**2*cost**3 - 15./8.*s**3*m**2*beta**2*cost**4 + 19./16.*
-     & s**3*m**2*beta**3*cost**3 + 15./16.*s**3*m**2*beta**3*cost**5 - 
+     & s**3*m**2*beta**3*cost**3 + 15./16.*s**3*m**2*beta**3*cost**5 -
      & 9./8.*s**4*cost + 9./4.*s**4*beta*cost + 9./8.*s**4*beta**2*cost
      &  - 9./4.*s**4*beta**2*cost**2 + 9./8.*s**4*beta**2*cost**3 - 9./
      & 8.*s**4*beta**3*cost - 9./8.*s**4*beta**3*cost**3 - 9./8.*s**4*
@@ -245,7 +245,7 @@ ccc
      & cost**2 - 15./16.*s**3*m**2*beta*cost**3 - 1./4.*s**3*m**2*
      & beta**2 + 17./8.*s**3*m**2*beta**2*cost**2 + 17./8.*s**3*m**2*
      & beta**2*cost**3 - 15./8.*s**3*m**2*beta**2*cost**4 - 19./16.*
-     & s**3*m**2*beta**3*cost**3 - 15./16.*s**3*m**2*beta**3*cost**5 + 
+     & s**3*m**2*beta**3*cost**3 - 15./16.*s**3*m**2*beta**3*cost**5 +
      & 9./8.*s**4*cost - 9./4.*s**4*beta*cost - 9./8.*s**4*beta**2*cost
      &  - 9./4.*s**4*beta**2*cost**2 - 9./8.*s**4*beta**2*cost**3 + 9./
      & 8.*s**4*beta**3*cost + 9./8.*s**4*beta**3*cost**3 + 9./8.*s**4*
@@ -263,7 +263,7 @@ ccc   Get relative phases right
 
       pm=pm*(cphi+zi*sphi)**2
       mp=mp*(cphi-zi*sphi)**2
-    
+
 ccc
 
       pm=pm*64d0*alphas(mu**2/4d0)**2*pi*psi0**2/9d0/m
@@ -485,7 +485,7 @@ ccc
      & *cost**2*sintp + 1./2.*s**3*m*beta*sintp + 1./2.*s**3*m*beta*
      & cost*sintp - 15./4.*s**3*m*beta*cost**2*sintp - 15./4.*s**3*m*
      & beta*cost**3*sintp + 15./8.*s**3*m*beta**2*cost**3*sintp + 15./8.
-     & *s**3*m*beta**2*cost**4*sintp - 9./8.*s**4*m**(-1)*cost*sintp - 
+     & *s**3*m*beta**2*cost**4*sintp - 9./8.*s**4*m**(-1)*cost*sintp -
      & 9./8.*s**4*m**(-1)*cost**2*sintp + 9./8.*s**4*m**(-1)*beta**2*
      & cost*sintp + 9./8.*s**4*m**(-1)*beta**2*cost**2*sintp + 9./8.*
      & s**4*m**(-1)*beta**2*cost**3*sintp + 9./8.*s**4*m**(-1)*beta**2*
@@ -500,7 +500,7 @@ ccc
      & *cost**2*sintp + 1./2.*s**3*m*beta*sintp + 1./2.*s**3*m*beta*
      & cost*sintp - 15./4.*s**3*m*beta*cost**2*sintp - 15./4.*s**3*m*
      & beta*cost**3*sintp - 15./8.*s**3*m*beta**2*cost**3*sintp - 15./8.
-     & *s**3*m*beta**2*cost**4*sintp + 9./8.*s**4*m**(-1)*cost*sintp + 
+     & *s**3*m*beta**2*cost**4*sintp + 9./8.*s**4*m**(-1)*cost*sintp +
      & 9./8.*s**4*m**(-1)*cost**2*sintp - 9./8.*s**4*m**(-1)*beta**2*
      & cost*sintp - 9./8.*s**4*m**(-1)*beta**2*cost**2*sintp - 9./8.*
      & s**4*m**(-1)*beta**2*cost**3*sintp - 9./8.*s**4*m**(-1)*beta**2*
@@ -515,7 +515,7 @@ ccc
      & *cost**2*sintp - 1./2.*s**3*m*beta*sintp + 1./2.*s**3*m*beta*
      & cost*sintp + 15./4.*s**3*m*beta*cost**2*sintp - 15./4.*s**3*m*
      & beta*cost**3*sintp - 15./8.*s**3*m*beta**2*cost**3*sintp + 15./8.
-     & *s**3*m*beta**2*cost**4*sintp + 9./8.*s**4*m**(-1)*cost*sintp - 
+     & *s**3*m*beta**2*cost**4*sintp + 9./8.*s**4*m**(-1)*cost*sintp -
      & 9./8.*s**4*m**(-1)*cost**2*sintp - 9./8.*s**4*m**(-1)*beta**2*
      & cost*sintp + 9./8.*s**4*m**(-1)*beta**2*cost**2*sintp - 9./8.*
      & s**4*m**(-1)*beta**2*cost**3*sintp + 9./8.*s**4*m**(-1)*beta**2*
@@ -530,7 +530,7 @@ ccc
      & *cost**2*sintp - 1./2.*s**3*m*beta*sintp + 1./2.*s**3*m*beta*
      & cost*sintp + 15./4.*s**3*m*beta*cost**2*sintp - 15./4.*s**3*m*
      & beta*cost**3*sintp + 15./8.*s**3*m*beta**2*cost**3*sintp - 15./8.
-     & *s**3*m*beta**2*cost**4*sintp - 9./8.*s**4*m**(-1)*cost*sintp + 
+     & *s**3*m*beta**2*cost**4*sintp - 9./8.*s**4*m**(-1)*cost*sintp +
      & 9./8.*s**4*m**(-1)*cost**2*sintp + 9./8.*s**4*m**(-1)*beta**2*
      & cost*sintp - 9./8.*s**4*m**(-1)*beta**2*cost**2*sintp + 9./8.*
      & s**4*m**(-1)*beta**2*cost**3*sintp - 9./8.*s**4*m**(-1)*beta**2*

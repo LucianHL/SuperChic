@@ -19,7 +19,7 @@ C      subroutine calchg
 
       ycut=dlog(rts/mmin)
 
-      xmin=mmin*dexp(-ycut)/rts         
+      xmin=mmin*dexp(-ycut)/rts
       xmax=1d0
 
       lxmax=dlog(xmax)
@@ -38,7 +38,7 @@ C      subroutine calchg
 
       do 555 i=1,itot+1
       do 555 j=1,jtot+1
-         
+
          read(44,*)hgint(1,i,j),hgint(2,i,j),hgint(3,i,j),hgint(4,i,j)
 
  555  enddo

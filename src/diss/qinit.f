@@ -2,7 +2,7 @@
       implicit double precision(a-y)
       double precision pq(4)
       integer i,j
-      
+
       include 'mom.f'
       include 'leshouches.f'
       include 'mp.f'
@@ -52,7 +52,7 @@
          mothup(1,i+4)=1
          mothup(2,i+4)=2
       endif
-      
+
       if(diff.eq.'sd')then
          pdgid(4)=2
          istup(4)=-1
@@ -65,8 +65,8 @@
          mothup(1,5)=1
          mothup(2,5)=2
       endif
-      
+
       return
       end
 
-      
+

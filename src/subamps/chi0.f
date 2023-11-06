@@ -12,9 +12,9 @@ ccc   gg --> chi_0 subprocess amplitude
       qt1sq=qt1(1)**2+qt1(2)**2
       qt2sq=qt2(1)**2+qt2(2)**2
       q1q2=(mx**2+qt1sq+qt2sq)/2d0
-  
+
       cchi=dsqrt(pi*mx**3*gamchi0/3d0)
-      
+
       cpp=-(qt1(1)*qt2(1)+qt1(2)*qt2(2))*(3d0*mx**2+qt1sq+qt2sq)
       cpp=cpp-2d0*qt1sq*qt2sq
       cpp=cpp/dsqrt(6d0)*mx/2d0*cchi

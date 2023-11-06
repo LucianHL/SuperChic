@@ -8,14 +8,14 @@ ccc   gamgam --> ALP amplitude
       include 'ewpars.f'
       include 'norm.f'
       include 'gax.f'
-      
+
       norma=gax/2d0*mx**2
       norma=norma*dsqrt(conv)
       norma=norma/2d0   ! to get correct M^2/4
-      
+
       pp=norma
       mm=-norma
-      
+
       if(alpt.eq.'ps')then
          mm=-norma
       elseif(alpt.eq.'sc')then
@@ -23,7 +23,7 @@ ccc   gamgam --> ALP amplitude
       endif
       pm=0d0
       mp=0d0
-      
+
       return
       end
 
@@ -34,7 +34,7 @@ ccc   gamgam --> ALP amplitude
       double precision qsq1,qsq2,q1_q2,mx
       integer i1,i2,i,j,p
       double precision q1(4),q2(4)
-      
+
       include 'pi.f'
       include 'ewpars.f'
       include 'gax.f'
@@ -63,37 +63,37 @@ ccc   gamgam --> ALP amplitude
       qsq2=-qsq2
 
       q1_q2=q1(4)*q2(4)-q1(3)*q2(3)-q1(2)*q2(2)-q1(1)*q2(1)
-      
+
       do i1=1,4
          do i2=1,4
 
             zout=0d0
-            
+
             do i=1,4
                do j=1,4
-                  
+
                   if(alpt.eq.'ps')then
                      zt=e_(i1,i2,i,j)*q1(i)*q2(j)*gax
                   endif
-                     
+
                   if(i.lt.4)zt=-zt
                   if(j.lt.4)zt=-zt
 
                   zout=zout+zt
-                  
+
                enddo
             enddo
 
             if(alpt.eq.'sc')then
                zout=(d_(i1,i2)*q1_q2-q1(i2)*q2(i1))*gax
             endif
-            
+
             zout=zout*dsqrt(conv)
             zoutarr(p,i1,i2)=zout
-            
+
          enddo
       enddo
- 
+
       return
       end
 
@@ -104,16 +104,16 @@ ccc   gamgam --> VX  amplitude
       complex*16 pp,mm,pm,mp
 
       include 'mxs.f'
-      
+
       tau=0.04d0
-      
+
       norm=dexp(-tau*mx)  ! mx distribution
-      
+
       pp=dsqrt(norm) ! square root as amplitude here
-      
+
       mm=pp
       pm=0d0
       mp=0d0
-      
+
       return
       end

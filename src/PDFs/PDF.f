@@ -1,20 +1,19 @@
 ccc   calculates single PDF xg and dxg/dQ^2
       function xg(x,qsq)
       implicit double precision (a-z)
-      double precision garr(-6:6)
 
       q0=1.5d0
       eps=1d-3
       eps1=1d-4
 
       xg=0d0
-      
+
       if(qsq.gt.q0)then
 
          glu=xgi(x,qsq)
 
-      else       
-         
+      else
+
          qp=q0+eps1
          qm=q0-eps1
 
@@ -23,7 +22,7 @@ ccc   calculates single PDF xg and dxg/dQ^2
          glu1pp=xgi(x,qp+eps)
          glu1m=xgi(x,qm)
          glu1mp=xgi(x,qm+eps)
-         
+
          diffp=qp*(glu1pp-glu1p)/(eps*glu1p)
          diffm=qm*(glu1mp-glu1m)/(eps*glu1m)
 
@@ -33,12 +32,12 @@ ccc   calculates single PDF xg and dxg/dQ^2
      &        dlog(q0)+4d0)/4d0/(1d0+dlog(q0)))
          lamn=lamn/((1d0+dlog(q0))/(1d0+2d0*dlog(q0))-
      &        (2d0+dlog(q0))/4d0/(1d0+dlog(q0)))
-         
+
          lamt1=(diffp+2d0*dlog(q0)-lamn*(1d0+dlog(q0)))
      &        /(1d0+2d0*dlog(q0))
          lamt2=(ddiff+2d0*dlog(q0)+4d0-lamn*(2d0+dlog(q0)))
      &        /4d0/(1d0+dlog(q0))
-   
+
          power=2d0+(lamn-2d0)*qsq/(q0)+lamt2*qsq**2/q0**2
 
          if(power.lt.0d0)then
@@ -48,7 +47,7 @@ ccc   calculates single PDF xg and dxg/dQ^2
          endif
 
       endif
-        
+
       xg=glu
 
       if(x.gt.0.9999d0)then
@@ -60,7 +59,6 @@ ccc   calculates single PDF xg and dxg/dQ^2
 
       function dxg(x,qsq)
       implicit double precision (a-z)
-      double precision garr(-6:6)
 
       q0=1.5d0
       eps=1d-3
@@ -94,12 +92,12 @@ ccc   calculates single PDF xg and dxg/dQ^2
      &        dlog(q0)+4d0)/4d0/(1d0+dlog(q0)))
          lamn=lamn/((1d0+dlog(q0))/(1d0+2d0*dlog(q0))-
      &        (2d0+dlog(q0))/4d0/(1d0+dlog(q0)))
-         
+
          lamt1=(diffp+2d0*dlog(q0)-lamn*(1d0+dlog(q0)))
      &        /(1d0+2d0*dlog(q0))
          lamt2=(ddiff+2d0*dlog(q0)+4d0-lamn*(2d0+dlog(q0)))
      &        /4d0/(1d0+dlog(q0))
-         
+
          power=2d0+(lamn-2d0)*qsq/(q0)+lamt2*qsq**2/q0**2
 
          if(power.lt.0d0)then
@@ -116,11 +114,20 @@ ccc   calculates single PDF xg and dxg/dQ^2
       if(x.gt.0.9999d0)then
          dxg=0d0
       endif
-         
+
+      return
+      end
+      subroutine fglow1 (q0,lam,lamt,q,gluin,glout)
+      implicit double precision (a-z)
+      u= dlog(gluin)-(lam+lamt)*dlog(q0)+
+     &(2d0+(lam-2d0)*q/(q0)+lamt*q**2/q0**2)*dlog(q)
+      u = max(-50.0d0,u)
+      u = min(50.0d0,u)
+      glout=dexp(u)
       return
       end
 
-      subroutine fglow1 (q0,lam,lamt,q,gluin,glout)
+      subroutine fglow1_old (q0,lam,lamt,q,gluin,glout)
       implicit double precision (a-z)
 
       a=gluin/(q0**(lam+lamt))
@@ -128,4 +135,3 @@ ccc   calculates single PDF xg and dxg/dQ^2
 
       return
       end
-

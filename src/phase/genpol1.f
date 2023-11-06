@@ -48,7 +48,7 @@ ccc   generates polarization vectors for chi_1
       do i=1,3
          echi1(3,i)=q(4,in)*nchi(i)/m
       enddo
-      
+
 ccccccccccccccccccc in W RF
 
       do i=1,4
@@ -78,14 +78,14 @@ ccccccccccccccccccc in W RF
       pb(4)=q(4,in)
 
       call boost(m,pb,pcm,n2b)
-      
+
       echirf(irf,1,4)=0d0
       echirf(irf,2,4)=0d0
 
       do i=1,3
          echirf(irf,1,i)=(n1b(i)+zi*n2b(i))/dsqrt(2d0)
          echirf(irf,2,i)=-(n1b(i)-zi*n2b(i))/dsqrt(2d0)
-      enddo    
+      enddo
 
       return
       end

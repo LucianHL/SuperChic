@@ -9,7 +9,7 @@ ccc   returns length of character
       else
          goto 777
       endif
-     
+
       enddo
 
  777  l1=j-1

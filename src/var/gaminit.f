@@ -1,10 +1,10 @@
       subroutine gaminit
       implicit none
       integer i,j,k,l
-      
+
       include 'gmatrices.f'
       include 'zi.f'
-      
+
 
       do i=1,4
          do j=1,4
@@ -30,7 +30,7 @@
             enddo
          enddo
       enddo
-      
+
       e_(4,1,2,3)=1d0
       e_(4,1,3,2)=-1d0
       e_(4,2,1,3)=-1d0
@@ -63,7 +63,7 @@
       g5(1,3)=1d0
       g5(2,4)=1d0
       g5(3,1)=1d0
-      
+
       gmatrix(4,1,1)=1d0
       gmatrix(4,2,2)=1d0
       gmatrix(4,3,3)=-1d0
@@ -88,15 +88,15 @@
       ident(2,2)=1d0
       ident(3,3)=1d0
       ident(4,4)=1d0
-      
+
       return
       end
 
       subroutine gaminit_comb
       implicit none
-      integer i,j,k,i1,j1,k1,k2,l,m
+      integer i,j,k,i1,j1,k1
       complex*16 zt
-      
+
       include 'gmatrices.f'
       include 'gmatrices_comb.f'
       include 'zi.f'
@@ -129,29 +129,29 @@ c      enddo
       enddo
       enddo
       enddo
-         
+
       do i=1,4
       do j=1,4
       do i1=1,4
-      do j1=1,4  
+      do j1=1,4
          gmatrix_2(i,j,i1,j1)=0d0
          do k1=1,4
             gmatrix_2(i,j,i1,j1)=gmatrix_2(i,j,i1,j1)
      &           +gmatrix(i,i1,k1)*gmatrix(j,k1,j1)
-            
+
          enddo
       enddo
       enddo
       enddo
       enddo
 
-      
-      
+
+
       do i=1,4
       do j=1,4
       do k=1,4
       do i1=1,4
-      do j1=1,4  
+      do j1=1,4
          gmatrix_3(i,j,k,i1,j1)=0d0
          do k1=1,4
                gmatrix_3(i,j,k,i1,j1)=gmatrix_3(i,j,k,i1,j1)
@@ -166,9 +166,9 @@ c      enddo
 c      do i=1,4
 c      do j=1,4
 c      do k=1,4
-c      do l=1,4    
+c      do l=1,4
 c      do i1=1,4
-c      do j1=1,4  
+c      do j1=1,4
 c         gmatrix_4(i,j,k,l,i1,j1)=0d0
 c         do k1=1,4
 c            gmatrix_4(i,j,k,l,i1,j1)=gmatrix_4(i,j,k,l,i1,j1)
@@ -185,9 +185,9 @@ c      do i=1,4
 c      do j=1,4
 c      do k=1,4
 c      do l=1,4
-c      do m=1,4     
+c      do m=1,4
 c      do i1=1,4
-c      do j1=1,4  
+c      do j1=1,4
 c         gmatrix_5(i,j,k,l,m,i1,j1)=0d0
 c         do k1=1,4
 c            gmatrix_5(i,j,k,l,m,i1,j1)=gmatrix_5(i,j,k,l,m,i1,j1)
@@ -201,6 +201,6 @@ c      enddo
 c      enddo
 c      enddo
 c
-               
+
       return
       end

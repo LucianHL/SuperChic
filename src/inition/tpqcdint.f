@@ -2,9 +2,9 @@
       implicit none
       double precision rmax,m,rbin,del,tpqcdint,r
       integer it
-      
+
       include 'tpqcdpars.f'
-      
+
       rmax=tpqcdarr(1,itpqcd)
 
       if(r.gt.rmax)then
@@ -20,6 +20,6 @@
          del=r-tpqcdarr(1,it+1)
          tpqcdint=m*del+tpqcdarr(2,it+1)
       endif
-         
+
       return
       end
