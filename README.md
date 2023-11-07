@@ -23,14 +23,12 @@ Runtime requirements:
 ### CentOS8
 
     Most of the dependencies are present in the default repositories
-    
-    ```
+```
     yum -y install epel-release
     dnf config-manager --set-enabled PowerTools
     yum -y install  gcc gcc-c++ gcc-gfortran make cmake cmake-data git
     yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhapdf pythia8 pythia8-devel
-    ```
-    
+```
     But `apfel` should be installed from the sources.
 
     ```
