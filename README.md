@@ -22,7 +22,8 @@ Runtime requirements:
 
 ### CentOS8
 
-    Most of the dependencies are present in the default repositories
+Most of the dependencies are present in the default repositories
+
 ```
     yum -y install epel-release
     dnf config-manager --set-enabled PowerTools
