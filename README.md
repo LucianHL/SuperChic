@@ -95,5 +95,7 @@ This is done automatically in the st suite.
 ## Debugging SuperChic
 
 For the debug purposes it is useful to compile SeuperChic with the following options (assuming GNU compilers)
-`-DSUPERCHIC_ENABLE_FPES=ON -DSUPERCHIC_ENABLE_TESTS=ON -SUPERCHIC_ENABLE_ALL_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON -DCMAKE_Fortran_FLAGS="-O2 -g" `
+```
+-DSUPERCHIC_ENABLE_FPES=ON -DSUPERCHIC_ENABLE_TESTS=ON -SUPERCHIC_ENABLE_ALL_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON -DCMAKE_Fortran_FLAGS="-O2 -g"
+```
 
