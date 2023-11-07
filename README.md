@@ -21,41 +21,35 @@ Runtime requirements:
 ## Obtaining the required dependencies
 
 ### CentOS8
-
 Most of the dependencies are present in the default repositories
-
 ```
-    yum -y install epel-release
-    dnf config-manager --set-enabled PowerTools
-    yum -y install  gcc gcc-c++ gcc-gfortran make cmake cmake-data git
-    yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhapdf pythia8 pythia8-devel
+yum -y install epel-release
+dnf config-manager --set-enabled PowerTools
+yum -y install  gcc gcc-c++ gcc-gfortran make cmake cmake-data git
+yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhapdf pythia8 pythia8-devel
 ```
-    But `apfel` should be installed from the sources.
-
-    ```
-    git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
-    ```
+But `apfel` should be installed from the sources.
+```
+git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
+```
 
 ### Fedora
-
-    Most of the dependencies are present in the default repositories
-    ```
-    yum -y install  gcc gcc-c++ gcc-gfortran make cmake cmake-data git
-    yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhapdf pythia8 pythia8-devel
-    ```
-
-    But `apfel` should be installed from the sources.
-
-    ```
-    git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
-    ```
+Most of the dependencies are present in the default repositories
+```
+yum -y install  gcc gcc-c++ gcc-gfortran make cmake cmake-data git
+yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhapdf pythia8 pythia8-devel
+```
+But `apfel` should be installed from the sources.
+```
+git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
+```
 
 ### MacOS X
-    All the dependencies are present in the `homebrew`(https://brew.sh/) repositories
-    ```
-    brew tap davidchall/hep
-    brew install gcc cmake hepmc3 apfel lhapdf
-    ```
+All the dependencies are present in the `homebrew`(https://brew.sh/) repositories
+```
+brew tap davidchall/hep
+brew install gcc cmake hepmc3 apfel lhapdf
+```
 
 ## Building SuperChic
 
