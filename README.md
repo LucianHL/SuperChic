@@ -20,7 +20,7 @@ Runtime requirements:
 
 ## Obtaining the required dependencies
 
-### CentOS8+
+### CentOS8
 
     Most of the dependencies are present in the default repositories
     
@@ -37,7 +37,7 @@ Runtime requirements:
     git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
     ```
 
-### Fedora+
+### Fedora
 
     Most of the dependencies are present in the default repositories
     ```
