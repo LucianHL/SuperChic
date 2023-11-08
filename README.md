@@ -6,14 +6,15 @@ See manual in `doc/` folder for further instructions!
 
 
 The latest version of Superchic can be compiled with `CMake` build system.
-Build requirements: 
+### Build requirements: 
  - CMake (https://cmake.org/) > 3.16
  - Fortran compiller: GNU, Intel, flang, NVFortran were tested
  - APFEL, https://apfel.hepforge.org/
  - LHAPDF, see https://lhapdf.hepforge.org/
  - Internet connection if the installation of PDFs was requested
  - C++ compiler, HepMC3 (https://ep-dep-sft.web.cern.ch/project/hepmc) and Pythia8 (https://pythia.org/) for the tests
-Runtime requirements:
+
+### Runtime requirements:
  - APFEL, https://apfel.hepforge.org/
  - LHAPDF, see https://lhapdf.hepforge.org/
 
