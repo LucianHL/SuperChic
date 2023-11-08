@@ -12,9 +12,10 @@ ccc   gg --> etaeta subprocess amplitude
 
 cccccc
 
-      phi=datan(p1(2)/p1(1))
-      cphi=p1(1)/dsqrt(p1(1)**2+p1(2)**2)
-      sphi=p1(2)/dsqrt(p1(1)**2+p1(2)**2)
+      phi=datan2(p1(2),p1(1))
+      cphi=dcos(phi)
+      sphi=dsin(phi)
+
 
 ccccccc
 

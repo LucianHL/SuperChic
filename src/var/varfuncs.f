@@ -65,13 +65,7 @@ c         if(dphi.gt.pi)dphi=dphi-pi
          p1(j)=q(j,i)
       enddo
 
-      if(p1(1).gt.0d0)then
-         phi=datan(p1(2)/p1(1))
-      elseif(p1(2).gt.0d0)then
-         phi=datan(p1(2)/p1(1))+pi
-      else
-         phi=datan(p1(2)/p1(1))-pi
-      endif
+      phi=datan2(p1(2),p1(1))
 
       return
       end

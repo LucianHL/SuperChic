@@ -12,8 +12,8 @@ ccc   generates rho meson invariant mass distribution according to modified BW
       mminr=2d0*mpip
       mmaxr=mres+4d0*width
 
-      almin=datan(-(mres**2-mminr**2)/width/mres)
-      almax=datan(-(mres**2-mmaxr**2)/width/mres)
+      almin=datan2(-(mres**2-mminr**2),width*mres)
+      almax=datan2(-(mres**2-mmaxr**2),width*mres)
 
       rm1=ran2()
       al1=almin+(almax-almin)*rm1
