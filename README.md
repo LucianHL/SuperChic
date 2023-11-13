@@ -7,7 +7,7 @@ See manual in `doc/` folder for further instructions!
 
 The latest version of Superchic can be compiled with `CMake` build system.
 ### Build requirements: 
- - CMake (https://cmake.org/) > 3.16
+ - CMake (https://cmake.org/) > 3.16 or make
  - Fortran compiller: GNU, Intel, flang, NVFortran were tested
  - APFEL, https://apfel.hepforge.org/
  - LHAPDF, see https://lhapdf.hepforge.org/
@@ -52,7 +52,7 @@ brew tap davidchall/hep
 brew install gcc cmake hepmc3 apfel lhapdf
 ```
 
-## Building SuperChic
+## Building SuperChic with cmake (recommended)
 
 ```
 cmake -S . -B BUILD <extra flags>
@@ -76,6 +76,12 @@ The extra flags might be:
  - `-DSUPERCHIC_ENABLE_ALL_TESTS=ON/OFF`  Enables building of much more tests.
  - `-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`    Enables downloading of PDFs for tests. Makes sense only when the testing is enabled.
  - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`      Enables floating point exceptions in the code. 
+
+## Building SuperChic with make (not recommended )
+Make sure the `apfel-config` and `lhapdf-config` are in the `PATH`
+``
+make -f makefile.make
+``
 
 ## Running SuperChic
 

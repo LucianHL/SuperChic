@@ -56,8 +56,8 @@ jobs:
       run : |
          export SUPERCHIC_DATA_PATH=$(pwd)/share/SuperChic
          mkdir -p obj lib
-         gmake
-         gmake init
+         gmake -f makefile.make
+         gmake -f makefile.make init
          ls -lah 
          ls -lah bin
          mkdir RUN
@@ -113,10 +113,10 @@ jobs:
          brew tap davidchall/hep
          brew install  hepmc3 pythia8 lhapdf git gsed apfel
          mkdir -p obj lib
-         gsed -i 's/gfortran/gfortran-13/g' makefile
-         gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile
-         cat makefile
-         make -j 2
+         gsed -i 's/gfortran/gfortran-13/g' makefile.make
+         gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile.make
+         cat makefile.make
+         make -f makefile.make -j 2
          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13
          cmake --build BUILD -j 2 --verbose
          cmake --install BUILD 
