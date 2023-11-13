@@ -13,6 +13,13 @@ ccc   generates two-body phase space for particles of equal mass mq
       include 'pi.f'
       include 'mom.f'
 
+      if ( 2d0*mq .GE. mx ) then
+      u=-mx**2/4.0d0
+      t=-mx**2/4.0d0
+      ps=0.0d0
+      return 
+      endif
+
 c      rphi=ran2()
 
 c      print*,rphi,rtheta
@@ -65,7 +72,11 @@ ccc   generates two-body phase space for particles of differing mass mq1,mq2
       include 'partonmom2.f'
       include 'pi.f'
       include 'mom.f'
-
+      if ( mq1 + mq2 .GE. mx ) THEN
+      u=(mq1**2+mq2**2-mx**2)/2d0
+      t=(mq1**2+mq2**2-mx**2)/2d0    
+      ps=0.0D0
+      endif
 
       phi=2d0*pi*rphi
       ctheta=-1d0+2d0*rtheta

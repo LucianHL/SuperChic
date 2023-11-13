@@ -31,10 +31,10 @@ cccccccc
       beta=dsqrt(1d0-4d0*mq**2/mx**2)
 
       cost=(t-u)/beta/s
-      phi=datan(p1(2)/p1(1))
+      phi=datan2(p1(2),p1(1))
+      cphi=dcos(phi)
+      sphi=dsin(phi)
 
-      cphi=p1(1)/dsqrt(p1(1)**2+p1(2)**2)
-      sphi=p1(2)/dsqrt(p1(1)**2+p1(2)**2)
 
       sintp=dsqrt((u*t-mq**4)/2d0/mx**2)
 

@@ -1,7 +1,7 @@
 ccc   gamma gamma --> MM subprocess amplitude
       subroutine mmpol(p,mx,u,t,pp,mm,pm,mp)
       implicit none
-      double precision sphi,cphi,sintt,costt
+      double precision sphi,cphi,sintt,costt,phi
       double precision normp,gam,beta,u,t,mx
       complex*16 pp,mm,pm,mp
       integer p
@@ -19,9 +19,10 @@ ccc   gamma gamma --> MM subprocess amplitude
       gam=mx**2/mq**2
       costt=(t-u)/beta/mx**2
       sintt=dsqrt(1d0-costt**2)
-
-      cphi=p1(1)/dsqrt(p1(1)**2+p1(2)**2)
-      sphi=p1(2)/dsqrt(p1(1)**2+p1(2)**2)
+      
+      phi=datan2(p1(2),p1(1))
+      cphi=dcos(phi)
+      sphi=dsin(phi)
 
       if(p.eq.1)then !++
          pp=4d0*mq*(1d0+beta)/mx
