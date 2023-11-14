@@ -201,6 +201,7 @@ cccccccccccccccccccccccccccccccccccccccccccccc
       elseif(dps.eq.2.or.dps.eq.12.or.decay2)then
 
       delphi=dabs(datan2(q(2,6),q(1,6))-datan2(q(2,7),q(1,7)))
+      if (delphi .ge. pi) delphi = delphi-pi
       acoab=1d0-delphi/pi
       if(acoab.gt.acoabmax)return
 
