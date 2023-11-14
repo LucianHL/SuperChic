@@ -40,7 +40,7 @@ c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
 
 
       pol=p
-
+      mz=91.1876d0
       sw=dsqrt(1d0-mw**2/mz**2)
       cw=dsqrt(1d0-sw**2)
       ap=1d0-aq(2)/eq(2)/sw**2
