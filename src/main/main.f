@@ -669,6 +669,7 @@ ccccccccccccccccccccccccccccccccccccccccccc
      &            31.or.proc.eq.34.or.proc.eq.37)then
              call genpol2
           elseif(proc.eq.54.or.proc.eq.55)then
+             wgauge='axial'
              call genpol1(6,ewp)
              call genpol1(7,ewm)
                 if(qsq1.gt.1d0.and.mdiss1.gt.dsqrt(3.5d0))then
@@ -681,7 +682,7 @@ ccccccccccccccccccccccccccccccccccccccccccc
                 call genpolaxial1(6,ewp)
                 call genpolaxial1(7,ewm)
              endif
-             wgauge='axial'
+
           endif
 
           if(proc.eq.40.or.proc.eq.43.or.proc.eq.45)then
