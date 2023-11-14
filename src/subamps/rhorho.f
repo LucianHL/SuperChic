@@ -49,30 +49,22 @@ ccc   gg --> rhorho subprocess amplitude
 
       call wfoctet(mx,2,a28,a28n)
       call wfoctet(mx,4,a48,a48n)
-      if(dabs(a28n).gt.1d-4)then
       out2=out2*(a28n/a28)
       out3=out3*(a28n/a28)**2
-      endif
       
       if(dabs(a48n).gt.1d-4)then
       out4=out4*(a48n/a48)
-      if(dabs(a28n).gt.1d-4)then
       out5=out5*(a48n/a48)*(a28n/a28)
       out6=out6*(a48n/a48)*(a28n/a28)
-      endif
       out7=out7*(a48n/a48)**2
       endif
       
-      if(dabs(a28n).gt.1d-4)then
       out2a=out2a*(a28n/a28)
       out3a=out3a*(a28n/a28)**2
       if(dabs(a48n).gt.1d-4)then
       out4a=out4a*(a48n/a48)
       out5a=out5a*(a48n/a48)*(a28n/a28)
       out6a=out6a*(a48n/a48)*(a28n/a28)
-      endif
-      endif
-      if(dabs(a48n).gt.1d-4)then
       out7a=out7a*(a48n/a48)**2
       endif
 
