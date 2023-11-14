@@ -196,8 +196,8 @@ set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CM
                              PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)
 
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin" OR  ${CMAKE_VERSION} VERSION_LESS 3.18)
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
                              PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
 endif()
 
