@@ -821,7 +821,7 @@ c      write(40,*)7
 c      print*,'test'
 
 
- 777  if(dabs(sd/avgi).gt.prec)then
+ 777  if(dabs(sd).gt.dabs(avgi)*prec)then
 
 
 
