@@ -53,7 +53,7 @@
 2.5d0          ! [ymax]
 5d0          ! [mmin]
 900d0          ! [mmax]
-.true.        ! [gencuts] : Generate cuts below
+@gencuts@        ! [gencuts] : Generate cuts below
 .true.        ! [scorr] : Include spin correlations
 .true.	      ! [fwidth] : Include finite width 
 ****************************************************************************************
