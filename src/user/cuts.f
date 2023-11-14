@@ -200,10 +200,7 @@ cccccccccccccccccccccccccccccccccccccccccccccc
 
       elseif(dps.eq.2.or.dps.eq.12.or.decay2)then
 
-      delphi=(q(1,6)*q(1,7)+q(2,6)*q(2,7))/dsqrt((q(1,6)**2+q(2,6)**2))
-     &     /dsqrt((q(1,7)**2+q(2,7)**2))
-      if(dabs(delphi).gt.1d0)delphi=delphi/dabs(delphi)
-      delphi=dacos(delphi)
+      delphi=dabs(datan2(q(2,6),q(1,6))-datan2(q(2,7),q(1,7)))
       acoab=1d0-delphi/pi
       if(acoab.gt.acoabmax)return
 
