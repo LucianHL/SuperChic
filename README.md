@@ -13,8 +13,10 @@ The latest version of Superchic can be compiled with `CMake` build system.
  - LHAPDF, see https://lhapdf.hepforge.org/
  - Internet connection if the installation of PDFs was requested
  - C++ compiler, HepMC3 (https://ep-dep-sft.web.cern.ch/project/hepmc) and Pythia8 (https://pythia.org/) for the tests
+ - (optional) `pfdLaTeX` and `bibtex`  to compile manual.
 
 ### Runtime requirements:
+
  - APFEL, https://apfel.hepforge.org/
  - LHAPDF, see https://lhapdf.hepforge.org/
 
@@ -75,7 +77,8 @@ The extra flags might be:
  - `-DSUPERCHIC_ENABLE_TESTS=ON/OFF`     Enables building of tests.
  - `-DSUPERCHIC_ENABLE_ALL_TESTS=ON/OFF`  Enables building of much more tests.
  - `-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`    Enables downloading of PDFs for tests. Makes sense only when the testing is enabled.
- - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`      Enables floating point exceptions in the code. 
+ - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`      Enables floating point exceptions in the code.
+ -  `-DSUPERCHIC_ENABLE_DOCS=ON/OFF`     Enables building of PDF manual. 
 
 ## Building SuperChic with make (not recommended )
 Make sure the `apfel-config` and `lhapdf-config` are in the `PATH`

@@ -6,6 +6,7 @@ option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
 option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_ALL_TESTS    "Enables building of all tests." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
+option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
 find_package(LHAPDF REQUIRED)
@@ -68,6 +69,7 @@ message(STATUS "SuperChic: SUPERCHIC_ENABLE_ALL_TESTS=${SUPERCHIC_ENABLE_ALL_TES
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
+message(STATUS "SuperChic: SUPERCHIC_ENABLE_DOCS=${SUPERCHIC_ENABLE_DOCS}" )
 
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
           alphaEM.f qinit.f apfelinit.f )
@@ -233,12 +235,38 @@ target_link_libraries(init PRIVATE LHAPDF::LHAPDF APFEL::APFEL  APFEL::APFELevol
 target_compile_options(init PRIVATE ${sccompile_options})
 set_target_properties(init PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
+
+## MANUAL
+if (SUPERCHIC_ENABLE_DOCS)
+find_package(LATEX COMPONENTS PDFLATEX BIBTEX)
+message(STATUS "SUPERCHIC: LATEX_FOUND=${LATEX_FOUND} PDFLATEX_COMPILER=${PDFLATEX_COMPILER} BIBTEX_COMPILER=${BIBTEX_COMPILER}")
+if ( LATEX_FOUND AND LATEX_PDFLATEX_FOUND AND LATEX_BIBTEX_FOUND)
+    file(COPY ${PROJECT_SOURCE_DIR}/doc_tex/h-physrev.bst DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc_tex/)
+    file(COPY ${PROJECT_SOURCE_DIR}/doc_tex/references.bib DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc_tex/)
+    configure_file(${PROJECT_SOURCE_DIR}/doc_tex/superchic.tex ${PROJECT_BINARY_DIR}/doc_tex/superchic${PROJECT_VERSION}.tex IMMEDIATE @ONLY)
+    ADD_CUSTOM_TARGET(   latexcompileall
+                       COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMAND ${BIBTEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMENT "Creating manual "
+                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc_tex
+                       DEPENDS ${PROJECT_BINARY_DIR}/doc_tex/superchic${PROJECT_VERSION}.tex
+                      )
+    ADD_CUSTOM_TARGET(all-formats ALL) # Entry point of execution.
+    ADD_DEPENDENCIES( all-formats latexcompileall)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/doc_tex/superchic${PROJECT_VERSION}.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR} COMPONENT doc)
+  endif()
+endif()
+
+
+
 install(TARGETS superchic init DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT bin)
 install(TARGETS superchicLib   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
 install(TARGETS superchicLibstatic   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Cards/ DESTINATION  ${CMAKE_INSTALL_DOCDIR}/Cards COMPONENT doc)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/doc/superchic4.2.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR}/ COMPONENT doc)
+#install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/doc/superchic4.2.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR}/ COMPONENT doc)
 if ( NOT "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/SplinesWithVariableKnots.dat
               ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Carlos_106_440.dat
