@@ -241,21 +241,21 @@ if (SUPERCHIC_ENABLE_DOCS)
 find_package(LATEX COMPONENTS PDFLATEX BIBTEX)
 message(STATUS "SUPERCHIC: LATEX_FOUND=${LATEX_FOUND} PDFLATEX_COMPILER=${PDFLATEX_COMPILER} BIBTEX_COMPILER=${BIBTEX_COMPILER}")
 if ( LATEX_FOUND AND LATEX_PDFLATEX_FOUND AND LATEX_BIBTEX_FOUND)
-    file(COPY ${PROJECT_SOURCE_DIR}/doc_tex/h-physrev.bst DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc_tex/)
-    file(COPY ${PROJECT_SOURCE_DIR}/doc_tex/references.bib DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc_tex/)
-    configure_file(${PROJECT_SOURCE_DIR}/doc_tex/superchic.tex ${PROJECT_BINARY_DIR}/doc_tex/superchic${PROJECT_VERSION}.tex IMMEDIATE @ONLY)
+    file(COPY ${PROJECT_SOURCE_DIR}/doc/h-physrev.bst DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/)
+    file(COPY ${PROJECT_SOURCE_DIR}/doc/references.bib DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/)
+    configure_file(${PROJECT_SOURCE_DIR}/doc/superchic.tex ${PROJECT_BINARY_DIR}/doc/superchic${PROJECT_VERSION}.tex IMMEDIATE @ONLY)
     ADD_CUSTOM_TARGET(   latexcompileall
                        COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
                        COMMAND ${BIBTEX_COMPILER} superchic${PROJECT_VERSION}
                        COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
                        COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
                        COMMENT "Creating manual "
-                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc_tex
-                       DEPENDS ${PROJECT_BINARY_DIR}/doc_tex/superchic${PROJECT_VERSION}.tex
+                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
+                       DEPENDS ${PROJECT_BINARY_DIR}/doc/superchic${PROJECT_VERSION}.tex
                       )
     ADD_CUSTOM_TARGET(all-formats ALL) # Entry point of execution.
     ADD_DEPENDENCIES( all-formats latexcompileall)
-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/doc_tex/superchic${PROJECT_VERSION}.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR} COMPONENT doc)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/doc/superchic${PROJECT_VERSION}.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR} COMPONENT doc)
   endif()
 endif()
 
