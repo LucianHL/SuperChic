@@ -9,16 +9,21 @@ int main (int argc, char** argv) {
     {
         HepMC3::GenEvent evt(HepMC3::Units::GEV,HepMC3::Units::MM);
         bool res = inputA->read_event(evt);
-        if (!res) return 2;
         if( inputA->failed() )  {
             printf("End of file reached. Exit.\n");
             break;
         }
         events++;
-        if (evt.particles().size()==0) return 2;
+        if (evt.particles().size() < 2) {
+            printf("Too few particles\n");
+            return 2;
+        }
         evt.clear();
     }
     inputA->close();
-    if (events==0) return 3;
+    if (events == 0)  {
+        printf("Too few events\n");
+        return 3;
+    }
     return 0;
 }
