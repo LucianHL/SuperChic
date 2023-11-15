@@ -70,8 +70,11 @@ macro(sctestlhe NN MM df pr)
   #add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} real)
   add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} dummy)
   set_tests_properties( SHOWER_${NN}_${MM} PROPERTIES TIMEOUT 500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "shower;SUPERCHIC_${NN}_${MM}")
-  add_test(NAME VALIDATE_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc)
-  set_tests_properties( VALIDATE_${NN}_${MM} PROPERTIES TIMEOUT 500 DEPENDS "validator;SHOWER_${NN}_${MM}")
+  add_test(NAME VALIDATE_SHOWERED_HEPMC_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc)
+  set_tests_properties( VALIDATE_SHOWERED_HEPMC_${NN}_${MM} PROPERTIES TIMEOUT 500 DEPENDS "validator;SHOWER_${NN}_${MM}")
+  add_test(NAME VALIDATE_LHEF_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat)
+  set_tests_properties( VALIDATE_LHEF_${NN}_${MM} PROPERTIES TIMEOUT 500 DEPENDS "validator;SUPERCHIC_${NN}_${MM}")
+
 endmacro()
 
 
