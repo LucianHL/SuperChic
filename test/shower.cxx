@@ -139,13 +139,13 @@ int main(int argc, char ** argv) {
   pythia.readString("Check:event = off");
   pythia.readString("LesHouches:matchInOut = off");
 
-  if (std::string(argv[3]) != "dd" && std::string(argv[3]) != "sda" && std::string(argv[3]) != "sdb" && std::string(argv[3]) != "el") { return 7;}
+  if (std::string(argv[3]) != "dd" && std::string(argv[3]) != "sda" && std::string(argv[3]) != "sdb" && std::string(argv[3]) != "sd" && std::string(argv[3]) != "el") { printf("Bad argument->%s<-\n",argv[3]); return 7;}
     printf("Running in %s mode\n",argv[3]);
   
   int processnumber = atoi(argv[4]);
     if (std::string(argv[3]) == "dd") for ( auto s: c_dd) pythia.readString(s);
     if (std::string(argv[3]) == "sdb") for ( auto s: c_ds) pythia.readString(s);
-    if (std::string(argv[3]) == "sda") for ( auto s: c_sd) pythia.readString(s);
+    if (std::string(argv[3]) == "sda" || std::string(argv[3]) == "sd") for ( auto s: c_sd) pythia.readString(s);
     if (std::string(argv[3]) == "el") for ( auto s: c_el) pythia.readString(s);
   
 }
