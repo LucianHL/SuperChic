@@ -667,7 +667,9 @@ ccccccccc
       elseif(dps.eq.1)then
          nup=5
       endif
-
+      if (nup.le.0 .and. proc .eq. 15) then
+       nup=7
+      end if
 
       if(diff.eq.'sd')nup=nup-1
       if(diff.eq.'el')nup=nup-2
