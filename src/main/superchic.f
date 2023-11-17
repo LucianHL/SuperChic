@@ -658,7 +658,7 @@ ccccccccc
          endif
       elseif(decay6)then
          nup=11
-      elseif(dps.eq.2.or.decay2)then
+      elseif(dps.eq.2.or.decay2.or.dps.eq.12)then
          nup=7
       elseif(dps.eq.3)then
          nup=8
