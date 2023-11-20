@@ -51,14 +51,26 @@
 
 \section{Overview}
 
-\texttt{SuperChic@PROJECT_VERSION@} is a Fortran based Monte Carlo event generator for central exclusive and semi--exclusive production at parton level, for a range of Standard Model final states. User--defined histograms may be output, as well as unweighted events in HEPEVT and Les Houches formats. By default the program makes use of the LHAPDF library, but otherwise the code is completely stand--alone. Relevant references are listed in Section~\ref{sec:ref}.
+\texttt{SuperChic@PROJECT_VERSION@} is a Fortran based Monte Carlo event 
+generator for central exclusive and semi--exclusive production at parton 
+level, for a range of Standard Model final states. User--defined 
+histograms may be output, as well as unweighted events in HEPEVT and 
+Les Houches formats. By default the program makes use of the LHAPDF 
+library, but otherwise the code is completely stand--alone. Relevant 
+references are listed in Section~\ref{sec:ref}.
 
 \section{Installation}
 
-A compressed tar file containing all of the relevant code can be downloaded at \texttt{http://projects.hepforge.org/superchic/}. To extract it, simply execute \texttt{tar -xzvf superchicv@PROJECT_VERSION@.tar.gz} and the \texttt{superchicv@PROJECT_VERSION@} directory will be created. This consists of:
+A compressed tar file containing all of the relevant code can be 
+downloaded at \texttt{http://projects.hepforge.org/superchic/}. To 
+extract it, simply execute \texttt{tar -xzvf 
+superchicv@PROJECT_VERSION@.tar.gz} and the 
+\texttt{superchicv@PROJECT_VERSION@} directory will be created. 
+This consists of:
 %
 \begin{itemize}
-\item \texttt{bin}: the executables \texttt{superchic} and \texttt{init} and the input card \texttt{input.DAT}.
+\item \texttt{bin}: the executables \texttt{superchic} and \texttt{init} 
+and the input card \texttt{input.DAT}.
 %\item \texttt{bin/PDFsets}: the directory where the \texttt{LHAPDF} grid files must be placed.
 \item \texttt{doc}: the source for this document.
 \item \texttt{obj}: the object files produced by the compiler.
@@ -72,7 +84,10 @@ To compile simply run
 \texttt{> make}
 \newline
 \newline
-which will create the \texttt{superchic} and \texttt{init} executables in the \texttt{bin} directory as well as the object files in the \texttt{obj} directory. It is also possible to compile these executables separately with
+which will create the \texttt{superchic} and \texttt{init} executables 
+in the \texttt{bin} directory as well as the object files in the 
+\texttt{obj} directory. It is also possible to compile these 
+executables separately with
 \newline
 \newline
 \texttt{> make superchic}
@@ -84,17 +99,28 @@ and
 \texttt{> make init}
 \newline
 \newline
-To generate semi--exclusive lepton pair, $W$ pair and/or ALP production, you will need to download \texttt{SF\_MSHT20qed\_nnlo} from \texttt{http://projects.hepforge.org/superchic} and place this in the relevant directory for your \texttt{LHAPDF 6} installation, after extracting the tarball. This file corresponds to the proton structure functions (in lhapdf format), but is not a PDF set and is separate from that set in the input card via \texttt{PDFname}, which corresponds to the proton PDF set used in QCD--initiated CEP. It is therefore not available on the LHAPDF website list.
+To generate semi--exclusive lepton pair, $W$ pair and/or ALP production, 
+you will need to download \texttt{SF\_MSHT20qed\_nnlo} from 
+\texttt{http://projects.hepforge.org/superchic} and place this in the 
+relevant directory for your \texttt{LHAPDF 6} installation, after 
+extracting the tarball. This file corresponds to the proton structure 
+functions (in lhapdf format), but is not a PDF set and is separate from 
+that set in the input card via \texttt{PDFname}, which corresponds to 
+the proton PDF set used in QCD--initiated CEP. It is therefore not 
+available on the LHAPDF website list.
 
 \section{Running with LHAPDF}
 
-By default the program makes use of the LHAPDF library, however there may be some issues with correctly linking to this, depending on the particular system used. 
+By default the program makes use of the LHAPDF library, however there 
+may be some issues with correctly linking to this, depending on the 
+particular system used. 
 %If this is the case, please set \texttt{LHOPT=2} in the makefile and attempt to recompile. 
-If in the first instance of executing \texttt{init} (or \texttt{superchic}) the following error then appears:
+If in the first instance of executing \texttt{init} (or
+ \texttt{superchic}) the following error then appears:
 \newline
 \newline
-\texttt{error while loading shared libraries: libLHAPDF.so.0: cannot open
-shared object file: No such file or directory}
+\texttt{error while loading shared libraries: libLHAPDF.so.0: cannot 
+open shared object file: No such file or directory}
 \newline
 \newline
 please add the following lines to the shell (bash) login script:
@@ -109,13 +135,23 @@ please add the following lines to the shell (bash) login script:
 
 \section{Input parameters and runtime options}
 
-After compilation, the  \texttt{superchic} and \texttt{init} executables can then be run in the \texttt{bin} directory, using the \texttt{input.DAT} file to adjust the input parameters by
+After compilation, the  \texttt{superchic} and \texttt{init} executables
+ can then be run in the \texttt{bin} directory, using the 
+ \texttt{input.DAT} file to adjust the input parameters by
 \newline
 \newline
 \texttt{> ./init < input.DAT}
 \newline
 \newline
-This creates the \texttt{hg[intag]}, \texttt{screening[intag]} and \texttt{sudakov[intag]}\texttt{.dat} input files in the \texttt{bin/inputs} directory, which are used by the main \texttt{superchic} executable, where \texttt{[intag]} is specified in the input file (see below). This must be run in the first instance, and if any of the first five parameters in the input file, corresponding to the model of soft survival, the c.m.s. energy $\sqrt{s}$, the PDF set/member and the input \texttt{[intag]}, are changed. After this the main MC code may be run with
+This creates the \texttt{hg[intag]}, \texttt{screening[intag]} and 
+\texttt{sudakov[intag]}\texttt{.dat} input files in the 
+\texttt{bin/inputs} directory, which are used by the main 
+\texttt{superchic} executable, where \texttt{[intag]} is specified in 
+the input file (see below). This must be run in the first instance, and 
+if any of the first five parameters in the input file, corresponding to 
+the model of soft survival, the c.m.s. energy $\sqrt{s}$, the PDF 
+set/member and the input \texttt{[intag]}, are changed. After this the 
+main MC code may be run with
 \newline
 \newline
 \texttt{> ./superchic < input.DAT}
@@ -124,53 +160,107 @@ This creates the \texttt{hg[intag]}, \texttt{screening[intag]} and \texttt{sudak
 The adjustable parameters in the input file are described below in order:
 \begin{itemize}
 \item \texttt{rts}: collider energy, $\sqrt{s}$, in GeV. This is the energy per nucleon in heavy ion collisions.
-\item \texttt{isurv}: Model of soft survival, as defined in~\cite{Khoze:2013dha}: must be an integer from 1 to 4. Only used in proton collisions.
-\item \texttt{intag}:  defines the label for the input files created by executing \texttt{init} and read in when executing \texttt{superchic}.
-\item \texttt{PDFname}, \texttt{PDFmember}: name of PDF set, in the appropriate format for \texttt{LHAPDF} version 5 or 6, and set number. The corresponding grid file must be present in the appropriate LHAPDF directory.
+\item \texttt{isurv}: Model of soft survival, as defined in~\cite{Khoze:2013dha}: must be an integer from 1 to 4. 
+Only used in proton collisions.
+\item \texttt{intag}:  defines the label for the input files created by executing \texttt{init} and read in when 
+executing \texttt{superchic}.
+\item \texttt{PDFname}, \texttt{PDFmember}: name of PDF set, in the appropriate format for \texttt{LHAPDF} version 
+5 or 6, and set number. The corresponding grid file must be present in the appropriate LHAPDF directory.
 \item \texttt{proc}: process number, to specify the produced state. These are defined in Section~\ref{sec:proc}.
-\item \texttt{beam}: beam type. Available for proton--proton (\texttt{prot}), proton--ion (\texttt{pion}), ion--ion (\texttt{ion}) and electron--positron collisions (\texttt{el}). Photon--initiated processes can be generated in all cases, QCD--initiated in all cases other than electron--positron collisions, and currently photoproduction processes can only be generated in proton--proton and proton--ion collisions.
-\item \texttt{outtag}: label for file \texttt{output[outtag].dat}, created in \texttt{bin/outputs} directory, and event record  \texttt{evrec[outtag].dat}, created in \texttt{bin/evrecs} directory. Contains input parameter and cross section information, as well as histograms (see Section~\ref{sec:hist}).
-\item \texttt{sfaci}: set to \texttt{.false.} to turn off soft survival effects. If \texttt{.true.} then runtime is longer.
-\item \texttt{diff}: indicates whether the interaction is purely elastic (\texttt{el}), has single proton dissociation (\texttt{sd}) or double dissociation (\texttt{dd}).
-Note that single and double proton dissociation is currently only available for photon--initiated lepton and $W$ pair production, and for ALP production; for all other processes this must be set to \texttt{el}. In addition, single and double proton dissociation are only available with LHE formatting for unweighted events. For single dissociation the default includes the dissociation of either protons, but for the purposes of bookkeeping in the event record it is also possible to only generate events where proton A (\texttt{sda}) or B (\texttt{sdb}) dissociates, with the sum of these two giving the total SD cross section.
-\item \texttt{an}, \texttt{az}. Ion mass and atomic number in ion--ion and proton--ion collisions (in the former case the beams must be the same).
+\item \texttt{beam}: beam type. Available for proton--proton (\texttt{prot}), proton--ion (\texttt{pion}), 
+ion--ion (\texttt{ion}) and electron--positron collisions (\texttt{el}). Photon--initiated processes can be 
+generated in all cases, QCD--initiated in all cases other than electron--positron collisions, and currently 
+photoproduction processes can only be generated in proton--proton and proton--ion collisions.
+\item \texttt{outtag}: label for file \texttt{output[outtag].dat}, created in \texttt{bin/outputs} directory, and 
+event record  \texttt{evrec[outtag].dat}, created in \texttt{bin/evrecs} directory. Contains input parameter and 
+cross section information, as well as histograms (see Section~\ref{sec:hist}).
+\item \texttt{sfaci}: set to \texttt{.false.} to turn off soft survival effects. If \texttt{.true.} then runtime 
+is longer.
+\item \texttt{diff}: indicates whether the interaction is purely elastic (\texttt{el}), has single proton 
+dissociation (\texttt{sd}) or double dissociation (\texttt{dd}).
+Note that single and double proton dissociation is currently only available for photon--initiated lepton and $W$ 
+pair production, and for ALP production; for all other processes this must be set to \texttt{el}. In addition, 
+single and double proton dissociation are only available with LHE formatting for unweighted events. For single 
+dissociation the default includes the dissociation of either protons, but for the purposes of bookkeeping in the 
+event record it is also possible to only generate events where proton A (\texttt{sda}) or B (\texttt{sdb}) 
+dissociates, with the sum of these two giving the total SD cross section.
+\item \texttt{an}, \texttt{az}. Ion mass and atomic number in ion--ion and proton--ion collisions (in the former 
+case the beams must be the same).
 \item \texttt{rz}, \texttt{dz}. Radius and skin thickness of ion proton density.
 \item \texttt{rn}, \texttt{dn}. Radius and skin thickness of ion neutron density.
-\item \texttt{ionqcd}. For QCD--initiated processes in ion--ion and proton--ion collisions. Specify coherent (\texttt{coh}) or incoherent production (\texttt{incoh}), i.e. with or without intact ions. In the latter case the ion system does not currently undergo decay in the MC.
-\item \texttt{ionbreakup}, \texttt{fAA}. If \texttt{ionbreakup} set to \texttt{.true.} then require ion breakup by mutual ion dissociation (or a veto on it) as specified by \texttt{fAA}. Possible cases are \texttt{00,01,0X,10,0X,11,XX}. Note that e.g. \texttt{0X} corresponds to the dissociation of beam 2 only, while \texttt{X0} corresponds to the dissociation of beam 1; the experimental definition is usually given by the sum of these two possibilities, or in most cases by simply multiplying one case by 2. If \texttt{ionbreakup} set to \texttt{.false.} the result is inclusive with respect to mutual ion dissociation.
-\item \texttt{fracsigX}. Reweights the normalization of the $\gamma A \to A^*$ cross section when ion breakup is included. For approximate tuning purposes.
-\item \texttt{ncall}, \texttt{itms}: number of iterations and calls in \texttt{VEGAS} preconditioning run. Soft survival effects are turned off to decrease the runtime. It is recommended to set the number of calls in units of 1000, and to increase the number when applying cuts.
-\item \texttt{ncall1}, \texttt{inccall}, \texttt{itend}: number of calls in \texttt{VEGAS} main run, and increase per iteration, as well as maximum number of iterations before run will automatically terminate. The run is automatically adjusted so that the number of calls passing cuts is approximately equal to \texttt{ncall1}.
-\item  \texttt{prec}: the required \% accuracy by the user; the main run will terminate once this level of accuracy has been reached.
+\item \texttt{ionqcd}. For QCD--initiated processes in ion--ion and proton--ion collisions. Specify coherent 
+(\texttt{coh}) or incoherent production (\texttt{incoh}), i.e. with or without intact ions. In the latter case the 
+ion system does not currently undergo decay in the MC.
+\item \texttt{ionbreakup}, \texttt{fAA}. If \texttt{ionbreakup} set to \texttt{.true.} then require ion breakup by 
+mutual ion dissociation (or a veto on it) as specified by \texttt{fAA}. Possible cases are \texttt{00,01,0X,10,0X,11,XX}.
+ Note that e.g. \texttt{0X} corresponds to the dissociation of beam 2 only, while \texttt{X0} corresponds to the 
+ dissociation of beam 1; the experimental definition is usually given by the sum of these two possibilities, or in 
+ most cases by simply multiplying one case by 2. If \texttt{ionbreakup} set to \texttt{.false.} the result is 
+ inclusive with respect to mutual ion dissociation.
+\item \texttt{fracsigX}. Reweights the normalization of the $\gamma A \to A^*$ cross section when ion breakup is 
+included. For approximate tuning purposes.
+\item \texttt{ncall}, \texttt{itms}: number of iterations and calls in \texttt{VEGAS} preconditioning run. Soft 
+survival effects are turned off to decrease the runtime. It is recommended to set the number of calls in units of 
+1000, and to increase the number when applying cuts.
+\item \texttt{ncall1}, \texttt{inccall}, \texttt{itend}: number of calls in \texttt{VEGAS} main run, and increase 
+per iteration, as well as maximum number of iterations before run will automatically terminate. The run is 
+automatically adjusted so that the number of calls passing cuts is approximately equal to \texttt{ncall1}.
+\item  \texttt{prec}: the required \% accuracy by the user; the main run will terminate once this level of accuracy 
+has been reached.
 \item \texttt{iseed}: random number seed, must be a positive integer.
-\item \texttt{s2int}: determines precision of pomeron loop momentum integration performed to calculated screened amplitude. While comfortably set to high enough (sub \% level) precision for most uses, if the average survival factor is close to unity (as in the case of two--photon initiated processes), and/or restrictive cuts are placed, in particular on the outgoing proton momenta, it is recommended that the user increases the parameter in increments of 4, and confirms that the output is stable within the required precision. If not, it should set at a sufficiently high value that this stability is reached: this will result in a longer runtime.
-\item \texttt{genunw}, \texttt{nev}, \texttt{erec}: set \texttt{genunw} to \texttt{.true.} to generate unweighted events, and specify required number of events with \texttt{nev}, and event record format (\texttt{lhe}, \texttt{hepevt} and \texttt{hepmc} for Les Houches, HEPEVT and HepMC, respectively) with \texttt{erec}.
-\item \texttt{readwt}, \texttt{wtmax}: set \texttt{readwt} to \texttt{.true.} to read in maximum weight \texttt{wtmax} input by the user. This should be given by the output `maximum weight' in  \texttt{output[outtag].dat} of a run with \texttt{genunw=.true.}, with all other physics inputs left unchanged. Setting \texttt{readwt} to \texttt{.true.} bypasses the maximum weight evaluation stage in the run. This allows for a shorter runtime, and is useful when setting multiple runs with \texttt{genunw=.true.} (i.e. each with a different \texttt{iseed}, in order to produce multiple event records in parallel).
-\item \texttt{ymin}, \texttt{ymax}, \texttt{mmin}, \texttt{mmax}: general cuts on the central system rapidity and invariant mass. Note that QCD--induced processes must have \texttt{mmin} $>$ 2 GeV.
+\item \texttt{s2int}: determines precision of pomeron loop momentum integration performed to calculated screened 
+amplitude. While comfortably set to high enough (sub \% level) precision for most uses, if the average survival factor
+ is close to unity (as in the case of two--photon initiated processes), and/or restrictive cuts are placed, in 
+ particular on the outgoing proton momenta, it is recommended that the user increases the parameter in increments of 4,
+  and confirms that the output is stable within the required precision. If not, it should set at a sufficiently high 
+  value that this stability is reached: this will result in a longer runtime.
+\item \texttt{genunw}, \texttt{nev}, \texttt{erec}: set \texttt{genunw} to \texttt{.true.} to generate unweighted events,
+ and specify required number of events with \texttt{nev}, and event record format (\texttt{lhe}, \texttt{hepevt} and 
+ \texttt{hepmc} for Les Houches, HEPEVT and HepMC, respectively) with \texttt{erec}.
+\item \texttt{readwt}, \texttt{wtmax}: set \texttt{readwt} to \texttt{.true.} to read in maximum weight \texttt{wtmax} 
+input by the user. This should be given by the output `maximum weight' in  \texttt{output[outtag].dat} of a run with 
+\texttt{genunw=.true.}, with all other physics inputs left unchanged. Setting \texttt{readwt} to \texttt{.true.} bypasses 
+the maximum weight evaluation stage in the run. This allows for a shorter runtime, and is useful when setting multiple runs 
+with \texttt{genunw=.true.} (i.e. each with a different \texttt{iseed}, in order to produce multiple event records in parallel).
+\item \texttt{ymin}, \texttt{ymax}, \texttt{mmin}, \texttt{mmax}: general cuts on the central system rapidity and invariant
+ mass. Note that QCD--induced processes must have \texttt{mmin} $>$ 2 GeV.
 \item \texttt{gencuts}: flag to determine if further cuts will be placed.
-\item \texttt{spincorr} : flag to determine if spin correlations are included in the particle decays. The processes for which these may be included are described in Section~\ref{sec:procnot}.
+\item \texttt{spincorr} : flag to determine if spin correlations are included in the particle decays. The processes for 
+which these may be included are described in Section~\ref{sec:procnot}.
 \item \texttt{fwidth} : flag to determine if a finite width is included for $\chi_c$ production.
 \item \texttt{ptXmax}: maximum $p_\perp$ of central system (equivalently of outgoing proton system).
-\item \texttt{ptamin}, \texttt{etamin}, \texttt{etaamax} (...): cuts on two, three and four body final states: see Section~\ref{sec:procnot} for momentum assignments.
-\item \texttt{rjet}, \texttt{jalg}: jet algorithm parameters: jet radius $R$ and algorithm (\texttt{antikt} or \texttt{kt}  used for 3--jet events.
-\item \texttt{m2b}, \texttt{pdgid1}, \texttt{pdgid2}: $\chi_{c,b}$ two--body decay parameters: set mass and PDG numbers for decays, see Section~\ref{sec:procnot}.
+\item \texttt{ptamin}, \texttt{etamin}, \texttt{etaamax} (...): cuts on two, three and four body final states: see 
+Section~\ref{sec:procnot} for momentum assignments.
+\item \texttt{rjet}, \texttt{jalg}: jet algorithm parameters: jet radius $R$ and algorithm (\texttt{antikt} or \texttt{kt}  
+used for 3--jet events.
+\item \texttt{m2b}, \texttt{pdgid1}, \texttt{pdgid2}: $\chi_{c,b}$ two--body decay parameters: set mass and PDG numbers for 
+decays, see Section~\ref{sec:procnot}.
 \item \texttt{malp}, \texttt{gax}: ALP mass, $m_a$, and couling, $f_a$.
 \item \texttt{mpol}: Monopole mass.
 \item \texttt{mmon}, \texttt{gamm}: Monopolium mass and width.
 \item \texttt{mcharg}, \texttt{mneut}: SUSY mass parameters.
-\item \texttt{wlp}, \texttt{wlm}: leptonic decay (either \texttt{mu} or \texttt{el}) for $W^+$ (\texttt{wlp}) plus $W^-$ (\texttt{wlm}) production.
-\item \texttt{tau}, \texttt{mxs}: The decay constant (in ${\rm GeV}^{-1}$) and mass of invisible particle $X$ (in GeV) in simplified model (processes 82--84).
+\item \texttt{wlp}, \texttt{wlm}: leptonic decay (either \texttt{mu} or \texttt{el}) for $W^+$ (\texttt{wlp}) plus 
+$W^-$ (\texttt{wlm}) production.
+\item \texttt{tau}, \texttt{mxs}: The decay constant (in ${\rm GeV}^{-1}$) and mass of invisible particle $X$ (in GeV) 
+in simplified model (processes 82--84).
 \end{itemize}
 
 \section{Output, histograms and cuts}\label{sec:hist}
 
-The input parameters for a run, the output cross section, and the generated histograms are stored in the \texttt{output[outtag].dat} file in the \texttt{bin/ouputs} directory. 
+The input parameters for a run, the output cross section, and the generated histograms are stored in the \texttt{output[outtag].dat}
+ file in the \texttt{bin/ouputs} directory. 
 
-By default, the system rapidity and invariant mass (where appropriate) distributions are output, however the user may define their own histograms in \texttt{src/user/histo.f}. In addition, further user--defined cuts may be placed in \texttt{src/user/cuts.f}. In both cases the particle momenta are stored in the array \texttt{q(i,j)}, where $i=1,2,3$ corresponds to the $x,y,z$ components of the 3--momentum and $i=4$ the energy component, while $j$ specifies the particle number. The incoming (outgoing) protons correspond to $j=1,2$ (3,4) and the central system to $j=5$, while the remaining final--state particle are defined for each process in Table~\ref{table:proc}.
+By default, the system rapidity and invariant mass (where appropriate) distributions are output, however the user may define their 
+own histograms in \texttt{src/user/histo.f}. In addition, further user--defined cuts may be placed in \texttt{src/user/cuts.f}. In
+ both cases the particle momenta are stored in the array \texttt{q(i,j)}, where $i=1,2,3$ corresponds to the $x,y,z$ components of 
+ the 3--momentum and $i=4$ the energy component, while $j$ specifies the particle number. The incoming (outgoing) protons correspond 
+ to $j=1,2$ (3,4) and the central system to $j=5$, while the remaining final--state particle are defined for each process in Table~\ref{table:proc}.
 
 \section{Interfacing to Pythia}
 
-The unweighted event output is provided in standard (Les Houches, HEPEVT and HepMC) can be passed to external MCs for showering and hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. In particular, the following flags should be set:
+The unweighted event output is provided in standard (Les Houches, HEPEVT and HepMC) can be passed to external MCs for showering and 
+hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. In particular, 
+the following flags should be set:
 \\
 \\
  \texttt{PartonLevel:ISR = off}\\
@@ -179,7 +269,9 @@ The unweighted event output is provided in standard (Les Houches, HEPEVT and Hep
  \texttt{Check:event = off}\\
  \texttt{LesHouches:matchInOut = off}\\
  
- For semi--exclusive photon--initiated production, the user should in particular produce individual runs for diff set to \texttt{el}, \texttt{sda}, \texttt{sdb}, dd. These correspond to the cases of purely elastic scattering, single dissociation and double dissociation. The sum of these cross sections will be equal to that of running with \texttt{diff} set to \texttt{tot}. The appropriate flags are then:
+ For semi--exclusive photon--initiated production, the user should in particular produce individual runs for diff set to \texttt{el}, 
+ \texttt{sda}, \texttt{sdb}, dd. These correspond to the cases of purely elastic scattering, single dissociation and double dissociation.
+  The sum of these cross sections will be equal to that of running with \texttt{diff} set to \texttt{tot}. The appropriate flags are then:
  \\
 \\
 \texttt{BeamRemnants:primordialKT = off}\\
@@ -188,7 +280,8 @@ The unweighted event output is provided in standard (Les Houches, HEPEVT and Hep
 \texttt{SpaceShower:pTmaxMatch = 2} \\
 \texttt{SpaceShower:QEDshowerByQ = off} \\
 \texttt{SpaceShower:pTdampMatch=1} \\
-\texttt{BeamRemnants:unresolvedHadron = 0} for double dissociation (\texttt{dd}), 1 for single dissociation (\texttt{sdb}), 2 for single dissociation (\texttt{sda}), 3 for elastic (\texttt{el}). \\
+\texttt{BeamRemnants:unresolvedHadron = 0} for double dissociation (\texttt{dd}), 1 for single dissociation (\texttt{sdb}), 2 for single 
+dissociation (\texttt{sda}), 3 for elastic (\texttt{el}). \\
 
 \section{Summary of processes}\label{sec:proc}
 
@@ -302,35 +395,47 @@ Number&Final--State\\
 
 \section{Notes on processes}\label{sec:procnot}
 
-In this section further details are given about the generated processes listed in Section~\ref{sec:proc}. We note that the runtime is typically much shorter for photoproduction and two--photon induced processes, due to the simpler underlying theoretical calculation.
+In this section further details are given about the generated processes listed in Section~\ref{sec:proc}. We note that the runtime is typically 
+much shorter for photoproduction and two--photon induced processes, due to the simpler underlying theoretical calculation.
 
 \subsection{Process 1 : SM $H\to b\overline{b}$ production}
 
-The production of a SM Higgs boson of mass $m_H=126$ GeV, decaying to $b\overline{b}$, with mass $m_b=4.75$ GeV, with branching ratio ${\rm Br}(H\to b\overline{b})=56.1\%$. Two body cuts may be placed using the input file with $b$ and $\overline{b}$ momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+The production of a SM Higgs boson of mass $m_H=126$ GeV, decaying to $b\overline{b}$, with mass $m_b=4.75$ GeV, with branching ratio 
+${\rm Br}(H\to b\overline{b})=56.1\%$. Two body cuts may be placed using the input file with $b$ and $\overline{b}$ momenta given by 
+\texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Process 2 : $\gamma\gamma$ production}
 
-The production of photon pairs via the $gg\to\gamma\gamma$ quark--loop induced process. Two body cuts may be placed using the input file on the final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}.  Amplitudes in the $\hat{s},\hat{t},\hat{u} \gg m_f^2$ limit are used, where $m_f$ is the mass of the fermion in the loop.
+The production of photon pairs via the $gg\to\gamma\gamma$ quark--loop induced process. Two body cuts may be placed using the input file on the 
+final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}.  Amplitudes in the $\hat{s},\hat{t},\hat{u} \gg m_f^2$ limit are used, where 
+$m_f$ is the mass of the fermion in the loop.
 
 \subsection{Process 3--6 : dijet production}
 
-The production of $gg$, massless $q\overline{q}$ and $c\overline{c}$, $b\overline{b}$ dijets, with masses $m_c=1.40$ GeV, $m_b=4.75$ GeV, is given by processes 3, 4 and 5, respectively. Two body cuts may be placed using the input file with $q$($b$) and $\overline{q}$($\overline{b}$) momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+The production of $gg$, massless $q\overline{q}$ and $c\overline{c}$, $b\overline{b}$ dijets, with masses $m_c=1.40$ GeV, $m_b=4.75$ GeV, is given
+ by processes 3, 4 and 5, respectively. Two body cuts may be placed using the input file with $q$($b$) and $\overline{q}$($\overline{b}$) momenta 
+ given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Processes 7--8 : trijet production}
 
-The production of $ggg$ and $q\overline{q}g$ trijets, with massless quarks, is given by processes 7 and 8, respectively. Three body cuts may be placed using the input file with the $q$, $\overline{q}$ and $g$ having momenta given by \texttt{p(a)}, \texttt{p(b)} and \texttt{p(c)}, respectively.
+The production of $ggg$ and $q\overline{q}g$ trijets, with massless quarks, is given by processes 7 and 8, respectively. Three body cuts may be 
+placed using the input file with the $q$, $\overline{q}$ and $g$ having momenta given by \texttt{p(a)}, \texttt{p(b)} and \texttt{p(c)}, respectively.
 
 \subsection{Processes 9--17 : light meson pair production}
 
-The production of light meson pairs, following the formalism described in~\cite{HarlandLang:2011qd,Harland-Lang:2013ncy}, where further details and definitions can be found. Two body cuts may be placed using the input file with the momenta of  positive and negatively charged mesons, and the $\eta$ and $\eta'$ meson (for the case of $\eta\eta'$ production), given by  \texttt{p(a)} and \texttt{p(b)}, respectively.
+The production of light meson pairs, following the formalism described in~\cite{HarlandLang:2011qd,Harland-Lang:2013ncy}, where further details and 
+definitions can be found. Two body cuts may be placed using the input file with the momenta of  positive and negatively charged mesons, and the 
+$\eta$ and $\eta'$ meson (for the case of $\eta\eta'$ production), given by  \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsubsection{Processes 9--10 : $\pi\pi$ production}
 
-Charged $\pi^+\pi^-$ and neutral $\pi^0\pi^0$ production are given by processes 9 and 10, respectively. The `Chernyak--Zhitnisky' (CZ) wave function~\cite{Chernyak:1981zz} is taken for the pion with $f_\pi=93$ MeV, i.e. with $a_2^1(\mu_0^2)=2/3$ and the rest zero.
+Charged $\pi^+\pi^-$ and neutral $\pi^0\pi^0$ production are given by processes 9 and 10, respectively. The `Chernyak--Zhitnisky' (CZ) wave 
+function~\cite{Chernyak:1981zz} is taken for the pion with $f_\pi=93$ MeV, i.e. with $a_2^1(\mu_0^2)=2/3$ and the rest zero.
 
 \subsubsection{Processes 11--12 : $KK$ production}
 
- Charged $K^+K^-$ and neutral $K_0K_0$ production are given by processes 11 and 12, respectively. The CZ wave function is taken, with $f_K=f_\pi=93$ MeV set in order to approximately account for corrections due to the strange quark mass and deviations from the wave function choice.
+ Charged $K^+K^-$ and neutral $K_0K_0$ production are given by processes 11 and 12, respectively. The CZ wave function is taken, with 
+ $f_K=f_\pi=93$ MeV set in order to approximately account for corrections due to the strange quark mass and deviations from the wave function choice.
  
  \subsubsection{Process 13: $\rho_0\rho_0$ production}
  
@@ -338,7 +443,11 @@ Charged $\pi^+\pi^-$ and neutral $\pi^0\pi^0$ production are given by processes 
  
  \subsubsection{Processes 14--16 : $\eta(')\eta(')$ production}
 
-$\eta\eta$, $\eta\eta'$ and $\eta'\eta'$ production are given by processes 14, 15 and 16, respectively. A general two--angle mixing scheme is taken for the $\eta$ and $\eta'$ decay constants, with the values given in~\cite{Harland-Lang:2013ncy}. The CZ wave function is taken for the flavour--singlet and octet $q\overline{q}$ components, and the gluonic component $a_2^G(\mu_0^2)$ is set to zero by default (although a non--zero contribution will enter at higher scales due to the wave function evolution). A non--zero starting value may be taken by adjust the variable \texttt{a2g} in the appropriate part of \texttt{scr/main/process.f}.
+$\eta\eta$, $\eta\eta'$ and $\eta'\eta'$ production are given by processes 14, 15 and 16, respectively. A general two--angle mixing scheme is 
+taken for the $\eta$ and $\eta'$ decay constants, with the values given in~\cite{Harland-Lang:2013ncy}. The CZ wave function is taken for the 
+flavour--singlet and octet $q\overline{q}$ components, and the gluonic component $a_2^G(\mu_0^2)$ is set to zero by default (although a non--zero 
+contribution will enter at higher scales due to the wave function evolution). A non--zero starting value may be taken by adjust the variable 
+\texttt{a2g} in the appropriate part of \texttt{scr/main/process.f}.
 
 \subsubsection{Process 17 : $\phi\phi$ production}
 
@@ -346,27 +455,48 @@ The $\phi$ wave function and decay constant is given as described in Appendix B 
 
 \subsection{Processes 18--20 : $J/\psi$ and $\psi(2S)$ pair production}
 
-$J/\psi J/\psi$, $J/\psi\psi(2S)$ and $\psi(2S)\psi(2S)$ production, via the $\mu^+\mu-$ decay channel, are given by processes 18, 19 and 20, respectively; see~\cite{Harland-Lang:2014efa} for theory discussion. The branching ratios are given by ${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$ and ${\rm Br}(\psi(2S) \to \mu^+\mu^-)=0.80\%$. Spin correlations in these decays may be included with the \texttt{spincorr} flag. Four body cuts on the final--state muons may be placed using the input file, with the momenta $\mu^+(8)$, $\mu^-(9)$, $\mu^+(10)$ and $\mu^-(11)$, as defined in Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
+$J/\psi J/\psi$, $J/\psi\psi(2S)$ and $\psi(2S)\psi(2S)$ production, via the $\mu^+\mu-$ decay channel, are given by processes 18, 19 and 20, 
+respectively; see~\cite{Harland-Lang:2014efa} for theory discussion. The branching ratios are given by ${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$ 
+and ${\rm Br}(\psi(2S) \to \mu^+\mu^-)=0.80\%$. Spin correlations in these decays may be included with the \texttt{spincorr} flag. Four body cuts 
+on the final--state muons may be placed using the input file, with the momenta $\mu^+(8)$, $\mu^-(9)$, $\mu^+(10)$ and $\mu^-(11)$, as defined in 
+Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
 
 \subsection{Processes 21--23 : $\chi_{cJ}\to J/\psi\gamma\to \mu^+\mu^-\gamma$ production}
 
-$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 21, 22 and 23, respectively. The $\chi_{cJ}\to J/\psi \gamma$ branching ratios are given by 1.40\%, 34.3\% and 19.0\%, respectively, and ${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$. Spin correlations in these decays may be included with the \texttt{spincorr} flag. Three body cuts may be placed using the input file, with the $\gamma$, $\mu^+$ and $\mu^-$ momenta given by \texttt{p(a)}, \texttt{p(b)} and \texttt{p(c)}, respectively.
+$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 21, 22 and 23, respectively. The $\chi_{cJ}\to J/\psi \gamma$ branching 
+ratios are given by 1.40\%, 34.3\% and 19.0\%, respectively, and ${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$. Spin correlations in these decays may 
+be included with the \texttt{spincorr} flag. Three body cuts may be placed using the input file, with the $\gamma$, $\mu^+$ and $\mu^-$ momenta 
+given by \texttt{p(a)}, \texttt{p(b)} and \texttt{p(c)}, respectively.
 
 \subsection{Processes 24--28 : $\chi_{cJ}$ two--body decays}
 
-Two--body decays of the $\chi_{cJ}$ into arbitrary states are included, where the mass and PDG numbers may be specified in the input file. $\chi_{c1}$ and $\chi_{c2}$ decays into a pair of scalar states $S$ are given by processes 25 and 26, respectively, while $\chi_{c1}$ and $\chi_{c2}$ decays into a pair of fermion states $f$ are given by processes 27 and 28, respectively. Spin correlations in these decays may be included with the \texttt{spincorr} flag.  The $\chi_{c0}$ decay (for which scalar and fermion final--states are treated in the same way) is given by process 23. Two body cuts may be placed using the input file, with the $S^+$ ($f$) and $S^-$ ($\overline{f}$) momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Two--body decays of the $\chi_{cJ}$ into arbitrary states are included, where the mass and PDG numbers may be specified in the input file. 
+$\chi_{c1}$ and $\chi_{c2}$ decays into a pair of scalar states $S$ are given by processes 25 and 26, respectively, while $\chi_{c1}$ and 
+$\chi_{c2}$ decays into a pair of fermion states $f$ are given by processes 27 and 28, respectively. Spin correlations in these decays may be 
+included with the \texttt{spincorr} flag.  The $\chi_{c0}$ decay (for which scalar and fermion final--states are treated in the same way) is 
+given by process 23. Two body cuts may be placed using the input file, with the $S^+$ ($f$) and $S^-$ ($\overline{f}$) momenta given by \texttt{p(a)} 
+and \texttt{p(b)}, respectively.
 
 \subsection{Processes 29--31 : $\chi_c \to 2(\pi^+\pi^-)$ production}
 
-$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 29, 30 and 31, via the four body decay to two $\pi^+\pi^-$ pairs, with branching ratios 2.34\%, 0.84\% and 1.02\%, respectively. All decays performed simply according to phase space. Four body cuts on the final--state pions may be placed using the input file, with the momenta $\pi^+(6)$, $\pi^-(7)$, $\pi^+(8)$ and $\pi^-(9)$, as defined in Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
+$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 29, 30 and 31, via the four body decay to two $\pi^+\pi^-$ pairs, with 
+branching ratios 2.34\%, 0.84\% and 1.02\%, respectively. All decays performed simply according to phase space. Four body cuts on the final--state 
+pions may be placed using the input file, with the momenta $\pi^+(6)$, $\pi^-(7)$, $\pi^+(8)$ and $\pi^-(9)$, as defined in Table~\ref{table:proc} 
+given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
 
 \subsection{Processes 32--34 : $\chi_c \to \pi^+\pi^-K^+K^-$ production}
 
-$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 32, 33 and 34, via the four body decay to $\pi^+\pi^-K^+K^-$, with branching ratios 1.81\%, 0.45\% and 0.84\%, respectively. All decays performed simply according to phase space. Four body cuts on the final--state pions/kaons may be placed using the input file, with the momenta $\pi^+(6)$, $\pi^-(7)$, $K^+(8)$ and $K^-(9)$, as defined in Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
+$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 32, 33 and 34, via the four body decay to $\pi^+\pi^-K^+K^-$, with branching 
+ratios 1.81\%, 0.45\% and 0.84\%, respectively. All decays performed simply according to phase space. Four body cuts on the final--state pions/kaons may
+ be placed using the input file, with the momenta $\pi^+(6)$, $\pi^-(7)$, $K^+(8)$ and $K^-(9)$, as defined in Table~\ref{table:proc} given by 
+ \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
 
 \subsection{Processes 35--37 : $\chi_c \to 3(\pi^+\pi^-)$ production}
 
-$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 32, 33 and 34,  via the six body decay to $3(\pi^+\pi^-)$, with branching ratios 1.20\%, 0.58\% and 0.86\%, respectively. All decays performed simply according to phase space. Six body cuts on the final--state pions may be placed using the input file, with the momenta $\pi^+(6)$,  $\pi^-(7)$, $\pi^+(8)$, $\pi^-(9)$, $\pi^+(10)$ and $\pi^-(11)$ as defined in Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)}, \texttt{p(d)}, \texttt{p(e)} and \texttt{p(f)} respectively.
+$\chi_{c0}$, $\chi_{c1}$ and $\chi_{c2}$ production are given by processes 32, 33 and 34,  via the six body decay to $3(\pi^+\pi^-)$, with branching 
+ratios 1.20\%, 0.58\% and 0.86\%, respectively. All decays performed simply according to phase space. Six body cuts on the final--state pions may be
+ placed using the input file, with the momenta $\pi^+(6)$,  $\pi^-(7)$, $\pi^+(8)$, $\pi^-(9)$, $\pi^+(10)$ and $\pi^-(11)$ as defined in 
+ Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)}, \texttt{p(d)}, \texttt{p(e)} and \texttt{p(f)} respectively.
 
 \subsection{Process 38 : $\eta_c$ production}
 
@@ -374,11 +504,18 @@ Currently included without any further decay. The $\eta_c \to gg$ width is taken
 
 \subsection{Processes 39--41 : $\chi_{bJ}\to \Upsilon\gamma\to \mu^+\mu^-\gamma$ production}
 
-$\chi_{b0}$, $\chi_{b1}$ and $\chi_{b2}$ production are given by processes 30, 31 and 32, respectively. The $\chi_{bJ}\to \Upsilon \gamma$ branching ratios are given by 1.94\%, 35.2\% and 18.0\%, respectively, and the ${\rm Br}(\Upsilon\to\mu^+\mu^-)$ is given by 2.48\%. Spin correlations in these decays may be included with the \texttt{spincorr} flag. Three body cuts may be placed using the input file, with the $\gamma$, $\mu^+$ and $\mu^-$ momenta given by \texttt{p(a)}, \texttt{p(b)} and \texttt{p(c)}, respectively.
+$\chi_{b0}$, $\chi_{b1}$ and $\chi_{b2}$ production are given by processes 30, 31 and 32, respectively. The $\chi_{bJ}\to \Upsilon \gamma$ branching 
+ratios are given by 1.94\%, 35.2\% and 18.0\%, respectively, and the ${\rm Br}(\Upsilon\to\mu^+\mu^-)$ is given by 2.48\%. Spin correlations in these 
+decays may be included with the \texttt{spincorr} flag. Three body cuts may be placed using the input file, with the $\gamma$, $\mu^+$ and $\mu^-$ 
+momenta given by \texttt{p(a)}, \texttt{p(b)} and \texttt{p(c)}, respectively.
 
 \subsection{Processes 42--46 : $\chi_{bJ}$ two--body decays}
 
-Two--body decays of the $\chi_{bJ}$ into arbitrary states are included, where the mass and PDG numbers may be specified in the input file. $\chi_{b1}$ and $\chi_{b2}$ decays into a pair of scalar states $S$ are given by processes 34 and 35, respectively, while $\chi_{b1}$ and $\chi_{b2}$ decays into a pair of fermion states $f$ are given by processes 36 and 37, respectively. Spin correlations in these decays may be included with the \texttt{spincorr} flag.  The $\chi_{b0}$ decay (for which scalar and fermion final--states are treated in the same way) is given by process 32. Two body cuts may be placed using the input file, with the $S^+$ ($f$) and $S^-$ ($\overline{f}$) momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Two--body decays of the $\chi_{bJ}$ into arbitrary states are included, where the mass and PDG numbers may be specified in the input file. $\chi_{b1}$ 
+and $\chi_{b2}$ decays into a pair of scalar states $S$ are given by processes 34 and 35, respectively, while $\chi_{b1}$ and $\chi_{b2}$ decays into 
+a pair of fermion states $f$ are given by processes 36 and 37, respectively. Spin correlations in these decays may be included with the \texttt{spincorr}
+ flag.  The $\chi_{b0}$ decay (for which scalar and fermion final--states are treated in the same way) is given by process 32. Two body cuts may be placed
+  using the input file, with the $S^+$ ($f$) and $S^-$ ($\overline{f}$) momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Process 47: $\eta_b$ production}
 
@@ -386,52 +523,79 @@ Currently included without further decay. The $\eta_b \to gg$ width is taken as 
 
 \subsection{Processes 48--60: general comment}
 
-The equivalent photon flux for these processes is calculated as described in~\cite{Harland-Lang:2015cta}, however from version 2.04 onwards the more precise `double--dipole' parameterisation of the proton electric and magnetic form factors given in~\cite{Bernauer:2013tpr} is taken.
+The equivalent photon flux for these processes is calculated as described in~\cite{Harland-Lang:2015cta}, however from version 2.04 onwards the 
+more precise `double--dipole' parameterisation of the proton electric and magnetic form factors given in~\cite{Bernauer:2013tpr} is taken.
 
 \subsection{Process 48: $\rho_0(770)\to \pi^+\pi^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to \rho p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. The $\rho$ resonance decay is treated with a simple modification of the Breit--Wigner distribution given in~\cite{Leupold:1997dg}. The $\pi^+\pi^-$ decay is performed according to phase space only and the branching ratio is assumed to be ${\rm Br}(\rho \to \pi^+\pi^-)=100\%$. Two body cuts may be placed using the input file, with the $\pi^+$ and $\pi^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to \rho p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. 
+The $\rho$ resonance decay is treated with a simple modification of the Breit--Wigner distribution given in~\cite{Leupold:1997dg}. The $\pi^+\pi^-$ 
+decay is performed according to phase space only and the branching ratio is assumed to be ${\rm Br}(\rho \to \pi^+\pi^-)=100\%$. Two body cuts may be
+ placed using the input file, with the $\pi^+$ and $\pi^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Process 49: $\phi(1020)\to K^+K^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to \phi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. The $K^+K^-$ decay is performed according to phase space only with branching ratio ${\rm Br}(\phi \to K^+K^-)=49.2\%$. Two body cuts may be placed using the input file, with the $K^+$ and $K^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to \phi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. 
+The $K^+K^-$ decay is performed according to phase space only with branching ratio ${\rm Br}(\phi \to K^+K^-)=49.2\%$. Two body cuts may be placed
+ using the input file, with the $K^+$ and $K^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 
 \subsection{Process 50: $J/\psi\to \mu^+\mu^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to J/\psi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. Spin correlations for the $J/\psi\to \mu^+\mu^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by ${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to J/\psi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. 
+Spin correlations for the $J/\psi\to \mu^+\mu^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by 
+${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$  momenta given by 
+\texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Process 51: $\Upsilon(1S) \to \mu^+\mu^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to \Upsilon p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. Spin correlations for the $\Upsilon\to \mu^+\mu^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by ${\rm Br}(J/\psi \to \mu^+\mu^-)=2.48\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to \Upsilon p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. 
+Spin correlations for the $\Upsilon\to \mu^+\mu^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by 
+${\rm Br}(J/\psi \to \mu^+\mu^-)=2.48\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$  momenta given by 
+\texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Processes 52: $\psi(2S)\to \mu^+\mu^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to \psi(2S) p$ cross section, assumed to have the same energy scaling parameter $\delta$ as in the case of $J/\psi$ production, but with $\sigma(\psi(2S))/\sigma(J/\psi)=16.6\%$, prior to branching. Spin correlations for the $\psi(2S)\to \mu^+\mu^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by ${\rm Br}(\psi(2S) \to \mu^+\mu^-)=0.80\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$ momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to \psi(2S) p$ cross section, assumed to have the same energy scaling parameter $\delta$ 
+as in the case of $J/\psi$ production, but with $\sigma(\psi(2S))/\sigma(J/\psi)=16.6\%$, prior to branching. Spin correlations for the
+ $\psi(2S)\to \mu^+\mu^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by 
+ ${\rm Br}(\psi(2S) \to \mu^+\mu^-)=0.80\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$ momenta given by 
+ \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Processes 53: $\psi(2S)\to J/\psi(\to \mu^+\mu^-) \pi^+\pi^-$ photoproduction}
 
-Included as described above. Decay performed according to phase space, and with ${\rm Br}(\psi(2S)=J/\psi\pi^+\pi^-)=34.45\%$ and ${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$. Four body cuts on the final--state muons may be placed using the input file, with the momenta $\pi^+(7)$, $\pi^-(8)$, $\mu^+(9)$ and $\mu^-(10)$, as defined in Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}, respectively.
+Included as described above. Decay performed according to phase space, and with ${\rm Br}(\psi(2S)=J/\psi\pi^+\pi^-)=34.45\%$ and 
+${\rm Br}(J/\psi \to \mu^+\mu^-)=5.961\%$. Four body cuts on the final--state muons may be placed using the input file, with the momenta 
+$\pi^+(7)$, $\pi^-(8)$, $\mu^+(9)$ and $\mu^-(10)$, as defined in Table~\ref{table:proc} given by \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} 
+and \texttt{p(d)}, respectively.
 
 
 \subsection{Process 55: $W^+W^-$ production ($pp$)}
 
-Two--photon induced $W$ boson pair production. Both muon and electron decay channels are implemented, and set according to \texttt{wlp}, \texttt{wlm} in the input card, with ${\rm Br}(W\to \nu \mu)=10.63\%$ and ${\rm Br}(W\to \nu e)=10.71\%$. Spin correlations may be  included with the \texttt{spincorr} flag. Cuts on the final--state muons may be placed using the input file, with the momenta $\mu^+(9)$, $\mu^-(11)$, as defined in Table~\ref{table:proc}, given by \texttt{p(a)}, \texttt{p(b)},  and similarly for the election decay channel.
+Two--photon induced $W$ boson pair production. Both muon and electron decay channels are implemented, and set according to \texttt{wlp}, 
+\texttt{wlm} in the input card, with ${\rm Br}(W\to \nu \mu)=10.63\%$ and ${\rm Br}(W\to \nu e)=10.71\%$. Spin correlations may be  included with 
+the \texttt{spincorr} flag. Cuts on the final--state muons may be placed using the input file, with the momenta $\mu^+(9)$, $\mu^-(11)$, as 
+defined in Table~\ref{table:proc}, given by \texttt{p(a)}, \texttt{p(b)},  and similarly for the election decay channel.
 
 \subsection{Processes 56--58: $l^+l^-$ production ($pp$)}
 
-Two--photon induced lepton pair production. Processes 56 to 59 correspond to $e^+e^-$, $\mu^+\mu^-$ and $\tau^+\tau^-$ production (in the latter case without further decay).  Two body cuts may be placed using the input file, with the $l^+$ and $l^-$ momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Two--photon induced lepton pair production. Processes 56 to 59 correspond to $e^+e^-$, $\mu^+\mu^-$ and $\tau^+\tau^-$ production (in the latter 
+case without further decay).  Two body cuts may be placed using the input file, with the $l^+$ and $l^-$ momenta given by \texttt{p(a)} and 
+\texttt{p(b)}, respectively.
 
 
 \subsection{Process 59 : $\gamma\gamma$ production ($pp$)}
 
-The production of photon pairs via the $\gamma \gamma \to\gamma\gamma$ process. Two body cuts may be placed using the input file on the final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}. 
-%Amplitudes in the $\hat{s},\hat{t},\hat{u} \gg m_f^2$ limit are used, where $m_f$ is the mass of the fermion in the loop.
-The exact leading--order expressions, including contributions from quark, lepton and $W$ boson loops are used, using the \texttt{SANC} implementation described in~\cite{Bardin:2009gq}, are used.
+The production of photon pairs via the $\gamma \gamma \to\gamma\gamma$ process. Two body cuts may be placed using the input file on the 
+final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}.  
+The exact leading--order expressions, including contributions from quark, lepton and $W$ boson loops are used, using the \texttt{SANC} implementation
+ described in~\cite{Bardin:2009gq}, are used.
 
 \subsection{Process 60 : SM $H\to b\overline{b}$ production (photon--initiated)}
 
-The two--photon initiated production of a SM Higgs boson of mass $m_H=126$ GeV, decaying to $b\overline{b}$, with mass $m_b=4.75$ GeV, with branching ratio ${\rm Br}(H\to b\overline{b})=56.1\%$. Two body cuts may be placed using the input file with $b$ and $\overline{b}$ momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+The two--photon initiated production of a SM Higgs boson of mass $m_H=126$ GeV, decaying to $b\overline{b}$, with mass $m_b=4.75$ GeV, with 
+branching ratio ${\rm Br}(H\to b\overline{b})=56.1\%$. Two body cuts may be placed using the input file with $b$ and $\overline{b}$ momenta 
+given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Processes 61--67: currently empty}
 
@@ -443,45 +607,66 @@ The production of an Axion--like particle (ALP) via the two--body photon decay c
 \begin{equation}
 \mathcal{L}=\frac{1}{2}\partial^\mu a \partial_\mu a -\frac{1}{2}m_a^2 a^2 -\frac{1}{4}g_a a F^{\mu\nu}\tilde{F}_{\mu\nu}\;.
 \end{equation}
-The mass, $m_a$, and photon coupling, $f_a$, may be set freely by the user.  Two body cuts may be placed using the input file on the final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}.
+The mass, $m_a$, and photon coupling, $f_a$, may be set freely by the user.  Two body cuts may be placed using the input file on the final--state
+ photons of momenta  \texttt{p(a)} and \texttt{p(b)}.
 
 \subsection{Processes 69--70: Monopolium production}
 
-The production of monopolium via the two photon decay channel, as described in~\cite{Epele:2012jn}. Process 69 (70) correponds to the Dirac ($\beta g$) coupling scenario. Two body cuts may be placed using the input file on the final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}.  
+The production of monopolium via the two photon decay channel, as described in~\cite{Epele:2012jn}. Process 69 (70) correponds to the Dirac 
+($\beta g$) coupling scenario. Two body cuts may be placed using the input file on the final--state photons of momenta  \texttt{p(a)} and \texttt{p(b)}.  
 
 \subsection{Processes 71--72: Monopole pair production}
 
-The production of stable monopole pairs, as described in~\cite{Epele:2012jn}. Process 71 (72) correponds to the Dirac ($\beta g$) coupling scenarios.
+The production of stable monopole pairs, as described in~\cite{Epele:2012jn}. Process 71 (72) correponds to the Dirac ($\beta g$) coupling 
+scenarios.
 
 \subsection{Processes 73--75: Chargino pair production}
 
-The production of chargino pairs via lepton--leptonic (73), hadronic (74) and leptonic--hadronic (75) decays. No branching ratios are included in cross sections, so all results should be multiplied by these. All leptonic decays correspond to the muonic case, but more general (electron/mixed) decays available on request. Two--body cuts may be placed for process 73 on the final--state leptons of momenta  \texttt{p(a)} and \texttt{p(b)}. Four--body cuts may be placed for process 74 on the final--state partons of momenta  \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}. Three--body cuts may be placed for process 75 on the final--state lepton of momentum  \texttt{p(a)} and partons of momenta \texttt{p(b)} and \texttt{p(c)}.
+The production of chargino pairs via lepton--leptonic (73), hadronic (74) and leptonic--hadronic (75) decays. No branching ratios are included in 
+cross sections, so all results should be multiplied by these. All leptonic decays correspond to the muonic case, but more general (electron/mixed) 
+decays available on request. Two--body cuts may be placed for process 73 on the final--state leptons of momenta  \texttt{p(a)} and \texttt{p(b)}. 
+Four--body cuts may be placed for process 74 on the final--state partons of momenta  \texttt{p(a)}, \texttt{p(b)}, \texttt{p(c)} and \texttt{p(d)}. 
+Three--body cuts may be placed for process 75 on the final--state lepton of momentum  \texttt{p(a)} and partons of momenta \texttt{p(b)} and \texttt{p(c)}.
 
 \subsection{Processes 76: Slepton pair production}
 
-The production of slepton pairs via leptonic decays. No branching ratios are included in cross sections, so all results should be multiplied by these. For concreteness, results correspond to smuons, including both left and right--handed particles, but selectron case available upon request. Two--body cuts may be placed on the final--state leptons of momenta  \texttt{p(a)} and \texttt{p(b)}. 
+The production of slepton pairs via leptonic decays. No branching ratios are included in cross sections, so all results should be multiplied by these. 
+For concreteness, results correspond to smuons, including both left and right--handed particles, but selectron case available upon request. Two--body 
+cuts may be placed on the final--state leptons of momenta  \texttt{p(a)} and \texttt{p(b)}. 
 
 \subsection{Process 77: $\phi(1020)\to \mu^+\mu^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to \phi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. The $\mu^+\mu^-$ decay is performed according to phase space only with branching ratio ${\rm Br}(\phi \to \mu^+\mu^-)=0.0286\%$. Two body cuts may be placed using the input file, with the $\mu^+$ and $\mu^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to \phi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. The $\mu^+\mu^-$ 
+decay is performed according to phase space only with branching ratio ${\rm Br}(\phi \to \mu^+\mu^-)=0.0286\%$. Two body cuts may be placed using the input f
+ile, with the $\mu^+$ and $\mu^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Process 78: $J/\psi\to e^+e^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to J/\psi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. Spin correlations for the $J/\psi\to e^+ e^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by ${\rm Br}(J/\psi \to e^+ e^-)=5.967\%$. Two body cuts may be placed using the input file, with the $e^+$ and $e^-$  momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to J/\psi p$ cross section, with the parameters given in~\cite{Harland-Lang:2015cta}. Spin 
+correlations for the $J/\psi\to e^+ e^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by 
+${\rm Br}(J/\psi \to e^+ e^-)=5.967\%$. Two body cuts may be placed using the input file, with the $e^+$ and $e^-$  momenta given by \texttt{p(a)} 
+and \texttt{p(b)}, respectively.
 
 \subsection{Process 79: $\psi(2S)\to e^+ e^-$ photoproduction}
 
-Included with a simple power--law fit to the $\gamma p\to \psi(2S) p$ cross section, assumed to have the same energy scaling parameter $\delta$ as in the case of $J/\psi$ production, but with $\sigma(\psi(2S))/\sigma(J/\psi)=16.6\%$, prior to branching. Spin correlations for the $\psi(2S)\to e^+ e^-$ decay may be included with the \texttt{spincorr} flag. The branching ratio is given by ${\rm Br}(\psi(2S) \to e^+ e^-)=0.793\%$. Two body cuts may be placed using the input file, with the $e^+$ and $e^-$ momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
+Included with a simple power--law fit to the $\gamma p\to \psi(2S) p$ cross section, assumed to have the same energy scaling parameter $\delta$ as in the 
+case of $J/\psi$ production, but with $\sigma(\psi(2S))/\sigma(J/\psi)=16.6\%$, prior to branching. Spin correlations for the $\psi(2S)\to e^+ e^-$ decay 
+may be included with the \texttt{spincorr} flag. The branching ratio is given by ${\rm Br}(\psi(2S) \to e^+ e^-)=0.793\%$. Two body cuts may be placed using 
+the input file, with the $e^+$ and $e^-$ momenta given by \texttt{p(a)} and \texttt{p(b)}, respectively.
 
 \subsection{Processes 82--84: Simplified model for $VX$ production}
 
-Simplified model for the elastic photon--initiated production of a system $VX$, where $V=\gamma,Z$ and $X$ is an invisible particular of mass $m_X$. The PDG ID of the state $X$ is set to that of a neutralino for concreteness, although the interpretation is generic. Electron and muon decays of the $Z$ boson are included. The mass of the $VX$ system is generated according to an exponential spectrum with decay constant \texttt{tau}. Note cross section normalization completely arbitrary; this is simply tool to model the shape of the corresponding distributions.
+Simplified model for the elastic photon--initiated production of a system $VX$, where $V=\gamma,Z$ and $X$ is an invisible particular of mass $m_X$. The PDG 
+ID of the state $X$ is set to that of a neutralino for concreteness, although the interpretation is generic. Electron and muon decays of the $Z$ boson are 
+included. The mass of the $VX$ system is generated according to an exponential spectrum with decay constant \texttt{tau}. Note cross section normalization 
+completely arbitrary; this is simply tool to model the shape of the corresponding distributions.
 
 \section{References}\label{sec:ref}
 
 
 
-Physics details and selected results for jet and $\chi_{c,b}$ production as well photoproduction and two--photon induced processes from \texttt{SuperChic 3} may be found in~\cite{Harland-Lang:2015cta}, while a summary of the Durham model can be found in e.g.~\cite{Harland-Lang:2014dta,Harland-Lang:2014lxa,Harland-Lang:2015eqa}. 
+Physics details and selected results for jet and $\chi_{c,b}$ production as well photoproduction and two--photon induced processes from \texttt{SuperChic 3} 
+may be found in~\cite{Harland-Lang:2015cta}, while a summary of the Durham model can be found in e.g.~\cite{Harland-Lang:2014dta,Harland-Lang:2014lxa,Harland-Lang:2015eqa}. 
 Further references for other specific processes are listed below:
 \begin{itemize}
 \item Mutual ion dissociation in UPCs~\cite{Harland-Langiondiss}.
@@ -501,17 +686,26 @@ Here we provide details of the changes made in the releases from version 3.01 on
 
 \begin{itemize}
 
-\item Version 3.01: Bug leading to cross section normalization of QCD--initiated coherent production in collisions featuring heavy ions being too high fixed. Bug in HEPMC output (rogue LHE formatting command present at end) fixed.
+\item Version 3.01: Bug leading to cross section normalization of QCD--initiated coherent production in collisions featuring heavy ions being too 
+high fixed. Bug in HEPMC output (rogue LHE formatting command present at end) fixed.
 \item Version 3.02: Hardcoded cuts on system acoplanarity and $p_\perp$ removed (bug- applied by default). Now available via input card.
 \item Version 3.03: shared/static libraries produced upon compilation, SUSY particle production added, minor bug fixes.
-\item Version 3.04: Fix to generation of $pA$ collisions. In previous versions final-state momenta were output in $pA$ and not lab frame. Minor bug fix such that phase space for extremely forward rapidities generated correctly.
+\item Version 3.04: Fix to generation of $pA$ collisions. In previous versions final-state momenta were output in $pA$ and not lab frame. Minor bug 
+fix such that phase space for extremely forward rapidities generated correctly.
 \item Version 3.05: Minor bug fixes and changes to code architecture.
 \item Version 3.06: Bug fix in ALP decay width, numerical precision in event records increased.
-\item Version 4.0: Major update to include exclusive and semi--exclusive photon--initiated lepton pair production. Exclusive $\gamma\gamma \to t\overline{t}$ added. Numerical integration updated to be more efficient. Other minor fixes.
-\item Version 4.01: Bug fix to give correct behaviour in on--shell photon--initiated production calculation at high $x$. Number of active flavours changed from 4 to 5 in calculation of inelastic proton structure functions.
-\item Version 4.02: Bug fix to photon--initiated production in heavy ion collisions, leading to overestimate in cross section including survival effects. This was introduced in version 4, i.e. it was treated correctly in version 3. Bug fix to photon-initiated production with lepton beams. High $x$ region was not treated correctly, leading to potentially unstable results.
-\item Version 4.03: Bug fix to ALP production. Width was incorrectly hard--coded to be 0.5 GeV and the Breit--Wigner was incorrectly generated for very low ALP masses ($<$ 5 GeV).
-\item Version 4.1: Exclusive and semi--exclusive $W^+ W^-$ production included.  $\phi(1020)\to \mu^+ \mu^-$ and $J/\psi$, $\psi(2S) \to e^+ e^-$ photoproduction added. $l^+ l^-$ and $W^+ W^-$ production now calculated using \texttt{LHAPDF} structure function grid directly, rather than calculated via \texttt{APFEL}. Minor updates to implementation of survival effects.
+\item Version 4.0: Major update to include exclusive and semi--exclusive photon--initiated lepton pair production. Exclusive 
+$\gamma\gamma \to t\overline{t}$ added. Numerical integration updated to be more efficient. Other minor fixes.
+\item Version 4.01: Bug fix to give correct behaviour in on--shell photon--initiated production calculation at high $x$. Number of active flavours 
+changed from 4 to 5 in calculation of inelastic proton structure functions.
+\item Version 4.02: Bug fix to photon--initiated production in heavy ion collisions, leading to overestimate in cross section including survival effects.
+ This was introduced in version 4, i.e. it was treated correctly in version 3. Bug fix to photon-initiated production with lepton beams. High $x$ region 
+ was not treated correctly, leading to potentially unstable results.
+\item Version 4.03: Bug fix to ALP production. Width was incorrectly hard--coded to be 0.5 GeV and the Breit--Wigner was incorrectly generated for very 
+low ALP masses ($<$ 5 GeV).
+\item Version 4.1: Exclusive and semi--exclusive $W^+ W^-$ production included.  $\phi(1020)\to \mu^+ \mu^-$ and $J/\psi$, $\psi(2S) \to e^+ e^-$ 
+photoproduction added. $l^+ l^-$ and $W^+ W^-$ production now calculated using \texttt{LHAPDF} structure function grid directly, rather than calculated 
+via \texttt{APFEL}. Minor updates to implementation of survival effects.
 \item Version 4.11: Bug fixed to prevent event record being truncated for some processes.
 \item Version 4.12: Minor bug fix to prevent rare crash for $WW$ production.
 \item Version 4.13: Bug fixed to prevent event record for some processes being appended with unused rows.
