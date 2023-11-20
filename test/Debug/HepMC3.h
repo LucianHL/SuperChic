@@ -17,7 +17,7 @@
 
 #include <vector>
 #include "Pythia8/Pythia.h"
-#if PYTHIA_VERSION_INTEGER>=8310
+#if PYTHIA_VERSION_INTEGER<8310
 #include "Pythia8/HIUserHooks.h"
 #else
 #include "Pythia8/HIInfo.h"
