@@ -96,6 +96,7 @@ set(procs 56 )
 set(procs_dd 56 )
 endif()
 
+set(process 100)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw) # for init
 foreach ( diff ${diffs} )
 foreach ( process ${procs} )
