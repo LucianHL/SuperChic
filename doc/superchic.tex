@@ -18,7 +18,7 @@
 \usepackage{cite}
 \usepackage{hyperref}
 
-
+\addtolength{\textwidth}{2.0cm}
 
 
 \begin{document}
@@ -286,20 +286,20 @@ dissociation (\texttt{sda}), 3 for elastic (\texttt{el}). \\
 \section{Summary of processes}\label{sec:proc}
 
 The generated process are summarised in Table~\ref{table:proc}.
-
-\begin{center}
-\begin{longtable}{|c|l|}
+\newpage
+\begin{center}\tiny
+\begin{longtable}{|c|l|l|}
 %\renewcommand\arraystretch{1.15}
 \caption{Generated processes, with momenta numbering specified by $p(j)$, as stored in array $q(i,j)$.}
 \label{table:proc}\\
 \hline
-\multicolumn{2}{|c|}{QCD--induced (Durham model)}\\
+\multicolumn{3}{|c|}{QCD--induced (Durham model)}\\
 \hline
 \hline
-Number&Final--State\\
+Number&Final--State& Beams and types \\
 \hline
 \endfirsthead
-\multicolumn{2}{c}{Table~\ref{table:proc}: (continued)}\\
+\multicolumn{3}{c}{Table~\ref{table:proc}: (continued)}\\
 %\multicolumn{2}{c}{}\\
 \hline
 \endhead
@@ -307,87 +307,87 @@ Number&Final--State\\
 \endfoot
 \hline
 \endlastfoot
-1& $H(5) \to b(6)\,+\,\overline{b}(6)$\\
-2& $\gamma(6)\,+\, \gamma(7)$\\
-3&$g(6)\,+\, g(7)$\\
-4&$q(6)\,+\, \overline{q}(7)$\\
-5&$c(6)\,+\, \overline{c}(7)$\\
-6&$b(6)\,+\, \overline{b}(7)$\\
-7&$g(6)\,+\, g(7)\,+\, g(8)$\\
-8&$q(6)\,+\, \overline{q}(7)\,+\, g(8)$\\
-9&$\pi^+(6)\,+\,\pi^-(7)$\\
-10&$\pi^0(6)\,+\,\pi^0(7)$\\
-11&$K^+(6)\,+\,K^-(7)$\\
-12&$K_0(6)\,+\,K_0(7)$\\
-13&$\rho_0(6)\,+\,\rho_0(7)$\\
-14&$\eta(6)\,+\,\eta(7)$\\
-15&$\eta(6)\,+\,\eta'(7)$\\
-16&$\eta'(6)\,+\,\eta'(7)$\\
-17&$\phi(6)\,+\,\phi(7)$\\
-18&$J/\psi(6)(\to \mu^+(8)+\mu^-(9))\,+\,J/\psi(7)(\to \mu^+(10)+\mu^-(11))$\\
-19&$J/\psi(6)(\to \mu^+(8)+\mu^-(9))\,+\,\psi_{2S}(7)(\to \mu^+(10)+\mu^-(11))$\\
-20&$\psi_{2S}(6)(\to \mu^+(8)+\mu^-(9))\,+\,\psi_{2S}(7)(\to \mu^+(10)+\mu^-(11))$\\
-21&$\chi_{c0}(5)\to \gamma(6)\,+\,J/\psi(7)(\to \mu^+(8)+\mu^-(9))$\\
-22&$\chi_{c1}(5)\to \gamma(6)\,+\,J/\psi(7)(\to \mu^+(8)+\mu^-(9))$\\
-23&$\chi_{c2}(5)\to \gamma(6)\,+\,J/\psi(7)(\to \mu^+(8)+\mu^-(9))$\\
-24&$\chi_{c0}(5)\to S(6)\,+\,S(7)$\\
-25&$\chi_{c1}(5)\to S(6)\,+\,S(7)$\\
-26&$\chi_{c2}(5)\to S(6)\,+\,S(7)$\\
-27&$\chi_{c1}(5)\to f(6)\,+\,\overline{f}(7)$\\
-28&$\chi_{c2}(5)\to f(6)\,+\,\overline{f}(7)$\\
-29&$\chi_{c0}(5)\to \pi^+(6)+\pi^-(7)+\pi^+(8)+\pi^-(9)$\\
-30&$\chi_{c1}(5)\to \pi^+(6)+\pi^-(7)+\pi^+(8)+\pi^-(9)$\\
-31&$\chi_{c2}(5)\to \pi^+(6)+\pi^-(7)+\pi^+(8)+\pi^-(9)$\\
-32&$\chi_{c0}(5)\to \pi^+(6)+\pi^-(7)+K^+(8)+K^-(9)$\\
-33&$\chi_{c1}(5)\to \pi^+(6)+\pi^-(7)+K^+(8)+K^-(9)$\\
-34&$\chi_{c2}(5)\to \pi^+(6)+\pi^-(7)+K^+(8)+K^-(9)$\\
-35&$\chi_{c0}(5)\to 3(\pi^+(6,8,10)\,+\,\pi^-(7,9,11))$\\
-36&$\chi_{c1}(5)\to 3(\pi^+(6,8,10)\,+\,\pi^-(7,9,11))$\\
-37&$\chi_{c2}(5)\to 3(\pi^+(6,8,10)\,+\,\pi^-(7,9,11))$\\
-38& $\eta_c(5)$\\
-39&$\chi_{b0}(5)\to \gamma(6)\,+\,\Upsilon_{1S}(7)(\to \mu^+(8)+\mu^-(9))$\\
-40&$\chi_{b1}(5)\to \gamma(6)\,+\,\Upsilon_{1S}(7)(\to \mu^+(8)+\mu^-(9))$\\
-41&$\chi_{b2}(5)\to \gamma(6)\,+\,\Upsilon_{1S}(7)(\to \mu^+(8)+\mu^-(9))$\\
-42&$\chi_{b0}(5)\to S(6)\,+\,S(7)$\\
-43&$\chi_{b1}(5)\to S(6)\,+\,S(7)$\\
-44&$\chi_{b2}(5)\to S(6)\,+\,S(7)$\\
-45&$\chi_{b1}(5)\to f(6)\,+\,\overline{f}(7)$\\
-46&$\chi_{b2}(5)\to f(6)\,+\,\overline{f}(7)$\\
-47& $\eta_b(5)$\\
+1& $H(5) \to b(6)\,+\,\overline{b}(6)$& $pp$-el, $pp$-sd, $pp$-dd \\
+2& $\gamma(6)\,+\, \gamma(7)$&\\
+3&$g(6)\,+\, g(7)$& \\
+4&$q(6)\,+\, \overline{q}(7)$& \\
+5&$c(6)\,+\, \overline{c}(7)$& \\
+6&$b(6)\,+\, \overline{b}(7)$& \\
+7&$g(6)\,+\, g(7)\,+\, g(8)$& \\
+8&$q(6)\,+\, \overline{q}(7)\,+\, g(8)$& \\
+9&$\pi^+(6)\,+\,\pi^-(7)$& \\
+10&$ \pi^0(6)\,+\,\pi^0(7)$& \\
+11&$K^+(6)\,+\,K^-(7)$& \\
+12&$K_0(6)\,+\,K_0(7)$& \\
+13&$\rho_0(6)\,+\,\rho_0(7)$& \\
+14&$\eta(6)\,+\,\eta(7)$& \\
+15&$\eta(6)\,+\,\eta'(7)$& \\
+16&$\eta'(6)\,+\,\eta'(7)$& \\
+17&$\phi(6)\,+\,\phi(7)$& \\
+18&$J/\psi(6)(\to \mu^+(8)+\mu^-(9))\,+\,J/\psi(7)(\to \mu^+(10)+\mu^-(11))$& \\
+19&$J/\psi(6)(\to \mu^+(8)+\mu^-(9))\,+\,\psi_{2S}(7)(\to \mu^+(10)+\mu^-(11))$& \\
+20&$\psi_{2S}(6)(\to \mu^+(8)+\mu^-(9))\,+\,\psi_{2S}(7)(\to \mu^+(10)+\mu^-(11))$& \\
+21&$\chi_{c0}(5)\to \gamma(6)\,+\,J/\psi(7)(\to \mu^+(8)+\mu^-(9))$& \\
+22&$\chi_{c1}(5)\to \gamma(6)\,+\,J/\psi(7)(\to \mu^+(8)+\mu^-(9))$& \\
+23&$\chi_{c2}(5)\to \gamma(6)\,+\,J/\psi(7)(\to \mu^+(8)+\mu^-(9))$& \\
+24&$\chi_{c0}(5)\to S(6)\,+\,S(7)$& \\
+25&$\chi_{c1}(5)\to S(6)\,+\,S(7)$& \\
+26&$\chi_{c2}(5)\to S(6)\,+\,S(7)$& \\
+27&$\chi_{c1}(5)\to f(6)\,+\,\overline{f}(7)$& \\
+28&$\chi_{c2}(5)\to f(6)\,+\,\overline{f}(7)$& \\
+29&$\chi_{c0}(5)\to \pi^+(6)+\pi^-(7)+\pi^+(8)+\pi^-(9)$& \\
+30&$\chi_{c1}(5)\to \pi^+(6)+\pi^-(7)+\pi^+(8)+\pi^-(9)$& \\
+31&$\chi_{c2}(5)\to \pi^+(6)+\pi^-(7)+\pi^+(8)+\pi^-(9)$& \\
+32&$\chi_{c0}(5)\to \pi^+(6)+\pi^-(7)+K^+(8)+K^-(9)$& \\
+33&$\chi_{c1}(5)\to \pi^+(6)+\pi^-(7)+K^+(8)+K^-(9)$& \\
+34&$\chi_{c2}(5)\to \pi^+(6)+\pi^-(7)+K^+(8)+K^-(9)$& \\
+35&$\chi_{c0}(5)\to 3(\pi^+(6,8,10)\,+\,\pi^-(7,9,11))$& \\
+36&$\chi_{c1}(5)\to 3(\pi^+(6,8,10)\,+\,\pi^-(7,9,11))$& \\
+37&$\chi_{c2}(5)\to 3(\pi^+(6,8,10)\,+\,\pi^-(7,9,11))$& \\
+38&$\eta_c(5)$& \\
+39&$\chi_{b0}(5)\to \gamma(6)\,+\,\Upsilon_{1S}(7)(\to \mu^+(8)+\mu^-(9))$& \\
+40&$\chi_{b1}(5)\to \gamma(6)\,+\,\Upsilon_{1S}(7)(\to \mu^+(8)+\mu^-(9))$& \\
+41&$\chi_{b2}(5)\to \gamma(6)\,+\,\Upsilon_{1S}(7)(\to \mu^+(8)+\mu^-(9))$& \\
+42&$\chi_{b0}(5)\to S(6)\,+\,S(7)$& \\
+43&$\chi_{b1}(5)\to S(6)\,+\,S(7)$& \\
+44&$\chi_{b2}(5)\to S(6)\,+\,S(7)$& \\
+45&$\chi_{b1}(5)\to f(6)\,+\,\overline{f}(7)$& \\
+46&$\chi_{b2}(5)\to f(6)\,+\,\overline{f}(7)$& \\
+47& $\eta_b(5)$& \\
 \hline\hline
-\multicolumn{2}{|c|}{Photoproduction}\\
+\multicolumn{3}{|c|}{Photoproduction}\\
 \hline\hline
-48&$\rho_0(5)\to \pi^+(6)\pi^-(7)$\\
-49&$\phi(5)\to K^+(6)K^-(7)$\\
-50&$J/\psi(5)\to \mu^+(6)\mu^-(7)$\\
-51&$\Upsilon_{1S}(5)\to \mu^+(6)\mu^-(7)$\\
-52&$\psi_{2S}(5)\to \mu^+(6)\mu^-(7)$\\
-53&$\psi_{2S}(5)\to J/\psi(6)(\to\mu^+(9)+\mu^-(10))\,+\,\pi^+(7)\,+\,\pi^-(8)$\\
+48&$\rho_0(5)\to \pi^+(6)\pi^-(7)$& \\
+49&$\phi(5)\to K^+(6)K^-(7)$& \\
+50&$J/\psi(5)\to \mu^+(6)\mu^-(7)$& \\
+51&$\Upsilon_{1S}(5)\to \mu^+(6)\mu^-(7)$& \\
+52&$\psi_{2S}(5)\to \mu^+(6)\mu^-(7)$& \\
+53&$\psi_{2S}(5)\to J/\psi(6)(\to\mu^+(9)+\mu^-(10))\,+\,\pi^+(7)\,+\,\pi^-(8)$& \\
 \hline\hline
-\multicolumn{2}{|c|}{Two--photon collisions}\\
+\multicolumn{3}{|c|}{Two--photon collisions}\\
 \hline\hline
-%54&$W^+(\to \nu_\mu(8)+\mu^+(9))\,+\, W^-(\to \overline{\nu}_\mu(10)+\mu^-(11))$\\
-55&$W^+(\to \nu_l(8)+l^+(9))\,+\, W^-(\to \overline{\nu}_l(10)+l^-(11))$\\
-56&$e^+(6)\,+\,e^-(7)$\\
-57&$\mu^+(6)\,+\,\mu^-(7)$\\
-58&$\tau^+(6)\,+\,\tau^-(7)$\\
-59&$\gamma(6)\,+\,\gamma(7)$\\
-60& $H(5) \to b(6)\,+\,\overline{b}(6)$\\
-68 & $a(5)\to \gamma(6)\,+\,\gamma(7)$\\
-69 & $M(5) \to \gamma(6)\,+\,\gamma(7)$ (Dirac Coupling)\\
-70 & $M(5) \to \gamma(6)\,+\,\gamma(7)$ ($\beta g$ Coupling)\\
-71 & $m(6)\,+\,\overline{m}(7)$ (Dirac Coupling)\\
-72 & $m(6)\,+\,\overline{m}(7)$ ($\beta g$ Coupling)\\
-73 & $\tilde{\chi}^-(6)(\to \tilde{\chi}_0^1 (8)+\mu^-(9)+\overline{\nu}_\mu (10)) \,+\,\tilde{\chi}^+(7)(\to \tilde{\chi}_0^1 (11)+\mu^+(12)+\nu_\mu (13))$\\
-74 & $\tilde{\chi}^-(6)(\to \tilde{\chi}_0^1 (8)+\overline{u}(9)+d(10)) \,+\,\tilde{\chi}^+(7)(\to \tilde{\chi}_0^1 (11)+u(12)+\overline{d} (13))$\\
-75 & $\tilde{\chi}^-(6)(\to \tilde{\chi}_0^1 (8)+\mu^-(9)+\overline{\nu}_\mu (10)) \,+\,\tilde{\chi}^+(7)(\to \tilde{\chi}_0^1 (11)+u(12)+\overline{d} (13))$\\
-76 & $\tilde{l}^-(5))(\to \tilde{\chi}_0^1 (8)+\mu^-(9))  \,+\,\tilde{l}^+(6) (\to \tilde{\chi}_0^1 (10)+\mu^+(11))$\\
-77&$\phi(5)\to \mu^+(6)\mu^-(7)$\\
-78&$J/\psi(5)\to e^+(6)e^-(7)$\\
-79&$\psi_{2S}(5)\to e^+(6)e^-(7)$\\
-82&$X(6) + \gamma(7)$\\
-83&$X(6) + Z(7)(\to \mu^+ (8)+\mu^- (9))$\\
-43&$X(6) + Z(7)(\to e^+ (8)+ e^- (9))$\\
+%54&$W^+(\to \nu_\mu(8)+\mu^+(9))\,+\, W^-(\to \overline{\nu}_\mu(10)+\mu^-(11))$& \\
+55&$W^+(\to \nu_l(8)+l^+(9))\,+\, W^-(\to \overline{\nu}_l(10)+l^-(11))$& \\
+56&$e^+(6)\,+\,e^-(7)$& \\
+57&$\mu^+(6)\,+\,\mu^-(7)$& \\
+58&$\tau^+(6)\,+\,\tau^-(7)$& \\
+59&$\gamma(6)\,+\,\gamma(7)$& \\
+60& $H(5) \to b(6)\,+\,\overline{b}(6)$& \\
+68 & $a(5)\to \gamma(6)\,+\,\gamma(7)$& \\
+69 & $M(5) \to \gamma(6)\,+\,\gamma(7)$ (Dirac Coupling)&\\
+70 & $M(5) \to \gamma(6)\,+\,\gamma(7)$ ($\beta g$ Coupling)&\\
+71 & $m(6)\,+\,\overline{m}(7)$ (Dirac Coupling)&\\
+72 & $m(6)\,+\,\overline{m}(7)$ ($\beta g$ Coupling)&\\
+73 & $\tilde{\chi}^-(6)(\to \tilde{\chi}_0^1 (8)+\mu^-(9)+\overline{\nu}_\mu (10)) \,+\,\tilde{\chi}^+(7)(\to \tilde{\chi}_0^1 (11)+\mu^+(12)+\nu_\mu (13))$& \\
+74 & $\tilde{\chi}^-(6)(\to \tilde{\chi}_0^1 (8)+\overline{u}(9)+d(10)) \,+\,\tilde{\chi}^+(7)(\to \tilde{\chi}_0^1 (11)+u(12)+\overline{d} (13))$& \\
+75 & $\tilde{\chi}^-(6)(\to \tilde{\chi}_0^1 (8)+\mu^-(9)+\overline{\nu}_\mu (10)) \,+\,\tilde{\chi}^+(7)(\to \tilde{\chi}_0^1 (11)+u(12)+\overline{d} (13))$& \\
+76 & $\tilde{l}^-(5))(\to \tilde{\chi}_0^1 (8)+\mu^-(9))  \,+\,\tilde{l}^+(6) (\to \tilde{\chi}_0^1 (10)+\mu^+(11))$& \\
+77&$\phi(5)\to \mu^+(6)\mu^-(7)$& \\
+78&$J/\psi(5)\to e^+(6)e^-(7)$& \\
+79&$\psi_{2S}(5)\to e^+(6)e^-(7)$& \\
+82&$X(6) + \gamma(7)$& \\
+83&$X(6) + Z(7)(\to \mu^+ (8)+\mu^- (9))$& \\
+43&$X(6) + Z(7)(\to e^+ (8)+ e^- (9))$& \\
 \hline
 \end{longtable}
 \end{center}
