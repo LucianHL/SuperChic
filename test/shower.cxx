@@ -13,6 +13,8 @@
 
 // Modified for Superchic
 #define DEBUGHEPMC
+#define HEPMC2
+
 #ifndef HEPMC2
 #ifdef DEBUGHEPMC
 #include "Debug/HepMC3.h"
