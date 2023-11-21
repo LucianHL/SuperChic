@@ -116,14 +116,63 @@ endforeach()
 inittest(LHC13ppunw)
 foreach ( process ${procs} )
 foreach ( diff ${diffs_el} )
-sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe ${diff} ${process})
+sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe ${diff}_pp ${process})
 sctesthepmc(LHC13ppunw LHC13ppunw_${process}_${diff}_hepmc)
 # FIXME sctesthepmc(LHC13ppunw LHC13ppunw_${process}_${diff}_hepevt)
 endforeach()
 endforeach()
 foreach ( process ${procs_dd} )
 foreach ( diff ${diffs_dd} )
-sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe ${diff} ${process})
+sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe ${diff}_pp ${process})
 endforeach()
 endforeach()
+
+
+unset(procs)
+unset(procs_dd)
+
+if (SUPERCHIC_ENABLE_ALL_TESTS)
+set(procs  
+                          55 56 57 58 59
+           60 61                   68 69
+           70 71 72 73 74 75 76 
+                 82 83 84 
+           )
+set(procs_dd  )
+else()
+set(procs 56 )
+set(procs_dd  )
+endif()
+
+
+set(process 100)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_FCC350eeunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_FCC350eeunw) # for init
+foreach ( diff ${diffs} )
+foreach ( process ${procs} )
+foreach ( format ${fmts} )
+set (gencuts ".false.")
+if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
+set (gencuts ".true.")
+endif()
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_FCC350eeunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_FCC350eeunw_${process}_${diff}_${format})
+endforeach()
+endforeach()
+endforeach()
+
+
+inittest(FCC350eeunw)
+foreach ( process ${procs} )
+foreach ( diff ${diffs_el} )
+sctestlhe(FCC350eeunw FCC350eeunw_${process}_${diff}_lhe ${diff}_ee ${process})
+sctesthepmc(FCC350eeunw FCC350eeunw_${process}_${diff}_hepmc)
+# FIXME sctesthepmc(FCC350eeunw FCC350eeunw_${process}_${diff}_hepevt)
+endforeach()
+endforeach()
+foreach ( process ${procs_dd} )
+foreach ( diff ${diffs_dd} )
+sctestlhe(FCC350eeunw FCC350eeunw_${process}_${diff}_lhe ${diff}_ee ${process})
+endforeach()
+endforeach()
+
+
 
