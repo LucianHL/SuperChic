@@ -36,7 +36,7 @@ jobs:
       uses: actions/checkout@v3
     - name: Install 
       run: |
-          brew install wget coreutils gcc 
+          brew install wget coreutils gcc gsed make
           brew tap davidchall/hep
           brew install lhapdf apfel pythia8 hepmc3 hepmc2
     - name: Compile
