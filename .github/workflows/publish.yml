@@ -1,129 +1,50 @@
-name: publish
-on: 
-  push:
-  pull_request:  
-  schedule:
-    - cron: "0 7 * * 2"
+name: build
+on:
+ push:
+ pull_request:
+ schedule:
+#Every 50 days at midnight 
+    - cron:  "0 0 1/600 * *"
+
 jobs:
-  build-superchic-docker-image:
+  compilejobFedora:
+    name: SUPERCHIC_on_Fedora_cmake
     runs-on: ubuntu-latest
-    name: Build superchic Docker image
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-          fetch-depth: 2 
-    - name: Check if the Docker file was changed
-      id: changed-docker-files
-      uses: tj-actions/changed-files@v38
-      with:
-          files: Dockerfile
-
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build the superchic Docker image on the change of Dockerfile
-      if: steps.changed-docker-files.outputs.any_changed == 'true' 
-      run: |
-         docker build . --tag ghcr.io/andriish/superchic:latest
-         docker run ghcr.io/andriish/superchic:latest
-         docker push ghcr.io/andriish/superchic
-    - name: Build the superchic Docker image on schedule
-      if: ${{ github.event_name == 'schedule' }}
-      run: |
-         docker build . --tag ghcr.io/andriish/superchic:latest
-         docker run ghcr.io/andriish/superchic:latest
-         docker push ghcr.io/andriish/superchic
-
-  run-in-superchic-docker-image-gmake:
-    name: Run in superchic Docker image  with gmake
-    runs-on: ubuntu-latest
-    needs: build-superchic-docker-image
     container:
-            image: ghcr.io/andriish/superchic:latest
-            credentials:
-               username: ${{ github.actor }}
-               password: ${{ secrets.GITHUB_TOKEN }}
+        image: fedora:latest
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         export SUPERCHIC_DATA_PATH=$(pwd)/share/SuperChic
-         mkdir -p obj lib
-         sed -i '20s/.*/FFLAGS+=-mcmodel=medium/' makefile.make
-         gmake -f makefile.make
-         gmake -f makefile.make init
-         ls -lah 
-         ls -lah bin
-         mkdir RUN
-         cd RUN
-         #mkdir -p inputs evrecs outputs
-         cp -r ../bin/init ./
-         ../bin/init < ../test/input.DAT_1
-         ../bin/superchic < ../test/input.DAT_1
-         find ./
-         cat evrecs/evrectest1.dat
-         ../bin/superchic < ../test/input.DAT_3
-         find ./
-         cat evrecs/evrectest3.dat
-         ../bin/superchic < ../test/input.DAT_9
-         find ./
-         cat evrecs/evrectest9.dat
-  run-in-superchic-docker-image-cmake:
-    name: Run in superchic Docker image with cmake
-    runs-on: ubuntu-latest
-    needs: build-superchic-docker-image
-    container:
-            image: ghcr.io/andriish/superchic:latest
-            credentials:
-               username: ${{ github.actor }}
-               password: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_ENABLE_DOCS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
-         cmake --build BUILD -j 2
-         cmake --install BUILD 
-         ls -lah 
-         ls -lah bin
-         ls -lah BUILD
-         find INSTALL
-         ctest --test-dir BUILD -j 3 --output-on-failure
+    - name: Install 
+      run: |
+           dnf -y copr enable averbyts/HEPrpms 
+           dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel HepMC3-devel HepMC-devel
+    - name: Compile
+      run: |
+          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DSUPERCHIC_DOWNLOAD_PDFS=ON
+          cmake --build BUILD -j
+          cmake --install BUILD
+          ctest --test-dir BUILD -j 2
 
-  run-on-Darwin-cmake:
+
+  compilejobOSX:
     runs-on: macos-latest
-    name: run on Darwin
+    name: SUPERCHIC_on_OSX_cmake_make
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         brew install wget coreutils gcc
-         brew tap davidchall/hep
-         brew install  hepmc3 pythia8 lhapdf git gsed apfel
-         mkdir -p obj lib
-         gsed -i 's/gfortran/gfortran-13/g' makefile.make
-         gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile.make
-         cat makefile.make
-         make -f makefile.make -j 2
-         cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13 -DSUPERCHIC_DOWNLOAD_PDFS=ON
-         cmake --build BUILD -j 2 --verbose
-         cmake --install BUILD 
-         ls -lah 
-         ls -lah bin
-         ls -lah BUILD
-         find INSTALL
-#         ctest --test-dir BUILD -j 3 --output-on-failure
-
+    - name: Install 
+      run: |
+          brew install wget coreutils gcc 
+          brew tap davidchall/hep
+          brew install lhapdf apfel pythia8 hepmc3 hepmc2
+    - name: Compile
+      run: |
+           mkdir -p obj lib
+           gsed -i 's/gfortran/gfortran-13/g' makefile.make
+           gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile.make
+           cat makefile.make
+           make -f makefile.make -j 2
+           cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13 -DSUPERCHIC_DOWNLOAD_PDFS=ON
+           cmake --build BUILD -j 2 --verbose
+           cmake --install BUILD 
