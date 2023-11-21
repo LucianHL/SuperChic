@@ -22,7 +22,7 @@ jobs:
            dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel HepMC3-devel HepMC-devel
     - name: Compile
       run: |
-          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DSUPERCHIC_DOWNLOAD_PDFS=ON
+          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
           cmake --build BUILD -j
           cmake --install BUILD
           ctest --test-dir BUILD -j 2
