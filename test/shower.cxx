@@ -12,15 +12,8 @@
 // It uses the ttsample.lhe(.gz) input file, the latter only with 100 events.
 
 // Modified for Superchic
-#define DEBUGHEPMC
-#define HEPMC2
-
 #ifndef HEPMC2
-#ifdef DEBUGHEPMC
-#include "Debug/HepMC3.h"
-#else
 #include "Pythia8Plugins/HepMC3.h"
-#endif
 #else
 #include "Pythia8Plugins/HepMC2.h"
 #endif
