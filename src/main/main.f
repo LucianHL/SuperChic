@@ -671,12 +671,6 @@ ccccccccccccccccccccccccccccccccccccccccccc
           elseif(proc.eq.54.or.proc.eq.55)then
              call genpol1(6,ewp)
              call genpol1(7,ewm)
-                if(qsq1.gt.1d0.and.mdiss1.gt.dsqrt(3.5d0))then
-                   wgauge='unitary'
-                endif
-                if(qsq2.gt.1d0.and.mdiss2.gt.dsqrt(3.5d0))then
-                   wgauge='unitary'
-                endif
              if(wgauge.eq.'axial')then
                 call genpolaxial1(6,ewp)
                 call genpolaxial1(7,ewm)
