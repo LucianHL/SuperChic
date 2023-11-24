@@ -21,6 +21,7 @@ c   calculates CEP cross section
      &     lmdiss1,lmdiss2
       double precision jrho,jmono,jchi,jalp
       double precision wgt
+      double precision epsil
 
       include 'polvecs.f'
       include 'gencuts.f'
@@ -76,6 +77,11 @@ c   calculates CEP cross section
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
+      if(beam.eq.'el') then
+      epsil=0.01d0
+      else
+      epsil=0.0d0
+      endif
 
       wtt=0d0
 
@@ -185,13 +191,15 @@ c   calculates CEP cross section
          if(r5.gt.0.5d0)then
             ypmax=dlog(xgmin**2*mpp1**2+ptmax**2)
             ypmin=dlog(xgmin**2*mpp1**2)
-            yp=(ypmax-ypmin)*r4+ypmin
+          yp=(ypmax-ypmin)*r4*(1.0d0-0.5d0*epsil)
+     &+ypmin+(ypmax-ypmin)*0.5d0*epsil
             pt1sq=dexp(yp)-xgmin**2*mpp1**2
             wt1=xgmin**2*mpp1**2+pt1sq
          else
             ypmax=dlog(xgmin**2*mpp2**2+ptmax**2)
             ypmin=dlog(xgmin**2*mpp2**2)
-            yp=(ypmax-ypmin)*r4+ypmin
+          yp=(ypmax-ypmin)*r4*(1.0d0-0.5d0*epsil)
+     &+ypmin+(ypmax-ypmin)*0.5d0*epsil
             pt1sq=pt2sq
             pt2sq=dexp(yp)-xgmin**2*mpp2**2
             wt1=xgmin**2*mpp2**2+pt2sq
@@ -284,12 +292,16 @@ c   calculates CEP cross section
             ypmax1=dlog(xgmin**2*mpp1**2+ptmax1**2)
             ypmin1=dlog(xgmin**2*mpp1**2)
             yp=(ypmax1-ypmin1)*r3+ypmin1
+          yp=(ypmax1-ypmin1)*r3*(1.0d0-0.5d0*epsil)
+     &+ypmin1+(ypmax1-ypmin1)*0.5d0*epsil
+            
             pt1sq=dexp(yp)-xgmin**2*mpp1**2
             wty1=(ypmax1-ypmin1)*(xgmin**2*mpp1**2+pt1sq)
          else
             ypmax1=dlog(xgmin**2*mpp1**2+ptmax**2)
             ypmin1=dlog(xgmin**2*mpp1**2)
-            yp=(ypmax1-ypmin1)*r3+ypmin1
+          yp=(ypmax1-ypmin1)*r3*(1.0d0-0.5d0*epsil)
+     &+ypmin1+(ypmax1-ypmin1)*0.5d0*epsil
             pt1sq=dexp(yp)-xgmin**2*mpp1**2
             wty1=(ypmax1-ypmin1)*(xgmin**2*mpp1**2+pt1sq)
          endif
@@ -298,13 +310,15 @@ c   calculates CEP cross section
             ptmax2=rts/2d0
             ypmax2=dlog(xgmin**2*mpp2**2+ptmax2**2)
             ypmin2=dlog(xgmin**2*mpp2**2)
-            ypp=(ypmax2-ypmin2)*r4+ypmin2
+          ypp=(ypmax1-ypmin1)*r4*(1.0d0-0.5d0*epsil)
+     &+ypmin1+(ypmax1-ypmin1)*0.5d0*epsil
             pt2sq=dexp(ypp)-xgmin**2*mpp2**2
             wty2=(ypmax2-ypmin2)*(xgmin**2*mpp2**2+pt2sq)
          else
             ypmax2=dlog(xgmin**2*mpp2**2+ptmax**2)
             ypmin2=dlog(xgmin**2*mpp2**2)
-            ypp=(ypmax2-ypmin2)*r4+ypmin2
+          ypp=(ypmax1-ypmin1)*r3*(1.0d0-0.5d0*epsil)
+     &+ypmin1+(ypmax1-ypmin1)*0.5d0*epsil
             pt2sq=dexp(ypp)-xgmin**2*mpp2**2
             wty2=(ypmax2-ypmin2)*(xgmin**2*mpp2**2+pt2sq)
          endif
