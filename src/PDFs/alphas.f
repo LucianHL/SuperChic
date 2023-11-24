@@ -5,7 +5,8 @@ ccc   strong coupling constant, for PDFINPUT = LHAPDF
 
       if (qsq.lt.pdfq2min) then 
       if ( pdfwarn.ge.0) then
-      write(*,*)'Error in alphas.f qsq=',qsq,' < ',pdfq2min,pdfwarn
+      write(*,*)'Warning in alphas.f qsq = ',qsq,' < ',pdfq2min,pdfwarn
+      write(*,*)'alphas being frozen at qsq = ',pdfq2min
       pdfwarn=pdfwarn-1
       endif
       alphas=alphasPDF(pdfq2min)
