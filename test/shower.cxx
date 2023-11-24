@@ -140,8 +140,9 @@ int main(int argc, char ** argv) {
       && type != "dd_ee" && type != "sda_ee" && type != "sdb_ee" && type != "sd_ee" && type != "el_ee"
     ) { printf("Bad argument->%s<-\n",argv[3]); return 7;}
       printf("Running in %s mode\n",argv[3]);
+    bool showerconfigured=false;
   
-    if (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp") {
+    if (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" && !showerconfigured) {
     for ( auto s: c_c) pythia.readString(s);
     pythia.readString("PartonLevel:ISR = off");
     pythia.readString("PartonLevel:MPI = off");
@@ -154,18 +155,19 @@ int main(int argc, char ** argv) {
     if (type == "sdb_pp") for ( auto s: c_ds_pp) pythia.readString(s);
     if (type == "sda_pp" || type == "sd_pp") for ( auto s: c_sd_pp) pythia.readString(s);
     if (type == "el_pp") for ( auto s: c_el_pp) pythia.readString(s);
+    showerconfigured=true;
     }
   
   
 
-    if (  type=="el_ee"  || type=="dd_ee" ||type=="sda_ee"||type=="sdb_ee" ||type=="sd_ee") {
+    if (  type=="el_ee"  || type=="dd_ee" ||type=="sda_ee"||type=="sdb_ee" ||type=="sd_ee"&& !showerconfigured) {
       for ( auto s: c_c) pythia.readString(s);
       pythia.readString("PartonLevel:ISR = off");
       pythia.readString("PartonLevel:MPI = off");
       pythia.readString("PartonLevel:Remnants = off");
       pythia.readString("Check:event = off");
       pythia.readString("LesHouches:matchInOut = off");
-    
+         showerconfigured=true;
     }  
     
   }
