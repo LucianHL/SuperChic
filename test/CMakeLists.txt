@@ -1,11 +1,16 @@
+option(SUPERCHIC_ENABLE_PROFILE      "Enables callgrind profiling." OFF)
 option(SUPERCHIC_ENABLE_ALL_TESTS    "Enables building of all tests." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
-option(SUPERCHIC_ENABLE_RIVET        "Enables ctesting with Rivet." OFF)
+option(SUPERCHIC_ENABLE_RIVET        "Enables testing with Rivet." OFF)
+option(SUPERCHIC_ENABLE_PP           "Enables testing with pp beams." ON)
+option(SUPERCHIC_ENABLE_EE           "Enables testing with ee beams." OFF)
 
 message(STATUS "SuperChic test: SUPERCHIC_ENABLE_ALL_TESTS=${SUPERCHIC_ENABLE_ALL_TESTS}" )
 message(STATUS "SuperChic test: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
 message(STATUS "SuperChic test: SUPERCHIC_ENABLE_RIVET=${SUPERCHIC_ENABLE_RIVET}" )
-
+message(STATUS "SuperChic test: SUPERCHIC_ENABLE_PROFILE=${SUPERCHIC_ENABLE_PROFILE}" )
+message(STATUS "SuperChic test: SUPERCHIC_ENABLE_PP=${SUPERCHIC_ENABLE_PP}" )
+message(STATUS "SuperChic test: SUPERCHIC_ENABLE_EE=${SUPERCHIC_ENABLE_EE}" )
 
 enable_language(CXX)
 find_package(HepMC3 3.1.0 REQUIRED)
@@ -71,8 +76,14 @@ message(STATUS "SuperChic test: STANDARDENVIRONMENT=${STANDARDENVIRONMENT}")
 
 macro(inittest NN)
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
+if (SUPERCHIC_ENABLE_PROFILE)
+  add_test(NAME INIT_${NN} COMMAND sh -c "valgrind --tool=callgrind  --callgrind-out-file=CALLGRIND_INIT_${NN}.log ${PROJECT_BINARY_DIR}/bin/init < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${NN}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
+  set_tests_properties( INIT_${NN} PROPERTIES TIMEOUT 5000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS init)
+else()
   add_test(NAME INIT_${NN} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/init < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${NN}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
   set_tests_properties( INIT_${NN} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS init)
+endif()
+
 endmacro()
 
 macro(sctesthepmc NN MM)
@@ -83,8 +94,14 @@ macro(sctesthepmc NN MM)
 endmacro()
 
 macro(sctestlhe NN MM df pr)
+if (SUPERCHIC_ENABLE_PROFILE)
+  add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "valgrind --tool=callgrind  --callgrind-out-file=CALLGRIND_SUPERCHIC_${NN}_${MM}.log ${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
+  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
+else()
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
   set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
+endif()  
+
   add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} real)
   #add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} dummy)
   set_tests_properties( SHOWER_${NN}_${MM} PROPERTIES TIMEOUT 500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "shower;SUPERCHIC_${NN}_${MM}")
@@ -121,12 +138,10 @@ if (NOT NEV)
   set(NEV 10)
 endif()
 ##
-set(PP TRUE)
-set(EE FALSE)
 
 
 set(fmts  hepevt lhe hepmc)
-if (PP)
+if (SUPERCHIC_ENABLE_PP)
 
 foreach( i RANGE 1 100)
 set( proc${i} "")
@@ -179,7 +194,7 @@ foreach( process RANGE 1 100)
 endforeach()
 endif()
 
-if (EE)
+if (SUPERCHIC_ENABLE_EE)
 foreach( i RANGE 1 100)
 set( proc${i} "")
 endforeach()

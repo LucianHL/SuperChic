@@ -75,10 +75,17 @@ The extra flags might be:
 - flags pointing to the dependencies, `-DLHAPDF_DIR=/where/the/LHAPDF/is`, `-DAPFEL_DIR=/where/the/APFEL/is`
 - flags that regulate the compilation. In the current version there are the following flags: 
  - `-DSUPERCHIC_ENABLE_TESTS=ON/OFF`     Enables building of tests.
- - `-DSUPERCHIC_ENABLE_ALL_TESTS=ON/OFF`  Enables building of much more tests.
- - `-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`    Enables downloading of PDFs for tests. Makes sense only when the testing is enabled.
  - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`      Enables floating point exceptions in the code.
- -  `-DSUPERCHIC_ENABLE_DOCS=ON/OFF`     Enables building of PDF manual. 
+ - `-DSUPERCHIC_ENABLE_DOCS=ON/OFF`      Enables building of PDF manual. 
+ 
+ The following options makes sense only when the testing is enabled.
+ 
+ - `-DSUPERCHIC_ENABLE_ALL_TESTS=ON/OFF` Enables building of much more tests.
+ - `-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`    Enables downloading of PDFs for tests. 
+ - `-DSUPERCHIC_ENABLE_PP=ON/OFF`        Enables testing with pp beams.
+ - `-DSUPERCHIC_ENABLE_EE=ON/OFF`        Enables testing with ee beams.
+ - `-DSUPERCHIC_ENABLE_RIVET=ON/OFF`     Enables testing with Rivet.
+ - `-DSUPERCHIC_ENABLE_PROFILE=ON/OFF`   Enables callgrind profiling.
 
 ## Building SuperChic with make (not recommended )
 Make sure the `apfel-config` and `lhapdf-config` are in the `PATH`
