@@ -31,11 +31,11 @@
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
-10000       ! [ncall] : Number of calls for preconditioning
+1000       ! [ncall] : Number of calls for preconditioning
 10          ! [itmx] : Number of iterations for preconditioning
 10d0          ! [prec]
-10000       ! [ncall1] : Number of calls in first iteration
-10000       ! [inccall] : Number of increase calls per iteration
+1000       ! [ncall1] : Number of calls in first iteration
+1000       ! [inccall] : Number of increase calls per iteration
 1000        ! [itend] : Maximum number of iterations
 6           ! [iseed] : Random number seed (integer > 0)
 ****************************************************************************************
