@@ -3415,5 +3415,7 @@ cccccccccccccccc
          !FIXME!!!
       endif
 
+      if(beam.eq.'el')offshell=.false. ! need onshell approx for electron beam
+
       return
       end
