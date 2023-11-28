@@ -300,6 +300,10 @@ ccccccccccccc
 
 ccccccccc
 
+      if(gencuts.eqv..false.)then
+         print*,'WARNING - gencuts=.false., no cuts on decay products'
+      endif
+
       if(sfaci.eqv..false.)then
          if(ionbreakup)then
             print*,'sfaci=.false. -> ionbreakup set to .false'
