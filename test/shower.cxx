@@ -136,13 +136,19 @@ int main(int argc, char ** argv) {
     std::string type = std::string(argv[3]);
     int processnumber = atoi(argv[4]);
 
-    if (type != "dd_pp" && type != "sda_pp" && type != "sdb_pp" && type != "sd_pp" && type != "el_pp"
+    if (
+      type != "dd_pp" && type != "sda_pp" && type != "sdb_pp" && type != "sd_pp" && type != "el_pp"
+     && type != "dd_AA" && type != "sda_AA" && type != "sdb_AA" && type != "sd_AA" && type != "el_AA"
+     && type != "dd_pA" && type != "sda_pA" && type != "sdb_pA" && type != "sd_pA" && type != "el_pA"
       && type != "dd_ee" && type != "sda_ee" && type != "sdb_ee" && type != "sd_ee" && type != "el_ee"
     ) { printf("Bad argument->%s<-\n",argv[3]); return 7;}
       printf("Running in %s mode\n",argv[3]);
+    if (type[type.size()-1] == 'A' ) type[type.size()-1] ='p';
+    if (type[type.size()-2] == 'A' ) type[type.size()-2] ='p';
     bool showerconfigured=false;
   
-    if (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" && !showerconfigured) {
+    if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" ) )
+    {
     for ( auto s: c_c) pythia.readString(s);
     pythia.readString("PartonLevel:ISR = off");
     pythia.readString("PartonLevel:MPI = off");
