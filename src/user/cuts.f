@@ -1,3 +1,12 @@
+      function saferap(a,b)
+      double precision a,b,saferap
+      saferap=-1000.0
+      if ((a+b)*(a-b).ge. 0d0) saferap=1000.0
+      if (dabs(a+b)*1d-10 .le. dabs(a-b) .and. b .lt. a ) then
+       if ((a+b)*(a-b) .gt. 0d0) saferap=0.5d0*dlog((a+b)/(a-b))
+      endif
+      end
+      
       subroutine cut(icut)
       implicit double precision(a-y)
       integer icut,jflag,ijet
@@ -227,19 +236,19 @@ cccccccccccccccccccccccccccccccccccccccccccccc
          elseif(proc.eq.82)then
             pmod6=dsqrt(q(1,6)**2+q(2,6)**2+q(3,6)**2)
             pmod7=dsqrt(q(1,7)**2+q(2,7)**2+q(3,7)**2)
-            eta6=0.5d0*dlog((pmod6+q(3,6))/(pmod6-q(3,6)))
-            eta7=0.5d0*dlog((pmod7+q(3,7))/(pmod7-q(3,7)))
-            y6=0.5d0*dlog((q(4,6)+q(3,6))/(q(4,6)-q(3,6)))
-            y7=0.5d0*dlog((q(4,7)+q(3,7))/(q(4,7)-q(3,7)))
+            eta6=saferap(pmod6,q(3,6))
+            eta7=saferap(pmod6,q(3,7))
+            y6=saferap(q(4,6),q(3,6))
+            y7=saferap(q(4,7),q(3,7))
             pt6=dsqrt(q(1,6)**2+q(2,6)**2)
             pt7=dsqrt(q(1,7)**2+q(2,7)**2)
          else
             pmod6=dsqrt(q(1,6)**2+q(2,6)**2+q(3,6)**2)
             pmod7=dsqrt(q(1,7)**2+q(2,7)**2+q(3,7)**2)
-            eta6=0.5d0*dlog((pmod6+q(3,6))/(pmod6-q(3,6)))
-            eta7=0.5d0*dlog((pmod7+q(3,7))/(pmod7-q(3,7)))
-            y6=0.5d0*dlog((q(4,6)+q(3,6))/(q(4,6)-q(3,6)))
-            y7=0.5d0*dlog((q(4,7)+q(3,7))/(q(4,7)-q(3,7)))
+            eta6=saferap(pmod6,q(3,6))
+            eta7=saferap(pmod6,q(3,7))
+            y6=saferap(q(4,6),q(3,6))
+            y7=saferap(q(4,7),q(3,7))
             pt6=dsqrt(q(1,6)**2+q(2,6)**2)
             pt7=dsqrt(q(1,7)**2+q(2,7)**2)
          endif

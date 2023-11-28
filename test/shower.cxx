@@ -132,6 +132,23 @@ int main(int argc, char ** argv) {
   pythia.readString("Beams:frameType = 4");
   pythia.readString(std::string("Beams:LHEF = ")+argv[1]);
   if ( std::string(argv[5]) != "dummy" ) {
+
+    std::string type = std::string(argv[3]);
+    int processnumber = atoi(argv[4]);
+
+    if (
+      type != "dd_pp" && type != "sda_pp" && type != "sdb_pp" && type != "sd_pp" && type != "el_pp"
+     && type != "dd_AA" && type != "sda_AA" && type != "sdb_AA" && type != "sd_AA" && type != "el_AA"
+     && type != "dd_pA" && type != "sda_pA" && type != "sdb_pA" && type != "sd_pA" && type != "el_pA"
+      && type != "dd_ee" && type != "sda_ee" && type != "sdb_ee" && type != "sd_ee" && type != "el_ee"
+    ) { printf("Bad argument->%s<-\n",argv[3]); return 7;}
+      printf("Running in %s mode\n",argv[3]);
+    if (type[type.size()-1] == 'A' ) type[type.size()-1] ='p';
+    if (type[type.size()-2] == 'A' ) type[type.size()-2] ='p';
+    bool showerconfigured=false;
+  
+    if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" ) )
+    {
     for ( auto s: c_c) pythia.readString(s);
     pythia.readString("PartonLevel:ISR = off");
     pythia.readString("PartonLevel:MPI = off");
@@ -139,21 +156,27 @@ int main(int argc, char ** argv) {
     pythia.readString("Check:event = off");
     pythia.readString("LesHouches:matchInOut = off");
 
-    std::string type = std::string(argv[3]);
-    int processnumber = atoi(argv[4]);
-
-    if (type != "dd_pp" && type != "sda_pp" && type != "sdb_pp" && type != "sd_pp" && type != "el_pp"
-      && type != "dd_ee" && type != "sda_ee" && type != "sdb_ee" && type != "sd_ee" && type != "el_ee"
-    ) { printf("Bad argument->%s<-\n",argv[3]); return 7;}
-      printf("Running in %s mode\n",argv[3]);
-  
 
     if (type == "dd_pp") for ( auto s: c_dd_pp) pythia.readString(s);
     if (type == "sdb_pp") for ( auto s: c_ds_pp) pythia.readString(s);
     if (type == "sda_pp" || type == "sd_pp") for ( auto s: c_sd_pp) pythia.readString(s);
     if (type == "el_pp") for ( auto s: c_el_pp) pythia.readString(s);
+    showerconfigured=true;
+    }
   
-}
+  
+
+    if (  type=="el_ee"  || type=="dd_ee" ||type=="sda_ee"||type=="sdb_ee" ||type=="sd_ee"&& !showerconfigured) {
+      for ( auto s: c_c) pythia.readString(s);
+      pythia.readString("PartonLevel:ISR = off");
+      pythia.readString("PartonLevel:MPI = off");
+      pythia.readString("PartonLevel:Remnants = off");
+      pythia.readString("Check:event = off");
+      pythia.readString("LesHouches:matchInOut = off");
+         showerconfigured=true;
+    }  
+    
+  }
   
 //BeamRemnants:unresolvedHadron = 0 for double dissociation (dd), 1 for
 //single dissociation (sdb), 2 for single dissociation (sda), 3 for elastic (el).
