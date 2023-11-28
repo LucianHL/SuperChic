@@ -4,6 +4,8 @@ option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OF
 option(SUPERCHIC_ENABLE_RIVET        "Enables testing with Rivet." OFF)
 option(SUPERCHIC_ENABLE_PP           "Enables testing with pp beams." ON)
 option(SUPERCHIC_ENABLE_EE           "Enables testing with ee beams." OFF)
+option(SUPERCHIC_ENABLE_AA           "Enables testing with AA beams." OFF)
+option(SUPERCHIC_ENABLE_PA           "Enables testing with pA beams." OFF)
 
 message(STATUS "SuperChic test: SUPERCHIC_ENABLE_ALL_TESTS=${SUPERCHIC_ENABLE_ALL_TESTS}" )
 message(STATUS "SuperChic test: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
@@ -11,6 +13,8 @@ message(STATUS "SuperChic test: SUPERCHIC_ENABLE_RIVET=${SUPERCHIC_ENABLE_RIVET}
 message(STATUS "SuperChic test: SUPERCHIC_ENABLE_PROFILE=${SUPERCHIC_ENABLE_PROFILE}" )
 message(STATUS "SuperChic test: SUPERCHIC_ENABLE_PP=${SUPERCHIC_ENABLE_PP}" )
 message(STATUS "SuperChic test: SUPERCHIC_ENABLE_EE=${SUPERCHIC_ENABLE_EE}" )
+message(STATUS "SuperChic test: SUPERCHIC_ENABLE_AA=${SUPERCHIC_ENABLE_AA}" )
+message(STATUS "SuperChic test: SUPERCHIC_ENABLE_PA=${SUPERCHIC_ENABLE_PA}" )
 
 enable_language(CXX)
 find_package(HepMC3 3.1.0 REQUIRED)
@@ -232,6 +236,116 @@ foreach( process RANGE 1 100)
  # sctestrivet(FCC350eeunw ${process} ${proc${process}})
    list(JOIN proc${process} " " X)
   sctestrivet(FCC350eeunw ${process} ${X})
+  endif()
+endforeach()
+endif()
+
+
+
+if (SUPERCHIC_ENABLE_AA)
+
+foreach( i RANGE 1 100)
+set( proc${i} "")
+endforeach()
+
+if (SUPERCHIC_ENABLE_ALL_TESTS)
+foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9  
+           10 11 12 13 14 15 16 17 18 19 
+           20 21 22 23 24 25 26 27 28 29
+           30 31 32 33 34 35 36 37 38 39
+           40 41 42 43 44 45 46 47 48 49
+           50 51 52 53 54 55 56 57 58 59
+           60 61                   68 69
+           70 71 72 73 74 75 76 77 78 79
+                 82 83 84 
+           )
+    list(APPEND proc${i} "el")
+endforeach()           
+foreach( i IN ITEMS 54 55 56 57 58
+             68 )
+    list(APPEND proc${i} "sd")
+    list(APPEND proc${i} "dd")
+endforeach()  
+else()
+  set(proc68 "el;sd;dd")
+endif()
+
+
+
+set(process 100)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13AAunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13AAunw) # for init
+inittest(LHC13AAunw)
+foreach( process RANGE 1 100)
+  LIST(LENGTH proc${process} LISTCOUNT)
+  if (${LISTCOUNT}  GREATER 0)
+  foreach(diff ${proc${process}}) 
+    foreach ( format ${fmts} )
+      set (gencuts ".false.")
+      if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
+        set (gencuts ".true.")
+      endif()
+      configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13AAunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13AAunw_${process}_${diff}_${format})
+    endforeach()
+    sctestlhe(LHC13AAunw LHC13AAunw_${process}_${diff}_lhe ${diff}_AA ${process})
+    sctesthepmc(LHC13AAunw LHC13AAunw_${process}_${diff}_hepmc)
+  endforeach()
+  list(JOIN proc${process} " " X)
+  sctestrivet(LHC13AAunw ${process} ${X})
+  endif()
+endforeach()
+endif()
+
+
+
+if (SUPERCHIC_ENABLE_PA)
+
+foreach( i RANGE 1 100)
+set( proc${i} "")
+endforeach()
+
+if (SUPERCHIC_ENABLE_ALL_TESTS)
+foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9  
+           10 11 12 13 14 15 16 17 18 19 
+           20 21 22 23 24 25 26 27 28 29
+           30 31 32 33 34 35 36 37 38 39
+           40 41 42 43 44 45 46 47 48 49
+           50 51 52 53 54 55 56 57 58 59
+           60 61                   68 69
+           70 71 72 73 74 75 76 77 78 79
+                 82 83 84 
+           )
+    list(APPEND proc${i} "el")
+endforeach()           
+foreach( i IN ITEMS 54 55 56 57 58
+             68 )
+    list(APPEND proc${i} "sd")
+    list(APPEND proc${i} "dd")
+endforeach()  
+else()
+  set(proc68 "el;sd;dd")
+endif()
+
+
+
+set(process 100)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13pAunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13pAunw) # for init
+inittest(LHC13pAunw)
+foreach( process RANGE 1 100)
+  LIST(LENGTH proc${process} LISTCOUNT)
+  if (${LISTCOUNT}  GREATER 0)
+  foreach(diff ${proc${process}}) 
+    foreach ( format ${fmts} )
+      set (gencuts ".false.")
+      if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
+        set (gencuts ".true.")
+      endif()
+      configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13pAunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13pAunw_${process}_${diff}_${format})
+    endforeach()
+    sctestlhe(LHC13pAunw LHC13pAunw_${process}_${diff}_lhe ${diff}_pA ${process})
+    sctesthepmc(LHC13pAunw LHC13pAunw_${process}_${diff}_hepmc)
+  endforeach()
+  list(JOIN proc${process} " " X)
+  sctestrivet(LHC13pAunw ${process} ${X})
   endif()
 endforeach()
 endif()
