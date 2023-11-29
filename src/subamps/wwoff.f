@@ -48,14 +48,11 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell axial gauge
      &     -(q(1,4)-q(1,2))**2
       qsq2=-qsq2
 
-      ! LHL now done in genpol and saved
 ! n vector, will need to change in genpol as well if a different value is desired!
-c      if (axial) then
-c$$$      n(1) = 0d0
-c$$$      n(2) = 0d0
-c$$$      n(3) = 1d0
-c$$$      n(4) = 1d0
-c     endif
+      n(1) = 0d0
+      n(2) = 0d0
+      n(3) = 1d0
+      n(4) = 1d0
 
       if(onshell)then
 
