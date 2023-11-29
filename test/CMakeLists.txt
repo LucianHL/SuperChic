@@ -166,11 +166,11 @@ foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9
 endforeach()           
 foreach( i IN ITEMS 54 55 56 57 58
              68 )
-    list(APPEND proc${i} "sd")
+    list(APPEND proc${i} "sda")
     list(APPEND proc${i} "dd")
 endforeach()  
 else()
-  set(proc68 "el;sd;dd")
+  set(proc68 "el;sda;dd")
 endif()
 
 
@@ -263,11 +263,11 @@ foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9
 endforeach()           
 foreach( i IN ITEMS 54 55 56 57 58
              68 )
-    list(APPEND proc${i} "sd")
+    list(APPEND proc${i} "sda")
     list(APPEND proc${i} "dd")
 endforeach()  
 else()
-  set(proc68 "el;sd;dd")
+  set(proc68 "el;sda;dd")
 endif()
 
 
@@ -318,11 +318,11 @@ foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9
 endforeach()           
 foreach( i IN ITEMS 54 55 56 57 58
              68 )
-    list(APPEND proc${i} "sd")
+    list(APPEND proc${i} "sda")
     list(APPEND proc${i} "dd")
 endforeach()  
 else()
-  set(proc68 "el;sd;dd")
+  set(proc68 "el;sda;dd")
 endif()
 
 
