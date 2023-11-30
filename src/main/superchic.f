@@ -300,6 +300,10 @@ ccccccccccccc
 
 ccccccccc
 
+      if(gencuts.eqv..false.)then
+         print*,'WARNING - gencuts=.false., no cuts on decay products'
+      endif
+
       if(sfaci.eqv..false.)then
          if(ionbreakup)then
             print*,'sfaci=.false. -> ionbreakup set to .false'
@@ -675,7 +679,8 @@ ccccccccc
 ccccccccc
 
       surv=1d0
-      if(beam.eq.'prot'.or.ionqcd.eq.'coh'.or.ionqcd.eq.'incoh')then
+      if( (beam.eq.'prot'.or.ionqcd.eq.'coh'.or.ionqcd.eq.'incoh') .and.
+     &  (beam .ne. 'el') ) then
          call initparsr(isurv)
          call readscreen
          if(beam.eq.'prot'.or.ionqcd.eq.'incoh')surv=1d0/norm**2

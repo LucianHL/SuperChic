@@ -12,13 +12,8 @@
 // It uses the ttsample.lhe(.gz) input file, the latter only with 100 events.
 
 // Modified for Superchic
-#define DEBUGHEPMC
 #ifndef HEPMC2
-#ifdef DEBUGHEPMC
-#include "Debug/HepMC3.h"
-#else
 #include "Pythia8Plugins/HepMC3.h"
-#endif
 #else
 #include "Pythia8Plugins/HepMC2.h"
 #endif
@@ -74,7 +69,7 @@ StringZ:aExtraDiquark = 0.50000
 StringZ:aLund = 0.30000
 StringZ:bLund = 0.80000
 )""";
-std::string config_dd = R"""(
+std::string config_dd_pp = R"""(
 PartonLevel:MPI = off
 SpaceShower:dipoleRecoil = on
 SpaceShower:pTmaxMatch = 2
@@ -84,7 +79,7 @@ BeamRemnants:unresolvedHadron = 0
 SpaceShower:pTdampMatch=1
 )""";
 
-std::string config_el = R"""(
+std::string config_el_pp = R"""(
 PartonLevel:MPI = off
 SpaceShower:pTmaxMatch = 2
 BeamRemnants:primordialKT = off
@@ -94,7 +89,7 @@ PartonLevel:ISR = off
 LesHouches:matchInOut = off
 )""";
 
-std::string config_ds = R"""(
+std::string config_ds_pp = R"""(
 PartonLevel:MPI = off
 SpaceShower:dipoleRecoil = on
 SpaceShower:pTmaxMatch = 2
@@ -104,7 +99,7 @@ BeamRemnants:unresolvedHadron = 1
 SpaceShower:pTdampMatch = 1
 )""";
 
-std::string config_sd = R"""(
+std::string config_sd_pp = R"""(
 PartonLevel:MPI = off
 SpaceShower:dipoleRecoil = on
 SpaceShower:pTmaxMatch = 2
@@ -123,10 +118,10 @@ int main(int argc, char ** argv) {
   if (argc!=6) return 1;
   
   std::vector<std::string> c_c = split(config_common);
-  std::vector<std::string> c_sd = split(config_sd);
-  std::vector<std::string> c_ds = split(config_ds);
-  std::vector<std::string> c_el = split(config_el);
-  std::vector<std::string> c_dd = split(config_dd);
+  std::vector<std::string> c_sd_pp = split(config_sd_pp);
+  std::vector<std::string> c_ds_pp = split(config_ds_pp);
+  std::vector<std::string> c_el_pp = split(config_el_pp);
+  std::vector<std::string> c_dd_pp = split(config_dd_pp);
   
  Pythia8::Pythia8ToHepMC topHepMC(argv[2]);
   // Generator. We here stick with default values, but changes
@@ -137,23 +132,51 @@ int main(int argc, char ** argv) {
   pythia.readString("Beams:frameType = 4");
   pythia.readString(std::string("Beams:LHEF = ")+argv[1]);
   if ( std::string(argv[5]) != "dummy" ) {
-   for ( auto s: c_c) pythia.readString(s);
-     pythia.readString("PartonLevel:ISR = off");
-  pythia.readString("PartonLevel:MPI = off");
-  pythia.readString("PartonLevel:Remnants = off");
-  pythia.readString("Check:event = off");
-  pythia.readString("LesHouches:matchInOut = off");
 
-  if (std::string(argv[3]) != "dd" && std::string(argv[3]) != "sda" && std::string(argv[3]) != "sdb" && std::string(argv[3]) != "sd" && std::string(argv[3]) != "el") { printf("Bad argument->%s<-\n",argv[3]); return 7;}
-    printf("Running in %s mode\n",argv[3]);
+    std::string type = std::string(argv[3]);
+    int processnumber = atoi(argv[4]);
+
+    if (
+      type != "dd_pp" && type != "sda_pp" && type != "sdb_pp" && type != "sd_pp" && type != "el_pp"
+     && type != "dd_AA" && type != "sda_AA" && type != "sdb_AA" && type != "sd_AA" && type != "el_AA"
+     && type != "dd_pA" && type != "sda_pA" && type != "sdb_pA" && type != "sd_pA" && type != "el_pA"
+      && type != "dd_ee" && type != "sda_ee" && type != "sdb_ee" && type != "sd_ee" && type != "el_ee"
+    ) { printf("Bad argument->%s<-\n",argv[3]); return 7;}
+      printf("Running in %s mode\n",argv[3]);
+    if (type[type.size()-1] == 'A' ) type[type.size()-1] ='p';
+    if (type[type.size()-2] == 'A' ) type[type.size()-2] ='p';
+    bool showerconfigured=false;
   
-  int processnumber = atoi(argv[4]);
-    if (std::string(argv[3]) == "dd") for ( auto s: c_dd) pythia.readString(s);
-    if (std::string(argv[3]) == "sdb") for ( auto s: c_ds) pythia.readString(s);
-    if (std::string(argv[3]) == "sda" || std::string(argv[3]) == "sd") for ( auto s: c_sd) pythia.readString(s);
-    if (std::string(argv[3]) == "el") for ( auto s: c_el) pythia.readString(s);
+    if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" ) )
+    {
+    for ( auto s: c_c) pythia.readString(s);
+    pythia.readString("PartonLevel:ISR = off");
+    pythia.readString("PartonLevel:MPI = off");
+    pythia.readString("PartonLevel:Remnants = off");
+    pythia.readString("Check:event = off");
+    pythia.readString("LesHouches:matchInOut = off");
+
+
+    if (type == "dd_pp") for ( auto s: c_dd_pp) pythia.readString(s);
+    if (type == "sdb_pp") for ( auto s: c_ds_pp) pythia.readString(s);
+    if (type == "sda_pp" ) for ( auto s: c_sd_pp) pythia.readString(s);
+    if (type == "el_pp") for ( auto s: c_el_pp) pythia.readString(s);
+    showerconfigured=true;
+    }
   
-}
+  
+
+    if (!showerconfigured && (type=="el_ee"  || type=="dd_ee" ||type=="sda_ee"||type=="sdb_ee" ||type=="sd_ee")) {
+      for ( auto s: c_c) pythia.readString(s);
+      pythia.readString("PartonLevel:ISR = off");
+      pythia.readString("PartonLevel:MPI = off");
+      pythia.readString("PartonLevel:Remnants = off");
+      pythia.readString("Check:event = off");
+      pythia.readString("LesHouches:matchInOut = off");
+      showerconfigured=true;
+    }
+    
+  }
   
 //BeamRemnants:unresolvedHadron = 0 for double dissociation (dd), 1 for
 //single dissociation (sdb), 2 for single dissociation (sda), 3 for elastic (el).

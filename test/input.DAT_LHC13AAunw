@@ -1,7 +1,7 @@
 ****************************************************************************************
 ******  RE-RUN ./init IF FIRST FIVE PARAMETERS ARE CHANGED (and beam = 'prot'):  *******
 ****************************************************************************************
-13d3           !  [rts] : CMS collision energy (GeV)
+130d3           !  [rts] : CMS collision energy (GeV)
 4	       !  [isurv] : Model of soft survival (from 1 -> 4, corresponding to arXiv:1306.2149)
 'in13'         !  [intag] for input files 
 ****************************************************************************************
@@ -10,8 +10,8 @@
 0                    ! [PDFmember] : PDF member
 ****************************************************************************************
 @process@      !  [proc] : Process number (see manual for labelling)
-'prot'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
-'testLHC13ppunw_@process@_@diff@_@format@'          ! [outtg]
+'ion'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
+'testLHC13AAunw_@process@_@diff@_@format@'          ! [outtg]
 .false.  !  [sfaci] : Include soft survival effects
 ****************************************************************************************
 ************************* Dissociation parameters for PI  ******************************
@@ -31,11 +31,11 @@
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
-1000       ! [ncall] : Number of calls for preconditioning
+10000       ! [ncall] : Number of calls for preconditioning
 10          ! [itmx] : Number of iterations for preconditioning
 10d0          ! [prec]
-1000       ! [ncall1] : Number of calls in first iteration
-1000       ! [inccall] : Number of increase calls per iteration
+10000       ! [ncall1] : Number of calls in first iteration
+10000       ! [inccall] : Number of increase calls per iteration
 1000        ! [itend] : Maximum number of iterations
 6           ! [iseed] : Random number seed (integer > 0)
 ****************************************************************************************
