@@ -2333,6 +2333,52 @@ cccccccccccccccc
          nbr=2
          br(1)=10.63d-2
          br(2)=10.63d-2
+
+        if(enew)then
+            if(diff.eq.'el')i1=5
+            if(diff.eq.'sd')i1=6
+            if(diff.eq.'dd')i1=7
+            nhep=i1+1
+            pdgid(i1)=24
+            pdgid(i1+1)=-24
+            istup(i1)=2
+            istup(i1+1)=2
+            mothup(1,i1)=1
+            mothup(1,i1+1)=1
+            mothup(2,i1)=2
+            mothup(2,i1+1)=2
+            if(diff.eq.'sd')then
+               mothup(2,i1)=2
+               mothup(2,i1+1)=2
+            endif
+            icolup(1,i1)=0
+            icolup(2,i1)=0
+            icolup(1,i1+1)=0
+            icolup(2,i1+1)=0
+            isthep(i1)=1
+            isthep(i1+1)=1
+            pdgid(i1+2)=14
+            pdgid(i1+3)=-13
+            pdgid(i1+4)=-14
+            pdgid(i1+5)=13
+
+            istup(i1+2)=1
+            istup(i1+3)=1
+            istup(i1+4)=1
+            istup(i1+5)=1
+
+            mothup(1,i1+2)=i1-2
+            mothup(2,i1+2)=0
+            mothup(1,i1+3)=i1-2
+            mothup(2,i1+3)=0
+
+            mothup(1,i1+4)=i1-1
+            mothup(2,i1+4)=0
+            mothup(1,i1+5)=i1-1
+            mothup(2,i1+5)=0
+
+         else
+
          pdgid(5)=93
          pdgid(6)=24
          pdgid(7)=-24
@@ -2384,8 +2430,9 @@ cccccccccccccccc
          jdahep(2,6)=9
          jdahep(1,7)=10
          jdahep(2,7)=11
-         gamma=.true.
          nhep=11
+         endif
+         gamma=.true.
       elseif(proc.eq.55)then
          ndim=6
          pol=9

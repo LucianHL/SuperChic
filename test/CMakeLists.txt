@@ -18,19 +18,28 @@ message(STATUS "SuperChic test: PYTHIA8_VERSION=${PYTHIA8_VERSION} PYTHIA8_LIBRA
 set(STANDARDENVIRONMENT "SUPERCHIC_DATA_PATH=${PROJECT_SOURCE_DIR}/share/SuperChic;PYTHIA8_XMLDOC_DIR=${PYTHIA8_XMLDOC_DIR}")
 
 if (SUPERCHIC_DOWNLOAD_PDFS)
+  include(FetchContent)
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/PDFS)
-  file(DOWNLOAD https://superchic.hepforge.org/SF_MSHT20qed_nnlo.tar.gz ${CMAKE_CURRENT_BINARY_DIR}/PDFS/SF_MSHT20qed_nnlo.tar.gz)
-  file(DOWNLOAD https://lhapdfsets.web.cern.ch/current/MSHT20qed_nnlo.tar.gz ${CMAKE_CURRENT_BINARY_DIR}/PDFS/MSHT20qed_nnlo.tar.gz)
-  add_custom_target( UNZIPPDFS ALL)
-  add_custom_command(TARGET UNZIPPDFS PRE_BUILD 
-         COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/PDFS/SF_MSHT20qed_nnlo
-         COMMAND ${CMAKE_COMMAND} -E remove_directory ${CMAKE_CURRENT_BINARY_DIR}/PDFS/MSHT20qed_nnlo
-         COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_CURRENT_BINARY_DIR}/PDFS/SF_MSHT20qed_nnlo.tar.gz
-         COMMAND ${CMAKE_COMMAND} -E tar xzf ${CMAKE_CURRENT_BINARY_DIR}/PDFS/MSHT20qed_nnlo.tar.gz
-         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/PDFS
-         DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/PDFS/SF_MSHT20qed_nnlo.tar.gz  ${CMAKE_CURRENT_BINARY_DIR}/PDFS/MSHT20qed_nnlo.tar.gz
-         COMMENT "Unpacking PDFs"
-         VERBATIM)
+  FetchContent_Declare(SF_MSHT20qed_nnlo URL https://superchic.hepforge.org/SF_MSHT20qed_nnlo.tar.gz URL_HASH   MD5=956fe924fc72dd947769078b1b68d7d5)
+  FetchContent_GetProperties(SF_MSHT20qed_nnlo)
+  if (NOT SF_MSHT20qed_nnlo_POPULATED)
+    FetchContent_Populate(SF_MSHT20qed_nnlo)
+    file(CREATE_LINK ${sf_msht20qed_nnlo_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/PDFS/SF_MSHT20qed_nnlo SYMBOLIC)
+  endif()
+
+  FetchContent_Declare(MSHT20qed_nnlo URL https://lhapdfsets.web.cern.ch/current/MSHT20qed_nnlo.tar.gz URL_HASH   MD5=cce676b0bc21bb985c40fceac67e97ce)
+  FetchContent_GetProperties(MSHT20qed_nnlo)
+  if (NOT MSHT20qed_nnlo_POPULATED)
+    FetchContent_Populate(MSHT20qed_nnlo)
+    file(CREATE_LINK ${msht20qed_nnlo_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/PDFS/MSHT20qed_nnlo SYMBOLIC)
+  endif()
+
+  FetchContent_Declare(cteq6l1 URL https://lhapdfsets.web.cern.ch/current/cteq6l1.tar.gz URL_HASH   MD5=5611f1e9235151d9f67254aeb13bb65f)
+  FetchContent_GetProperties(cteq6l1)
+  if (NOT cteq6l1_POPULATED)
+    FetchContent_Populate(cteq6l1)
+    file(CREATE_LINK ${cteq6l1_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/PDFS/cteq6l1 SYMBOLIC)
+  endif()
   LIST(APPEND STANDARDENVIRONMENT "LHAPDF_DATA_PATH=${CMAKE_CURRENT_BINARY_DIR}/PDFS")
 endif()
 message(STATUS "SuperChic test: STANDARDENVIRONMENT=${STANDARDENVIRONMENT}")
@@ -39,39 +48,27 @@ message(STATUS "SuperChic test: STANDARDENVIRONMENT=${STANDARDENVIRONMENT}")
 macro(inittest NN)
   file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
   add_test(NAME INIT_${NN} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/init < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${NN}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
-  if(SUPERCHIC_DOWNLOAD_PDFS)
-    set_tests_properties( INIT_${NN} PROPERTIES ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS UNZIPPDFS)
-  else()
-    set_tests_properties( INIT_${NN} PROPERTIES ENVIRONMENT "${STANDARDENVIRONMENT}")
-  endif()
+  set_tests_properties( INIT_${NN} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS init)
 endmacro()
 
 macro(sctesthepmc NN MM)
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
-  if(SUPERCHIC_DOWNLOAD_PDFS)
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "UNZIPPDFS;INIT_${NN}")
-  else()
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "INIT_${NN}")  
-  endif()
+  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})  
   add_test(NAME VALIDATE_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat)
-  set_tests_properties( VALIDATE_${NN}_${MM} PROPERTIES DEPENDS "validator;SUPERCHIC_${NN}_${MM}")
+  set_tests_properties( VALIDATE_${NN}_${MM} PROPERTIES TIMEOUT 500 DEPENDS "validator;SUPERCHIC_${NN}_${MM}")
 endmacro()
-
-
-
 
 macro(sctestlhe NN MM df pr)
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
-  if(SUPERCHIC_DOWNLOAD_PDFS)
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "UNZIPPDFS;INIT_${NN}")
-  else()
-    set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "INIT_${NN}")  
-  endif()
-  #add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} real)
-  add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} dummy)
-  set_tests_properties( SHOWER_${NN}_${MM} PROPERTIES DEPENDS "shower;SUPERCHIC_${NN}_${MM}")
-  add_test(NAME VALIDATE_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc)
-  set_tests_properties( VALIDATE_${NN}_${MM} PROPERTIES DEPENDS "validator;SHOWER_${NN}_${MM}")
+  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
+  add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} real)
+  #add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} dummy)
+  set_tests_properties( SHOWER_${NN}_${MM} PROPERTIES TIMEOUT 500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS "shower;SUPERCHIC_${NN}_${MM}")
+  add_test(NAME VALIDATE_SHOWERED_HEPMC_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc)
+  set_tests_properties( VALIDATE_SHOWERED_HEPMC_${NN}_${MM} PROPERTIES TIMEOUT 500 DEPENDS "validator;SHOWER_${NN}_${MM}")
+  add_test(NAME VALIDATE_LHEF_${NN}_${MM} COMMAND validator ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat)
+  set_tests_properties( VALIDATE_LHEF_${NN}_${MM} PROPERTIES TIMEOUT 500 DEPENDS "validator;SUPERCHIC_${NN}_${MM}")
+
 endmacro()
 
 
@@ -99,10 +96,15 @@ set(procs 56 )
 set(procs_dd 56 )
 endif()
 
+set(process 100)
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw) # for init
 foreach ( diff ${diffs} )
 foreach ( process ${procs} )
 foreach ( format ${fmts} )
+set (gencuts ".false.")
+if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
+set (gencuts ".true.")
+endif()
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw_${process}_${diff}_${format})
 endforeach()
 endforeach()

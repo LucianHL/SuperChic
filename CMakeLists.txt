@@ -6,6 +6,7 @@ option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
 option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_ALL_TESTS    "Enables building of all tests." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
+option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
 find_package(LHAPDF REQUIRED)
@@ -13,40 +14,16 @@ message(STATUS "SuperChic: LHAPDF_VERSION=${LHAPDF_VERSION} LHAPDF_LIBRARIES=${L
 find_package(APFEL REQUIRED)
 message(STATUS "SuperChic: APFEL_VERSION=${APFEL_VERSION} APFEL_LIBRARIES=${APFEL_LIBRARIES} APFEL_INCLUDE_DIRS=${APFEL_INCLUDE_DIRS}")
 #GNU
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fbacktrace>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fcheck=all>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fno-automatic>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wextra>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-fimplicit-none>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-unused-dummy-argument>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-compare-reals>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wno-do-subscript>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy;-fbacktrace;-fcheck=all;-fno-automatic;-fimplicit-none>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall;-Wextra;-Wno-unused-dummy-argument;-Wno-compare-reals;-Wno-do-subscript>")
 #Classical Intel
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-noauto>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-traceback>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-check>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-warn>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 8889>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 6717>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 8291>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 7712>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-diag-disable 5194>") #truncation
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-noauto;-traceback;-check>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-warn;-diag-disable 8889;-diag-disable 6717;-diag-disable 8291;-diag-disable 7712;-diag-disable 5194>")
 #Intel LLVM
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-noauto>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-traceback>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-check>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 8889>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 6717>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 8291>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 7712>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-diag-disable 5194>") #truncation
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-noauto;-traceback;-check>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn;-diag-disable 8889;-diag-disable 6717;-diag-disable 8291;-diag-disable 7712;-diag-disable 5194>")
 #NVHPC
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Mbounds>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-traceback>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave;-Mbounds;-traceback>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Minform=inform>")
 #Tier 2 support compilers
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-Msave>")
@@ -68,6 +45,7 @@ message(STATUS "SuperChic: SUPERCHIC_ENABLE_ALL_TESTS=${SUPERCHIC_ENABLE_ALL_TES
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_DOWNLOAD_PDFS=${SUPERCHIC_DOWNLOAD_PDFS}" )
+message(STATUS "SuperChic: SUPERCHIC_ENABLE_DOCS=${SUPERCHIC_ENABLE_DOCS}" )
 
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
           alphaEM.f qinit.f apfelinit.f )
@@ -196,8 +174,8 @@ set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CM
                              PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)
 
 
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin" OR  ${CMAKE_VERSION} VERSION_LESS 3.18)
+set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
                              PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
 endif()
 
@@ -233,12 +211,38 @@ target_link_libraries(init PRIVATE LHAPDF::LHAPDF APFEL::APFEL  APFEL::APFELevol
 target_compile_options(init PRIVATE ${sccompile_options})
 set_target_properties(init PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
+
+## MANUAL
+if (SUPERCHIC_ENABLE_DOCS)
+find_package(LATEX COMPONENTS PDFLATEX BIBTEX)
+message(STATUS "SUPERCHIC: LATEX_FOUND=${LATEX_FOUND} PDFLATEX_COMPILER=${PDFLATEX_COMPILER} BIBTEX_COMPILER=${BIBTEX_COMPILER}")
+if ( LATEX_FOUND AND LATEX_PDFLATEX_FOUND AND LATEX_BIBTEX_FOUND)
+    file(COPY ${PROJECT_SOURCE_DIR}/doc/h-physrev.bst DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/)
+    file(COPY ${PROJECT_SOURCE_DIR}/doc/references.bib DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/doc/)
+    configure_file(${PROJECT_SOURCE_DIR}/doc/superchic.tex ${PROJECT_BINARY_DIR}/doc/superchic${PROJECT_VERSION}.tex IMMEDIATE @ONLY)
+    ADD_CUSTOM_TARGET(   latexcompileall
+                       COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMAND ${BIBTEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMAND ${PDFLATEX_COMPILER} superchic${PROJECT_VERSION}
+                       COMMENT "Creating manual "
+                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc
+                       DEPENDS ${PROJECT_BINARY_DIR}/doc/superchic${PROJECT_VERSION}.tex
+                      )
+    ADD_CUSTOM_TARGET(all-formats ALL) # Entry point of execution.
+    ADD_DEPENDENCIES( all-formats latexcompileall)
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/doc/superchic${PROJECT_VERSION}.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR} COMPONENT doc)
+  endif()
+endif()
+
+
+
 install(TARGETS superchic init DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT bin)
 install(TARGETS superchicLib   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
 install(TARGETS superchicLibstatic   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Cards/ DESTINATION  ${CMAKE_INSTALL_DOCDIR}/Cards COMPONENT doc)
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/doc/superchic4.2.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR}/ COMPONENT doc)
+#install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/doc/superchic4.2.pdf DESTINATION  ${CMAKE_INSTALL_DOCDIR}/ COMPONENT doc)
 if ( NOT "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")
    file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/SplinesWithVariableKnots.dat
               ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Carlos_106_440.dat

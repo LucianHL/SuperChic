@@ -135,7 +135,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             endif
 
             if(i.eq.1)then
-               write(45,*)'<LesHouchesEvents version="1.0">'
+               write(45,'(A)')'<LesHouchesEvents version="1.0">'
                write(45,*)'<header>'
                call headerlhe
                write(45,*)'</header>'
