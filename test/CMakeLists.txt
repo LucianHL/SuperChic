@@ -1,3 +1,6 @@
+if ( ${CMAKE_VERSION} VERSION_GREATER 3.24)
+  cmake_policy(SET CMP0135 OLD)
+endif()
 option(SUPERCHIC_ENABLE_PROFILE      "Enables callgrind profiling." OFF)
 option(SUPERCHIC_ENABLE_ALL_TESTS    "Enables building of all tests." OFF)
 option(SUPERCHIC_DOWNLOAD_PDFS       "Enables downloading of PDFs for tests." OFF)
@@ -20,8 +23,7 @@ enable_language(CXX)
 find_package(HepMC3 3.1.0 REQUIRED)
 message(STATUS "SuperChic test: HEPMC3_VERSION=${HEPMC3_VERSION} HEPMC3_LIBRARIES=${HEPMC3_LIBRARIES} HEPMC3_INCLUDE_DIR=${HEPMC3_INCLUDE_DIR}")
 add_executable(validator ${CMAKE_CURRENT_SOURCE_DIR}/validator.cxx)
-target_link_libraries(validator PRIVATE ${HEPMC3_LIBRARIES})
-target_include_directories(validator PRIVATE ${HEPMC3_INCLUDE_DIR})
+target_link_libraries(validator PRIVATE HepMC3::HepMC3)
 target_compile_features(validator PRIVATE cxx_std_11)
 
 
@@ -253,8 +255,8 @@ foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9
            10 11 12 13 14 15 16 17 18 19 
            20 21 22 23 24 25 26 27 28 29
            30 31 32 33 34 35 36 37 38 39
-           40 41 42 43 44 45 46 47 48 49
-           50 51 52 53 54 55 56 57 58 59
+           40 41 42 43 44 45 46 47      
+                       54 55 56 57 58 59
            60 61                   68 69
            70 71 72 73 74 75 76 77 78 79
                  82 83 84 
