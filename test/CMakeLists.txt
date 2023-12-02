@@ -145,6 +145,85 @@ if (NOT NEV)
 endif()
 ##
 
+set(TABLE_1 " $H(5) \\to b(6)\\,+\\,\\overline{b}(7)$; ")
+set(TABLE_2 " $\\gamma(6)\\,+\\, \\gamma(7)$; ")
+set(TABLE_3 "$g(6)\\,+\\, g(7)$; ")
+set(TABLE_4 "$q(6)\\,+\\, \\overline{q}(7)$; ")
+set(TABLE_5 "$c(6)\\,+\\, \\overline{c}(7)$; ")
+set(TABLE_6 "$b(6)\\,+\\, \\overline{b}(7)$; ")
+set(TABLE_7 "$g(6)\\,+\\, g(7)\\,+\\, g(8)$; ")
+set(TABLE_8 "$q(6)\\,+\\, \\overline{q}(7)\\,+\\, g(8)$; ")
+set(TABLE_9 "$\\pi^+(6)\\,+\\,\\pi^-(7)$; ")
+set(TABLE_10 "$ \\pi^0(6)\\,+\\,\\pi^0(7)$; ")
+set(TABLE_11 "$K^+(6)\\,+\\,K^-(7)$; ")
+set(TABLE_12 "$K_0(6)\\,+\\,K_0(7)$; ")
+set(TABLE_13 "$\\rho_0(6)\\,+\\,\\rho_0(7)$; ")
+set(TABLE_14 "$\\eta(6)\\,+\\,\\eta(7)$; ")
+set(TABLE_15 "$\\eta(6)\\,+\\,\\eta'(7)$; ")
+set(TABLE_16 "$\\eta'(6)\\,+\\,\\eta'(7)$; ")
+set(TABLE_17 "$\\phi(6)\\,+\\,\\phi(7)$; ")
+set(TABLE_18 "$J/\\psi(6)(\\to \\mu^+(8)+\\mu^-(9))\\,+\\,J/\\psi(7)(\\to \\mu^+(10)+\\mu^-(11))$; ")
+set(TABLE_19 "$J/\\psi(6)(\\to \\mu^+(8)+\\mu^-(9))\\,+\\,\\psi_{2S}(7)(\\to \\mu^+(10)+\\mu^-(11))$; ")
+set(TABLE_20 "$\\psi_{2S}(6)(\\to \\mu^+(8)+\\mu^-(9))\\,+\\,\\psi_{2S}(7)(\\to \\mu^+(10)+\\mu^-(11))$; ")
+set(TABLE_21 "$\\chi_{c0}(5)\\to \\gamma(6)\\,+\\,J/\\psi(7)(\\to \\mu^+(8)+\\mu^-(9))$; ")
+set(TABLE_22 "$\\chi_{c1}(5)\\to \\gamma(6)\\,+\\,J/\\psi(7)(\\to \\mu^+(8)+\\mu^-(9))$; ")
+set(TABLE_23 "$\\chi_{c2}(5)\\to \\gamma(6)\\,+\\,J/\\psi(7)(\\to \\mu^+(8)+\\mu^-(9))$; ")
+set(TABLE_24 "$\\chi_{c0}(5)\\to S(6)\\,+\\,S(7)$; ")
+set(TABLE_25 "$\\chi_{c1}(5)\\to S(6)\\,+\\,S(7)$; ")
+set(TABLE_26 "$\\chi_{c2}(5)\\to S(6)\\,+\\,S(7)$; ")
+set(TABLE_27 "$\\chi_{c1}(5)\\to f(6)\\,+\\,\\overline{f}(7)$; ")
+set(TABLE_28 "$\\chi_{c2}(5)\\to f(6)\\,+\\,\\overline{f}(7)$; ")
+set(TABLE_29 "$\\chi_{c0}(5)\\to \\pi^+(6)+\\pi^-(7)+\\pi^+(8)+\\pi^-(9)$; ")
+set(TABLE_30 "$\\chi_{c1}(5)\\to \\pi^+(6)+\\pi^-(7)+\\pi^+(8)+\\pi^-(9)$; ")
+set(TABLE_31 "$\\chi_{c2}(5)\\to \\pi^+(6)+\\pi^-(7)+\\pi^+(8)+\\pi^-(9)$; ")
+set(TABLE_32 "$\\chi_{c0}(5)\\to \\pi^+(6)+\\pi^-(7)+K^+(8)+K^-(9)$; ")
+set(TABLE_33 "$\\chi_{c1}(5)\\to \\pi^+(6)+\\pi^-(7)+K^+(8)+K^-(9)$; ")
+set(TABLE_34 "$\\chi_{c2}(5)\\to \\pi^+(6)+\\pi^-(7)+K^+(8)+K^-(9)$; ")
+set(TABLE_35 "$\\chi_{c0}(5)\\to 3(\\pi^+(6,8,10)\\,+\\,\\pi^-(7,9,11))$; ")
+set(TABLE_36 "$\\chi_{c1}(5)\\to 3(\\pi^+(6,8,10)\\,+\\,\\pi^-(7,9,11))$; ")
+set(TABLE_37 "$\\chi_{c2}(5)\\to 3(\\pi^+(6,8,10)\\,+\\,\\pi^-(7,9,11))$; ")
+set(TABLE_38 "$\\eta_c(5)$; ")
+set(TABLE_39 "$\\chi_{b0}(5)\\to \\gamma(6)\\,+\\,\\Upsilon_{1S}(7)(\\to \\mu^+(8)+\\mu^-(9))$; ")
+set(TABLE_40 "$\\chi_{b1}(5)\\to \\gamma(6)\\,+\\,\\Upsilon_{1S}(7)(\\to \\mu^+(8)+\\mu^-(9))$; ")
+set(TABLE_41 "$\\chi_{b2}(5)\\to \\gamma(6)\\,+\\,\\Upsilon_{1S}(7)(\\to \\mu^+(8)+\\mu^-(9))$; ")
+set(TABLE_42 "$\\chi_{b0}(5)\\to S(6)\\,+\\,S(7)$; ")
+set(TABLE_43 "$\\chi_{b1}(5)\\to S(6)\\,+\\,S(7)$; ")
+set(TABLE_44 "$\\chi_{b2}(5)\\to S(6)\\,+\\,S(7)$; ")
+set(TABLE_45 "$\\chi_{b1}(5)\\to f(6)\\,+\\,\\overline{f}(7)$; ")
+set(TABLE_46 "$\\chi_{b2}(5)\\to f(6)\\,+\\,\\overline{f}(7)$; ")
+set(TABLE_47 " $\\eta_b(5)$; ")
+set(TABLE_48 "$\\rho_0(5)\\to \\pi^+(6)\\pi^-(7)$; ")
+set(TABLE_49 "$\\phi(5)\\to K^+(6)K^-(7)$; ")
+set(TABLE_50 "$J/\\psi(5)\\to \\mu^+(6)\\mu^-(7)$; ")
+set(TABLE_51 "$\\Upsilon_{1S}(5)\\to \\mu^+(6)\\mu^-(7)$; ")
+set(TABLE_52 "$\\psi_{2S}(5)\\to \\mu^+(6)\\mu^-(7)$; ")
+set(TABLE_53 "$\\psi_{2S}(5)\\to J/\\psi(6)(\\to\\mu^+(9)+\\mu^-(10))\\,+\\,\\pi^+(7)\\,+\\,\\pi^-(8)$; ")
+set(TABLE_54 "Not documented; ")
+set(TABLE_55 "$W^+(\\to \\nu_l(8)+l^+(9))\\,+\\, W^-(\\to \\overline{\\nu}_l(10)+l^-(11))$; ")
+set(TABLE_56 "$e^+(6)\\,+\\,e^-(7)$; ")
+set(TABLE_57 "$\\mu^+(6)\\,+\\,\\mu^-(7)$; ")
+set(TABLE_58 "$\\tau^+(6)\\,+\\,\\tau^-(7)$; ")
+set(TABLE_59 "$\\gamma(6)\\,+\\,\\gamma(7)$; ")
+set(TABLE_60 "$H(5) \\to b(6)\\,+\\,\\overline{b}(6)$; ")
+set(TABLE_61 "Not documented; ")
+set(TABLE_68 "$a(5)\\to \\gamma(6)\\,+\\,\\gamma(7)$; ")
+set(TABLE_69 "$M(5) \\to \\gamma(6)\\,+\\,\\gamma(7)$ (Dirac Coupling); ")
+set(TABLE_70 "$M(5) \\to \\gamma(6)\\,+\\,\\gamma(7)$ ($\\beta g$ Coupling); ")
+set(TABLE_71 "$m(6)\\,+\\,\\overline{m}(7)$ (Dirac Coupling); ")
+set(TABLE_72 "$m(6)\\,+\\,\\overline{m}(7)$ ($\\beta g$ Coupling); ")
+set(TABLE_73 "$\\tilde{\\chi}^-(6)(\\to \\tilde{\\chi}_0^1 (8)+\\mu^-(9)+\\overline{\\nu}_\\mu (10)) \\,+\\,\\tilde{\\chi}^+(7)(\\to \\tilde{\\chi}_0^1 (11)+\\mu^+(12)+\\nu_\\mu (13))$; ")
+set(TABLE_74 "$\\tilde{\\chi}^-(6)(\\to \\tilde{\\chi}_0^1 (8)+\\overline{u}(9)+d(10)) \\,+\\,\\tilde{\\chi}^+(7)(\\to \\tilde{\\chi}_0^1 (11)+u(12)+\\overline{d} (13))$; ")
+set(TABLE_75 "$\\tilde{\\chi}^-(6)(\\to \\tilde{\\chi}_0^1 (8)+\\mu^-(9)+\\overline{\\nu}_\\mu (10)) \\,+\\,\\tilde{\\chi}^+(7)(\\to \\tilde{\\chi}_0^1 (11)+u(12)+\\overline{d} (13))$; ")
+set(TABLE_76 "$\\tilde{l}^-(5))(\\to \\tilde{\\chi}_0^1 (8)+\\mu^-(9)) \\,+\\,\\tilde{l}^+(6) (\\to \\tilde{\\chi}_0^1 (10)+\\mu^+(11))$; ")
+set(TABLE_77 "$\\phi(5)\\to \\mu^+(6)\\mu^-(7)$; ")
+set(TABLE_78 "$J/\\psi(5)\\to e^+(6)e^-(7)$; ")
+set(TABLE_79 "$\\psi_{2S}(5)\\to e^+(6)e^-(7)$; ")
+set(TABLE_82 "$X(6) + \\gamma(7)$; ")
+set(TABLE_83 "$X(6) + Z(7)(\\to \\mu^+ (8)+\\mu^- (9))$; ")
+set(TABLE_84 "Not documented; ")
+set(TABLE_43 "$X(6) + Z(7)(\\to e^+ (8)+ e^- (9))$; ")
+
+
 
 set(fmts  hepevt lhe hepmc)
 if (SUPERCHIC_ENABLE_PP)
@@ -184,6 +263,7 @@ foreach( process RANGE 1 100)
   LIST(LENGTH proc${process} LISTCOUNT)
   if (${LISTCOUNT}  GREATER 0)
   foreach(diff ${proc${process}}) 
+    list(TRANSFORM TABLE_${process} PREPEND " $pp$-${diff} " AT 1)
     foreach ( format ${fmts} )
       set (gencuts ".false.")
       if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
@@ -225,6 +305,7 @@ foreach( process RANGE 1 100)
   LIST(LENGTH proc${process} LISTCOUNT)
   if (${LISTCOUNT}  GREATER 0)
   foreach(diff ${proc${process}}) 
+    list(TRANSFORM TABLE_${process} PREPEND " $ee$-${diff} " AT 1)
     foreach ( format ${fmts} )
       set (gencuts ".false.")
       if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
@@ -265,12 +346,13 @@ endif()
 
 
 set(process 100)
-# configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13AAunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13AAunw) # for init
-# inittest(LHC13AAunw)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13AAunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13AAunw) # for init
+inittest(LHC13AAunw)
 foreach( process RANGE 1 100)
   LIST(LENGTH proc${process} LISTCOUNT)
   if (${LISTCOUNT}  GREATER 0)
   foreach(diff ${proc${process}}) 
+    list(TRANSFORM TABLE_${process} PREPEND " $AA$-${diff} " AT 1)
     foreach ( format ${fmts} )
       set (gencuts ".false.")
       if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
@@ -326,6 +408,7 @@ foreach( process RANGE 1 100)
   LIST(LENGTH proc${process} LISTCOUNT)
   if (${LISTCOUNT}  GREATER 0)
   foreach(diff ${proc${process}}) 
+    list(TRANSFORM TABLE_${process} PREPEND " $pA$-${diff} " AT 1)
     foreach ( format ${fmts} )
       set (gencuts ".false.")
       if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
@@ -341,3 +424,43 @@ foreach( process RANGE 1 100)
   endif()
 endforeach()
 endif()
+
+
+write_file(${CMAKE_CURRENT_BINARY_DIR}/tested.tex 
+"\\documentclass{article}\n\
+\\usepackage[margin=0.7in]{geometry}\n\
+\\usepackage[parfill]{parskip}\n\
+\\usepackage[utf8]{inputenc}\n\  
+%\\usepackage{table}\n\  
+    % Related to math\n\
+\\usepackage{amsmath,amssymb,amsfonts,amsthm}\n\
+\\begin{document}\n\
+\\begin{center}\\tiny\n\
+\\begin{tabular}{|c|l|l|}\\hline\n\
+Number&Final--State& Beams and types\\\\\\hline\\hline\n\
+")
+foreach( process RANGE 1 100)
+  if (TABLE_${process})
+  list(JOIN TABLE_${process} " & " X)
+  write_file(${CMAKE_CURRENT_BINARY_DIR}/tested.tex "${process} & ${X}\\\\\n" APPEND)
+  endif()
+endforeach()
+write_file(${CMAKE_CURRENT_BINARY_DIR}/tested.tex 
+"\\hline\n\
+\\end{tabular}\n\
+\\end{center}\n\ 
+\\end{document}\n" 
+APPEND)
+find_package(LATEX COMPONENTS PDFLATEX)
+if (LATEX_FOUND)
+    ADD_CUSTOM_TARGET(   latexcompiletest
+                       COMMAND ${PDFLATEX_COMPILER} tested.tex 
+                       WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+                      )
+    ADD_CUSTOM_TARGET(all-test ALL) # Entry point of execution.
+    ADD_DEPENDENCIES( all-test latexcompiletest)
+
+endif()
+
+
+#cat doc/superchic.tex | grep ^[1-9].*  | cut -f 1,2 -d'&' --output-delimiter='";"' | tr -s ' ' | sed 's/$/\";\" \")/g' | sed 's/^/set(TABLE_/g' | sed 's/\";/ /1'
