@@ -39,6 +39,10 @@ ccccccc
       write(*,*)'Running the init program is not required for AA beams'
       goto 999
       end if
+      if (beam .eq. 'ionp') then 
+      write(*,*)'Running the init program is not required for pA beams'
+      goto 999
+      end if
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccc   Init LHAPDF
