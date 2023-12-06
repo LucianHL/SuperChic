@@ -680,7 +680,8 @@ ccccccccc
 
       surv=1d0
       if( (beam.eq.'prot'.or.ionqcd.eq.'coh'.or.ionqcd.eq.'incoh') .and.
-     &  (beam .ne. 'el') ) then
+     &  (beam .ne. 'el')  .and. (beam .ne. 'ion') .and. 
+     & (beam .ne. 'ionp') ) then
          call initparsr(isurv)
          call readscreen
          if(beam.eq.'prot'.or.ionqcd.eq.'incoh')surv=1d0/norm**2
