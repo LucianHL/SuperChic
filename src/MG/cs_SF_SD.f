@@ -12,8 +12,7 @@ ccccc EPA form factors (proton)
 c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
       double precision phot,garr(-6:6),fpdf,matelem,out_t
       REAL*8 Pmom(0:3,6)
-      integer qin,qti,pflag
-      logical ati
+      integer qin,pflag
       complex*16 amptest
       double precision f1lo,f2lo,fk1
       common/amptest/amptest
