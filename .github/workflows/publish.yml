@@ -25,7 +25,7 @@ jobs:
           cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
           cmake --build BUILD -j
           cmake --install BUILD
-          ctest --test-dir BUILD -j 2
+          ctest --test-dir BUILD -j 2 --output-on-failure
 
 
   compilejobOSX:
