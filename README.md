@@ -1,6 +1,6 @@
 # SuperChic MC event generator for central exclusive production
 
-Version 4.22
+Version 5.0
 
 See manual in `doc/` folder for further instructions!
 
@@ -44,7 +44,7 @@ yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhap
 ```
 But `apfel` should be installed from the sources.
 ```
-git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
+git clone https://github.com/scarrazza/apfel.git  && cd  apfel &&  cmake  -S . -B BUILD -DCMAKE_INSTALL_PREFIX=/where_you_want && cmake --build BUILD -j 8 && cmake --install BUILD && cd  ../ && rm -rf apfel
 ```
 
 ### MacOS X
@@ -84,6 +84,8 @@ The extra flags might be:
  - `-DSUPERCHIC_DOWNLOAD_PDFS=ON/OFF`    Enables downloading of PDFs for tests. 
  - `-DSUPERCHIC_ENABLE_PP=ON/OFF`        Enables testing with pp beams.
  - `-DSUPERCHIC_ENABLE_EE=ON/OFF`        Enables testing with ee beams.
+ - `-DSUPERCHIC_ENABLE_AA=ON/OFF`        Enables testing with AA beams.
+ - `-DSUPERCHIC_ENABLE_PA=ON/OFF`        Enables testing with pA beams. 
  - `-DSUPERCHIC_ENABLE_RIVET=ON/OFF`     Enables testing with Rivet.
  - `-DSUPERCHIC_ENABLE_PROFILE=ON/OFF`   Enables callgrind profiling.
 
