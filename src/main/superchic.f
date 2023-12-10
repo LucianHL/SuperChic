@@ -288,6 +288,7 @@ c      read(*,*)elcoll
       read(*,*)mxs
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+      tdiff=diff
       if(diff.eq.'sda'.or.diff.eq.'sdb')then
          tdiff='sd'
       endif
@@ -296,7 +297,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       if (beam.eq.'ionp') tbeam='pA'
       if (beam.eq.'ion') tbeam='AA'
       if (beam.eq.'prot') tbeam='pp'
-      bp=trim(tbeam)//trim(tdiff)
+      bp=tbeam(1:len(trim(tbeam)))//tdiff(1:len(trim(tdiff)))
 
       if(proc.eq.1.and.(bp.eq.'ppel')) goto 111
       if(proc.eq.2.and.(bp.eq.'ppel')) goto 111
@@ -394,7 +395,9 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
      &.or.bp.eq.'ppel')) goto 111
 
 
-      write(*,*)'Usupported process and beam combination ',proc,bp
+      write(*,*)'Usupported process and beam combination'
+      write(*,*)'bp->',bp,'<-'
+      write(*,*)'proc->',proc,'<-'
       STOP 1
  111  continue 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
