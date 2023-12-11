@@ -62,8 +62,8 @@ references are listed in Section~\ref{sec:ref}.
 \section{Installation}
 
 A compressed tar file containing all of the relevant code can be 
-downloaded at \texttt{http://projects.hepforge.org/superchic/} and at 
-\texttt{https://github.com/LucianHL/SuperChic}. To 
+downloaded at \url{http://projects.hepforge.org/superchic/} and at 
+\url{https://github.com/LucianHL/SuperChic}. To 
 extract it, simply execute \texttt{tar -xzvf 
 superchicv@PROJECT_VERSION@.tar.gz} and the 
 \texttt{superchicv@PROJECT_VERSION@} directory will be created. 
@@ -77,7 +77,21 @@ This consists of:
 \item \texttt{test}: the source files for testing suite.
 \end{itemize}
 
-Since the version 5.0 the recommended way to build the sources id to use \texttt{CMake}
+\subsection{Build rerequirements}
+
+\begin{itemize}
+ \item \texttt{CMake} (\url{https://cmake.org/}) > 3.16 or \texttt{make}
+ \item Fortran compiller: \texttt{GNU}, \texttt{Intel}, \texttt{flang}, \texttt{NVFortran} were tested
+ \item \texttt{APFEL}, \url{https://apfel.hepforge.org/}
+ \item \texttt{LHAPDF}, see \url{https://lhapdf.hepforge.org/}
+ \item Internet connection if the installation of PDFs was requested
+ \item C++ compiler, \texttt{HepMC3} (\url{https://ep-dep-sft.web.cern.ch/project/hepmc}) and Pythia8 (\url{https://pythia.org/}) for the tests
+ \item (optional) \texttt{pfdLaTeX} and \texttt{bibtex}  to compile manual.
+\end{itemize}
+
+\subsection{Build}
+
+Since the version 5.0 the recommended way to build the sources is to use \texttt{CMake}
 
 To compile simply run
 \newline
