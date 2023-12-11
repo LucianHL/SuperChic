@@ -62,7 +62,8 @@ references are listed in Section~\ref{sec:ref}.
 \section{Installation}
 
 A compressed tar file containing all of the relevant code can be 
-downloaded at \texttt{http://projects.hepforge.org/superchic/}. To 
+downloaded at \texttt{http://projects.hepforge.org/superchic/} and at 
+\texttt{https://github.com/LucianHL/SuperChic}. To 
 extract it, simply execute \texttt{tar -xzvf 
 superchicv@PROJECT_VERSION@.tar.gz} and the 
 \texttt{superchicv@PROJECT_VERSION@} directory will be created. 
@@ -70,35 +71,54 @@ This consists of:
 %
 \begin{itemize}
 \item \texttt{bin}: the executables \texttt{superchic} and \texttt{init} 
-and the input card \texttt{input.DAT}.
-%\item \texttt{bin/PDFsets}: the directory where the \texttt{LHAPDF} grid files must be placed.
+\item \texttt{share} the input cards, e.g. \texttt{input.DAT}.
 \item \texttt{doc}: the source for this document.
-\item \texttt{obj}: the object files produced by the compiler.
 \item \texttt{src}: the Fortran source files in various subdirectories.
-\item \texttt{lib}: static and shared libraries produced by compiler.
+\item \texttt{test}: the source files for testing suite.
 \end{itemize}
-%
+
+Since the version 5.0 the recommended way to build the sources id to use \texttt{CMake}
+
 To compile simply run
 \newline
 \newline
-\texttt{> make}
+\texttt{> cmake -S . -B BUILD <extra flags>}
+\newline
+\texttt{> cmake --build BUILD}
+\newline
+\texttt{> cmake --install BUILD}
 \newline
 \newline
-which will create the \texttt{superchic} and \texttt{init} executables 
-in the \texttt{bin} directory as well as the object files in the 
-\texttt{obj} directory. It is also possible to compile these 
-executables separately with
+and optionally
 \newline
+\texttt{> ctest --test-dir BUILD}
 \newline
-\texttt{> make superchic}
-\newline
-\newline
-and
-\newline
-\newline
-\texttt{> make init}
-\newline
-\newline
+
+to run all the tests.
+
+The extra flags might be:
+\begin{itemize}
+\item  generic \texttt{CMake} flags, e.g. \texttt{-DCMAKE\_INSTALL\_PREFIX=/my/home/dir},\\ \texttt{-DCMAKE\_Fortran\_COMPILER=ifort}, \texttt{-DCMAKE\_Fortran\_FLAGS="-O2 -g"}, etc.
+\item  flags pointing to the dependencies, \texttt{-DLHAPDF\_DIR=/where/the/LHAPDF/is}, \\\texttt{-DAPFEL\_DIR=/where/the/APFEL/is}
+\item  {flags that regulate the compilation. In the current version there are the following flags: \begin{itemize}
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_TESTS=ON/OFF}     Enables building of tests.
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_FPES=ON/OFF}      Enables floating point exceptions in the code.
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_DOCS=ON/OFF}      Enables building of PDF manual. 
+ \end{itemize}}
+ \end{itemize}
+ The following options makes sense only when the testing is enabled.
+ \begin{itemize}
+ \item \texttt{-DSUPERCHIC\_ENABLE\_ALL\_TESTS=ON/OFF} Enables building of much more tests.
+ \item  \texttt{-DSUPERCHIC\_DOWNLOAD\_PDFS=ON/OFF}    Enables downloading of PDFs for tests. 
+ \item    \texttt{-DSUPERCHIC\_ENABLE\_PP=ON/OFF}        Enables testing with pp beams.
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_EE=ON/OFF}        Enables testing with ee beams.
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_AA=ON/OFF}        Enables testing with AA beams.
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_PA=ON/OFF}        Enables testing with pA beams. 
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_RIVET=ON/OFF}     Enables testing with Rivet.
+ \item  \texttt{-DSUPERCHIC\_ENABLE\_PROFILE=ON/OFF}   Enables callgrind profiling.
+\end{itemize}
+
+
 To generate semi--exclusive lepton pair, $W$ pair and/or ALP production, 
 you will need to download \texttt{SF\_MSHT20qed\_nnlo} from 
 \texttt{http://projects.hepforge.org/superchic} and place this in the 
@@ -108,6 +128,9 @@ functions (in lhapdf format), but is not a PDF set and is separate from
 that set in the input card via \texttt{PDFname}, which corresponds to 
 the proton PDF set used in QCD--initiated CEP. It is therefore not 
 available on the LHAPDF website list.
+
+Please note that during the test phase it is recommended to use the \texttt{-DSUPERCHIC\_DOWNLOAD\_PDFS=ON/OFF} so the 
+corresponding PDFs needed in the test will be installed automatically.
 
 \section{Running with LHAPDF}
 
