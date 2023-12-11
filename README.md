@@ -108,7 +108,7 @@ The location of those files in runtime can be overwitten with an environment var
 
 
 The location of the PDFs can be set with the environment variable `LHAPDF_DATA_PATH`, see the LHAPDF socumentation. 
-This is done automatically in the st suite.
+This is done automatically in the test suite.
 
 
 ## Debugging SuperChic
