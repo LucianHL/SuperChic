@@ -22,40 +22,12 @@ ccc   prints out header information
       include 'nsurv.f'
       include 'prec.f'
       include 'intag.f'
+      include 'head.f'
 
       call length(procn,outl)
-
-      write(45,*)'***********************************************'
-      write(45,*)'************** Superchic v4.2 *****************'
-      write(45,*)'***********************************************'
-      write(45,*)'*  v4.2               DATE    13/03/23        *'
-      write(45,*)'*                                             *'
-      write(45,*)'*  Author: Lucian Harland-Lang                *'
-      write(45,*)'*  (l.harland-lang@ucl.ac.uk)                 *'
-      write(45,*)'*                                             *'
-      write(45,*)'*  For details see :                          *'
-      write(45,*)'*                                             *'
-      write(45,*)'*  arXiv 2303.04826 (ion dissociation)        *'
-      write(45,*)'*  arXiv 2201.08403 (WW updates)              *'
-      write(45,*)'*  arXiv 2007.12704 (v4 updates)              *'
-      write(45,*)'*  arXiv 1812.04886 (SUSY)                    *'
-      write(45,*)'*  arXiv 1810.06567                           *'
-      write(45,*)'*  arXiv 1508.02718                           *'
-      write(45,*)'*  arXiv 1405.0018 (review)                   *'
-      write(45,*)'*  arXiv 1005.0695 (quarkonia and diphoton    *'
-      write(45,*)'*  arXiv 1011.0680 (quarkonia)                *'
-      write(45,*)'*  arXiv 1105.1626 (meson pairs)              *'
-      write(45,*)"*  arXiv 1302.2004 (meson pairs - eta/eta')   *"
-      write(45,*)'*  arXiv 1306.6661 (Skewed PDF)               *'
-      write(45,*)'*  arXiv 1306.2149 (Skewed PDF)               *'
-      write(45,*)'*                                             *'
-      write(45,*)'*  Available at :                             *'
-      write(45,*)'*  http:://projects.hepforge.org/superchic    *'
-      write(45,*)'*                                             *'
-      write(45,*)'***********************************************'
-      write(45,*)''
-      write(45,*)'******************************************************
-     &******************'
+      do i=1,30
+      write(45,*)head(i)
+      end do
       call length(procn,outl)
       write(45,*)'* ',procn(1:outl),' production'
       write(45,*)'******************************************************
