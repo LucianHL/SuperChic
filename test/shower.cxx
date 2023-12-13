@@ -88,6 +88,7 @@ BeamRemnants:unresolvedHadron = 3
 SpaceShower:pTdampMatch=1
 PartonLevel:ISR = off
 LesHouches:matchInOut = off
+PartonLevel:Remnants = off
 )""";
 
 std::string config_ds_pp = R"""(
