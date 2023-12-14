@@ -1,0 +1,4 @@
+Version 5.0
+ - New build system 'CMake'
+ - Numerous tests with 'CMake'
+ - Fixes of some numerical problems
