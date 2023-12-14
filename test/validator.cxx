@@ -5,8 +5,7 @@ int main (int argc, char** argv) {
     auto inputA = HepMC3::deduce_reader(argv[1]);
     if (!inputA||inputA->failed()) return 1;
     size_t events=0;
-    while( !inputA->failed() )
-    {
+    while( !inputA->failed() ) {
         HepMC3::GenEvent evt(HepMC3::Units::GEV,HepMC3::Units::MM);
         bool res = inputA->read_event(evt);
         if( inputA->failed() )  {
@@ -21,7 +20,7 @@ int main (int argc, char** argv) {
         evt.clear();
     }
     inputA->close();
-    if (events == 0)  {
+    if (events == 0) {
         printf("Too few events\n");
         return 3;
     }
