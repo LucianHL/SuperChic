@@ -77,6 +77,7 @@ SpaceShower:QEDshowerByQ = on
 BeamRemnants:primordialKT = off
 BeamRemnants:unresolvedHadron = 0
 SpaceShower:pTdampMatch=1
+PDF:pSet = LHAPDF6:MSHT20qed_nnlo
 )""";
 
 std::string config_el_pp = R"""(
@@ -87,6 +88,7 @@ BeamRemnants:unresolvedHadron = 3
 SpaceShower:pTdampMatch=1
 PartonLevel:ISR = off
 LesHouches:matchInOut = off
+PartonLevel:Remnants = off
 )""";
 
 std::string config_ds_pp = R"""(
@@ -97,6 +99,7 @@ BeamRemnants:primordialKT = off
 SpaceShower:QEDshowerByQ = off
 BeamRemnants:unresolvedHadron = 1
 SpaceShower:pTdampMatch = 1
+PDF:pSet = LHAPDF6:MSHT20qed_nnlo
 )""";
 
 std::string config_sd_pp = R"""(
@@ -107,6 +110,7 @@ BeamRemnants:primordialKT = off
 SpaceShower:QEDshowerByQ = off
 BeamRemnants:unresolvedHadron = 2
 SpaceShower:pTdampMatch = 1
+PDF:pSet = LHAPDF6:MSHT20qed_nnlo
 )""";
 
 /*
@@ -156,9 +160,7 @@ int main(int argc, char ** argv) {
     if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" ) )
     {
     for ( auto s: c_c) pythia.readString(s);
-    pythia.readString("PartonLevel:ISR = off");
     pythia.readString("PartonLevel:MPI = off");
-    pythia.readString("PartonLevel:Remnants = off");
     pythia.readString("Check:event = off");
     pythia.readString("LesHouches:matchInOut = off");
 

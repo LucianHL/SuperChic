@@ -3155,10 +3155,10 @@ cccccccccccccccc
          icolup(2,10)=501
          icolup(1,11)=0
          icolup(2,11)=0
-         icolup(1,12)=501
-         icolup(2,12)=0
-         icolup(1,13)=0
-         icolup(2,13)=501
+         icolup(1,12)=0
+         icolup(2,12)=502
+         icolup(1,13)=502
+         icolup(2,13)=0
          isthep(5)=2
          isthep(6)=2
          isthep(7)=2
