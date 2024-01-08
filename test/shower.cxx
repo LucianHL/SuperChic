@@ -114,12 +114,12 @@ PDF:pSet = LHAPDF6:MSHT20qed_nnlo
 )""";
 
 class config {
-config(){}
 public:
+config(){}
 void readString(const std::string& str) {m_strings.push_back(str);} 
 void apply(Pythia& p)const { for ( auto s: m_strings ) p.readString(s);  }
-void dump(const std::string& out) const { 
-  std::ofstream out(filename.c_str());
+void dump(const std::string& outname) const { 
+  std::ofstream out(outname.c_str());
   for ( auto s: m_strings ) out<<s;  
   out.close();
 }
