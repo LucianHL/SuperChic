@@ -113,6 +113,19 @@ SpaceShower:pTdampMatch = 1
 PDF:pSet = LHAPDF6:MSHT20qed_nnlo
 )""";
 
+class config {
+public:
+config(){}
+void readString(const std::string& str) {m_strings.push_back(str);} 
+void apply(Pythia& p)const { for ( auto s: m_strings ) p.readString(s);  }
+void dump(const std::string& outname) const { 
+  std::ofstream out(outname.c_str());
+  for ( auto s: m_strings ) out<<s<<std::endl;  
+  out.close();
+}
+private:
+std::vector<std::string> m_strings;
+};
 /*
 bool is_semi_exclusive_photon_initiated(int i) {
  return (( 48 <= i && i <=53 ) || ( 55 <= i && i <=83 ));
@@ -131,10 +144,10 @@ int main(int argc, char ** argv) {
   // Generator. We here stick with default values, but changes
   // could be inserted with readString or readFile.
   Pythia pythia;
-
+  config pythiaconfig;
   // Initialize Les Houches Event File run. List initialization information.
-  pythia.readString("Beams:frameType = 4");
-  pythia.readString(std::string("Beams:LHEF = ")+argv[1]);
+  pythiaconfig.readString("Beams:frameType = 4");
+  pythiaconfig.readString(std::string("Beams:LHEF = ")+argv[1]);
   if ( std::string(argv[5]) != "dummy" ) {
 
     std::string type = std::string(argv[3]);
@@ -151,7 +164,7 @@ int main(int argc, char ** argv) {
       beam[0]=type[type.size()-2];
       beam[1]=type[type.size()-1];
       if (beam=="AA" || beam=="pA") { 
-		  pythia.readString("Check:beams = off");
+		  pythiaconfig.readString("Check:beams = off");
     }      
     if (type[type.size()-1] == 'A' ) type[type.size()-1] ='p';
     if (type[type.size()-2] == 'A' ) type[type.size()-2] ='p';
@@ -159,32 +172,34 @@ int main(int argc, char ** argv) {
   
     if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" ) )
     {
-    for ( auto s: c_c) pythia.readString(s);
-    pythia.readString("PartonLevel:MPI = off");
-    pythia.readString("Check:event = off");
-    pythia.readString("LesHouches:matchInOut = off");
+    for ( auto s: c_c) pythiaconfig.readString(s);
+    pythiaconfig.readString("PartonLevel:MPI = off");
+    pythiaconfig.readString("Check:event = off");
+    pythiaconfig.readString("LesHouches:matchInOut = off");
 
 
-    if (type == "dd_pp") for ( auto s: c_dd_pp) pythia.readString(s);
-    if (type == "sdb_pp") for ( auto s: c_ds_pp) pythia.readString(s);
-    if (type == "sda_pp" ) for ( auto s: c_sd_pp) pythia.readString(s);
-    if (type == "el_pp") for ( auto s: c_el_pp) pythia.readString(s);
+    if (type == "dd_pp") for ( auto s: c_dd_pp) pythiaconfig.readString(s);
+    if (type == "sdb_pp") for ( auto s: c_ds_pp) pythiaconfig.readString(s);
+    if (type == "sda_pp" ) for ( auto s: c_sd_pp) pythiaconfig.readString(s);
+    if (type == "el_pp") for ( auto s: c_el_pp) pythiaconfig.readString(s);
     showerconfigured=true;
     }
   
   
 
     if (!showerconfigured && (type=="el_ee"  || type=="dd_ee" ||type=="sda_ee"||type=="sdb_ee" ||type=="sd_ee")) {
-      for ( auto s: c_c) pythia.readString(s);
-      pythia.readString("PartonLevel:ISR = off");
-      pythia.readString("PartonLevel:MPI = off");
-      pythia.readString("PartonLevel:Remnants = off");
-      pythia.readString("Check:event = off");
-      pythia.readString("LesHouches:matchInOut = off");
+      for ( auto s: c_c) pythiaconfig.readString(s);
+      pythiaconfig.readString("PartonLevel:ISR = off");
+      pythiaconfig.readString("PartonLevel:MPI = off");
+      pythiaconfig.readString("PartonLevel:Remnants = off");
+      pythiaconfig.readString("Check:event = off");
+      pythiaconfig.readString("LesHouches:matchInOut = off");
       showerconfigured=true;
     }
     
   }
+  pythiaconfig.apply(pythia);
+  pythiaconfig.dump(std::string(argv[2])+"_config");
   
 //BeamRemnants:unresolvedHadron = 0 for double dissociation (dd), 1 for
 //single dissociation (sdb), 2 for single dissociation (sda), 3 for elastic (el).
