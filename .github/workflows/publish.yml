@@ -41,11 +41,6 @@ jobs:
           brew install lhapdf apfel pythia8 hepmc3 hepmc2 rivet yoda
     - name: Compile
       run: |
-           mkdir -p obj lib
-           gsed -i 's/gfortran/gfortran-13/g' makefile.make
-           gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile.make
-           cat makefile.make
-           make -f makefile.make -j 2
            cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13 -DSUPERCHIC_DOWNLOAD_PDFS=ON
            cmake --build BUILD -j 2 --verbose
            cmake --install BUILD 
