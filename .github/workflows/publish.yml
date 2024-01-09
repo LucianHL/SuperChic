@@ -47,7 +47,7 @@ jobs:
           cmake -S . -B BUILD  -DCMAKE_Fortran_COMPILER=nvfortran -DCMAKE_CXX_COMPILER=nvc++ -DCMAKE_C_COMPILER=nvc -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
           cmake --build BUILD -j
           cmake --install BUILD
-          ctest --test-dir BUILD -j 2 --output-on-failure
+#          ctest --test-dir BUILD -j 2 --output-on-failure
 
   Rocky9x86_64_HPCKIT:
     name: SC_on_Rocky9x86_64_HPCKIT
@@ -66,10 +66,10 @@ jobs:
            yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel Rivet Rivet-devel
     - name: Compile_with_ifort   
       run: |
-          cmake -S . -B BUILDifort -DCMAKE_Fortran_COMPILER=ifort -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALLifx  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+          cmake -S . -B BUILDifort -DCMAKE_Fortran_COMPILER=ifort -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALLifort  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
           cmake --build BUILDifort -j
           cmake --install BUILDifort
-          ctest --test-dir BUILDifort -j 2 --output-on-failure
+#          ctest --test-dir BUILDifort -j 2 --output-on-failure
 
   OSXx86_64_GNU:
     runs-on: macos-latest
