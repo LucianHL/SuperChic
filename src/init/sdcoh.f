@@ -102,7 +102,7 @@ ccccccccccc
 
  900  enddo
 
-      sum=sum/dfloat(ntotal1)**2
+      sum=sum/DBLE(ntotal1)**2
 
 
       sum1=0d0
@@ -161,7 +161,7 @@ ccccccccccc
 
  810  enddo
 
-      sum1=sum1/dfloat(ntotal)
+      sum1=sum1/DBLE(ntotal)
 
       surv=1d0+2d0*sum/sum0+sum1/sum0
 
