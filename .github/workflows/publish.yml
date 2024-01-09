@@ -7,8 +7,8 @@ on:
     - cron:  "0 0 1/600 * *"
 
 jobs:
-  compilejobFedora37x86_64_GNU:
-    name: SUPERCHIC_on_Fedora37x86_64_GNU
+  Fedora37x86_64_GNU:
+    name: SC_on_Fedora37x86_64_GNU
     runs-on: ubuntu-latest
     container:
         image: fedora:37
@@ -27,8 +27,8 @@ jobs:
           cmake --install BUILD
           ctest --test-dir BUILD -j 2 --output-on-failure
 
-  compilejobRocky8x86_64_NVHPC:
-    name: SUPERCHIC_on_Rocky8x86_64_NVHPC
+  Rocky8x86_64_NVHPC:
+    name: SC_on_Rocky8x86_64_NVHPC
     runs-on: ubuntu-latest
     container:
         image: nvcr.io/nvidia/nvhpc:23.11-devel-cuda12.3-rockylinux8
@@ -49,8 +49,8 @@ jobs:
           cmake --install BUILD
           ctest --test-dir BUILD -j 2 --output-on-failure
 
-  compilejobRocky9x86_64_HPCKIT:
-    name: SUPERCHIC_on_Rocky9x86_64_HPCKIT
+  Rocky9x86_64_HPCKIT:
+    name: SC_on_Rocky9x86_64_HPCKIT
     runs-on: ubuntu-latest
     container:
         image: intel/oneapi-hpckit:2024.0.1-devel-rockylinux9
@@ -77,9 +77,9 @@ jobs:
           cmake --install BUILDifort
           ctest --test-dir BUILDifort -j 2 --output-on-failure
 
-  compilejobOSXx86_64_GNU:
+  OSXx86_64_GNU:
     runs-on: macos-latest
-    name: SUPERCHIC_on_OSXx86_64_GNU
+    name: SC_on_OSXx86_64_GNU
     steps:
     - name: Checkout
       uses: actions/checkout@v3
