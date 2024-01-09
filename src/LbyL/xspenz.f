@@ -90,7 +90,7 @@ c      II = 9
       SUM=W-0.25D0*W*W
       U=W
       DO 1 K=1,II
-      U=U*W*W/DFLOAT(2*K*(2*K+1))
+      U=U*W*W/DBLE(2*K*(2*K+1))
       SUM=SUM+U*B(K)
  1    CONTINUE
       CSPEN=SUM
@@ -99,7 +99,7 @@ c      II = 9
       SUM=W-0.25D0*W*W
       U=W
       DO 11 K=1,II
-      U=U*W*W/DFLOAT(2*K*(2*K+1))
+      U=U*W*W/DBLE(2*K*(2*K+1))
       SUM=SUM+U*B(K)
 11    CONTINUE
       CSPEN=-SUM-1.64493406684822643D0-.5D0*CDLOG(-Z)**2
@@ -109,7 +109,7 @@ c      II = 9
       SUM=W-0.25D0*W*W
       U=W
       DO 21 K=1,II
-      U=U*W*W/DFLOAT(2*K*(2*K+1))
+      U=U*W*W/DBLE(2*K*(2*K+1))
       SUM=SUM+U*B(K)
 21    CONTINUE
       CSPEN=-SUM+1.64493406684822643D0-CDLOG(Z)*CDLOG(1D0-Z)
@@ -118,7 +118,7 @@ c      II = 9
       SUM=W-0.25D0*W*W
       U=W
       DO 31 K=1,II
-      U=U*W*W/DFLOAT(2*K*(2*K+1))
+      U=U*W*W/DBLE(2*K*(2*K+1))
       SUM=SUM+U*B(K)
 31    CONTINUE
       CSPEN=SUM+3.28986813369645287D0
