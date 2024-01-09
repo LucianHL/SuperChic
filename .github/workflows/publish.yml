@@ -64,12 +64,6 @@ jobs:
            dnf -y install 'dnf-command(copr)'
            dnf -y copr enable averbyts/HEPrpms 
            yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel Rivet Rivet-devel
-    - name: Compile_with_ifx   
-      run: |
-          cmake -S . -B BUILDifx -DCMAKE_Fortran_COMPILER=ifx -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALLifx  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
-          cmake --build BUILDifx -j
-          cmake --install BUILDifx
-          ctest --test-dir BUILDifx -j 2 --output-on-failure
     - name: Compile_with_ifort   
       run: |
           cmake -S . -B BUILDifort -DCMAKE_Fortran_COMPILER=ifort -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALLifx  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
