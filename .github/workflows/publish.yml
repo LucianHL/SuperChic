@@ -40,6 +40,7 @@ jobs:
            yum -y install epel-release
            dnf -y install 'dnf-command(copr)'
            dnf -y copr enable averbyts/HEPrpms 
+           dnf config-manager --set-enabled powertools
            yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel Rivet Rivet-devel
     - name: Compile   
       run: |
