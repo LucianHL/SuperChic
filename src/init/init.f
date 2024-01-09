@@ -12,7 +12,7 @@ ccc   Initialises grids for skewed PDFs and survival factors
       include 'beam.f'
       include 'proc.f'
 
-      call system('mkdir -p inputs evrecs outputs')
+      call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
       mp=0.938272046d0
       pi=dacos(-1d0)
 

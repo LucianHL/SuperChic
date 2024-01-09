@@ -21,7 +21,7 @@
       character*500 valuepath
       length = 500
       length=0
-      CALL GETENV('SUPERCHIC_DATA_PATH', valuepath)
+      CALL GET_ENVIRONMENT_VARIABLE('SUPERCHIC_DATA_PATH', valuepath)
       length=len(trim(valuepath))
 
       ! Check if the environment variable is set
