@@ -23,16 +23,23 @@ add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn;-diag-disa
 #NVHPC
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave;-Mbounds;-traceback>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Minform=inform>")
+
 #Tier 2 support compilers
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-Msave>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,XL>:-qsave>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,LLVMFlang>:-Msave>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Flang>:-Msave>")
+#Tier 3 support compilers (will not compile,probably)
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NAG>:-dcfuns;-dusty>")
 if (SUPERCHIC_ENABLE_FPES)
   add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-ffpe-trap=zero,overflow,underflow,invalid,denormal>")
   add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-fpe0>")
   add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-fpe0>")
-  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Ktrap=divz,denorm,fp,inexact,inv,none,ovf,unf>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Ktrap=divz,denorm,fp,inexact,inv,ovf,unf>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Flang>:-ffp-exception-behavior=strict>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,XL>:-qflttrap=overflow:underflow:invalid:zerodivide:enable>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NAG>:-ieee=stop>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,ARM>:-ffp-contract=on>")
 endif()
 
 add_definitions("-DDATA_PATH=\'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/SuperChic\'")
