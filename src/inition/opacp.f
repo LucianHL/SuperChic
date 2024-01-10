@@ -16,7 +16,7 @@
          qt=(dble(n)-0.5d0)*hq
 
          wt=qt*hq/2d0/pi
-         wt=wt*betaion(-qt**2)**2*besj0(qt*btt)*sig0
+         wt=wt*betaion(-qt**2)**2*BESSEL_J0(qt*btt)*sig0
 
          sum=sum+wt
 

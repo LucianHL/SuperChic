@@ -57,7 +57,7 @@
 
          kt=(dble(ikt)-0.5d0)*hkt
 
-         wt=besj0(bt*kt)
+         wt=BESSEL_J0(bt*kt)
          wt=wt/2d0/pi*hkt*kt
 
          call F1F2el(kt**2,f1,f2)

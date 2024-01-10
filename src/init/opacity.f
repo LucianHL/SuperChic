@@ -25,7 +25,7 @@ ccc   calculates proton opacity
             if(it.eq.0) t=1d-8
             wt=htt*2d0*dble(it)/4d0/pi
             if(it.eq.0) wt=wt/2d0
-            bes0=besj0(bt*dsqrt(t))
+            bes0=BESSEL_J0(bt*dsqrt(t))
 
             ffi=dexp(-((t+0.08d0+bb0(i))*bex(i))**cc0(i)+
      &           (bex(i)*(bb0(i)+0.08d0))**cc0(i))

@@ -48,7 +48,7 @@ c      nbt=10000
          if(beam.eq.'ion')wt=1d0-opacpbint(bt)
          if(beam.eq.'ionp')wt=1d0-opacpbpint(bt)
 
-         wt=wt*besj0(qt*bt)
+         wt=wt*BESSEL_J0(qt*bt)
          wt=-wt*bt*hbt0/2d0/pi
 
          sum0=sum0+wt
@@ -76,7 +76,7 @@ c$$$         else
 c$$$            wt=1d0
 c$$$         endif
 
-         wt=wt*besj0(qt*bt)
+         wt=wt*BESSEL_J0(qt*bt)
          wt=-wt*bt*hbt/2d0/pi
 
          sum=sum+wt
