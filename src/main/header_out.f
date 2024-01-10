@@ -54,7 +54,7 @@ ccc   prints out header information
       write(56,98)' *',sfaci,' :  Include soft survival effects'
       write(56,*)'******************************************************
      &**************'
-      write(56,98)' *',diff,' : dissociation flag'
+      write(56,95)' *',diff,' : dissociation flag'
       write(56,*)'******************************************************
      &**************'
       write(56,*)''
@@ -177,6 +177,7 @@ ccc   prints out header information
  97   format(a,i24,8x,a)
  96   format(a,a24,8x,a)
  98   format(a,l24,8x,a)
+ 95   format(a,a,8x,a)
  301  format(' Cross section = ',G16.7,' +/-',G16.7,' pb')
 
       close(56)
