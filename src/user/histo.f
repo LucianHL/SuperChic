@@ -1,4 +1,4 @@
-ccc   initialises number of histograms
+!cc   initialises number of histograms
       subroutine inithist(nhist)
       implicit none
       integer nhist,i
@@ -10,7 +10,7 @@ ccc   initialises number of histograms
       return
       end
 
-ccc   binning subroutine
+!cc   binning subroutine
       subroutine binit(wt)
       implicit none
       double precision wt
@@ -31,7 +31,7 @@ ccc   binning subroutine
       include 'ewpars.f'
       include 'partonmom2.f'
 
-ccccccccc
+!cccccccc
 
       if(dps.eq.1)then
          call histo1(1,30,ymin,ymax,yx,wt,'yx')
@@ -44,11 +44,12 @@ ccccccccc
       end
 
 
-ccc   prints histograms
+!cc   prints histograms
       subroutine histo1(ih,ib,x0,x1,x,w,labin)
       implicit real*8(a-h,o-z)
       integer ix,iz,iv,ic,ih,ib,il,i,ib1
       character *(*) labin
+      character*256 fname
       integer outl
       character*1 regel(30),blank,star
       integer io,iu,ii
@@ -72,7 +73,11 @@ ccc   prints histograms
       y1(ih)=x1
       ic(ih)=ib
       if(x.lt.x0) goto 11
+#if defined(__NVCOMPILER)
+      if(x.gt.x1 .or. ( x .ne. x) ) goto 12
+#else
       if(x.gt.x1 .or. isnan(x) ) goto 12
+#endif
 
       ix=idint((x-x0)/(x1-x0)*dble(ib))+1
 
@@ -90,8 +95,8 @@ ccc   prints histograms
       entry histo2(ih,il)
 
       call length(outtag,outl)
-      open(10,file='outputs/output'//outtag(1:outl)//'.dat',
-     &     Access='append',Status='old')
+      fname='outputs/output'//outtag(1:outl)//'.dat'
+      open(10,file=trim(fname),Access='append',Status='old')
 
        call length(lab(ih),outl)
 
@@ -121,8 +126,7 @@ ccc   prints histograms
       iz=idint(h(ih,iv)/hx(ih)*30.)+1
       goto 25
    24 iz=-1
-      if(h(ih,iv).gt.0.d0)
-     .iz=idint(dlog(h(ih,iv))/dlog(hx(ih))*30.)+1
+      if(h(ih,iv).gt.0.d0) iz=idint(dlog(h(ih,iv))/dlog(hx(ih))*30.)+1
    25 if(iz.gt.0.and.iz.le.30) regel(iz)=star
       h(ih,iv)=h(ih,iv)
       write(6,26) z,h(ih,iv)/bsize/dble(it),(regel(i),i=1,30)

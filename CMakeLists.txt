@@ -23,16 +23,23 @@ add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn;-diag-disa
 #NVHPC
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave;-Mbounds;-traceback>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Minform=inform>")
+
 #Tier 2 support compilers
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-Msave>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,XL>:-qsave>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,LLVMFlang>:-Msave>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Flang>:-Msave>")
+#Tier 3 support compilers (will not compile,probably)
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NAG>:-dcfuns;-dusty>")
 if (SUPERCHIC_ENABLE_FPES)
   add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-ffpe-trap=zero,overflow,underflow,invalid,denormal>")
   add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-fpe0>")
   add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-fpe0>")
-  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Ktrap=divz,denorm,fp,inexact,inv,none,ovf,unf>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Ktrap=divz,denorm,fp,inexact,inv,ovf,unf>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Flang>:-ffp-exception-behavior=strict>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,XL>:-qflttrap=overflow:underflow:invalid:zerodivide:enable>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NAG>:-ieee=stop>")
+  add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,ARM>:-ffp-contract=on>")
 endif()
 
 add_definitions("-DDATA_PATH=\'${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_DATADIR}/SuperChic\'")
@@ -167,11 +174,13 @@ else()
                         "$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-mcmodel=medium>")
 endif()
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                            ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f 
                              PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)
 
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin" OR  ${CMAKE_VERSION} VERSION_LESS 3.18)
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
+                            ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f 
                              PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
 endif()
 
