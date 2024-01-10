@@ -57,11 +57,9 @@ ccc   prints out header information
       print*,'**********************************************************
      &**************'
       if(diffsd.eq.'n')then
-         call length(diff,outl)
-         write(*,96)' *',diff(1:outl),' : Dissociation flag'
+         write(*,96)' *',diff(1:3),' : Dissociation flag'
       else
-         call length(diffsd,outl)
-         write(*,96)' *',diffsd(1:outl),' : Dissociation flag'
+         write(*,96)' *',diffsd(1:3),' : Dissociation flag'
       endif
       print*,'**********************************************************
      &**************'
