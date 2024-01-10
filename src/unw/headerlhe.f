@@ -1,6 +1,7 @@
 ccc   prints out header information
       subroutine headerlhe
       implicit double precision(a-y)
+      integer i
       integer outl
 
       include 'gencuts.f'
