@@ -121,7 +121,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'mxs.f'
       character*10 tdiff,tbeam,bp
 
-      call system('mkdir -p inputs evrecs outputs')
+      call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
 
 ccccccc
 
