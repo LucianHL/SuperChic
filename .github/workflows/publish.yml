@@ -70,12 +70,6 @@ jobs:
           cmake --build BUILDifort -j
           cmake --install BUILDifort
 #          ctest --test-dir BUILDifort -j 2 --output-on-failure
-    - name: Compile_with_ifx   
-      run: |
-          cmake -S . -B BUILDifx -DCMAKE_Fortran_COMPILER=ifx -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALLifort  -DCMAKE_Fortran_FLAGS=-O1 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
-          cmake --build BUILDifx -j
-          cmake --install BUILDifx
-#          ctest --test-dir BUILDifx -j 2 --output-on-failure
 
   OSXx86_64_GNU:
     runs-on: macos-latest
