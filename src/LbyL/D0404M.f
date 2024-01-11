@@ -5,9 +5,6 @@
       REAL*8 AQ2,AP2,TET,zet2
       COMPLEX*16 AM12,IPI,XSPENZ,SQRT,LOG
       COMPLEX*16 A1,A2,A3,lA3,A2A3,A1A3
-!if defined(__FLANG)
-      REAL*8  IMAG
-!endif
       PARAMETER (zet2=1.6449340668482264364724151666460251d0)
 *
       IPI=DCMPLX(0d0,1d0)*4d0*DATAN(1d0)
@@ -29,7 +26,7 @@
 *     &+XSPENZ(-(1d0+A3)/(A2A3))
      & -XSPENZ(-A2A3/(1d0+A3))-1d0/2*LOG(A2A3/(1d0+A3))**2-zet2
      &-XSPENZ(-(lA3)/(A2+A3))
-     &+LOG(1d0+1d0/A3)*2d0*IPI*TET(-IMAG(A1+A3))
+     &+LOG(1d0+1d0/A3)*2d0*IPI*TET(-AIMAG(A1+A3))
      &                        )
 ** WC = 2*t/s
 *      WC = -AWC
