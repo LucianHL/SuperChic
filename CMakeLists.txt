@@ -16,10 +16,10 @@ add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy;-fbacktrac
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall;-Wextra;-Wno-unused-dummy-argument;-Wno-compare-reals;-Wno-do-subscript>")
 #Classical Intel
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-noauto;-traceback;-check>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-warn;-diag-disable 8889;-diag-disable 6717;-diag-disable 8291;-diag-disable 7712;-diag-disable 5194>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-warn;-diag-disable=10448;-diag-disable 8889;-diag-disable 6717;-diag-disable 8291;-diag-disable 7712;-diag-disable 5194>")
 #Intel LLVM
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-noauto;-traceback>")
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn;-diag-disable 8889;-diag-disable 6717;-diag-disable 8291;-diag-disable 7712;-diag-disable 5194>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,IntelLLVM>:-warn;-diag-disable=10448;-diag-disable 8889;-diag-disable 6717;-diag-disable 8291;-diag-disable 7712;-diag-disable 5194>")
 #NVHPC
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Msave;-Mbounds;-traceback>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,NVHPC>:-Minform=inform>")
