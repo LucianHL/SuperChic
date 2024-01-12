@@ -35,6 +35,10 @@ But `apfel` should be installed from the sources.
 ```
 git clone https://github.com/scarrazza/apfel.git  && cd  apfel && ./configure --disable-pywrap --prefix=/where_you_want && make && make install && cd  ../ && rm -rf apfel
 ```
+Alternatively, for CentOS8+ compatible distributions `apfel` can be installed from the HEPrpms (https://copr.fedorainfracloud.org/coprs/averbyts/HEPrpms/)
+```
+yum -y install dnf-plugins-core && dnf -y copr enable averbyts/HEPrpms && yum -y install apfel  
+```
 
 ### Fedora
 Most of the dependencies are present in the default repositories
@@ -45,6 +49,10 @@ yum -y install HepMC3 HepMC3-devel HepMC3-search lhapdf lhapdf-devel python-lhap
 But `apfel` should be installed from the sources.
 ```
 git clone https://github.com/scarrazza/apfel.git  && cd  apfel &&  cmake  -S . -B BUILD -DCMAKE_INSTALL_PREFIX=/where_you_want && cmake --build BUILD -j 8 && cmake --install BUILD && cd  ../ && rm -rf apfel
+```
+Alternatively, for the 3 most recent Fedora versions `apfel` can be installed from the HEPrpms (https://copr.fedorainfracloud.org/coprs/averbyts/HEPrpms/)
+```
+yum -y install dnf-plugins-core && dnf -y copr enable averbyts/HEPrpms && yum -y install apfel  
 ```
 
 ### MacOS X
