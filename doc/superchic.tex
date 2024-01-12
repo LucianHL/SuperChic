@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 
 
-\title{SuperChic v@PROJECT_VERSION@ : \\ \vspace{0.5cm}A Monte Carlo for Central Exclusive Production}
+\title{SuperChic v5 : \\ \vspace{0.5cm}A Monte Carlo for Central Exclusive Production}
 
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{cite}
@@ -51,36 +51,24 @@
 
 \section{Overview}
 
-\texttt{SuperChic@PROJECT_VERSION@} is a Fortran based Monte Carlo event 
+\texttt{SuperChic} is a Fortran based Monte Carlo event 
 generator for central exclusive and semi--exclusive production at parton 
 level, for a range of Standard Model final states. User--defined 
-histograms may be output, as well as unweighted events in HEPEVT and 
-Les Houches formats. By default the program makes use of the LHAPDF 
+histograms may be output, as well as unweighted events in 
+\texttt{LHE} and \texttt{HepMC} formats. Since version 5.0 a full test suite has been implemented to check the running and showering of all available processes. By default the program makes use of the \texttt{LHAPDF}
 library, but otherwise the code is completely stand--alone. Relevant 
 references are listed in Section~\ref{sec:ref}.
 
 \section{Installation}
 
 A compressed tar file containing all of the relevant code can be 
-downloaded at \url{http://projects.hepforge.org/superchic/} and at 
-\url{https://github.com/LucianHL/SuperChic}. To 
-extract it, simply execute \texttt{tar -xzvf 
-superchicv@PROJECT_VERSION@.tar.gz} and the 
-\texttt{superchicv@PROJECT_VERSION@} directory will be created. 
-This consists of:
-%
-\begin{itemize}
-\item \texttt{bin}: the executables \texttt{superchic} and \texttt{init} 
-\item \texttt{share} the input cards, e.g. \texttt{input.DAT}.
-\item \texttt{doc}: the source for this document.
-\item \texttt{src}: the Fortran source files in various subdirectories.
-\item \texttt{test}: the source files for testing suite.
-\end{itemize}
+downloaded at 
+\url{https://github.com/LucianHL/SuperChic}. Further details related to installation can then be found in the Readme file.
 
-\subsection{Build rerequirements}
+\subsection{Build requirements}
 
 \begin{itemize}
- \item \texttt{CMake} (\url{https://cmake.org/}) > 3.16 or \texttt{make}
+ \item \texttt{CMake} (\url{https://cmake.org/}) $>$ 3.16 or \texttt{make}
  \item Fortran compiller: \texttt{GNU}, \texttt{Intel}, \texttt{flang}, \texttt{NVFortran} were tested
  \item \texttt{APFEL}, \url{https://apfel.hepforge.org/}
  \item \texttt{LHAPDF}, see \url{https://lhapdf.hepforge.org/}
@@ -91,9 +79,7 @@ This consists of:
 
 \subsection{Build}
 
-Since the version 5.0 the recommended way to build the sources is to use \texttt{CMake}
-
-To compile simply run
+Since the version 5.0 the recommended way to build the sources is to use \texttt{CMake}. To compile simply run
 \newline
 \newline
 \texttt{> cmake -S . -B BUILD <extra flags>}
@@ -105,12 +91,11 @@ To compile simply run
 \newline
 and optionally
 \newline
+\newline
 \texttt{> ctest --test-dir BUILD}
 \newline
-
-to run all the tests.
-
-The extra flags might be:
+\newline
+to run all the tests. The extra flags might be:
 \begin{itemize}
 \item  generic \texttt{CMake} flags, e.g. \texttt{-DCMAKE\_INSTALL\_PREFIX=/my/home/dir},\\ \texttt{-DCMAKE\_Fortran\_COMPILER=ifort}, \texttt{-DCMAKE\_Fortran\_FLAGS="-O2 -g"}, etc.
 \item  flags pointing to the dependencies, \texttt{-DLHAPDF\_DIR=/where/the/LHAPDF/is}, \\\texttt{-DAPFEL\_DIR=/where/the/APFEL/is}
@@ -144,7 +129,7 @@ the proton PDF set used in QCD--initiated CEP. It is therefore not
 available on the LHAPDF website list.
 
 Please note: during the test phase it is recommended to use the \\ \texttt{-DSUPERCHIC\_DOWNLOAD\_PDFS=ON/OFF} flag so the 
-corresponding PDFs needed in the test will be installed automatically. Also, it is important to admitt that the sower settings used in the tests 
+corresponding PDFs needed in the test will be installed automatically. Also, it is possible that the shower settings used in the tests 
 might give slightly different results depending on the used \texttt{Pythia8} version and in some cases might not work at all.
 
 \section{Running with LHAPDF}
@@ -174,13 +159,14 @@ please add the following lines to the shell (bash) login script:
 \section{Input parameters and runtime options}
 
 After compilation, the  \texttt{superchic} and \texttt{init} executables
- can then be run in the \texttt{bin} directory, using the 
- \texttt{input.DAT} file to adjust the input parameters by
+ can then be run in the \texttt{bin} directory of the BUILD directory. One can either use the 
+ \texttt{input.DAT} file in this directory, after suitably adjusting the input parameters, or else the input cards used for tests (if this option is chosen) are available in the \texttt{test} directory. The user then runs with
 \newline
 \newline
 \texttt{> ./init < input.DAT}
 \newline
 \newline
+where  \texttt{input.DAT} is replaced with the appropriate input card if another is used.
 This creates the \texttt{hg[intag]}, \texttt{screening[intag]} and 
 \texttt{sudakov[intag]}\texttt{.dat} input files in the 
 \texttt{bin/inputs} directory, which are used by the main 
@@ -296,30 +282,52 @@ own histograms in \texttt{src/user/histo.f}. In addition, further user--defined 
 
 \section{Interfacing to Pythia}
 
+
 The unweighted event output is provided in standard (Les Houches, HEPEVT and HepMC) can be passed to external MCs for showering and 
-hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. In particular, 
-the following flags should be set:
+hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. In particular, for purely elastic production (i.e. with \texttt{diff} set to \texttt{el}) the following flags should be set:
 \\
 \\
- \texttt{PartonLevel:ISR = off}\\
- \texttt{ PartonLevel:MPI = off}\\
- \texttt{PartonLevel:Remnants = off}\\
- \texttt{Check:event = off}\\
- \texttt{LesHouches:matchInOut = off}\\
+\texttt{PartonLevel:MPI = off}\\
+\texttt{Check:event = off}\\
+\texttt{LesHouches:matchInOut = off}\\
+\texttt{PartonLevel:MPI = off}\\
+\texttt{SpaceShower:pTmaxMatch = 2}\\
+\texttt{BeamRemnants:primordialKT = off}\\
+\texttt{BeamRemnants:unresolvedHadron = 3}\\
+\texttt{SpaceShower:pTdampMatch=1}\\
+\texttt{PartonLevel:ISR = off}\\
+\texttt{LesHouches:matchInOut = off}\\
+\texttt{PartonLevel:Remnants = off}\\
+ \\
+ PartonLevel:MPI = off
+Check:event = off
+LesHouches:matchInOut = off
+PartonLevel:MPI = off
+SpaceShower:pTmaxMatch = 2
+BeamRemnants:primordialKT = off
+BeamRemnants:unresolvedHadron = 3
+SpaceShower:pTdampMatch=1
+PartonLevel:ISR = off
+LesHouches:matchInOut = off
+PartonLevel:Remnants = off
  
- For semi--exclusive photon--initiated production, the user should in particular produce individual runs for diff set to \texttt{el}, 
- \texttt{sda}, \texttt{sdb}, dd. These correspond to the cases of purely elastic scattering, single dissociation and double dissociation.
-  The sum of these cross sections will be equal to that of running with \texttt{diff} set to \texttt{tot}. The appropriate flags are then:
+ For semi--exclusive photon--initiated production, i.e. with \texttt{diff} set to 
+ \texttt{sda}, \texttt{sdb}, \texttt{dd}, the appropriate flags are:
  \\
 \\
+\texttt{PartonLevel:MPI = off}\\
+\texttt{Check:event = off}\\
+\texttt{LesHouches:matchInOut = off}\\
 \texttt{BeamRemnants:primordialKT = off}\\
-\texttt{PartonLevel:FSR = on}\\
 \texttt{SpaceShower:dipoleRecoil = on} \\
 \texttt{SpaceShower:pTmaxMatch = 2} \\
 \texttt{SpaceShower:QEDshowerByQ = off} \\
 \texttt{SpaceShower:pTdampMatch=1} \\
+\texttt{PDF:pSet = LHAPDF6:MSHT20qed\_nnlo}\\
 \texttt{BeamRemnants:unresolvedHadron = 0} for double dissociation (\texttt{dd}), 1 for single dissociation (\texttt{sdb}), 2 for single 
 dissociation (\texttt{sda}), 3 for elastic (\texttt{el}). \\
+
+We note that not all of the above setting are necessarily essential in order to ensure sensible showering, i.e. other options may be explored albeit at the user's own risk.
 
 \section{Summary of processes}\label{sec:proc}
 
@@ -810,6 +818,8 @@ via \texttt{APFEL}. Minor updates to implementation of survival effects.
 \item Version 4.14: Photon--initiated ALP production with dissociation added. Bug fixed for unweighted SD $W$ production in non--$e\mu$ decay channels.
 \item Version 4.15: bug fix in spin correlations for $J/\psi$ decay to leptons in photoproduction process. Effect minimal.
 \item Version 4.2. Mutual ion dissociation in ultraperipheral ion--ion collisions included. Simplified model processes 82--84 added. Minor bug fixes.
+\item Version 5.0. Some bug fixes and updates to unweighted event (in particular HepMC) outputs  added. Builds scripts for the cmake build system  implemented.
+ Tests of all the combinations of  processes and beams supported by SuperChic  implemented in the test suite.
 
 \end{itemize}
 
