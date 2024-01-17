@@ -43,7 +43,7 @@
 ****************************************************************************************
 .true.       ! [genunw] : Generate unweighted events
 @NEV@           ! [nev] : Number of events ( < 1000000 recommended)
-'@format@'	     ! [erec] : Event record format ('hepmc','lhe','hepevt')
+'@format@'	     ! [erec] : Event record format ('hepmc','lhe')
 .false.	     ! [readwt] : Set to true to read in pre-calculated maxium weight below
 0d0          ! [wtmax] : Maximum weight
 ****************************************************************************************

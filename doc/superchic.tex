@@ -239,8 +239,8 @@ amplitude. While comfortably set to high enough (sub \% level) precision for mos
   and confirms that the output is stable within the required precision. If not, it should set at a sufficiently high 
   value that this stability is reached: this will result in a longer runtime.
 \item \texttt{genunw}, \texttt{nev}, \texttt{erec}: set \texttt{genunw} to \texttt{.true.} to generate unweighted events,
- and specify required number of events with \texttt{nev}, and event record format (\texttt{lhe}, \texttt{hepevt} and 
- \texttt{hepmc} for Les Houches, HEPEVT and HepMC, respectively) with \texttt{erec}.
+ and specify required number of events with \texttt{nev}, and event record format (\texttt{lhe} and 
+ \texttt{hepmc} for Les Houches and HepMC, respectively) with \texttt{erec}.
 \item \texttt{readwt}, \texttt{wtmax}: set \texttt{readwt} to \texttt{.true.} to read in maximum weight \texttt{wtmax} 
 input by the user. This should be given by the output `maximum weight' in  \texttt{output[outtag].dat} of a run with 
 \texttt{genunw=.true.}, with all other physics inputs left unchanged. Setting \texttt{readwt} to \texttt{.true.} bypasses 
@@ -283,7 +283,7 @@ own histograms in \texttt{src/user/histo.f}. In addition, further user--defined 
 \section{Interfacing to Pythia}
 
 
-The unweighted event output is provided in standard (Les Houches, HEPEVT and HepMC) can be passed to external MCs for showering and 
+The unweighted event output is provided in standard (Les Houches and HepMC) can be passed to external MCs for showering and 
 hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. In particular, for purely elastic production (i.e. with \texttt{diff} set to \texttt{el}) the following flags should be set:
 \\
 \\
@@ -819,7 +819,7 @@ via \texttt{APFEL}. Minor updates to implementation of survival effects.
 \item Version 4.15: bug fix in spin correlations for $J/\psi$ decay to leptons in photoproduction process. Effect minimal.
 \item Version 4.2. Mutual ion dissociation in ultraperipheral ion--ion collisions included. Simplified model processes 82--84 added. Minor bug fixes.
 \item Version 5.0. Some bug fixes and updates to unweighted event (in particular HepMC) outputs  added. Builds scripts for the cmake build system  implemented.
- Tests of all the combinations of  processes and beams supported by SuperChic  implemented in the test suite.
+ Tests of all the combinations of  processes and beams supported by SuperChic  implemented in the test suite. Drop HEPEVT format output.
 
 \end{itemize}
 
