@@ -2,15 +2,16 @@ ccc   gg --> gg subprocess amplitude
       subroutine gg(p,mx,u,t,pp,mm,pm,mp)
       implicit none
       complex*16 pp,mm,pm,mp
-      double precision sphi,cphi,u,t,mx,alphas
+      double precision sphi,cphi,u,t,mx,alphas,phi
       integer p
 
       include 'zi.f'
       include 'pi.f'
       include 'partonmom2.f'
 
-      cphi=p1(1)/dsqrt(p1(1)**2+p1(2)**2)
-      sphi=p1(2)/dsqrt(p1(1)**2+p1(2)**2)
+      phi=datan2(p1(2),p1(1))
+      cphi=dcos(phi)
+      sphi=dsin(phi)
 
       if(p.eq.1)then            ! ++ final state
          pp=3d0/dsqrt(8d0)*8d0*pi*alphas(mx**2)

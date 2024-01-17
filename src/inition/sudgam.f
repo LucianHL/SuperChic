@@ -32,9 +32,6 @@
       double precision btmax,hb,sum,wt,sudgam,bt,lt,mll
       double precision sudgam_bt
       integer n,ntot
-!if defined(__INTEL_COMPILER) || defined(__INTEL_LLVM_COMPILER)
-      double precision dbesj0
-!endif
       include 'pi.f'
       include 'ion.f'
 
@@ -46,18 +43,15 @@
       ntot=1000
       hb=btmax/dble(ntot)
 
-c      write(6,*)dbesj0(0d0)
 
       do n=1,ntot
 
          bt=(dble(n)-0.5d0)*hb
 
          wt=sudgam_bt(bt,mll)
-         wt=wt*bt*dbesj0(bt*lt)
+         wt=wt*bt*BESSEL_J0(bt*lt)
          wt=wt/(2d0*pi)*hb
 
-c         write(6,*)'bt',bt,sudgam_bt(bt,mll)
-c         write(6,*)bt*dbesj0(bt*lt),bt*dbesj0(bt*lt)*hb
 
          sum=sum+wt
 

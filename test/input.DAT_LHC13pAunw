@@ -1,7 +1,7 @@
 ****************************************************************************************
 ******  RE-RUN ./init IF FIRST FIVE PARAMETERS ARE CHANGED (and beam = 'prot'):  *******
 ****************************************************************************************
-13d3           !  [rts] : CMS collision energy (GeV)
+130d3           !  [rts] : CMS collision energy (GeV)
 4	       !  [isurv] : Model of soft survival (from 1 -> 4, corresponding to arXiv:1306.2149)
 'in13'         !  [intag] for input files 
 ****************************************************************************************
@@ -9,14 +9,14 @@
 'MSHT20qed_nnlo'   ! [PDFname] : PDF set
 0                    ! [PDFmember] : PDF member
 ****************************************************************************************
-56      !  [proc] : Process number (see manual for labelling)
-'prot'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
-'test1'          ! [outtg]
+@process@      !  [proc] : Process number (see manual for labelling)
+'ionp'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
+'testLHC13pAunw_@process@_@diff@_@format@'          ! [outtg]
 .false.  !  [sfaci] : Include soft survival effects
 ****************************************************************************************
 ************************* Dissociation parameters for PI  ******************************
 ****************************************************************************************
-'el'    !  [diff] : elastic ('el'), single ('sd','sda','sdb') and double ('dd') dissociation. NB - modes other than 'el' only available for PI lepton pair production!
+'@diff@'    !  [diff] : elastic ('el'), single ('sd','sda','sdb') and double ('dd') dissociation. NB - modes other than 'el' only available for PI lepton pair production!
 ****************************************************************************************
 208d0   !  [an] : Ion mass number
 82d0    !  [az] : Ion atomic number
@@ -42,8 +42,8 @@
 ******************************* Unweighted events **************************************
 ****************************************************************************************
 .true.       ! [genunw] : Generate unweighted events
-10           ! [nev] : Number of events ( < 1000000 recommended)
-'hepmc'	     ! [erec] : Event record format ('hepmc','lhe','hepevt')
+@NEV@           ! [nev] : Number of events ( < 1000000 recommended)
+'@format@'	     ! [erec] : Event record format ('hepmc','lhe','hepevt')
 .false.	     ! [readwt] : Set to true to read in pre-calculated maxium weight below
 0d0          ! [wtmax] : Maximum weight
 ****************************************************************************************
@@ -52,8 +52,8 @@
 -2.5d0          ! [ymin]
 2.5d0          ! [ymax]
 5d0          ! [mmin]
-90d0          ! [mmax]
-.false.        ! [gencuts] : Generate cuts below
+1900d0          ! [mmax]
+@gencuts@        ! [gencuts] : Generate cuts below
 .true.        ! [scorr] : Include spin correlations
 .true.	      ! [fwidth] : Include finite width 
 ****************************************************************************************

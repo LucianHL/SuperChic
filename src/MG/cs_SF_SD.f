@@ -11,10 +11,8 @@ ccccc EPA form factors (proton)
       double precision qi(4),pqi(4),qi2(4),qsqi2
 c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
       double precision phot,garr(-6:6),fpdf,matelem,out_t
-      double precision ap,apd,api,apdi,sw,cw,eqi,eqim
       REAL*8 Pmom(0:3,6)
-      integer qin,qti,pflag
-      logical ati
+      integer qin,pflag
       complex*16 amptest
       double precision f1lo,f2lo,fk1
       common/amptest/amptest
@@ -38,13 +36,7 @@ c      complex*16 asf_store(2,4,2,2),awwnsf_store(2,4,2,2)
       include 'pol.f'
       include 'ewsf.f'
 
-
       pol=p
-
-      sw=dsqrt(1d0-mw**2/mz**2)
-      cw=dsqrt(1d0-sw**2)
-      ap=1d0-aq(2)/eq(2)/sw**2
-      apd=1d0-aq(1)/eq(1)/sw**2
 
 cccc  qin gives initial state quark on diss side
 cccc  qin = 1 : up type
@@ -53,38 +45,6 @@ cccc  qin = 3 : down type
 cccc  qin = 4 : anti down type
 
 ccccc pflag=1, photon from proton 1, pflag=2, photon from proton 2
-
-      if(qin.eq.1)then
-         api=ap
-         apdi=apd
-         ati=.false.            ! if true then antiquark
-         qti=1                  ! label for keeping track of quark flavour
-         eqi=eq(2)
-         eqim=eq(1)
-      elseif(qin.eq.2)then
-         api=ap
-         apdi=apd
-         ati=.true.
-         qti=2
-         eqi=eq(2)
-         eqim=eq(1)
-      elseif(qin.eq.3)then
-         api=apd
-         apdi=ap
-         ati=.false.
-         qti=2
-         eqi=eq(1)
-         eqim=eq(2)
-      else
-         api=apd
-         apdi=ap
-         ati=.true.
-         qti=1
-         eqi=eq(1)
-         eqim=eq(2)
-      endif
-
-cccccccccc
 
       do i=1,4
          q1(i)=q(i,1)-q(i,3)

@@ -24,9 +24,9 @@ ccc   calculates screened amplitude (in kt space)
          fr=fr*gaa(i)*gaa(j)*sige
          fr1=fr1*gaa(i)*gaa(j)*sige
 
-         out=out+wt*(1d0-dexp(-fr/2d0))*besj0(bt*dsqrt(ktsq))
+         out=out+wt*(1d0-dexp(-fr/2d0))*BESSEL_J0(bt*dsqrt(ktsq))
      &        *gaa(i)*gaa(j)
-         out1=out1+wt*(1d0-dexp(-fr1/2d0))*besj0(bt*dsqrt(ktsq))
+         out1=out1+wt*(1d0-dexp(-fr1/2d0))*BESSEL_J0(bt*dsqrt(ktsq))
      &        *gaa(i)*gaa(j)
 
       enddo

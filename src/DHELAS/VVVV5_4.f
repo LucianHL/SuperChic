@@ -39,16 +39,16 @@ C
       TMP9 = (V3(3)*V1(3)-V3(4)*V1(4)-V3(5)*V1(5)-V3(6)*V1(6))
       DENOM = COUP/(P4(0)**2-P4(1)**2-P4(2)**2-P4(3)**2 - M4 * (M4 -CI
      $ * W4))
-      V4(3)= DENOM*1D0/2D0*(OM4*-P4(0)*(-2D0 * CI*(TMP11*TMP19)+CI
+      V4(3)= DENOM*1D0/2D0*(OM4*(-P4(0))*(-2D0 * CI*(TMP11*TMP19)+CI
      $ *(TMP9*TMP20+TMP5*TMP21))+(-2D0 * CI*(V1(3)*TMP11)+CI*(V2(3)
      $ *TMP9+V3(3)*TMP5)))
-      V4(4)= DENOM*1D0/2D0*(OM4*-P4(1)*(-2D0 * CI*(TMP11*TMP19)+CI
+      V4(4)= DENOM*1D0/2D0*(OM4*(-P4(1))*(-2D0 * CI*(TMP11*TMP19)+CI
      $ *(TMP9*TMP20+TMP5*TMP21))+(-2D0 * CI*(V1(4)*TMP11)+CI*(V2(4)
      $ *TMP9+V3(4)*TMP5)))
-      V4(5)= DENOM*1D0/2D0*(OM4*-P4(2)*(-2D0 * CI*(TMP11*TMP19)+CI
+      V4(5)= DENOM*1D0/2D0*(OM4*(-P4(2))*(-2D0 * CI*(TMP11*TMP19)+CI
      $ *(TMP9*TMP20+TMP5*TMP21))+(-2D0 * CI*(V1(5)*TMP11)+CI*(V2(5)
      $ *TMP9+V3(5)*TMP5)))
-      V4(6)= DENOM*1D0/2D0*(OM4*-P4(3)*(-2D0 * CI*(TMP11*TMP19)+CI
+      V4(6)= DENOM*1D0/2D0*(OM4*(-P4(3))*(-2D0 * CI*(TMP11*TMP19)+CI
      $ *(TMP9*TMP20+TMP5*TMP21))+(-2D0 * CI*(V1(6)*TMP11)+CI*(V2(6)
      $ *TMP9+V3(6)*TMP5)))
       END

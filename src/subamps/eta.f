@@ -3,7 +3,7 @@ ccc   gg --> eta(')eta(') subprocess amplitudes
       implicit none
       double precision qqn1,mx,pmqqns,pmqqs,ppgg,ppqg,ppqqs
       double precision ppn,mmn,pmn,mpn
-      double precision out1,out2,out3,norm,cost,beta
+      double precision out1,out2,out3,norm,cost
       double precision ggn1,a2gn,a28n,a21n
       double precision alphas,u,t
       integer p
@@ -13,8 +13,10 @@ ccc   gg --> eta(')eta(') subprocess amplitudes
       include 'mixing.f'
       include 'partonmom2.f'
 
-      beta=dsqrt(p1(1)**2+p1(2)**2+p1(3)**2)/p1(4)
-      cost=p1(3)/p1(4)/beta
+C      beta=dsqrt(p1(1)**2+p1(2)**2+p1(3)**2)/p1(4)
+C      cost=p1(3)/p1(4)/beta
+      cost=p1(3)/dsqrt(p1(1)**2+p1(2)**2+p1(3)**2)
+       
 
       ppn=(1d0+cost**2)/(1d0-cost**2)**2
       mmn=ppn

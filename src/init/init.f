@@ -1,5 +1,6 @@
 ccc   Initialises grids for skewed PDFs and survival factors
-      implicit double precision(a-y)
+      program initpdfs
+      implicit none
       integer isurv
       character*100 dum
 
@@ -8,8 +9,10 @@ ccc   Initialises grids for skewed PDFs and survival factors
       include 'intag.f'
       include 'pdfinf.f'
       include 'mp.f'
+      include 'beam.f'
+      include 'proc.f'
 
-      call system('mkdir -p inputs evrecs outputs')
+      call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
       mp=0.938272046d0
       pi=dacos(-1d0)
 
@@ -25,6 +28,21 @@ ccccccc
       read(*,*)dum
       read(*,*)PDFname
       read(*,*)PDFmember
+      read(*,*)dum
+      read(*,*)proc
+      read(*,*)beam
+      if (beam .eq. 'el') then 
+      write(*,*)'Running the init program is not required for ee beams'
+      goto 999
+      end if
+C      if (beam .eq. 'ion') then 
+C      write(*,*)'Running the init program is not required for AA beams'
+C      goto 999
+C      end if
+C      if (beam .eq. 'ionp') then 
+C      write(*,*)'Running the init program is not required for pA beams'
+C      goto 999
+C      end if
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccc
 ccccccccc   Init LHAPDF
@@ -50,6 +68,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
       call calcsud           ! sudakov factor
       call calchg            ! skewed PDF
 
+ 999  continue
       print*,'Now run ./superchic'
 
       end
