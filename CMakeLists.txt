@@ -12,7 +12,7 @@ message(STATUS "SuperChic: LHAPDF_VERSION=${LHAPDF_VERSION} LHAPDF_LIBRARIES=${L
 find_package(APFEL REQUIRED)
 message(STATUS "SuperChic: APFEL_VERSION=${APFEL_VERSION} APFEL_LIBRARIES=${APFEL_LIBRARIES} APFEL_INCLUDE_DIRS=${APFEL_INCLUDE_DIRS}")
 #GNU
-add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy;-fbacktrace;-fcheck=all;-fno-automatic;-fimplicit-none>")
+add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy;-fbacktrace;-fcheck=all;-fno-automatic;-fimplicit-none;-ffree-line-length-none>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall;-Wextra;-Wno-unused-dummy-argument;-Wno-compare-reals;-Wno-do-subscript>")
 #Classical Intel
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,Intel>:-noauto;-traceback;-check>")
