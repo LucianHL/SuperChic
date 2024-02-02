@@ -5,6 +5,9 @@ set(PROJECT_VERSION 5.0)
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
 option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
+option(SUPERCHIC_ENABLE_SHARED       "Enables compilation of shared library." OFF)
+option(SUPERCHIC_INSTALL_LIBRARIES   "Enables installation of libraries." OFF)
+
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
 find_package(LHAPDF REQUIRED)
@@ -184,15 +187,20 @@ set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAK
                              PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
 endif()
 
-add_library(superchicLib SHARED ${sCODELHA})
-target_include_directories(superchicLib PRIVATE  ${scincludes})
-target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
-target_compile_options(superchicLib PRIVATE ${sccompile_options})
-set_target_properties(superchicLib PROPERTIES 
-  ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
-  LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
-  RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+if (SUPERCHIC_ENABLE_SHARED)
+  add_library(superchicLib SHARED ${sCODELHA})
+  target_include_directories(superchicLib PRIVATE  ${scincludes})
+  target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
+  target_compile_options(superchicLib PRIVATE ${sccompile_options})
+  set_target_properties(superchicLib PROPERTIES 
+    ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+    LIBRARY_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
+    RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
   )
+  if (SUPERCHIC_ENABLE_INSTALL_LIBRARIES)
+    install(TARGETS superchicLib   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
+  endif()
+endif()
 
 add_library(superchicLibstatic STATIC ${sCODELHA})
 target_include_directories(superchicLibstatic PRIVATE  ${scincludes})
@@ -244,8 +252,9 @@ file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/bin/input.DAT
               DESTINATION ${CMAKE_CURRENT_BINARY_DIR}/bin/)
 
 install(TARGETS superchic init DESTINATION ${CMAKE_INSTALL_BINDIR} COMPONENT bin)
-install(TARGETS superchicLib   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
-install(TARGETS superchicLibstatic   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
+if (SUPERCHIC_ENABLE_INSTALL_LIBRARIES)
+ install(TARGETS superchicLibstatic   DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT libs)
+endif()
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/Cards/ DESTINATION  ${CMAKE_INSTALL_DOCDIR}/Cards COMPONENT doc)
 if ( NOT "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}")

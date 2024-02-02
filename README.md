@@ -85,6 +85,8 @@ The extra flags might be:
  - `-DSUPERCHIC_ENABLE_TESTS=ON/OFF`     Enables building of tests.
  - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`      Enables floating point exceptions in the code.
  - `-DSUPERCHIC_ENABLE_DOCS=ON/OFF`      Enables building of PDF manual. 
+ - `-DSUPERCHIC_ENABLE_SHARED=ON/OFF`    Enables building of shared library. 
+ - `-DSUPERCHIC_INSTALL_LIBRARIES=ON/OFF`Enables installation of libraries. 
  
  The following options makes sense only when the testing is enabled.
  
