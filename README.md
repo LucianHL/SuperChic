@@ -9,7 +9,6 @@ The latest version of Superchic can be compiled with `CMake` build system.
 ### Build requirements: 
  - CMake (https://cmake.org/) > 3.16 or make
  - Fortran compiller: GNU, Intel, flang, NVFortran were tested
- - APFEL, https://apfel.hepforge.org/
  - LHAPDF, see https://lhapdf.hepforge.org/
  - Internet connection if the installation of PDFs was requested
  - C++ compiler, HepMC3 (https://ep-dep-sft.web.cern.ch/project/hepmc) and Pythia8 (https://pythia.org/) for the tests
@@ -17,8 +16,11 @@ The latest version of Superchic can be compiled with `CMake` build system.
 
 ### Runtime requirements:
 
- - APFEL, https://apfel.hepforge.org/
  - LHAPDF, see https://lhapdf.hepforge.org/
+
+## Development requirements
+
+ - APFEL, https://apfel.hepforge.org/ is needed to calculate the structure functions
 
 
 ## Obtaining the required dependencies
@@ -80,7 +82,7 @@ to run all the tests.
 
 The extra flags might be:
 - generic CMake flags, e.g. `-DCMAKE_INSTALL_PREFIX=/my/home/dir`, `-DCMAKE_Fortran_COMPILER=ifort`, `-DCMAKE_Fortran_FLAGS="-O2 -g"`, etc.
-- flags pointing to the dependencies, `-DLHAPDF_DIR=/where/the/LHAPDF/is`, `-DAPFEL_DIR=/where/the/APFEL/is`
+- flags pointing to the dependencies, `-DLHAPDF_DIR=/where/the/LHAPDF/is`
 - flags that regulate the compilation. In the current version there are the following flags: 
  - `-DSUPERCHIC_ENABLE_TESTS=ON/OFF`     Enables building of tests.
  - `-DSUPERCHIC_ENABLE_FPES=ON/OFF`      Enables floating point exceptions in the code.
