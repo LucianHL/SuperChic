@@ -12,8 +12,6 @@ include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
 find_package(LHAPDF REQUIRED)
 message(STATUS "SuperChic: LHAPDF_VERSION=${LHAPDF_VERSION} LHAPDF_LIBRARIES=${LHAPDF_LIBRARIES} LHAPDF_INCLUDE_DIRS=${LHAPDF_INCLUDE_DIRS}")
-find_package(APFEL REQUIRED)
-message(STATUS "SuperChic: APFEL_VERSION=${APFEL_VERSION} APFEL_LIBRARIES=${APFEL_LIBRARIES} APFEL_INCLUDE_DIRS=${APFEL_INCLUDE_DIRS}")
 #GNU
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-std=legacy;-fbacktrace;-fcheck=all;-fno-automatic;-fimplicit-none;-ffree-line-length-none>")
 add_compile_options("$<$<COMPILE_LANG_AND_ID:Fortran,GNU>:-Wall;-Wextra;-Wno-unused-dummy-argument;-Wno-compare-reals;-Wno-do-subscript>")
@@ -190,7 +188,7 @@ endif()
 if (SUPERCHIC_ENABLE_SHARED)
   add_library(superchicLib SHARED ${sCODELHA})
   target_include_directories(superchicLib PRIVATE  ${scincludes})
-  target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
+  target_link_libraries(superchicLib PRIVATE LHAPDF::LHAPDF)
   target_compile_options(superchicLib PRIVATE ${sccompile_options})
   set_target_properties(superchicLib PROPERTIES 
     ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
@@ -204,7 +202,7 @@ endif()
 
 add_library(superchicLibstatic STATIC ${sCODELHA})
 target_include_directories(superchicLibstatic PRIVATE  ${scincludes})
-target_link_libraries(superchicLibstatic PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol)
+target_link_libraries(superchicLibstatic PRIVATE LHAPDF::LHAPDF)
 target_compile_options(superchicLibstatic PRIVATE ${sccompile_options})
 set_target_properties(superchicLibstatic PROPERTIES  OUTPUT_NAME superchicLib-static
   ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR}/$<0:>
@@ -214,13 +212,13 @@ set_target_properties(superchicLibstatic PROPERTIES  OUTPUT_NAME superchicLib-st
   
 add_executable(superchic ${CMAKE_CURRENT_SOURCE_DIR}/src/main/superchic.f  ${InitfLHA} )
 target_include_directories(superchic PRIVATE  ${scincludes})
-target_link_libraries(superchic PRIVATE LHAPDF::LHAPDF APFEL::APFEL APFEL::APFELevol superchicLibstatic)
+target_link_libraries(superchic PRIVATE LHAPDF::LHAPDF superchicLibstatic)
 target_compile_options(superchic PRIVATE ${sccompile_options})
 set_target_properties(superchic PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
 add_executable(init ${CMAKE_CURRENT_SOURCE_DIR}/src/init/init.f ${InitfLHA})
 target_include_directories(init PRIVATE  ${scincludes})
-target_link_libraries(init PRIVATE LHAPDF::LHAPDF APFEL::APFEL  APFEL::APFELevol )
+target_link_libraries(init PRIVATE LHAPDF::LHAPDF )
 target_compile_options(init PRIVATE ${sccompile_options})
 set_target_properties(init PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
