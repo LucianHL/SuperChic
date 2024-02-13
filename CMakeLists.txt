@@ -224,6 +224,15 @@ target_link_libraries(init PRIVATE LHAPDF::LHAPDF APFEL::APFEL  APFEL::APFELevol
 target_compile_options(init PRIVATE ${sccompile_options})
 set_target_properties(init PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/${CMAKE_INSTALL_BINDIR}/$<0:>)
 
+FILE(MAKE_DIRECTORY ${PROJECT_BINARY_DIR}/unpacked/SF)
+add_custom_target( unZip ALL)
+add_custom_command(TARGET unZip PRE_BUILD
+   COMMAND ${CMAKE_COMMAND} -E remove_directory ${PROJECT_BINARY_DIR}/unpacked/SF/SF_MSHT20qed_nnlo
+   COMMAND ${CMAKE_COMMAND} -E tar xzf ${PROJECT_SOURCE_DIR}/share/SF/SF_MSHT20qed_nnlo.tar.gz
+WORKING_DIRECTORY ${PROJECT_BINARY_DIR}/unpacked/SF
+DEPENDS ${PROJECT_SOURCE_DIR}/share/SF/SF_MSHT20qed_nnlo.tar.gz
+COMMENT "Unpacking share/SF/SF_MSHT20qed_nnlo.tar.gz" 
+VERBATIM)
 
 ## MANUAL
 if (SUPERCHIC_ENABLE_DOCS)
@@ -278,7 +287,7 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/SplinesWithVariableKno
               ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Caldwell.dat
               ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Lepretre_25_103.dat 
               DESTINATION ${CMAKE_INSTALL_DATADIR}/SuperChic COMPONENT data)
-
+INSTALL(DIRECTORY ${CMAKE_BINARY_DIR}/unpacked/SF  DESTINATION ${CMAKE_INSTALL_DATADIR}/SuperChic)
 if (SUPERCHIC_ENABLE_TESTS)
   ENABLE_TESTING()
   add_subdirectory(test)
