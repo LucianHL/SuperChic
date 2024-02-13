@@ -1,7 +1,5 @@
 LIBFLAGlha = -lLHAPDF
-LIBFLAGapfel = -lAPFEL -lAPFELevol
 LHAPDFLIB = `lhapdf-config --prefix`/lib
-APFELLIB = /Users/luch/Desktop/superchics/apfel_install/lib
 FC = gfortran -g -w -Wall -fbacktrace -fcheck=all -fPIC
 # -ffixed-line-length-132
 
@@ -393,7 +391,7 @@ all : init superchic superchicLib
 
 
 superchicLib: $(sCODELHA)
-	$(FC) -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -mcmodel=large -shared -fPIC -o lib/libsuperchic.so $^
+	$(FC) -L$(LHAPDFLIB) $(LIBFLAGlha) -mcmodel=large -shared -fPIC -o lib/libsuperchic.so $^
 	ar rc lib/libsuperchic.a obj/*.o
 
 superchic.o:	superchic.f
@@ -412,10 +410,10 @@ $(OBJ_PATH)%.o: %.f
 	$(FC) $(FFLAGS) -I$(INCPATH) -c  $< -o $@
 
 superchic : $(OBJ_PATH)superchic.o $(sCODELHA)
-	$(FC) $^ -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -o bin/$@
+	$(FC) $^ -L$(LHAPDFLIB) $(LIBFLAGlha) -o bin/$@
 
 init : $(OBJ_PATH)init.o $(iCODELHA)
-	$(FC) $^ -L$(LHAPDFLIB) -L$(APFELLIB) $(LIBFLAGlha) $(LIBFLAGapfel) -o bin/$@
+	$(FC) $^ -L$(LHAPDFLIB) $(LIBFLAGlha) -o bin/$@
 
 clean:
 	rm -f bin/init bin/superchic lib/lib* *.o $(OBJ_PATH)*.o
