@@ -101,7 +101,7 @@ jobs:
              EOF
              sudo mv /tmp/oneAPI.repo /etc/yum.repos.d/
              dnf -y clean all
-             dnf -y install  intel-oneapi-compiler-dpcpp-cpp intel-oneapi-compiler-fortran
+             dnf -y install  intel-oneapi-compiler-dpcpp-cpp intel-oneapi-compiler-fortran findutils procps
              source /opt/intel/oneapi/compiler/latest/env/vars.sh
     - name: Compile_with_ifort   
       run: |
