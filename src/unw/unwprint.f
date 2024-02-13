@@ -199,15 +199,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             write(45,*)'</LesHouchesEvents>'
          endif
       endif
- 201  format(A1,i8,1x,i8)
-
- 200  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
-     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
-     & E19.8,E19.8)
-
- 300  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
-     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
-     & E19.8,E19.8)
 
  303  format(7x,i10,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
      &     E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,F2.0,1x,F2.0)
