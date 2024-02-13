@@ -8,7 +8,7 @@ on:
 
 jobs:
   Fedora37x86_64_GNU:
-    name: SC_on_Fedora37x86_64_GNU
+    name: Fedora37x86_64_GNU
     runs-on: ubuntu-latest
     container:
         image: fedora:37
@@ -29,7 +29,7 @@ jobs:
           ctest --test-dir BUILD -j 2 --output-on-failure
 
   Rocky9aarch64_GNU:
-    name: SC_on_Rocky9aarch64_GNU
+    name: Rocky9aarch64_GNU
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -46,6 +46,7 @@ jobs:
         image: arm64v8/rockylinux:9
         options: -v ${{ github.workspace }}:/work --platform=linux/arm64/v8
         run: |
+              cd work
               dnf -y install epel-release
               dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel
               cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
@@ -55,7 +56,7 @@ jobs:
 
 
   Rocky8x86_64_NVHPC:
-    name: SC_on_Rocky8x86_64_NVHPC
+    name: Rocky8x86_64_NVHPC
     runs-on: ubuntu-latest
     container:
         image: nvcr.io/nvidia/nvhpc:23.11-devel-cuda12.3-rockylinux8
@@ -77,7 +78,7 @@ jobs:
           cmake --install BUILD
 #          ctest --test-dir BUILD -j 2 --output-on-failure
 
-  compilejobFedorax86_64_Intel_HPCKIT:
+  Fedorax86_64_Intel_HPCKIT:
     name: Fedorax86_64_Intel_HPCKIT
     runs-on: ubuntu-latest
     container: fedora:latest
@@ -112,7 +113,7 @@ jobs:
 
   OSXx86_64_GNU:
     runs-on: macos-latest
-    name: SC_on_OSXx86_64_GNU
+    name: OSXx86_64_GNU
     steps:
     - name: Checkout
       uses: actions/checkout@v3
