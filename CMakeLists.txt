@@ -7,7 +7,7 @@ option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
 option(SUPERCHIC_ENABLE_SHARED       "Enables compilation of shared library." OFF)
 option(SUPERCHIC_INSTALL_LIBRARIES   "Enables installation of libraries." OFF)
-option(SUPERCHIC_ENABLE_APFELSF      "Enables compilation of executables used to created SF with APFEL." ON)
+option(SUPERCHIC_ENABLE_APFELSF      "Enables compilation of executables used to created SF with APFEL." OFF)
 
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})

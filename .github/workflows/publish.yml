@@ -121,7 +121,8 @@ jobs:
       run: |
           brew install wget coreutils gcc gsed make
           brew tap davidchall/hep
-          brew install lhapdf apfel pythia8 hepmc3 hepmc2 rivet yoda
+          brew install lhapdf pythia8 hepmc3 hepmc2 
+#          brew install  apfel rivet yoda
     - name: Compile_with_make
       run: |
            mkdir -p obj lib
