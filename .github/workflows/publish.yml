@@ -68,7 +68,7 @@ jobs:
            yum -y install epel-release
            dnf -y install 'dnf-command(copr)'
            dnf -y copr enable averbyts/HEPrpms 
-           dnf -y install  apfel apfel-devel Rivet Rivet-devel
+           #dnf -y install  apfel apfel-devel Rivet Rivet-devel
            dnf config-manager --set-enabled powertools
            yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel
     - name: Compile   
@@ -88,7 +88,7 @@ jobs:
       run: |
              dnf -y install 'dnf-command(copr)'
              dnf -y copr enable averbyts/HEPrpms 
-             dnf -y install apfel apfel-devel Rivet Rivet-devel
+             #dnf -y install apfel apfel-devel Rivet Rivet-devel
              dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel 
              tee > /tmp/oneAPI.repo << EOF
              [oneAPI]

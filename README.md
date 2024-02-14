@@ -130,3 +130,15 @@ For the debug purposes it is useful to compile SeuperChic with the following opt
 -DSUPERCHIC_ENABLE_FPES=ON -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_ENABLE_ALL_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON -DCMAKE_Fortran_FLAGS="-O2 -g"
 ```
 
+## Developing  SuperChic
+The CMake build system has a developer-only option `SUPERCHIC_ENABLE_APFELSF`. With this option turned on,
+an executable `apfelsf` can be build (APFEL and LHAPDF are required). The executable can be used to rebuild the SF "pseudo-PDFs',e.g.
+```
+cmake -S . -B BUILD -DSUPERCHIC_ENABLE_APFELSF=ON
+cmake --build BUILD
+BUILD/apfelsf <PDFNAME>
+
+```
+The results will be stored in the directory SF_<PDFNAME>. <PDFNAME> should be installed and accessible by LHAPDF.
+
+
