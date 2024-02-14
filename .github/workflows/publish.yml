@@ -8,7 +8,7 @@ on:
 
 jobs:
   Fedora37x86_64_GNU:
-    name: SC_on_Fedora37x86_64_GNU
+    name: Fedora37x86_64_GNU
     runs-on: ubuntu-latest
     container:
         image: fedora:37
@@ -19,7 +19,8 @@ jobs:
       run: |
            dnf -y install 'dnf-command(copr)'
            dnf -y copr enable averbyts/HEPrpms 
-           dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel Rivet Rivet-devel
+           dnf -y install apfel apfel-devel Rivet Rivet-devel
+           dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel 
     - name: Compile
       run: |
           cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
@@ -27,8 +28,35 @@ jobs:
           cmake --install BUILD
           ctest --test-dir BUILD -j 2 --output-on-failure
 
+  Rocky9aarch64_GNU:
+    name: Rocky9aarch64_GNU
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: QEMU
+      run: |
+           set -x
+           sudo apt update
+           sudo  apt install --yes binfmt-support qemu-user-static wget
+    - name: Compile_with_arm
+      continue-on-error: true     
+      uses: addnab/docker-run-action@v3
+      with:
+        image: arm64v8/rockylinux:9
+        options: -v ${{ github.workspace }}:/work --platform=linux/arm64/v8
+        run: |
+              cd work
+              dnf -y install epel-release
+              dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel
+              cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+              cmake --build BUILD -j --verbose
+              cmake --install BUILD
+              #ctest --test-dir BUILD -j 2 --output-on-failure
+
+
   Rocky8x86_64_NVHPC:
-    name: SC_on_Rocky8x86_64_NVHPC
+    name: Rocky8x86_64_NVHPC
     runs-on: ubuntu-latest
     container:
         image: nvcr.io/nvidia/nvhpc:23.11-devel-cuda12.3-rockylinux8
@@ -40,8 +68,9 @@ jobs:
            yum -y install epel-release
            dnf -y install 'dnf-command(copr)'
            dnf -y copr enable averbyts/HEPrpms 
+           dnf -y install  apfel apfel-devel Rivet Rivet-devel
            dnf config-manager --set-enabled powertools
-           yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel Rivet Rivet-devel
+           yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel
     - name: Compile   
       run: |
           cmake -S . -B BUILD  -DCMAKE_Fortran_COMPILER=nvfortran -DCMAKE_CXX_COMPILER=nvc++ -DCMAKE_C_COMPILER=nvc -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
@@ -49,7 +78,7 @@ jobs:
           cmake --install BUILD
 #          ctest --test-dir BUILD -j 2 --output-on-failure
 
-  compilejobFedorax86_64_Intel_HPCKIT:
+  Fedorax86_64_Intel_HPCKIT:
     name: Fedorax86_64_Intel_HPCKIT
     runs-on: ubuntu-latest
     container: fedora:latest
@@ -59,7 +88,8 @@ jobs:
       run: |
              dnf -y install 'dnf-command(copr)'
              dnf -y copr enable averbyts/HEPrpms 
-             dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel  apfel apfel-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel Rivet Rivet-devel
+             dnf -y install apfel apfel-devel Rivet Rivet-devel
+             dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel 
              tee > /tmp/oneAPI.repo << EOF
              [oneAPI]
              name=Intel(R) oneAPI repository
@@ -71,7 +101,7 @@ jobs:
              EOF
              sudo mv /tmp/oneAPI.repo /etc/yum.repos.d/
              dnf -y clean all
-             dnf -y install  intel-oneapi-compiler-dpcpp-cpp intel-oneapi-compiler-fortran
+             dnf -y install  intel-oneapi-compiler-dpcpp-cpp intel-oneapi-compiler-fortran findutils procps
              source /opt/intel/oneapi/compiler/latest/env/vars.sh
     - name: Compile_with_ifort   
       run: |
@@ -83,7 +113,7 @@ jobs:
 
   OSXx86_64_GNU:
     runs-on: macos-latest
-    name: SC_on_OSXx86_64_GNU
+    name: OSXx86_64_GNU
     steps:
     - name: Checkout
       uses: actions/checkout@v3
@@ -96,7 +126,6 @@ jobs:
       run: |
            mkdir -p obj lib
            gsed -i 's/gfortran/gfortran-13/g' makefile.make
-           gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile.make
            cat makefile.make
            make -f makefile.make -j 2
     - name: Compile_with_cmake

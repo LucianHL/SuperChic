@@ -102,7 +102,7 @@ The extra flags might be:
  - `-DSUPERCHIC_ENABLE_PROFILE=ON/OFF`   Enables callgrind profiling.
 
 ## Building SuperChic with make (not recommended )
-Make sure the `apfel-config` and `lhapdf-config` are in the `PATH`
+Make sure the `lhapdf-config` is in the `PATH`
 ``
 make -f makefile.make
 ``
