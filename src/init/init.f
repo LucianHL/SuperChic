@@ -28,6 +28,8 @@ ccccccc
       read(*,*)dum
       read(*,*)PDFname
       read(*,*)PDFmember
+      SFPDFname='SF_MSHT20qed_nnlo'
+      SFPDFmember=0
       read(*,*)dum
       read(*,*)proc
       read(*,*)beam
