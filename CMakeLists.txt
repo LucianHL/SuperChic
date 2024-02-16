@@ -7,6 +7,7 @@ option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
 option(SUPERCHIC_ENABLE_SHARED       "Enables compilation of shared library." OFF)
 option(SUPERCHIC_INSTALL_LIBRARIES   "Enables installation of libraries." OFF)
+option(SUPERCHIC_ENABLE_APFELSF      "Enables compilation of executables used to created SF with APFEL." OFF)
 
 include("GNUInstallDirs")
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake/Modules ${CMAKE_MODULE_PATH})
@@ -286,6 +287,12 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/SplinesWithVariableKno
               ${CMAKE_CURRENT_SOURCE_DIR}/share/SuperChic/Lepretre_25_103.dat 
               DESTINATION ${CMAKE_INSTALL_DATADIR}/SuperChic COMPONENT data)
 INSTALL(DIRECTORY ${CMAKE_BINARY_DIR}/unpacked/SF  DESTINATION ${CMAKE_INSTALL_DATADIR}/SuperChic)
+
+if (SUPERCHIC_ENABLE_APFELSF)
+  find_package(APFEL REQUIRED)
+  add_executable(apfelsf SF/apfelsf.f)
+  target_link_libraries(apfelsf PRIVATE APFEL::APFEL APFEL::APFELevol)
+endif()
 if (SUPERCHIC_ENABLE_TESTS)
   ENABLE_TESTING()
   add_subdirectory(test)
