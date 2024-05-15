@@ -205,6 +205,8 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2         
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -231,6 +233,8 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -257,6 +261,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -284,6 +291,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -311,6 +321,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -340,6 +353,9 @@ cccccccccccccccc
          istup(6)=1
          istup(7)=1
          istup(8)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -373,6 +389,9 @@ cccccccccccccccc
          istup(6)=1
          istup(7)=1
          istup(8)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -409,6 +428,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -440,6 +462,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -471,6 +496,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -502,6 +530,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -533,6 +564,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -570,6 +604,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -608,6 +645,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -644,6 +684,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -675,6 +718,9 @@ cccccccccccccccc
          istup(5)=2
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -722,6 +768,9 @@ cccccccccccccccc
          icolup(2,6)=0
          icolup(1,7)=0
          icolup(2,7)=0
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -782,6 +831,9 @@ cccccccccccccccc
          icolup(2,6)=0
          icolup(1,7)=0
          icolup(2,7)=0
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -841,6 +893,9 @@ cccccccccccccccc
          icolup(2,6)=0
          icolup(1,7)=0
          icolup(2,7)=0
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -2347,6 +2402,9 @@ cccccccccccccccc
          istup(9)=1
          istup(10)=1
          istup(11)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -2486,6 +2544,9 @@ cccccccccccccccc
          istup(9)=1
          istup(10)=1
          istup(11)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -2573,6 +2634,9 @@ cccccccccccccccc
             istup(5)=2
             istup(6)=1
             istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
             mothup(1,6)=3
             mothup(2,6)=0
             mothup(1,7)=3
@@ -2635,6 +2699,9 @@ cccccccccccccccc
             istup(5)=2
             istup(6)=1
             istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
             mothup(1,6)=3
             mothup(2,6)=0
             mothup(1,7)=3
@@ -2699,6 +2766,8 @@ cccccccccccccccc
             istup(5)=2
             istup(6)=1
             istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
             mothup(1,6)=3
             mothup(2,6)=0
             mothup(1,7)=3
@@ -2727,6 +2796,9 @@ cccccccccccccccc
          istup(5)=3
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -2790,6 +2862,9 @@ cccccccccccccccc
          istup(5)=2
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -2934,6 +3009,8 @@ cccccccccccccccc
          istup(5)=2
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -2962,6 +3039,9 @@ cccccccccccccccc
          istup(5)=2
          istup(6)=1
          istup(7)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -3004,6 +3084,9 @@ cccccccccccccccc
          istup(11)=1
          istup(12)=1
          istup(13)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -3080,6 +3163,8 @@ cccccccccccccccc
          istup(11)=1
          istup(12)=1
          istup(13)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -3157,6 +3242,8 @@ cccccccccccccccc
          istup(11)=1
          istup(12)=1
          istup(13)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
@@ -3229,6 +3316,9 @@ cccccccccccccccc
          istup(9)=1
          istup(10)=1
          istup(11)=1
+            mothup(1,5)=1
+            mothup(2,5)=2
+         
          mothup(1,6)=3
          mothup(2,6)=0
          mothup(1,7)=3
