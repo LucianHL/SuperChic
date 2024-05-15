@@ -23,7 +23,7 @@ ccc   for four-body phase space
          sum=sum+wt
       enddo
 
-      wt6i=sum/dfloat(nrun)
+      wt6i=sum/dble(nrun)
 
       return
       end

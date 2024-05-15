@@ -2,7 +2,7 @@
 ccc   prints out header information
       subroutine header
       implicit none
-      integer outl,outl1
+      integer outl,outl1, i
 
       include 'gencuts.f'
       include 'range.f'
@@ -27,40 +27,13 @@ ccc   prints out header information
       include 'rech.f'
       include 'diff.f'
       include 'quarkonia.f'
+      include 'head.f'
 
       call length(procn,outl)
-
-      print*,'***********************************************'
-      print*,'**************  Superchic v4.2 ***************'
-      print*,'***********************************************'
-      print*,'*   v4.2                     DATE  13/03/23  *'
-      print*,'*                                             *'
-      print*,'* Author: Lucian Harland-Lang                 *'
-      print*,'* (l.harland-lang@ucl.ac.uk)                  *'
-      print*,'*                                             *'
-      print*,'* For details see                             *'
-      print*,'*                                             *'
-      print*,'* arXiv 2303.04826 (ion dissociation)         *'
-      print*,'* arXiv 2201.08403 (WW updates)               *'
-      print*,'* arXiv 2007.12704 (v4 updates)               *'
-      print*,'* arXiv 1812.04886 (SUSY)                     *'
-      print*,'* arXiv 1810.06567                            *'
-      print*,'* arXiv 1508.02718                            *'
-      print*,'* arXiv 1405.0018 (review)                    *'
-      print*,'* arXiv 1005.0695 (quarkonia and diphoton)    *'
-      print*,'* arXiv 1011.0680 (quarkonia)                 *'
-      print*,'* arXiv 1105.1626 (meson pairs)               *'
-      print*,"* arXiv 1302.2004 (meson pairs - eta/eta')    *"
-      print*,'* arXiv 1306.6661 (Skewed PDF)                *'
-      print*,'* arXiv 1306.2149 (Skewed PDF)                *'
-      print*,'*                                             *'
-      print*,'*  Available at :                             *'
-      print*,'*  http:://projects.hepforge.org/superchic    *'
-      print*,'*                                             *'
-      print*,'***********************************************'
-      print*,''
-      print*,'**********************************************************
-     &**************'
+      do i=1,30
+      print*,head(i)
+      end do
+      
       call length(procn,outl)
       call length(beam,outl1)
       print*,'* ',procn(1:outl),' production'
@@ -84,11 +57,9 @@ ccc   prints out header information
       print*,'**********************************************************
      &**************'
       if(diffsd.eq.'n')then
-         call length(diff,outl)
-         write(*,96)' *',diff(1:outl),' : Dissociation flag'
+         write(*,96)' *',diff(1:3),' : Dissociation flag'
       else
-         call length(diffsd,outl)
-         write(*,96)' *',diffsd(1:outl),' : Dissociation flag'
+         write(*,96)' *',diffsd(1:3),' : Dissociation flag'
       endif
       print*,'**********************************************************
      &**************'

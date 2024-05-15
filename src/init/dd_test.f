@@ -63,7 +63,7 @@ c     &           *gaa(i1)
 
  900  enddo
 
-      sum=sum/dfloat(ntotal1)**2
+      sum=sum/DBLE(ntotal1)**2
 
       sum1=0d0
 
@@ -105,7 +105,7 @@ c     &           *gaa(i1)
 
  810  enddo
 
-      sum1=sum1/dfloat(ntotal)
+      sum1=sum1/DBLE(ntotal)
 
 c      sum1=sum1/4d0/pi**2
 c      sum=sum/2d0/pi

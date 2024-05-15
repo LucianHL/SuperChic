@@ -1,129 +1,136 @@
-name: publish
-on: 
-  push:
-  pull_request:  
-  schedule:
-    - cron: "0 7 * * 2"
+name: build
+on:
+ push:
+ pull_request:
+ schedule:
+#Every 50 days at midnight 
+    - cron:  "0 0 1/600 * *"
+
 jobs:
-  build-superchic-docker-image:
+  Fedora37x86_64_GNU:
+    name: Fedora37x86_64_GNU
     runs-on: ubuntu-latest
-    name: Build superchic Docker image
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-          fetch-depth: 2 
-    - name: Check if the Docker file was changed
-      id: changed-docker-files
-      uses: tj-actions/changed-files@v38
-      with:
-          files: Dockerfile
-
-    - name: Login to GitHub Container Registry
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
-    - name: Build the superchic Docker image on the change of Dockerfile
-      if: steps.changed-docker-files.outputs.any_changed == 'true' 
-      run: |
-         docker build . --tag ghcr.io/andriish/superchic:latest
-         docker run ghcr.io/andriish/superchic:latest
-         docker push ghcr.io/andriish/superchic
-    - name: Build the superchic Docker image on schedule
-      if: ${{ github.event_name == 'schedule' }}
-      run: |
-         docker build . --tag ghcr.io/andriish/superchic:latest
-         docker run ghcr.io/andriish/superchic:latest
-         docker push ghcr.io/andriish/superchic
-
-  run-in-superchic-docker-image-gmake:
-    name: Run in superchic Docker image  with gmake
-    runs-on: ubuntu-latest
-    needs: build-superchic-docker-image
     container:
-            image: ghcr.io/andriish/superchic:latest
-            credentials:
-               username: ${{ github.actor }}
-               password: ${{ secrets.GITHUB_TOKEN }}
+        image: fedora:37
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         export SUPERCHIC_DATA_PATH=$(pwd)/share/SuperChic
-         mkdir -p obj lib
-         gmake
-         gmake init
-         ls -lah 
-         ls -lah bin
-         mkdir RUN
-         cd RUN
-         #mkdir -p inputs evrecs outputs
-         cp -r ../bin/init ./
-         ../bin/init < ../test/input.DAT_1
-         ../bin/superchic < ../test/input.DAT_1
-         find ./
-         cat evrecs/evrectest1.dat
-         ../bin/superchic < ../test/input.DAT_3
-         find ./
-         cat evrecs/evrectest3.dat
-         ../bin/superchic < ../test/input.DAT_9
-         find ./
-         cat evrecs/evrectest9.dat
-  run-in-superchic-docker-image-cmake:
-    name: Run in superchic Docker image with cmake
-    runs-on: ubuntu-latest
-    needs: build-superchic-docker-image
-    container:
-            image: ghcr.io/andriish/superchic:latest
-            credentials:
-               username: ${{ github.actor }}
-               password: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON
-         cmake --build BUILD -j 2
-         cmake --install BUILD 
-         ls -lah 
-         ls -lah bin
-         ls -lah BUILD
-         find INSTALL
-         ctest --test-dir BUILD -j 3 --output-on-failure
+    - name: Install 
+      run: |
+           dnf -y install 'dnf-command(copr)'
+           dnf -y copr enable averbyts/HEPrpms 
+           dnf -y install apfel apfel-devel Rivet Rivet-devel
+           dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel 
+    - name: Compile
+      run: |
+          cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+          cmake --build BUILD -j
+          cmake --install BUILD
+          ctest --test-dir BUILD -j 2 --output-on-failure
 
-  run-on-Darwin-cmake:
+  Rocky9aarch64_GNU:
+    name: Rocky9aarch64_GNU
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: QEMU
+      run: |
+           set -x
+           sudo apt update
+           sudo  apt install --yes binfmt-support qemu-user-static wget
+    - name: Compile_with_arm
+      continue-on-error: true     
+      uses: addnab/docker-run-action@v3
+      with:
+        image: arm64v8/rockylinux:9
+        options: -v ${{ github.workspace }}:/work --platform=linux/arm64/v8
+        run: |
+              cd work
+              dnf -y install epel-release
+              dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel
+              cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+              cmake --build BUILD -j --verbose
+              cmake --install BUILD
+              #ctest --test-dir BUILD -j 2 --output-on-failure
+
+
+  Rocky8x86_64_NVHPC:
+    name: Rocky8x86_64_NVHPC
+    runs-on: ubuntu-latest
+    container:
+        image: nvcr.io/nvidia/nvhpc:23.11-devel-cuda12.3-rockylinux8
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Install 
+      run: |
+           yum -y install epel-release
+           dnf -y install 'dnf-command(copr)'
+           dnf -y copr enable averbyts/HEPrpms 
+           #dnf -y install  apfel apfel-devel Rivet Rivet-devel
+           dnf config-manager --set-enabled powertools
+           yum -y install  gcc gcc-c++ make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel
+    - name: Compile   
+      run: |
+          cmake -S . -B BUILD  -DCMAKE_Fortran_COMPILER=nvfortran -DCMAKE_CXX_COMPILER=nvc++ -DCMAKE_C_COMPILER=nvc -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALL  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+          cmake --build BUILD -j
+          cmake --install BUILD
+#          ctest --test-dir BUILD -j 2 --output-on-failure
+
+  Fedorax86_64_Intel_HPCKIT:
+    name: Fedorax86_64_Intel_HPCKIT
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install
+      run: |
+             dnf -y install 'dnf-command(copr)'
+             dnf -y copr enable averbyts/HEPrpms 
+             #dnf -y install apfel apfel-devel Rivet Rivet-devel
+             dnf -y install  gcc gcc-c++ gcc-gfortran make wget which cmake cmake-data cmake-filesystem lhapdf lhapdf-devel pythia8 pythia8-devel pythia8-lhapdf HepMC3-devel HepMC-devel 
+             tee > /tmp/oneAPI.repo << EOF
+             [oneAPI]
+             name=Intel(R) oneAPI repository
+             baseurl=https://yum.repos.intel.com/oneapi
+             enabled=1
+             gpgcheck=1
+             repo_gpgcheck=1
+             gpgkey=https://yum.repos.intel.com/intel-gpg-keys/GPG-PUB-KEY-INTEL-SW-PRODUCTS.PUB
+             EOF
+             sudo mv /tmp/oneAPI.repo /etc/yum.repos.d/
+             dnf -y clean all
+             dnf -y install  intel-oneapi-compiler-dpcpp-cpp intel-oneapi-compiler-fortran findutils procps
+             source /opt/intel/oneapi/compiler/latest/env/vars.sh
+    - name: Compile_with_ifort   
+      run: |
+          source /opt/intel/oneapi/compiler/latest/env/vars.sh
+          cmake -S . -B BUILDifort -DCMAKE_Fortran_COMPILER=ifort -DCMAKE_INSTALL_PREFIX=$(pwd)/../INSTALLifort  -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=ON -DSUPERCHIC_DOWNLOAD_PDFS=ON
+          cmake --build BUILDifort -j
+          cmake --install BUILDifort
+#          ctest --test-dir BUILDifort -j 2 --output-on-failure
+
+  OSXx86_64_GNU:
     runs-on: macos-latest
-    name: run on Darwin
+    name: OSXx86_64_GNU
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-      with:
-          fetch-depth: 3 
-    - name: Run
-      run : |
-         brew install wget coreutils gcc
-         brew tap davidchall/hep
-         brew install hepmc3 pythia8 lhapdf git gsed
-         git clone https://github.com/scarrazza/apfel.git  && cd  apfel && FC=gfortran-13 ./configure  --disable-pywrap  && make && make install && cd  ../ && rm -rf apfel
-         mkdir -p obj lib
-         gsed -i 's/gfortran/gfortran-13/g' makefile
-         gsed -i '4s/.*/APFELLIB=\`apfel-config --libdir\`/' makefile
-         cat makefile
-         make -j 2
-         cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13
-         cmake --build BUILD -j 2 --verbose
-         cmake --install BUILD 
-         ls -lah 
-         ls -lah bin
-         ls -lah BUILD
-         find INSTALL
-#         ctest --test-dir BUILD -j 3 --output-on-failure
-
+    - name: Install 
+      run: |
+          brew install wget coreutils gcc gsed make
+          brew tap davidchall/hep
+          brew install lhapdf pythia8 hepmc3 hepmc2 
+#          brew install  apfel rivet yoda
+    - name: Compile_with_make
+      run: |
+           mkdir -p obj lib
+           gsed -i 's/gfortran/gfortran-13/g' makefile.make
+           cat makefile.make
+           make -f makefile.make -j 2
+    - name: Compile_with_cmake
+      run: |
+           cmake -S . -B BUILD -DCMAKE_INSTALL_PREFIX=$(pwd)/INSTALL -DCMAKE_Fortran_FLAGS=-O2 -DSUPERCHIC_ENABLE_TESTS=OFF -DCMAKE_Fortran_COMPILER=gfortran-13 -DSUPERCHIC_DOWNLOAD_PDFS=ON
+           cmake --build BUILD -j 2 --verbose
+           cmake --install BUILD 

@@ -5,10 +5,14 @@
 
       include 'pdfinf.f'
       include 'ewsf.f'
-
-c      call initpdfsetm(2,'SF_MMHT2015qed_nnlo')
-      call initpdfsetm(2,'SF_MSHT20qed_nnlo')
-      call initpdfm(2,0)
+      
+      if (SFPDFname .eq. 'SF_MSHT20qed_nnlo') goto 1
+!      if (SFPDFname .eq. 'SF_MMHT2015qed_nnlo') goto 1
+      write(*,*)'Wrong SF table name: '//SFPDFname
+      stop 1
+  1   continue
+      call initpdfsetm(2,SFPDFname)
+      call initpdfm(2,SFPDFmember)
 
       Sin2ThetaW=0.23126d0
       ve = - 0.5d0 + 2d0 * Sin2ThetaW

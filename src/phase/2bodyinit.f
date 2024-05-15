@@ -21,7 +21,7 @@ ccc   for two-body phase space
          sum=sum+wt
       enddo
 
-      wt2i(i)=sum/dfloat(nrun)
+      wt2i(i)=sum/dble(nrun)
 
       return
       end

@@ -289,7 +289,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
            endif
 
             if(i.eq.1)then
-               write(45,*)'<LesHouchesEvents version="1.0">'
+               write(45,'(A)')'<LesHouchesEvents version="1.0">'
                write(45,*)'<header>'
                call headerlhe
                write(45,*)'</header>'
@@ -420,69 +420,7 @@ c$$$               enddo
  304        format(i2,4x,i1,3x,F2.0,3x,E16.9,3x,E16.9,3x,E16.9)
             
          endif
-         
-ccccccccccccccccccccccccccccccccccccccccccccccc
-cccc  HEPEVT
-ccccccccccccccccccccccccccccccccccccccccccccccc
-         
-         if(erec.eq.'hepevt')then
-            
-            nevhep=nev
-            
-            do k=1,nhep
-               idhep(k)=pdgid(k)
-            enddo
-            
-           do k=3,nhep
-              do l=1,4
-                 phep(l,k)=evrec(j,k,l)
-              enddo
-              phep(5,k)=dsqrt(dabs(phep(4,k)**2-phep(3,k)**2
-     &             -phep(2,k)**2-phep(1,k)**2))
-           enddo
 
-           if(beam.eq.'prot')then
-              if(phep(5,3).gt.1d0)idhep(3)=92
-              if(phep(5,4).gt.1d0)idhep(4)=92
-           endif
-              
-            do k=1,2
-               do m=5,nhep
-                  jmohep(k,m)=mothup(k,m)
-               enddo
-            enddo
-               
-            write(45,201)'E ',i,nhep
-            isthep(1)=4
-            isthep(2)=4
-
-            if(beam.eq.'el'.or.beam.eq.'prot')then
-            do m=1,nhep
-               write(45,300)isthep(m),idhep(m),jmohep(1,m),
-     &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
-     &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
-     &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
-            enddo
-            elseif(beam.eq.'ion')then
-            do m=1,nhep
-               write(45,200)isthep(m),idhep(m),jmohep(1,m),
-     &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
-     &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
-     &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
-            enddo
-            elseif(beam.eq.'ionp')then
-            do m=1,nhep
-            write(45,300)isthep(m),idhep(m),jmohep(1,m),
-     &              jmohep(2,m),jdahep(1,m),jdahep(2,m),
-     &              phep(1,m),phep(2,m),phep(3,m),phep(4,m)
-     &              ,phep(5,m),vhep(1,m),vhep(2,m),vhep(3,m),vhep(4,m)
-            enddo
-            endif
-               
-            write(45,*)''
-            
-         endif
-               
  500  enddo
 
       if(erec.eq.'lhe')then
@@ -491,16 +429,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             write(45,*)'</LesHouchesEvents>'
          endif
       endif
-
- 201  format(A1,i8,1x,i8)
-
- 200  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
-     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
-     & E19.8,E19.8)
-
- 300  format(i8,i8,i8,i8,i8,i8,E19.8,E19.8
-     &,E19.8,E19.8,E19.8,/,48x,E19.8,E19.8,
-     & E19.8,E19.8)
 
  303  format(7x,i10,1x,i8,1x,i4,1x,i4,1x,i4,1x,i4,1x,E16.9,1x,
      &     E16.9,1x,E16.9,1x,E16.9,1x,E16.9,1x,F2.0,1x,F2.0)

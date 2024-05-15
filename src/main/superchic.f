@@ -119,8 +119,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
+      character*10 tdiff,tbeam,bp
 
-      call system('mkdir -p inputs evrecs outputs')
+      call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
 
 ccccccc
 
@@ -134,6 +135,8 @@ ccccccc
       read(*,*)dum
       read(*,*)PDFname
       read(*,*)PDFmember
+      SFPDFname='SF_MSHT20qed_nnlo'
+      SFPDFmember=0
       read(*,*)dum
       read(*,*)proc
       read(*,*)beam
@@ -286,6 +289,121 @@ c      read(*,*)elcoll
       read(*,*)tau
       read(*,*)mxs
 
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+      tdiff=diff
+      if(diff.eq.'sda'.or.diff.eq.'sdb')then
+         tdiff='sd'
+      endif
+      tbeam=beam
+      if (beam.eq.'el') tbeam='ee'
+      if (beam.eq.'ionp') tbeam='pA'
+      if (beam.eq.'ion') tbeam='AA'
+      if (beam.eq.'prot') tbeam='pp'
+      bp=tbeam(1:len(trim(tbeam)))//tdiff(1:len(trim(tdiff)))
+
+      if(proc.eq.1.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.2.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.3.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.4.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.5.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.6.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.7.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.8.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.9.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.10.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.11.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.12.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.13.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.14.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.15.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.16.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.17.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.18.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.19.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.20.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.21.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.22.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.23.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.24.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.25.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.26.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.27.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.28.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.29.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.30.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.31.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.32.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.33.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.34.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.35.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.36.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.37.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.38.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.39.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.40.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.41.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.42.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.43.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.44.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.45.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.46.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.47.and.(bp.eq.'ppel')) goto 111
+      if(proc.eq.48.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.49.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.50.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.51.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.52.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.53.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.54.and.(bp.eq.'pAel')) goto 111
+      if(proc.eq.55.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     & .or.bp.eq.'ppdd'.or.bp.eq.'ppsd'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.56.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppdd'.or.bp.eq.'ppsd'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.57.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppdd'.or.bp.eq.'ppsd'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.58.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppdd'.or.bp.eq.'ppsd'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.59.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.60.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.61.and.(bp.eq.'pAel')) goto 111
+      if(proc.eq.68.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppdd'.or.bp.eq.'ppsd'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.69.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.70.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     & .or.bp.eq.'ppel')) goto 111
+      if(proc.eq.71.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.72.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     & .or.bp.eq.'ppel')) goto 111
+      if(proc.eq.73.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.74.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     & .or.bp.eq.'ppel')) goto 111
+      if(proc.eq.75.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.76.and.(bp.eq.'pAel'.or.bp.eq.'AAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.77.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.78.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.79.and.(bp.eq.'pAel'.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.82.and.(bp.eq.'pAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.83.and.(bp.eq.'pAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+      if(proc.eq.84.and.(bp.eq.'pAel'.or.bp.eq.'eeel'
+     &.or.bp.eq.'ppel')) goto 111
+
+
+      write(*,*)'Usupported process and beam combination'
+      write(*,*)'bp->',bp,'<-'
+      write(*,*)'proc->',proc,'<-'
+      STOP 1
+ 111  continue 
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
       approx=.false.
 
 
@@ -299,6 +417,10 @@ ccccccccccccc
       wgauge='axial'
 
 ccccccccc
+
+      if(gencuts.eqv..false.)then
+         print*,'WARNING - gencuts=.false., no cuts on decay products'
+      endif
 
       if(sfaci.eqv..false.)then
          if(ionbreakup)then
@@ -658,7 +780,7 @@ ccccccccc
          endif
       elseif(decay6)then
          nup=11
-      elseif(dps.eq.2.or.decay2)then
+      elseif(dps.eq.2.or.decay2.or.dps.eq.12)then
          nup=7
       elseif(dps.eq.3)then
          nup=8
@@ -675,7 +797,10 @@ ccccccccc
 ccccccccc
 
       surv=1d0
-      if(beam.eq.'prot'.or.ionqcd.eq.'coh'.or.ionqcd.eq.'incoh')then
+      if( (beam.eq.'prot') .or. 
+     & (beam.eq.'ion' .and. (ionqcd.eq.'coh'.or.ionqcd.eq.'incoh')) .or.
+     & (beam.eq.'ionp' .and. 
+     & (ionqcd.eq.'coh'.or.ionqcd.eq.'incoh'))) then
          call initparsr(isurv)
          call readscreen
          if(beam.eq.'prot'.or.ionqcd.eq.'incoh')surv=1d0/norm**2
@@ -821,7 +946,7 @@ c      write(40,*)7
 c      print*,'test'
 
 
- 777  if(dabs(sd/avgi).gt.prec)then
+ 777  if(dabs(sd).gt.dabs(avgi)*prec)then
 
 
 

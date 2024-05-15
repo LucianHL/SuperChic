@@ -12,7 +12,7 @@ ccc   writes event information to array for unweighted generation
       include 'leshouches.f'
       include 'wmax.f'
 
-      if(wt/wmax.gt.r)then
+      if(wt.gt.r*wmax)then
 
          evnum=evnum+1
 

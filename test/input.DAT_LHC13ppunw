@@ -31,19 +31,19 @@
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
-10000       ! [ncall] : Number of calls for preconditioning
+1000       ! [ncall] : Number of calls for preconditioning
 10          ! [itmx] : Number of iterations for preconditioning
 10d0          ! [prec]
-10000       ! [ncall1] : Number of calls in first iteration
-10000       ! [inccall] : Number of increase calls per iteration
+1000       ! [ncall1] : Number of calls in first iteration
+1000       ! [inccall] : Number of increase calls per iteration
 1000        ! [itend] : Maximum number of iterations
 6           ! [iseed] : Random number seed (integer > 0)
 ****************************************************************************************
 ******************************* Unweighted events **************************************
 ****************************************************************************************
 .true.       ! [genunw] : Generate unweighted events
-10           ! [nev] : Number of events ( < 1000000 recommended)
-'@format@'	     ! [erec] : Event record format ('hepmc','lhe','hepevt')
+@NEV@           ! [nev] : Number of events ( < 1000000 recommended)
+'@format@'	     ! [erec] : Event record format ('hepmc','lhe')
 .false.	     ! [readwt] : Set to true to read in pre-calculated maxium weight below
 0d0          ! [wtmax] : Maximum weight
 ****************************************************************************************
@@ -52,8 +52,8 @@
 -2.5d0          ! [ymin]
 2.5d0          ! [ymax]
 5d0          ! [mmin]
-900d0          ! [mmax]
-.false.        ! [gencuts] : Generate cuts below
+1900d0          ! [mmax]
+@gencuts@        ! [gencuts] : Generate cuts below
 .true.        ! [scorr] : Include spin correlations
 .true.	      ! [fwidth] : Include finite width 
 ****************************************************************************************
