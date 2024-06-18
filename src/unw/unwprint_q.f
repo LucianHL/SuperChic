@@ -149,7 +149,7 @@ ccc   prints nev events to record
       implicit double precision(a-y)
       integer i,j,k,l,m,nfl1,nfl2
       integer evfill(2000000)
-
+      integer strt
       include 'pdg.f'
       include 'unweighted.f'
       include 'mom.f'
@@ -356,6 +356,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             aqcdup=alphas(scalup**2)
                
             write(45,*)'<event>'
+            strt=3
             write(45,304)nup-1,idprup,xwgtup,scalup,aqedup,aqcdup
             if(beam.eq.'prot'.or.beam.eq.'el')then
                if(diff.eq.'sd')then
@@ -401,7 +402,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
                   enddo
                endif
             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
-c$$$               do m=3,nup+2
+c$$$               do m=strt,nup+2
 c$$$                  write(45,203)idup(m),istup(m),mothup(1,m),
 c$$$     &                 mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
 c$$$     &                 ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
@@ -413,7 +414,6 @@ c$$$               enddo
      &                 ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
      &                 ,spinup(m)
                enddo
-               
             endif
             write(45,*)'</event>'
 

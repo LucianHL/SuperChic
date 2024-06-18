@@ -2,9 +2,9 @@ ccc   randomizes order of VEGAS unweighted events and
 ccc   prints nev events to record
       subroutine unwprint
       implicit double precision(a-y)
-      integer i,j,k,l,m
-      integer nfl1, nfl2
+      integer i,j,k,l,m,nfl1,nfl2
       integer evfill(2000000)
+      integer strt
 
       include 'pdg.f'
       include 'unweighted.f'
@@ -22,7 +22,7 @@ ccc   prints nev events to record
       include 'x.f'
       include 'rech.f'
       include 'ion.f'
-
+      include 'diff.f'  
       
       do i=1,evnum
          evfill(i)=1
@@ -42,15 +42,17 @@ ccc   prints nev events to record
 ccccccccccccccccccccccccccccccccccccccccccccccc
 ccccc HepMC
 ccccccccccccccccccccccccccccccccccccccccccccccc
-
          
          if(erech)then
-
 
             if(i.eq.1)then
                write(45,'(A)')'HepMC::Version 2.06.11'
                write(45,'(A)')'HepMC::IO_GenEvent-START_EVENT_LISTING'
             endif
+            
+            do k=1,nup+2
+               idup(k)=pdgid(k)
+            enddo
             
            do k=3,nup+2
                do l=1,4
@@ -60,9 +62,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &              -pup(2,k)**2-pup(1,k)**2))
             enddo
 
-            do k=1,nup+2
-               idup(k)=pdgid(k)
-            enddo
+
 
             if(beam.eq.'el')then
                pup(5,3)=me
@@ -91,13 +91,9 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
        if(i.eq.nev)then
          write(45,'(A)')'HepMC::IO_GenEvent-END_EVENT_LISTING'
        endif
-            
-            goto 500
 
-
-            
-         endif
-
+        goto 500
+       endif
 
 ccccccccccccccccccccccccccccccccccccccccccccccc
 ccccc Les Houches
@@ -167,18 +163,18 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             
             scalup=mx
             aqcdup=alphas(mx**2)
-            
             write(45,*)'<event>'
+            strt=3
             write(45,304)nup,idprup,xwgtup,scalup,aqedup,aqcdup
             if(beam.eq.'prot'.or.beam.eq.'el')then
-               do m=3,nup+2
+               do m=strt,nup+2
                   write(45,303)idup(m),istup(m),mothup(1,m),
      &                 mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
      &                 ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
      &                 ,spinup(m)
                enddo
             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
-               do m=3,nup+2
+               do m=strt,nup+2
                   write(45,203)idup(m),istup(m),mothup(1,m),
      &                 mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
      &                 ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
