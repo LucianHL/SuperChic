@@ -165,7 +165,21 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             aqcdup=alphas(mx**2)
             write(45,*)'<event>'
             strt=3
-            write(45,304)nup,idprup,xwgtup,scalup,aqedup,aqcdup
+            if(diff.eq.'el'.and. idup(1).eq. idup(3))then            
+            strt=1
+              if(i.eq.1) then           
+              do m=3,5
+                mothup(1,m)=1
+                mothup(2,m)=2
+              enddo
+              do m=6,nup+2
+                if (mothup(1,m).ne.0) mothup(1,m)=mothup(1,m)+2
+                if (mothup(2,m).ne.0) mothup(2,m)=mothup(2,m)+2
+              enddo
+              endif
+            endif
+
+            write(45,304)nup+3-strt,idprup,xwgtup,scalup,aqedup,aqcdup         
             if(beam.eq.'prot'.or.beam.eq.'el')then
                do m=strt,nup+2
                   write(45,303)idup(m),istup(m),mothup(1,m),

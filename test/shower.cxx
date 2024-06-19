@@ -12,11 +12,7 @@
 // It uses the ttsample.lhe(.gz) input file, the latter only with 100 events.
 
 // Modified for Superchic
-#ifndef HEPMC2
 #include "Pythia8Plugins/HepMC3.h"
-#else
-#include "Pythia8Plugins/HepMC2.h"
-#endif
 #include "Pythia8/Pythia.h"
 using namespace Pythia8;
 
