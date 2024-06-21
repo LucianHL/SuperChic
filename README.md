@@ -1,6 +1,6 @@
 # SuperChic MC event generator for central exclusive production
 
-Version 5.0
+Version 5.2
 
 See manual in `doc/` folder for further instructions!
 

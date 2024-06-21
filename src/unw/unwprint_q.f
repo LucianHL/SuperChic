@@ -149,7 +149,7 @@ ccc   prints nev events to record
       implicit double precision(a-y)
       integer i,j,k,l,m,nfl1,nfl2
       integer evfill(2000000)
-
+      integer strt
       include 'pdg.f'
       include 'unweighted.f'
       include 'mom.f'
@@ -356,7 +356,21 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
             aqcdup=alphas(scalup**2)
                
             write(45,*)'<event>'
-            write(45,304)nup-1,idprup,xwgtup,scalup,aqedup,aqcdup
+            strt=3
+            if(diff.eq.'el' .and. idup(1).eq. idup(3) )then
+                 strt=1
+                 if(i.eq.1) then
+                 do m=3,5
+                   mothup(1,m)=1
+                   mothup(2,m)=2
+                 enddo
+                 do m=6,nup+1
+                   if (mothup(1,m).ne.0) mothup(1,m)=mothup(1,m)+2
+                   if (mothup(2,m).ne.0) mothup(2,m)=mothup(2,m)+2
+                 enddo
+                 endif
+            endif
+            write(45,304)nup+2-strt,idprup,xwgtup,scalup,aqedup,aqcdup
             if(beam.eq.'prot'.or.beam.eq.'el')then
                if(diff.eq.'sd')then
                   if(pup(3,3).lt.0d0)then
@@ -392,7 +406,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &                 ,spinup(m)
                   enddo
                endif
-               else
+               endif
+               if(diff.eq.'dd')then
                   do m=3,nup+1
                      write(45,303)idup(m),istup(m),mothup(1,m),
      &                    mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
@@ -400,20 +415,25 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &                 ,spinup(m)
                   enddo
                endif
+
+               if(diff.eq.'el')then
+                 do m=strt,nup+1
+                     write(45,303)idup(m),istup(m),mothup(1,m),
+     &                    mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
+     &                    ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
+     &                 ,spinup(m)
+                 enddo
+               endif
+
+
+
             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
-c$$$               do m=3,nup+2
-c$$$                  write(45,203)idup(m),istup(m),mothup(1,m),
-c$$$     &                 mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
-c$$$     &                 ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
-c$$$     &                 ,spinup(m)
-c$$$               enddo
                do m=3,nup+1
                   write(45,203)idup(m),istup(m),mothup(1,m),
      &                 mothup(2,m),icolup(1,m),icolup(2,m),pup(1,m)
      &                 ,pup(2,m),pup(3,m),pup(4,m),pup(5,m),vtimup(m)
      &                 ,spinup(m)
                enddo
-               
             endif
             write(45,*)'</event>'
 
