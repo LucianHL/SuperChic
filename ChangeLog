@@ -1,3 +1,5 @@
+Version 5.2
+ - Beams are propagated to LHE for elastic processes.
 Version 5.0
  - New build system 'CMake'
  - Numerous tests with 'CMake'

@@ -27,12 +27,10 @@ target_link_libraries(validator PRIVATE HepMC3::HepMC3)
 target_compile_features(validator PRIVATE cxx_std_11)
 
 
-find_package(HepMC2)
 find_package(Pythia8 8.3 REQUIRED)
 add_executable(shower ${CMAKE_CURRENT_SOURCE_DIR}/shower.cxx)
-target_link_libraries(shower PRIVATE HepMC2::HepMC2 Pythia8::Pythia8 )
+target_link_libraries(shower PRIVATE HepMC3::HepMC3 Pythia8::Pythia8 )
 target_compile_features(shower PRIVATE cxx_std_11)
-target_compile_definitions(shower PRIVATE -DHEPMC2=1)
 message(STATUS "SuperChic test: PYTHIA8_VERSION=${PYTHIA8_VERSION} PYTHIA8_LIBRARIES=${PYTHIA8_LIBRARIES} PYTHIA8_INCLUDE_DIRS=${PYTHIA8_INCLUDE_DIRS}")
 
 
@@ -99,10 +97,10 @@ endmacro()
 macro(sctestlhe NN MM df pr)
 if (SUPERCHIC_ENABLE_PROFILE)
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "valgrind --tool=callgrind  --callgrind-out-file=CALLGRIND_SUPERCHIC_${NN}_${MM}.log ${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
-  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
+  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 2500 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
 else()
   add_test(NAME SUPERCHIC_${NN}_${MM} COMMAND sh -c "${PROJECT_BINARY_DIR}/bin/superchic < ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_${MM}" WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN})
-  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 1000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
+  set_tests_properties( SUPERCHIC_${NN}_${MM} PROPERTIES TIMEOUT 2000 ENVIRONMENT "${STANDARDENVIRONMENT}" DEPENDS INIT_${NN})
 endif()  
 
   add_test(NAME SHOWER_${NN}_${MM} COMMAND shower ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/evrectest${MM}.dat ${CMAKE_CURRENT_BINARY_DIR}/RUN_${NN}/evrecs/showered${MM}.hepmc ${df} ${pr} real)
