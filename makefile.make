@@ -389,12 +389,14 @@ iCODEION = $(patsubst %,$(OBJ_PATH)%,$(iCODEIONi))
 
 all : init superchic superchicLib
 
-$(sCODELHA): src/inc/head.f
-
-src/inc/head.f: src/inc/head.f.inc
+src/inc/head.f: src/inc/head.f.in
 		cp src/inc/head.f.in src/inc/head.f
-		gsed -i 's/@PROJECT_VERSION@/5.3/g' src/inc/head.f
-		gsed -i 's/@RELEASE_DATE@/30.06.2024/g' src/inc/head.f
+		sed -i 's/\@PROJECT_VERSION\@/5.3/g' src/inc/head.f
+		sed -i 's/\@RELEASE_DATE\@/30.06.2024/g' src/inc/head.f
+
+$(InitfUSER): src/inc/head.f
+
+$(sCODELHA): src/inc/head.f
 
 superchicLib: $(sCODELHA)
 	$(FC) -L$(LHAPDFLIB) $(LIBFLAGlha) -mcmodel=large -shared -fPIC -o lib/libsuperchic.so $^
@@ -422,7 +424,7 @@ init : $(OBJ_PATH)init.o $(iCODELHA)
 	$(FC) $^ -L$(LHAPDFLIB) $(LIBFLAGlha) -o bin/$@
 
 clean:
-	rm -f bin/init bin/superchic lib/lib* *.o $(OBJ_PATH)*.o
+	rm -f bin/init bin/superchic lib/lib* *.o $(OBJ_PATH)*.o src/inc/head.f
 
 install: all
 	@echo "Installing to $$PREFIX..."
