@@ -54,7 +54,7 @@ message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_DOCS=${SUPERCHIC_ENABLE_DOCS}" )
 
-configure_file(${PROJECT_SOURCE_DIR}/src/inc/head.f.in ${PROJECT_BINARY_DIR}/src/inc/head.f.in IMMEDIATE @ONLY)
+configure_file(${PROJECT_SOURCE_DIR}/src/inc/head.f.in ${PROJECT_BINARY_DIR}/src/inc/head.f IMMEDIATE @ONLY)
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
           alphaEM.f qinit.f apfelinit.f )
 list(TRANSFORM Dissf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/diss/")
