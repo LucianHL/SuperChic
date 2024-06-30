@@ -391,8 +391,8 @@ all : init superchic superchicLib
 
 src/inc/head.f: src/inc/head.f.in
 		cp src/inc/head.f.in src/inc/head.f
-		sed -i "s|\@PROJECT_VERSION\@|5.3|g" src/inc/head.f
-		sed -i "s|\@RELEASE_DATE\@|30.06.2024|g" src/inc/head.f
+		sed -i'' -e "s|\@PROJECT_VERSION\@|5.3|g" src/inc/head.f
+		sed -i'' -e "s|\@RELEASE_DATE\@|30.06.2024|g" src/inc/head.f
 
 $(InitfUSER): src/inc/head.f
 
