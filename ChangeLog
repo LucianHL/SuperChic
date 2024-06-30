@@ -1,3 +1,6 @@
+Version 5.3
+ - Fixed a bug in eta selection in cuts.f
+ - The version from CMakeLists.txt is automatically propagated to the banner.
 Version 5.2
  - Beams are propagated to LHE for elastic processes.
 Version 5.0
