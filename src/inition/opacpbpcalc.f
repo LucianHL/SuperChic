@@ -7,6 +7,7 @@
       include 'pi.f'
       include 'ionqcd.f'
       include 'qcd.f'
+      include 'btmaxmin.f'
 
       btmax=20d0
       ioppbp=900
