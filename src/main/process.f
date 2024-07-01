@@ -3428,6 +3428,7 @@ cccccccccccccccc
       endif
 
       if(beam.eq.'el')offshell=.false. ! need onshell approx for electron beam
+      if(beam.eq.'ionp')offshell=.false. ! need onshell approx for pA beam
 
       return
       end
