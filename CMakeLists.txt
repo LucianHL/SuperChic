@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 #----------------------------------------------------------------------------
 project(SuperChic LANGUAGES  Fortran)
-set(PROJECT_VERSION 5.2)
+set(PROJECT_VERSION 5.3)
+set(RELEASE_DATE 30.06.2024)
+
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
 option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
@@ -52,6 +54,7 @@ message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_DOCS=${SUPERCHIC_ENABLE_DOCS}" )
 
+configure_file(${PROJECT_SOURCE_DIR}/src/inc/head.f.in ${PROJECT_BINARY_DIR}/src/inc/head.f IMMEDIATE @ONLY)
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
           alphaEM.f qinit.f apfelinit.f )
 list(TRANSFORM Dissf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/diss/")
@@ -165,7 +168,7 @@ set( sCODELHA ${Mainf} ${Mesf} ${EW} ${PDFsfLHA} ${Intf} ${Phasef}
               ${Subampsf} ${Survf} ${Userf} ${sPDFsf} ${Unwf} ${Varf} 
               ${LbyLf} ${InitfION} ${Dissf} ${Helas} ${Model} ${MG})
 
-set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/src/inc)
+set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/src/inc ${CMAKE_CURRENT_BINARY_DIR}/src/inc)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(sccompile_options )
 else()
