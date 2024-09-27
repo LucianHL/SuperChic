@@ -1,0 +1,504 @@
+The system is: Linux - 3.10.0-1160.102.1.el7.x86_64 - x86_64
+Compiling the Fortran compiler identification source file "CMakeFortranCompilerId.F" succeeded.
+Compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran 
+Build flags: 
+Id flags: -v 
+
+The output was:
+0
+Driving: /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran -v CMakeFortranCompilerId.F -l gfortran -l m -shared-libgcc
+Using built-in specs.
+COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran
+COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 11.3.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'a-'
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/f951 CMakeFortranCompilerId.F -ffixed-form -cpp=/tmp/ccl5klhw.f90 -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include CMakeFortranCompilerId.F -quiet -dumpdir a- -dumpbase CMakeFortranCompilerId.F -dumpbase-ext .F -mtune=generic -march=x86-64 -version -fintrinsic-modules-path /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude -o /tmp/ccXIO3QQ.s
+GNU Fortran (GCC) version 11.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.1.0, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed"
+ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed
+ /usr/local/include
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include
+ /usr/include
+End of search list.
+GNU Fortran2008 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.1.0, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COLLECT_GCC_OPTIONS='-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'a-'
+ as -v --64 -o /tmp/ccXUvb0z.o /tmp/ccXIO3QQ.s
+GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37
+Reading specs from /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/libgfortran.spec
+rename spec lib to liborig
+COLLECT_GCC_OPTIONS='-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'a-'
+COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/
+LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'a.'
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccFAHEhj.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../.. /tmp/ccXUvb0z.o -lgfortran -lm -lgcc_s -lgcc -lquadmath -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'a.'
+
+
+Compilation of the Fortran compiler identification source "CMakeFortranCompilerId.F" produced "a.out"
+
+The Fortran compiler identification is GNU, found in "/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/3.20.0/CompilerIdFortran/a.out"
+
+Detecting Fortran compiler ABI info compiled with the following output:
+Change Dir: /unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3b8a0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3b8a0.dir/build.make CMakeFiles/cmTC_3b8a0.dir/build
+gmake[1]: Entering directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp'
+Building Fortran object CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o
+/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran   -v -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeFortranCompilerABI.F -o CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o
+Using built-in specs.
+COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran
+Target: x86_64-pc-linux-gnu
+Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 11.3.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-c' '-o' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3b8a0.dir/'
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/f951 /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeFortranCompilerABI.F -ffixed-form -cpp=/tmp/ccZIHHU4.f90 -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeFortranCompilerABI.F -quiet -dumpdir CMakeFiles/cmTC_3b8a0.dir/ -dumpbase CMakeFortranCompilerABI.F.F -dumpbase-ext .F -mtune=generic -march=x86-64 -version -fintrinsic-modules-path /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude -o /tmp/ccrmrifS.s
+GNU Fortran (GCC) version 11.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.1.0, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed"
+ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include"
+  as it is a non-system directory that duplicates a system directory
+#include "..." search starts here:
+#include <...> search starts here:
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed
+ /usr/local/include
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include
+ /usr/include
+End of search list.
+GNU Fortran2008 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.1.0, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+COLLECT_GCC_OPTIONS='-v' '-c' '-o' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3b8a0.dir/'
+ as -v --64 -o CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o /tmp/ccrmrifS.s
+GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37
+COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/
+LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-c' '-o' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.'
+Linking Fortran executable cmTC_3b8a0
+/cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b8a0.dir/link.txt --verbose=1
+/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran  -v CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o -o cmTC_3b8a0 
+Driving: /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran -v CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o -o cmTC_3b8a0 -l gfortran -l m -shared-libgcc
+Using built-in specs.
+COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran
+COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 11.3.0 (GCC) 
+Reading specs from /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/libgfortran.spec
+rename spec lib to liborig
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b8a0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3b8a0-'
+COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/
+LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b8a0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3b8a0.'
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc62zRnZ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3b8a0 /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../.. CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o -lgfortran -lm -lgcc_s -lgcc -lquadmath -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b8a0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3b8a0.'
+gmake[1]: Leaving directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp'
+
+
+
+Parsed Fortran implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed]
+    add: [/usr/local/include]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed;/usr/local/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include;/usr/include]
+
+
+Parsed Fortran implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_3b8a0/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_3b8a0.dir/build.make CMakeFiles/cmTC_3b8a0.dir/build]
+  ignore line: [gmake[1]: Entering directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp']
+  ignore line: [Building Fortran object CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o]
+  ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran   -v -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeFortranCompilerABI.F -o CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 11.3.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-c' '-o' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3b8a0.dir/']
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/f951 /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeFortranCompilerABI.F -ffixed-form -cpp=/tmp/ccZIHHU4.f90 -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeFortranCompilerABI.F -quiet -dumpdir CMakeFiles/cmTC_3b8a0.dir/ -dumpbase CMakeFortranCompilerABI.F.F -dumpbase-ext .F -mtune=generic -march=x86-64 -version -fintrinsic-modules-path /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude -o /tmp/ccrmrifS.s]
+  ignore line: [GNU Fortran (GCC) version 11.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.1.0  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed"]
+  ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include"]
+  ignore line: [  as it is a non-system directory that duplicates a system directory]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/finclude]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU Fortran2008 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.1.0  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-c' '-o' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3b8a0.dir/']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o /tmp/ccrmrifS.s]
+  ignore line: [GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37]
+  ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/]
+  ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-c' '-o' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.']
+  ignore line: [Linking Fortran executable cmTC_3b8a0]
+  ignore line: [/cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3b8a0.dir/link.txt --verbose=1]
+  ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran  -v CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o -o cmTC_3b8a0 ]
+  ignore line: [Driving: /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran -v CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o -o cmTC_3b8a0 -l gfortran -l m -shared-libgcc]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran]
+  ignore line: [COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 11.3.0 (GCC) ]
+  ignore line: [Reading specs from /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/libgfortran.spec]
+  ignore line: [rename spec lib to liborig]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b8a0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3b8a0-']
+  ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/]
+  ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_3b8a0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_3b8a0.']
+  link line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/cc62zRnZ.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lquadmath -plugin-opt=-pass-through=-lm -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_3b8a0 /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../.. CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o -lgfortran -lm -lgcc_s -lgcc -lquadmath -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/cc62zRnZ.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lquadmath] ==> ignore
+    arg [-plugin-opt=-pass-through=-lm] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_3b8a0] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> ignore
+    arg [/lib/../lib64/crti.o] ==> ignore
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o] ==> ignore
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0]
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc]
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../..] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../..]
+    arg [CMakeFiles/cmTC_3b8a0.dir/CMakeFortranCompilerABI.F.o] ==> ignore
+    arg [-lgfortran] ==> lib [gfortran]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lquadmath] ==> lib [quadmath]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o] ==> ignore
+    arg [/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0]
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc]
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../..] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib]
+  implicit libs: [gfortran;m;gcc_s;gcc;quadmath;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib64;/lib64;/usr/lib64;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib]
+  implicit fwks: []
+
+
+Determining if the Fortran compiler supports Fortran 90 passed with the following output:
+Change Dir: /unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9d091/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9d091.dir/build.make CMakeFiles/cmTC_9d091.dir/build
+gmake[1]: Entering directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp'
+Building Fortran object CMakeFiles/cmTC_9d091.dir/testFortranCompilerF90.f90.o
+/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran    -c /unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp/testFortranCompilerF90.f90 -o CMakeFiles/cmTC_9d091.dir/testFortranCompilerF90.f90.o
+Linking Fortran executable cmTC_9d091
+/cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9d091.dir/link.txt --verbose=1
+/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/gfortran CMakeFiles/cmTC_9d091.dir/testFortranCompilerF90.f90.o -o cmTC_9d091 
+gmake[1]: Leaving directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp'
+
+
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is GNU, found in "/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/3.20.0/CompilerIdCXX/a.out"
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9aca7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9aca7.dir/build.make CMakeFiles/cmTC_9aca7.dir/build
+gmake[1]: Entering directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o
+/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++   -v -o CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeCXXCompilerABI.cpp
+Using built-in specs.
+COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++
+Target: x86_64-pc-linux-gnu
+Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 11.3.0 (GCC) 
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9aca7.dir/'
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/cc1plus -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include -D_GNU_SOURCE /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9aca7.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccfkJjFb.s
+GNU C++17 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.1.0, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/x86_64-pc-linux-gnu"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/backward"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include"
+ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed"
+ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/x86_64-pc-linux-gnu
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/backward
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed
+ /usr/local/include
+ /usr/include
+End of search list.
+GNU C++17 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)
+	compiled by GNU C version 11.3.0, GMP version 6.1.0, MPFR version 3.1.6, MPC version 1.0.3, isl version isl-0.18-GMP
+
+GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
+Compiler executable checksum: 8896b227ff8cac50055616ad40f9c1c6
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9aca7.dir/'
+ as -v --64 -o CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccfkJjFb.s
+GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37
+COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/
+LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.'
+Linking CXX executable cmTC_9aca7
+/cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9aca7.dir/link.txt --verbose=1
+/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++  -v CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_9aca7 
+Using built-in specs.
+COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++
+COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper
+Target: x86_64-pc-linux-gnu
+Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj
+Thread model: posix
+Supported LTO compression algorithms: zlib
+gcc version 11.3.0 (GCC) 
+COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/
+LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9aca7' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9aca7.'
+ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgPdReg.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_9aca7 /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../.. CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o /lib/../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9aca7' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9aca7.'
+gmake[1]: Leaving directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/x86_64-pc-linux-gnu]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/backward]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include]
+    add: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed]
+    add: [/usr/local/include]
+    add: [/usr/include]
+  end of search list found
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include/c++/11.3.0]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/x86_64-pc-linux-gnu] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include/c++/11.3.0/x86_64-pc-linux-gnu]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/backward] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include/c++/11.3.0/backward]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include]
+  collapse include dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include/c++/11.3.0;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include/c++/11.3.0/x86_64-pc-linux-gnu;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include/c++/11.3.0/backward;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed;/usr/local/include;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_9aca7/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_9aca7.dir/build.make CMakeFiles/cmTC_9aca7.dir/build]
+  ignore line: [gmake[1]: Entering directory `/unix/theory2/lang/git_sc/tautau_final/BUILD/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++   -v -o CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o -c /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 11.3.0 (GCC) ]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9aca7.dir/']
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/cc1plus -quiet -v -iprefix /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/ -isystem /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include -D_GNU_SOURCE /cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/share/cmake-3.20/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_9aca7.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -o /tmp/ccfkJjFb.s]
+  ignore line: [GNU C++17 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.1.0  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/x86_64-pc-linux-gnu"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/backward"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../include"]
+  ignore line: [ignoring duplicate directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed"]
+  ignore line: [ignoring nonexistent directory "/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/../../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../x86_64-pc-linux-gnu/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/include]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/x86_64-pc-linux-gnu]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../include/c++/11.3.0/backward]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include]
+  ignore line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/include-fixed]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [GNU C++17 (GCC) version 11.3.0 (x86_64-pc-linux-gnu)]
+  ignore line: [	compiled by GNU C version 11.3.0  GMP version 6.1.0  MPFR version 3.1.6  MPC version 1.0.3  isl version isl-0.18-GMP]
+  ignore line: []
+  ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
+  ignore line: [Compiler executable checksum: 8896b227ff8cac50055616ad40f9c1c6]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9aca7.dir/']
+  ignore line: [ as -v --64 -o CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccfkJjFb.s]
+  ignore line: [GNU assembler version 2.37 (x86_64-pc-linux-gnu) using BFD version (GNU Binutils) 2.37]
+  ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/]
+  ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.']
+  ignore line: [Linking CXX executable cmTC_9aca7]
+  ignore line: [/cvmfs/sft.cern.ch/lcg/releases/CMake/3.20.0-790a8/x86_64-centos7-gcc11-opt/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9aca7.dir/link.txt --verbose=1]
+  ignore line: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++  -v CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_9aca7 ]
+  ignore line: [Using built-in specs.]
+  ignore line: [COLLECT_GCC=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/g++]
+  ignore line: [COLLECT_LTO_WRAPPER=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper]
+  ignore line: [Target: x86_64-pc-linux-gnu]
+  ignore line: [Configured with: /workspace/build/contrib/gcc-11.3.0/src/gcc/11.3.0/configure --prefix=/workspace/lcgcmake-install/gcc/11.3.0/x86_64-centos7 --disable-nls --with-system-zlib --disable-multilib --enable-languages=all --with-gnu-ld --with-gnu-as --enable-__cxa_atexit --disable-libunwind-exceptions --enable-gnu-unique-object --enable-plugin --with-linker-hash-style=gnu --enable-linker-build-id --enable-libstdcxx-time=rt --enable-shared --disable-libgcj]
+  ignore line: [Thread model: posix]
+  ignore line: [Supported LTO compression algorithms: zlib]
+  ignore line: [gcc version 11.3.0 (GCC) ]
+  ignore line: [COMPILER_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/]
+  ignore line: [LIBRARY_PATH=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../:/lib/:/usr/lib/]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_9aca7' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_9aca7.']
+  link line: [ /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2 -plugin /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so -plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper -plugin-opt=-fresolution=/tmp/ccgPdReg.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_9aca7 /lib/../lib64/crt1.o /lib/../lib64/crti.o /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../.. CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o /lib/../lib64/crtn.o]
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/collect2] ==> ignore
+    arg [-plugin] ==> ignore
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/liblto_plugin.so] ==> ignore
+    arg [-plugin-opt=/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../libexec/gcc/x86_64-pc-linux-gnu/11.3.0/lto-wrapper] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccgPdReg.res] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lc] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
+    arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
+    arg [--build-id] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [--hash-style=gnu] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_9aca7] ==> ignore
+    arg [/lib/../lib64/crt1.o] ==> ignore
+    arg [/lib/../lib64/crti.o] ==> ignore
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtbegin.o] ==> ignore
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0]
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc]
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../..] ==> dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../..]
+    arg [CMakeFiles/cmTC_9aca7.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/crtend.o] ==> ignore
+    arg [/lib/../lib64/crtn.o] ==> ignore
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0]
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc]
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../../../lib64] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/bin/../lib/gcc/x86_64-pc-linux-gnu/11.3.0/../../..] ==> [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit dirs: [/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc/x86_64-pc-linux-gnu/11.3.0;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib/gcc;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib64;/lib64;/usr/lib64;/cvmfs/sft.cern.ch/lcg/releases/gcc/11.3.0-ad0f5/x86_64-centos7/lib]
+  implicit fwks: []
+
+

@@ -1,0 +1,2 @@
+# Hashes of file build rules.
+44f7db31d6aed1339cc1b0504598f7c4 test/CMakeFiles/latexcompiletest

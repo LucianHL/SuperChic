@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/CMakeFiles/cteq6l1-populate"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/CMakeFiles/cteq6l1-populate.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/CMakeFiles/cteq6l1-populate-complete.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-build.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-configure.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-download.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-install.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-mkdir.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-patch.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-test.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/cteq6l1-subbuild/cteq6l1-populate-prefix/src/cteq6l1-populate-stamp/cteq6l1-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"cteq6l1-populate"
+		],
+		"name" : "cteq6l1-populate"
+	}
+}

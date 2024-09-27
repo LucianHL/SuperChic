@@ -119,6 +119,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
+      include 'tau.f'
       character*10 tdiff,tbeam,bp
 
       call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
@@ -288,6 +289,15 @@ c      read(*,*)elcoll
       read(*,*)dum
       read(*,*)tau
       read(*,*)mxs
+      read(*,*)dum
+      read(*,*)dum
+      read(*,*)dum
+      read(*,*)atau
+      read(*,*)dtau
+      read(*,*)
+      read(*,*)calc_tau_coeff
+      read(*,*)tau_mom
+      read(*,*)tau_coeff
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       tdiff=diff
@@ -406,7 +416,6 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
       approx=.false.
 
-
 ccccccccccccc
 
       wpol='tot'
@@ -494,6 +503,83 @@ c      mwx=80.318d0
       md=0.083d0
       ms=0.215d0
 
+
+      NPlin=.false.  ! if true only linear terms in a_tau,d_tau included (not available by default)
+      if(NPlin)int_atauonly=.false.
+
+      if(calc_tau_coeff)then
+         if(tau_mom.eq.'atau')then
+            atau=1d0
+            dtau=0d0
+         elseif(tau_mom.eq.'dtau')then
+            atau=0d0
+            dtau=1d-15
+         else  
+            print*,'Incorrect calc_tau_coeff flag -- STOP'
+            stop
+         endif 
+         if(tau_coeff.eq.0)then
+            atau=0d0
+            dtau=0d0
+            deltau=.false.
+            atau_only=.false.
+            atau_lin=.false.
+            atau_quad=.false.
+            int_atauonly=.false.
+         elseif(tau_coeff.eq.1)then
+            deltau=.true.
+            atau_only=.false.
+            atau_lin=.true.
+            atau_quad=.false.
+            int_atauonly=.false.
+         elseif(tau_coeff.eq.2)then
+            deltau=.true.
+            atau_only=.false.
+            atau_lin=.false.
+            atau_quad=.true.
+            int_atauonly=.false.
+         elseif(tau_coeff.eq.3)then
+            deltau=.false.
+            atau_only=.true.
+            atau_lin=.false.
+            atau_quad=.false.
+            int_atauonly=.true.
+         elseif(tau_coeff.eq.3)then
+            deltau=.false.
+            atau_only=.true.
+            atau_lin=.false.
+            atau_quad=.false.
+            int_atauonly=.true.
+         elseif(tau_coeff.eq.4)then
+            deltau=.false.
+            atau_only=.true.
+            atau_lin=.false.
+            atau_quad=.true.
+            int_atauonly=.false.
+         else  
+            print*,'Incorrect tau_coeff flag -- STOP'
+            stop
+         endif 
+         if(tau_mom.eq.'dtau')then
+            if(tau_coeff.eq.1.or.tau_coeff.eq.3)then
+               print*,'Only even tau_coeff non-zero for dtau -- STOP'
+               stop
+            endif
+         endif
+      else  
+         deltau=.false.
+         atau_only=.false.
+         atau_lin=.false.
+         atau_quad=.false.
+         int_atauonly=.false.
+      endif 
+
+
+      if(deltau)atau_only=.false.
+      dtau=dtau/0.1973d-13*2d0*dsqrt(pi/1.325070D+02) ! convert to GeV^-1
+      GC_6515=dsqrt(pi/1.325070D+02)/mtau*atau/2d0*zi
+      GC_6506=-dtau/2d0
+
       rmf1( 1) = 1d-10
       rmf1( 2) = me
       rmf1( 3) = 1d-10
@@ -540,7 +626,7 @@ cccccccccccccccccccccccccc
       call inpdf
       call supinit
 
-      if(proc.eq.54.or.proc.eq.55)then
+      if(proc.eq.54.or.proc.eq.55.or.proc.eq.58)then
          call setpara('param_card.dat') !set parameters for MG calculation
       endif
 

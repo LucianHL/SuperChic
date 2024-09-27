@@ -1,0 +1,3 @@
+repository='external project URL'
+module='https://lhapdfsets.web.cern.ch/current/MSHT20qed_nnlo.tar.gz'
+tag='MD5=cce676b0bc21bb985c40fceac67e97ce'

@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/CMakeFiles/msht20qed_nnlo-populate"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/CMakeFiles/msht20qed_nnlo-populate.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/CMakeFiles/msht20qed_nnlo-populate-complete.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-build.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-configure.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-download.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-install.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-mkdir.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-patch.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-test.rule"
+		},
+		{
+			"file" : "/unix/theory2/lang/git_sc/tautau_final/BUILD/_deps/msht20qed_nnlo-subbuild/msht20qed_nnlo-populate-prefix/src/msht20qed_nnlo-populate-stamp/msht20qed_nnlo-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"msht20qed_nnlo-populate"
+		],
+		"name" : "msht20qed_nnlo-populate"
+	}
+}
