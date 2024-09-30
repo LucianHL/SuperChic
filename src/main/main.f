@@ -1,12 +1,14 @@
 c   calculates CEP cross section
       function cs(rarr,wgt)
       implicit none
-      complex*16 wt(10),wtn(10),wtd(10),wtpvar(3,10)
+      complex*16 wt(10),wtn(10),wtd(10),wtpvar(3,10),wt_0(10)
+     &,wt_atau(10),wt_atauonly_lin(10)
       double precision rarr(10),wtr(10)
       integer i,p,icut
       double precision rphi,ran2,cs
       double precision ypp,ypmin1,ypmin2,ypmin,ypmax,ypmax1,ypmax2,
-     &     yp,ymin1,ymax1,ycut,xgmin,wty1,wty2,wty,wtt,wtpt,wtpol
+     &     yp,ymin1,ymax1,ycut,xgmin,wty1,wty2,wty,wtt,wtpt,wtpol,wtt_0,
+     &     wtt_atau,wtt_atauonly_lin
       double precision wtdiss1,wtdiss2,wtc0,wt4,wt6,wt3a,wt3b,wt3,wt2a,
      &     wt2b,wt2,wt1
       double precision xglu,wpsi
@@ -76,7 +78,8 @@ c   calculates CEP cross section
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
-
+      include 'tau.f'
+      
       wtt=0d0
 
       elcollw=.false.
@@ -693,7 +696,7 @@ ccccccccccccccccccccccccccccccccccccccccccc
 ccccccccc
 
 
-          if(photo)then
+         if(photo)then
              if(beam.eq.'prot')then
                 call schimcphot(pt1x,pt1y,pt2x,pt2y,wt)
              elseif(beam.eq.'ionp')then
@@ -702,48 +705,120 @@ ccccccccc
                 print*,'Photoproduction not currently available for AA'
                 STOP 1
              endif
-          elseif(gamma)then
-             if(beam.eq.'prot'.or.beam.eq.'el')then
-                call schimcgam(pt1x,pt1y,pt2x,pt2y,wt)
-             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
-                if(pAAvar)then
-                   do p=1,pol
-                      do i=1,3
-                         wtpvar(i,p)=0d0
-                      enddo
-                   enddo
-                   if(sfac)then
-                      do ifaa=1,3
-                         if(ifaa.eq.1)then ! inclusive
-                            ionbreakup=.false.
-                         endif
-                         if(ifaa.eq.2)then
-                            ionbreakup=.true.
-                            faa='00'
-                         endif
-                         if(ifaa.eq.3)then
-                            ionbreakup=.true.
-                            faa='XX'
-                         endif
-                         call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
-                         do p=1,pol
-                            wtpvar(ifaa,p)=wt(p)
-                         enddo
-                      enddo
-                      do p=1,pol
-                         wtr(p)=cdabs(wtpvar(1,p))**2
-     &                        -cdabs(wtpvar(2,p))**2
-     &                        -cdabs(wtpvar(3,p))**2
-                         wtr(p)=wtr(p)/2d0
-                      enddo
-                   else
-                      call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
-                   endif
-                else
-                   call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
-                endif
-             endif
-          else
+         elseif(gamma)then
+            if(beam.eq.'prot'.or.beam.eq.'el')then
+               if(deltau)then
+                  atau_temp=atau
+                  dtau_temp=dtau
+                  atau=0d0
+                  dtau=0d0
+                  GC_6506=-dtau/2d0
+                  GC_6515=dsqrt(pi/1.325070D+02)/mtau*atau/2d0*zi
+                  call schimcgam(pt1x,pt1y,pt2x,pt2y,wt_0)
+                  atau=atau_temp
+                  dtau=dtau_temp
+                  GC_6506=-dtau/2d0
+                  GC_6515=dsqrt(pi/1.325070D+02)/mtau*atau/2d0*zi
+                  atau_only=.true.
+                  call schimcgam(pt1x,pt1y,pt2x,pt2y,wt_atau)
+                  atau_only=.false.
+               endif
+               if(deltau.and.atau_quad)then
+                  atau_only=.true.
+                  atau_lin=.true.
+                  atau_quad=.false.
+                  call schimcgam(pt1x,pt1y,pt2x,pt2y,wt_atauonly_lin)
+                  atau_only=.false.
+                  atau_lin=.false.
+                  atau_quad=.true.
+               endif    
+               if(int_atauonly)then
+                  atau_only=.true.
+                  atau_lin=.true.
+                  atau_quad=.false.
+                  call schimcgam(pt1x,pt1y,pt2x,pt2y,wt_0)
+                  atau_lin=.false.
+                  atau_quad=.true.
+                  call schimcgam(pt1x,pt1y,pt2x,pt2y,wt_atau)
+                  atau_lin=.false.
+                  atau_quad=.false.
+               endif
+               call schimcgam(pt1x,pt1y,pt2x,pt2y,wt)
+            elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
+               if(pAAvar)then
+                  do p=1,pol
+                     do i=1,3
+                        wtpvar(i,p)=0d0
+                     enddo
+                  enddo
+               if(sfac)then
+                  do ifaa=1,3
+                     if(ifaa.eq.1)then ! inclusive                                                       
+                        ionbreakup=.false.
+                     endif
+                     if(ifaa.eq.2)then
+                        ionbreakup=.true.
+                        faa='00'
+                     endif
+                     if(ifaa.eq.3)then
+                        ionbreakup=.true.
+                        faa='XX'
+                     endif
+                     call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+                     do p=1,pol
+                        wtpvar(ifaa,p)=wt(p)
+                     enddo
+                  enddo
+                  do p=1,pol
+                     wtr(p)=cdabs(wtpvar(1,p))**2
+     &               -cdabs(wtpvar(2,p))**2
+     &               -cdabs(wtpvar(3,p))**2
+                     wtr(p)=wtr(p)/2d0
+                  enddo
+               else
+                  call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+               endif
+            else
+               if(deltau)then
+                  atau_temp=atau
+                  dtau_temp=dtau
+                  atau=0d0
+                  dtau=0d0
+                  GC_6515=dsqrt(pi/1.325070D+02)/mtau*atau/2d0*zi
+                  GC_6506=-dtau/2d0
+                  call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt_0)
+                  atau=atau_temp
+                  dtau=dtau_temp
+                  GC_6515=dsqrt(pi/1.325070D+02)/mtau*atau/2d0*zi
+                  GC_6506=-dtau/2d0
+                  atau_only=.true.
+                  call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt_atau)
+                  atau_only=.false.
+               endif
+               if(deltau.and.atau_quad)then
+                  atau_only=.true.
+                  atau_lin=.true.
+                  atau_quad=.false.
+                  call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt_atauonly_lin)
+                  atau_only=.false.
+                  atau_lin=.false.
+                  atau_quad=.true.
+               endif    
+               if(int_atauonly)then
+                  atau_only=.true.
+                  atau_lin=.true.
+                  atau_quad=.false.
+                  call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt_0)
+                  atau_lin=.false.
+                  atau_quad=.true.
+                  call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt_atau)
+                  atau_lin=.false.
+                  atau_quad=.false.
+               endif
+               call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+            endif
+         endif
+         else
              call wtgen
              if(beam.eq.'prot')then
                 call schimc(pt1x,pt1y,pt2x,pt2y,wt)
@@ -792,11 +867,24 @@ ccccccccc
                 enddo
              endif
           else
+            wtt_0=0d0
+            wtt_atau=0d0
+            wtt_atauonly_lin=0d0
              do p=1,pol
                 wtt=wtt+cdabs(wt(p))**2
+                if(deltau)wtt_0=wtt_0+cdabs(wt_0(p))**2
+                if(deltau)wtt_atau=wtt_atau+cdabs(wt_atau(p))**2
+                if(int_atauonly)wtt_0=wtt_0+cdabs(wt_0(p))**2
+                if(int_atauonly)wtt_atau=wtt_atau+cdabs(wt_atau(p))**2
+                if(deltau.and.atau_quad)
+     &wtt_atauonly_lin=wtt_atauonly_lin+cdabs(wt_atauonly_lin(p))**2
              enddo
-          endif
-
+             if(deltau)wtt=wtt-wtt_0-wtt_atau
+             if(int_atauonly)wtt=wtt-wtt_0-wtt_atau
+             if(deltau.and.atau_quad)wtt
+     &=wtt+wtt_atauonly_lin
+         endif
+ 
 
          wtpol=1d0
 

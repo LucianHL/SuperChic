@@ -267,6 +267,9 @@ decays, see Section~\ref{sec:procnot}.
 $W^-$ (\texttt{wlm}) production.
 \item \texttt{tau}, \texttt{mxs}: The decay constant (in ${\rm GeV}^{-1}$) and mass of invisible particle $X$ (in GeV) 
 in simplified model (processes 82--84).
+\item \texttt{tau}, \texttt{dtau}: values of the anomalous magnetic ($a_\tau$ -- \texttt{atau}) and electric dipole ($d_\tau$ -- \texttt{dtau}) moments of the $\tau$ lepton enterring process 58. The electric dipole moment is in units of e cm.
+\item \texttt{calc\_tau\_coeff}, \texttt{tau\_mom}, \texttt{tau\_coeff}: for use in process 58. If  \texttt{calc\_tau\_coeff} is true then instead of calculating the cross section for given values of \texttt{atau} and/or \texttt{dtau}, the coefficient of the $a_\tau^n$ (if \texttt{tau\_mom} is set to `atau') or  the $d_\tau^n$ (if \texttt{tau\_mom} is set to `dtau') term in the cross section is calculated, where the value of $n$ is set by  \texttt{tau\_coeff}. For $a_\tau$,  \texttt{tau\_coeff} takes values from 1 to 4, whereas for $d_\tau$, it takes values 2 and 4. In the latter case, the coefficients correspond to $d_\tau$ in units of $10^{-15}$ e cm.
+
 \end{itemize}
 
 \section{Output, histograms and cuts}\label{sec:hist}
@@ -788,7 +791,7 @@ Further references for other specific processes are listed below:
 
 \section{Version Information}
 
-Here we provide details of the changes made in the releases from version 3.01 to 5.0. For more recent versions, please refer to ChangeLog:
+Here we provide details of the changes made in the releases {\bf from version 3.01 to 5.0}. For more recent versions, please refer to ChangeLog:
 
 \begin{itemize}
 
