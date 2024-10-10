@@ -34,7 +34,7 @@ target_compile_features(shower PRIVATE cxx_std_11)
 message(STATUS "SuperChic test: PYTHIA8_VERSION=${PYTHIA8_VERSION} PYTHIA8_LIBRARIES=${PYTHIA8_LIBRARIES} PYTHIA8_INCLUDE_DIRS=${PYTHIA8_INCLUDE_DIRS}")
 
 
-set(STANDARDENVIRONMENT "SUPERCHIC_DATA_PATH=${PROJECT_SOURCE_DIR}/share/SuperChic;PYTHIA8_XMLDOC_DIR=${PYTHIA8_XMLDOC_DIR}")
+set(STANDARDENVIRONMENT "SUPERCHIC_DATA_PATH=${PROJECT_SOURCE_DIR}/share/SuperChic;PYTHIA8_XMLDOC_DIR=${PYTHIA8_XMLDOC_DIR};PYTHIA8_LHA_DIR=${PYTHIA8_ROOT_DIR}/share/Pythia8/pdfdata")
 
 if (SUPERCHIC_ENABLE_RIVET)
 find_package (Python 3 COMPONENTS  Development Interpreter)
@@ -233,10 +233,15 @@ foreach( i IN ITEMS 1 2 3 4 5 6 7 8 9
            20 21 22 23 24 25 26 27 28 29
            30 31 32 33 34 35 36 37 38 39
            40 41 42 43 44 45 46 47 48 49
-           50 51 52 53    55 56 57 58 59
-           60                      68 69
+           50 51 52 53                59
+           60                         69
            70 71 72 73 74 75 76 77 78 79
                  82 83 84 
+           )
+    list(APPEND proc${i} "elnoPI")
+endforeach()   
+foreach( i IN ITEMS 55 56 57 58 
+                                   68 
            )
     list(APPEND proc${i} "el")
 endforeach()           
@@ -257,17 +262,22 @@ inittest(LHC13ppunw)
 foreach( process RANGE 1 100)
   LIST(LENGTH proc${process} LISTCOUNT)
   if (${LISTCOUNT}  GREATER 0)
-  foreach(diff ${proc${process}}) 
+  foreach(diffout ${proc${process}}) 
+  if(diffout STREQUAL "elnoPI")
+    set(diff "el")
+  else()
+    set(diff "${diffout}")
+  endif()
     list(TRANSFORM TABLE_${process} PREPEND " $pp$-${diff} " AT 1)
     foreach ( format ${fmts} )
       set (gencuts ".false.")
       if (${process} EQUAL 3  OR  ${process} EQUAL 7 OR  ${process} EQUAL 8 OR  ${process} EQUAL 14 OR  ${process} EQUAL 15 OR  ${process} EQUAL 16 OR  ${process} EQUAL 70 OR  ${process} EQUAL 71 OR  ${process} EQUAL 72)
         set (gencuts ".true.")
       endif()
-      configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw_${process}_${diff}_${format})
+      configure_file(${CMAKE_CURRENT_SOURCE_DIR}/input.DAT_LHC13ppunw ${CMAKE_CURRENT_BINARY_DIR}/input.DAT_LHC13ppunw_${process}_${diffout}_${format})
     endforeach()
-    sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diff}_lhe ${diff}_pp ${process})
-    sctesthepmc(LHC13ppunw LHC13ppunw_${process}_${diff}_hepmc)
+    sctestlhe(LHC13ppunw LHC13ppunw_${process}_${diffout}_lhe ${diffout}_pp ${process})
+    sctesthepmc(LHC13ppunw LHC13ppunw_${process}_${diffout}_hepmc)
   endforeach()
   list(JOIN proc${process} " " X)
   sctestrivet(LHC13ppunw ${process} ${X})
