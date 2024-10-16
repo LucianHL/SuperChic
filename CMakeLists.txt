@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 #----------------------------------------------------------------------------
 project(SuperChic LANGUAGES  Fortran)
-set(PROJECT_VERSION 5.3)
+set(PROJECT_VERSION 5.4)
 set(RELEASE_DATE 30.06.2024)
 
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
@@ -88,7 +88,7 @@ set(Subampsf chi0.f chi1.f chi2.f etaq.f higgs.f higgsinit.f pipi.f
              gggjets.f pipixy.f rhorho.f djpsi.f djpsip.f djpsipp.f 
              ggjets.f qqgjets.f rhorhoxy.f wwpol.f llpol.f mhv.f 
              lightlightpol.f higgsgam.f higgsgaminit.f alp.f mmpol.f 
-             monop.f lloff.f spinors.f wwoff.f wwoff_amp.f )
+             monop.f lloff.f lloff_MG.f spinors.f wwoff.f wwoff_amp.f )
 list(TRANSFORM Subampsf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/subamps/")
 
 set(Survf initparsr.f formfac.f formfacphot.f formfacgam.f seik.f 
@@ -152,7 +152,9 @@ set(Helas FFV2_0.f FFV2_1.f FFV2_2.f FFV2_3.f FFV1_0.f FFV1_1.f FFV1_2.f
           FFV1P0_3.f FFV3_0.f FFV3_1.f FFV3_2.f FFV3_3.f VVS1_0.f 
           VVS1_3.f VVS1_3.f VVVV5_0.f FFV5_0.f FFV5_1.f FFV5_2.f FFV5_3.f
           VVVV2_0.f VVV1_0.f VVV1_1.f VVV1P0_1.f VVV1_2.f VVV1_3.f 
-          aloha_functions.f VVVV5_0.f VVVV2P0_1.f VVVV5_4.f )
+          aloha_functions.f VVVV5_0.f VVVV2P0_1.f VVVV5_4.f 
+	  FFV15_0_ll.f FFV15_1_ll.f FFV15_2_ll.f FFV1_0_ll.f FFV1_1_ll.f
+	  FFV1_2_ll.f FFV2_0_ll.f FFV2_1_ll.f FFV2_2_ll.f)
 list(TRANSFORM Helas PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/DHELAS/")
 
 set(Model rw_para.f lha_read.f couplings.f couplings1.f couplings2.f )
@@ -161,7 +163,7 @@ list(TRANSFORM Model PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/MODEL/")
 set(MG wwpol_match.f is_born.f matrix_uc.f matrix_ds.f matrix_ubcb.f 
        matrix_dbsb.f matrix_dbub.f matrix_udb.f matrix_cub.f matrix_sdb.f 
        matrix_dub.f matrix_du.f mgcross.f cs_SF_SD.f matrix_au.f 
-       matrix_aub.f matrix_ad.f matrix_adb.f )
+       matrix_aub.f matrix_ad.f matrix_adb.f matrix_aall_SM.f)
 list(TRANSFORM MG PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/MG/")
 
 set( sCODELHA ${Mainf} ${Mesf} ${EW} ${PDFsfLHA} ${Intf} ${Phasef} 

@@ -149,6 +149,7 @@ alp.o \
 mmpol.o \
 monop.o \
 lloff.o \
+lloff_MG.o \
 spinors.o \
 wwoff.o \
 wwoff_amp.o \
@@ -345,6 +346,15 @@ aloha_functions.o \
 VVVV5_0.o \
 VVVV2P0_1.o \
 VVVV5_4.o \
+FFV15_0_ll.o \
+FFV15_1_ll.o \
+FFV15_2_ll.o \
+FFV1_0_ll.o \
+FFV1_1_ll.o \
+FFV1_2_ll.o \
+FFV2_0_ll.o \
+FFV2_1_ll.o \
+FFV2_2_ll.o \
 
 Model = \
 rw_para.o \
@@ -372,6 +382,7 @@ matrix_au.o \
 matrix_aub.o \
 matrix_ad.o \
 matrix_adb.o \
+matrix_aall_SM.o \
 
 #
 
