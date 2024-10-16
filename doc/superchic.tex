@@ -287,48 +287,62 @@ own histograms in \texttt{src/user/histo.f}. In addition, further user--defined 
 
 
 The unweighted event output is provided in standard (Les Houches and HepMC) can be passed to external MCs for showering and 
-hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. In particular, for purely elastic production (i.e. with \texttt{diff} set to \texttt{el}) the following flags should be set:
-\\
-\\
-\texttt{PartonLevel:MPI = off}\\
-\texttt{Check:event = off}\\
-\texttt{LesHouches:matchInOut = off}\\
-\texttt{PartonLevel:MPI = off}\\
-\texttt{SpaceShower:pTmaxMatch = 2}\\
-\texttt{BeamRemnants:primordialKT = off}\\
-\texttt{BeamRemnants:unresolvedHadron = 3}\\
-\texttt{SpaceShower:pTdampMatch=1}\\
-\texttt{PartonLevel:ISR = off}\\
-\texttt{LesHouches:matchInOut = off}\\
-\texttt{PartonLevel:Remnants = off}\\
- \\
- PartonLevel:MPI = off
-Check:event = off
-LesHouches:matchInOut = off
-PartonLevel:MPI = off
-SpaceShower:pTmaxMatch = 2
-BeamRemnants:primordialKT = off
-BeamRemnants:unresolvedHadron = 3
-SpaceShower:pTdampMatch=1
-PartonLevel:ISR = off
-LesHouches:matchInOut = off
-PartonLevel:Remnants = off
- 
- For semi--exclusive photon--initiated production, i.e. with \texttt{diff} set to 
- \texttt{sda}, \texttt{sdb}, \texttt{dd}, the appropriate flags are:
- \\
-\\
-\texttt{PartonLevel:MPI = off}\\
-\texttt{Check:event = off}\\
-\texttt{LesHouches:matchInOut = off}\\
-\texttt{BeamRemnants:primordialKT = off}\\
-\texttt{SpaceShower:dipoleRecoil = on} \\
-\texttt{SpaceShower:pTmaxMatch = 2} \\
-\texttt{SpaceShower:QEDshowerByQ = off} \\
-\texttt{SpaceShower:pTdampMatch=1} \\
-\texttt{PDF:pSet = LHAPDF6:MSHT20qed\_nnlo}\\
-\texttt{BeamRemnants:unresolvedHadron = 0} for double dissociation (\texttt{dd}), 1 for single dissociation (\texttt{sdb}), 2 for single 
-dissociation (\texttt{sda}), 3 for elastic (\texttt{el}). \\
+hadronization. The only test cases however is \texttt{Pythia}, for which some care is needed in choosing the runtime options. The full set of flags for each process can be found by running the 
+\newline
+\newline
+\texttt{>  ctest --test-dir BUILD}
+\newline
+\newline
+command. After this, the flags are contained in the corresponding \_\texttt{config} files in the 
+\newline
+\newline
+\texttt{test/RUN}\_\texttt{LHC13AAunw/evrecs}
+\newline
+\newline
+folder of the corresponding \texttt{BUILD} directory.
+
+%In particular, for purely elastic production (i.e. with \texttt{diff} set to \texttt{el}) the following flags should be set:
+%\\
+%\\
+%\texttt{PartonLevel:MPI = off}\\
+%\texttt{Check:event = off}\\
+%\texttt{LesHouches:matchInOut = off}\\
+%\texttt{PartonLevel:MPI = off}\\
+%\texttt{SpaceShower:pTmaxMatch = 2}\\
+%\texttt{BeamRemnants:primordialKT = off}\\
+%\texttt{BeamRemnants:unresolvedHadron = 3}\\
+%\texttt{SpaceShower:pTdampMatch=1}\\
+%\texttt{PartonLevel:ISR = off}\\
+%\texttt{LesHouches:matchInOut = off}\\
+%\texttt{PartonLevel:Remnants = off}\\
+% \\
+% PartonLevel:MPI = off
+%Check:event = off
+%LesHouches:matchInOut = off
+%PartonLevel:MPI = off
+%SpaceShower:pTmaxMatch = 2
+%BeamRemnants:primordialKT = off
+%BeamRemnants:unresolvedHadron = 3
+%SpaceShower:pTdampMatch=1
+%PartonLevel:ISR = off
+%LesHouches:matchInOut = off
+%PartonLevel:Remnants = off
+% 
+% For semi--exclusive photon--initiated production, i.e. with \texttt{diff} set to 
+% \texttt{sda}, \texttt{sdb}, \texttt{dd}, the appropriate flags are:
+% \\
+%\\
+%\texttt{PartonLevel:MPI = off}\\
+%\texttt{Check:event = off}\\
+%\texttt{LesHouches:matchInOut = off}\\
+%\texttt{BeamRemnants:primordialKT = off}\\
+%\texttt{SpaceShower:dipoleRecoil = on} \\
+%\texttt{SpaceShower:pTmaxMatch = 2} \\
+%\texttt{SpaceShower:QEDshowerByQ = off} \\
+%\texttt{SpaceShower:pTdampMatch=1} \\
+%\texttt{PDF:pSet = LHAPDF6:MSHT20qed\_nnlo}\\
+%\texttt{BeamRemnants:unresolvedHadron = 0} for double dissociation (\texttt{dd}), 1 for single dissociation (\texttt{sdb}), 2 for single 
+%dissociation (\texttt{sda}), 3 for elastic (\texttt{el}). \\
 
 We note that not all of the above setting are necessarily essential in order to ensure sensible showering, i.e. other options may be explored albeit at the user's own risk.
 
@@ -778,6 +792,7 @@ Physics details and selected results for jet and $\chi_{c,b}$ production as well
 may be found in~\cite{Harland-Lang:2015cta}, while a summary of the Durham model can be found in e.g.~\cite{Harland-Lang:2014dta,Harland-Lang:2014lxa,Harland-Lang:2015eqa}. 
 Further references for other specific processes are listed below:
 \begin{itemize}
+\item Anomalous magnetic/electric dipole moment of the $\tau$ lepton~\cite{Harland-Lang:2024zpn}.
 \item Mutual ion dissociation in UPCs~\cite{Harland-Langiondiss}.
 \item Exclusive and semi--exclusive $W^+ W^-$ production~\cite{Bailey:2022wqy}.
 \item Treatment proton dissociation in photon-initiated lepton pair production~\cite{Harland-Lang:2020veo}.
