@@ -507,6 +507,12 @@ c      mwx=80.318d0
       NPlin=.false.  ! if true only linear terms in a_tau,d_tau included (not available by default)
       if(NPlin)int_atauonly=.false.
 
+      if(proc.ne.58)then
+         print*
+     &,'[calc_tau_coeff] can only be true for tau tau - set to false'
+         calc_tau_coeff=.false.
+      endif
+
       if(calc_tau_coeff)then
          if(tau_mom.eq.'atau')then
             atau=1d0
