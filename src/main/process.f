@@ -2451,14 +2451,18 @@ cccccccccccccccc
 
          if(wlp.eq.'mu')then
             br(1)=10.63d-2
-         else
+         elseif(wlp.eq.'el')then
             br(1)=10.71d-2
+         else
+            br(1)=11.38d-2
          endif
 
          if(wlm.eq.'mu')then
             br(2)=10.63d-2
-         else
+         elseif(wlm.eq.'el')then
             br(2)=10.71d-2
+         else
+            br(2)=11.38d-2
          endif
 
 
@@ -2489,17 +2493,23 @@ cccccccccccccccc
             if(wlp.eq.'mu')then
                pdgid(i1+2)=14
                pdgid(i1+3)=-13
-            else
+            elseif(wlp.eq.'el')then
                pdgid(i1+2)=12
                pdgid(i1+3)=-11
+            else
+               pdgid(i1+2)=16
+               pdgid(i1+3)=-15
             endif
 
             if(wlm.eq.'mu')then
                pdgid(i1+4)=-14
                pdgid(i1+5)=13
-            else
+            elseif(wlm.eq.'el')then
                pdgid(i1+4)=-12
                pdgid(i1+5)=11
+            else
+               pdgid(i1+4)=-16
+               pdgid(i1+5)=15
             endif
 
             istup(i1+2)=1
