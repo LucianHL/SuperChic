@@ -618,13 +618,17 @@ ccccccccccccccccccc
          elseif(proc.eq.55.or.proc.eq.62)then
             if(wlp.eq.'mu')then
                call twobodyw(6,8,9,0d0,mmu)
-            else
+            elseif(wlp.eq.'el')then
                call twobodyw(6,8,9,0d0,me)
+            else
+               call twobodyw(6,8,9,0d0,mtau)
             endif
             if(wlm.eq.'mu')then
                call twobodyw(7,10,11,0d0,mmu)
-            else
+            elseif(wlm.eq.'el')then
                call twobodyw(7,10,11,0d0,me)
+            else
+               call twobodyw(7,10,11,0d0,mtau)
             endif
          elseif(proc.eq.73)then
             call threebody(1,6,8,9,10,mneut,mmu,0d0,wt3a)
