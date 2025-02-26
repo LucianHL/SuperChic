@@ -405,7 +405,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
      &.or.bp.eq.'ppel')) goto 111
       if(proc.eq.84.and.(bp.eq.'pAel'.or.bp.eq.'eeel'
      &.or.bp.eq.'ppel')) goto 111
-
+      if(proc.le.47.and.beam.eq.'ion')goto 111
 
       write(*,*)'Usupported process and beam combination'
       write(*,*)'bp->',bp,'<-'
