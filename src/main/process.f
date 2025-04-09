@@ -2449,23 +2449,34 @@ cccccccccccccccc
          decays=.true.
          nbr=2
 
+         wlp_lep=.false.
+         if(wlp.eq.'lep')wlp_lep=.true.
+
+
          if(wlp.eq.'mu')then
             br(1)=10.63d-2
          elseif(wlp.eq.'el')then
             br(1)=10.71d-2
-         else
+         elseif(wlp.eq.'lep')then
+            br(1)=10.68d-2 ! just take average of above two
+         else  
             br(1)=11.38d-2
          endif
+
+         wlm_lep=.false.
+         if(wlm.eq.'lep')wlm_lep=.true.
 
          if(wlm.eq.'mu')then
             br(2)=10.63d-2
          elseif(wlm.eq.'el')then
             br(2)=10.71d-2
+         elseif(wlm.eq.'lep')then
+            br(2)=10.68d-2 ! just take average of above two
          else
             br(2)=11.38d-2
          endif
 
-
+c
         if(enew)then
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
@@ -2496,6 +2507,9 @@ cccccccccccccccc
             elseif(wlp.eq.'el')then
                pdgid(i1+2)=12
                pdgid(i1+3)=-11
+            elseif(wlp.eq.'had')then
+               pdgid(i1+2)=2
+               pdgid(i1+3)=-1
             else
                pdgid(i1+2)=16
                pdgid(i1+3)=-15
@@ -2507,10 +2521,14 @@ cccccccccccccccc
             elseif(wlm.eq.'el')then
                pdgid(i1+4)=-12
                pdgid(i1+5)=11
+            elseif(wlm.eq.'had')then
+               pdgid(i1+4)=-2
+               pdgid(i1+5)=1
             else
                pdgid(i1+4)=-16
                pdgid(i1+5)=15
             endif
+
 
             istup(i1+2)=1
             istup(i1+3)=1

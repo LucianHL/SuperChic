@@ -106,6 +106,7 @@ rambo.o \
 3bodyinit.o \
 2bodyinit.o \
 wwcorr.o \
+wwmix.o \
 jpsidecay.o \
 rhodecay.o \
 chidecay.o \

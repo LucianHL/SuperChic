@@ -80,7 +80,7 @@ set(Phasef 2body.f 2bodyw.f 2jetps.f 2jetpsm.f 3jetps.f boost.f
            genpol1.f genpol1rf.f genpol2.f rambo.f 6body.f 6bodyinit.f 
            4body.f 4bodyinit.f 3body.f 3bodyinit.f 2bodyinit.f wwcorr.f 
            jpsidecay.f rhodecay.f chidecay.f monow.f alpdecay.f 
-           pAboost.f pAinit.f AAinit.f genpol_axial.f )
+           pAboost.f pAinit.f AAinit.f genpol_axial.f wwmix.f)
 list(TRANSFORM Phasef PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/phase/")
 
 set(Subampsf chi0.f chi1.f chi2.f etaq.f higgs.f higgsinit.f pipi.f 

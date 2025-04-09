@@ -616,10 +616,17 @@ ccccccccccccccccccc
             call twobodyw(6,8,9,0d0,mmu)
             call twobodyw(7,10,11,0d0,mmu)
          elseif(proc.eq.55.or.proc.eq.62)then
+            if(wlp_lep)then
+               call wwmix
+            elseif(wlm_lep)then
+               call wwmix
+            endif 
             if(wlp.eq.'mu')then
                call twobodyw(6,8,9,0d0,mmu)
             elseif(wlp.eq.'el')then
                call twobodyw(6,8,9,0d0,me)
+            elseif(wlp.eq.'had')then
+               call twobodyw(6,8,9,mu_quark,md_quark)
             else
                call twobodyw(6,8,9,0d0,mtau)
             endif
@@ -627,6 +634,8 @@ ccccccccccccccccccc
                call twobodyw(7,10,11,0d0,mmu)
             elseif(wlm.eq.'el')then
                call twobodyw(7,10,11,0d0,me)
+            elseif(wlm.eq.'had')then
+               call twobodyw(7,10,11,mu_quark,md_quark)
             else
                call twobodyw(7,10,11,0d0,mtau)
             endif
@@ -952,7 +961,6 @@ ccccccccc
                wtt=wtt*br(i)
             enddo
          endif
-
 
 
 
