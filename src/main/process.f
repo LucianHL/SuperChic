@@ -2458,7 +2458,9 @@ cccccccccccccccc
          elseif(wlp.eq.'el')then
             br(1)=10.71d-2
          elseif(wlp.eq.'lep')then
-            br(1)=10.68d-2 ! just take average of above two
+            br(1)=21.34d-2 ! just take sum of above two
+         elseif(wlp.eq.'had')then
+            br(1)=67.41d-2
          else  
             br(1)=11.38d-2
          endif
@@ -2471,7 +2473,9 @@ cccccccccccccccc
          elseif(wlm.eq.'el')then
             br(2)=10.71d-2
          elseif(wlm.eq.'lep')then
-            br(2)=10.68d-2 ! just take average of above two
+            br(2)=21.34d-2 ! just take sum of above two
+         elseif(wlm.eq.'had')then
+            br(2)=67.41d-2
          else
             br(2)=11.38d-2
          endif
