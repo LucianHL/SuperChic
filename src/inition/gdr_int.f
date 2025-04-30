@@ -205,7 +205,7 @@
          f1=1d0/(1d0+qsq/q0)**2
 
          wt=tpint(1,dsqrt(qsq))*qt
-         wt=wt*BESSEL_J0(bt*qt)*f1
+         wt=wt*BESSEL_J1(bt*qt)*f1
 
          wt=wt*hlq2
 
