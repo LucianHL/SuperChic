@@ -300,6 +300,9 @@ c      read(*,*)elcoll
       read(*,*)tau_coeff
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+      if(fAA.eq.'10')fAA='01'
+
       tdiff=diff
       if(diff.eq.'sda'.or.diff.eq.'sdb')then
          tdiff='sd'
