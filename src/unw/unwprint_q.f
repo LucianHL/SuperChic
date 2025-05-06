@@ -167,6 +167,7 @@ ccc   prints nev events to record
       include 'rech.f'
       include 'ion.f'
       include 'diff.f'  
+      include 'wdecay.f'
       
       do i=1,evnum
          evfill(i)=1
@@ -266,10 +267,6 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
 
          if(erec.eq.'lhe')then
             
-            do k=1,nup+1
-               idup(k)=pdgid(k)
-            enddo
-            
            do k=3,nup+1
                do l=1,4
                   pup(l,k)=evrec(j,k,l)
@@ -278,6 +275,14 @@ ccccccccccccccccccccccccccccccccccccccccccccccc
      &              -pup(2,k)**2-pup(1,k)**2))
                if(idup(k).eq.22)pup(5,k)=0d0
             enddo
+
+            if(wlm_lep)call wdec_pdg(j,2)
+            if(wlp_lep)call wdec_pdg(j,1)
+
+            do k=1,nup+1
+               idup(k)=pdgid(k)
+            enddo
+
 
            if(beam.eq.'prot')then
               if(pup(5,3).gt.1d0)then

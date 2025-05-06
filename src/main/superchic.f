@@ -502,6 +502,8 @@ c      mwx=80.318d0
       mup=0.062d0
       md=0.083d0
       ms=0.215d0
+      md_quark=md
+      mu_quark=mup
 
 
       NPlin=.false.  ! if true only linear terms in a_tau,d_tau included (not available by default)
