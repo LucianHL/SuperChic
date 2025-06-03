@@ -28,13 +28,17 @@
       ml_wp=pup(5,i1+3)
       ml_wm=pup(5,i1+5)
 
-      if(ml_wp.gt.0.1d0)then
+      if(ml_wp.gt.1d0)then
+         wlp='tau'
+      elseif(ml_wp.gt.0.1d0)then
          wlp='mu'
       else  
          wlp='el'
       endif
 
-      if(ml_wm.gt.0.1d0)then
+      if(ml_wm.gt.1d0)then
+         wlm='tau'
+      elseif(ml_wm.gt.0.1d0)then
          wlm='mu'
       else  
          wlm='el'
