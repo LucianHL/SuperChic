@@ -639,6 +639,7 @@ ccccccccccccccccccc
             else
                call twobodyw(7,10,11,0d0,mtau)
             endif
+c            print*,dsqrt(q(4,11)**2-q(3,11)**2-q(2,11)**2-q(1,11)**2)
          elseif(proc.eq.73)then
             call threebody(1,6,8,9,10,mneut,mmu,0d0,wt3a)
             call threebody(1,7,11,12,13,mneut,mmu,0d0,wt3b)
@@ -1114,16 +1115,31 @@ c                   p2- + cc2/p1+ = aa2
 
                if(proc.eq.55.or.proc.eq.62)then
                   elcollw=.true.
+                  
+                  if(wlp_lep)then
+                  call wwmix
+                  elseif(wlm_lep)then
+                  call wwmix
+                  endif 
                   if(wlp.eq.'mu')then
-                     call twobodyw(6,8,9,0d0,mmu)
+                  call twobodyw(6,8,9,0d0,mmu)
+                  elseif(wlp.eq.'el')then
+                  call twobodyw(6,8,9,0d0,me)
+                  elseif(wlp.eq.'had')then
+                  call twobodyw(6,8,9,mu_quark,md_quark)
                   else
-                     call twobodyw(6,8,9,0d0,me)
+                  call twobodyw(6,8,9,0d0,mtau)
                   endif
                   if(wlm.eq.'mu')then
-                     call twobodyw(7,10,11,0d0,mmu)
+                  call twobodyw(7,10,11,0d0,mmu)
+                  elseif(wlm.eq.'el')then
+                  call twobodyw(7,10,11,0d0,me)
+                  elseif(wlm.eq.'had')then
+                  call twobodyw(7,10,11,mu_quark,md_quark)
                   else
-                     call twobodyw(7,10,11,0d0,me)
+                  call twobodyw(7,10,11,0d0,mtau)
                   endif
+
                   elcollw=.false.
                endif
 
