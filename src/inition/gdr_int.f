@@ -1,7 +1,7 @@
       subroutine gdrset
       implicit none
       double precision sum1,sumx,hb,btmin,btmax,bt,acc
-      double precision bti,lbtmin,lbtmax,hlb,lbt
+      double precision bti,lbtmin,lbtmax,hlb,lbt,sum
       logical recalc
       integer i
 
@@ -9,6 +9,8 @@
       include 'pgdr.f'
       include 'pi.f'
       include 'p0Xn.f'
+
+      open(20,file='probtest1a.dat')
 
       btmax=rzg*500d0
       btmin=rzg*1.5d0
@@ -39,9 +41,19 @@
          gdrarr(2,i)=sum1*fracsigX
          gdrarr(3,i)=sumX*fracsigX
 
+         if(wrho)then
+         call rho_exc_calc(bt,sum)
+         gdrarr(4,i)=sum
+c         call twogamprob_calc(bt,sum)
+c         gdrarr(5,i)=sum
+         endif
+
       enddo
 
+
       close(20)
+
+      stop
 
       return
       end
@@ -85,6 +97,156 @@
       return
       end
 
+      subroutine twogamprob_calc(bt,sum)
+      implicit none
+      double precision bt,sum,phi
+      double precision btmax,wt,hbt,hphi
+      double precision btx,bty,btxp,btyp,btp
+      double precision bt1x,bt1y,bt2x,bt2y,bt1,bt2
+      double precision x,mll,gdrint
+      integer ib,nbt,iphi,nphi
+
+      include 'ion.f'
+      include 'pgdr.f'
+      include 'pi.f'
+      include 'p0Xn.f'
+      include 'gdr.f'
+      include 'sAA.f'
+      include 'mion.f'
+      include 'vars.f'
+      include 'mp.f'
+
+
+cc   0.25943604146912896    
+      btmax=rzg*100d0
+      btmax=dlog(btmax)
+
+      nbt=100
+      nphi=10
+
+      hbt=btmax/dble(nbt)
+      hphi=2d0*pi/dble(nphi)
+
+      bty=bt
+      btx=0d0
+
+      mll=1d0
+      x=mll/rtsaa
+
+      sum=0d0
+
+      do ib=1,nbt
+      do iphi=1,nphi
+
+         btp=(dble(ib)-0.5d0)*hbt
+         btp=dexp(btp)
+         phi=(dble(iphi)-0.5d0)*hphi
+
+         btxp=btp*dcos(phi)
+         btyp=btp*dsin(phi)
+
+         bt1x=(btx+btxp)/2d0
+         bt1y=(bty+btyp)/2d0
+         bt2x=(btx-btxp)/2d0
+         bt2y=(bty-btyp)/2d0
+
+         bt1=dsqrt(bt1x**2+bt1y**2)
+         bt2=dsqrt(bt2x**2+bt2y**2)
+
+         wt=gdrint(x,bt1)*gdrint(x,bt2)
+         wt=wt*hbt*hphi*btp**2/2d0
+
+         sum=sum+wt
+
+c         print*,btp/rzg,wt
+
+      enddo
+      enddo
+
+
+      return
+      end
+
+      subroutine rho_exc_calc(bt,sum)
+      implicit none
+      double precision kmin,kmax,sig,htlk,lkmin,lkmax
+      double precision ycut,xmin,xmax,mrho
+      double precision lk,k,wt,sum,x,bt
+      double precision gdrint
+      double precision erho,yrho,prho,sig0,msig,wgam
+      integer ik,nk
+
+      include 'ion.f'
+      include 'gdr.f'
+      include 'sAA.f'
+      include 'mion.f'
+      include 'vars.f'
+      include 'mp.f'
+
+      kmin=1d0
+      kmax=1d4
+
+      mrho=0.77545d0
+      ycut=2.5d0
+c      ycut=0.2d0
+
+      xmin=mrho*dexp(-ycut)/rtsaa
+      xmax=mrho*dexp(ycut)/rtsaa
+
+c     xmin=mrho*dexp(-4.5d0)/rtsaa
+c      xmax=mrho*dexp(-3.5d0)/rtsaa
+
+      kmin=xmin/2d0/mion*(rtsaa**2-2d0*mion**2)
+      kmax=xmax/2d0/mion*(rtsaa**2-2d0*mion**2)
+
+      nk=100
+      
+      lkmin=dlog(kmin)
+      lkmax=dlog(kmax)
+      htlk=(lkmax-lkmin)/dble(nk)
+
+      sig0=2d0/0.389379d0
+      sig=sig0
+      msig=0.2d0/0.389379d0/30d0
+
+      sum=0d0
+
+      do ik=1,nk
+         
+         lk=lkmin+htlk*(dble(ik)-0.5d0)
+         k=dexp(lk)
+         
+c         print*,k 285308.  500513.
+         wgam=dsqrt(2d0*0.938d0*k)
+c         sig=sig0+msig*(wgam-30d0)
+c         print*,k,sig
+
+         wt=htlk*sig
+
+         x=2d0*mion*k/(rtsaa**2-2d0*mion**2)
+         wt=wt*gdrint(x,bt)
+
+c         print*,k,x,dsqrt(2d0*0.938d0*k)
+
+   
+
+         sum=sum+wt
+
+
+      enddo
+
+      x=mrho/rtsaa
+c      sum=gdrint(x,bt)
+      print*,'test',sum,gdrint(x,bt)*dlog(kmax/kmin)*sig
+
+c      print*,'rho',bt,sum
+
+c      stop
+      
+
+      return
+      end
+
 
       subroutine gdrcalc(bt,sum1,sumX)
       implicit none
@@ -105,6 +267,8 @@
       do i=1,i0
 
          wt1=sneut(2,i)/sneut(1,i)
+
+c         print*,i,sneut(1,i)
 
          x=2d0*mion*sneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
 
@@ -155,7 +319,9 @@
       return
       end
 
-      function gdrint(x,bt)
+      
+
+      function gdrint(x,bt)  ! is |tilde{N}|^2 in (34) of 2303.04826
       implicit none
       double precision x,bt,gdrint,wt,sum,sum1
       double precision qt,q2min,q2max,lq2min,lq2max,qsq,q0,lqsq,hq2,f1

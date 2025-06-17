@@ -16,6 +16,7 @@
 
       nbt0=3000
       nbt=3000
+
       b0=4d0*rzg
       hbt0=(b0-btmin)/dble(nbt0)
       sum0=0d0

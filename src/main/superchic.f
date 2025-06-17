@@ -159,6 +159,7 @@ c      read(*,*)elcoll
       read(*,*)ionbreakup
       read(*,*)fAA
       read(*,*)fracsigX
+      read(*,*)wrho
       read(*,*)dum
       read(*,*)dum
       read(*,*)dum
@@ -301,7 +302,24 @@ c      read(*,*)elcoll
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+      if(wrho)ionbreakup=.true.
       if(fAA.eq.'10')fAA='01'
+      if(fAA.eq.'1A')fAA='A1'
+      if(fAA.eq.'XA')fAA='AX'
+      if(fAA.eq.'0A')fAA='A0'
+      if(fAA.eq.'X0')fAA='0X'
+      if(fAA.eq.'X1')fAA='1X'
+      
+      int_01=.false.
+      if(fAA.eq.'01'.or.fAA.eq.'A1'.or.fAA.eq.'AX')int_01=.true.
+      if(wrho)then
+         if(fAA.eq.'AA')int_01=.true.
+         if(fAA.eq.'01')int_01=.false.
+         if(fAA.eq.'AX')int_01=.false.
+         if(fAA.eq.'A1')int_01=.false.
+         if(fAA.eq.'A0')int_01=.true.
+         if(fAA.eq.'00')int_01=.true.
+      endif
 
       tdiff=diff
       if(diff.eq.'sda'.or.diff.eq.'sdb')then

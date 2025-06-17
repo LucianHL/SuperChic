@@ -14,8 +14,7 @@
       subroutine binit(wt)
       implicit none
       double precision wt
-
-
+      integer i
 
       include 'vars.f'
       include 'mom.f'
@@ -33,11 +32,13 @@
 
 !cccccccc
 
+      mmin0=6d0
+
       if(dps.eq.1)then
-         call histo1(1,30,ymin,ymax,yx,wt,'yx')
+         call histo1(1,10,ymin,ymax,yx,wt,'yx')
       else
-         call histo1(1,30,mmin,mmax,mx,wt,'mx')
-         call histo1(2,30,0d0,ymax,dabs(yx),wt,'yx')
+         call histo1(1,10,mmin0,mmax,mx,wt,'mx')
+         call histo1(2,10,ymin,ymax,yx,wt,'yx')
       endif
 
       return

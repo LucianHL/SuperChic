@@ -160,6 +160,8 @@
       return
       end
 
+!       0.365192E+09 
+
       function Regge_gdr(e)
       implicit none
       double precision regge_gdr,shad
