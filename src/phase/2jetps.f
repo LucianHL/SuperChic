@@ -7,7 +7,6 @@ ccc   generates two-body phase space for particles of equal mass mq
       double precision px(4),pcm(4)
       double precision pboo(4)
       integer i
-      common/cthetatemp/ctheta
 
       include 'mt.f'
       include 'partonmom2.f'
