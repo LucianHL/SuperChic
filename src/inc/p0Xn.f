@@ -1,5 +1,6 @@
       logical ionbreakup,approx,pAAvar,int_01
       logical wrho
+      double precision yrho,accrho
       character*2 fAA
       integer ifaa
       double precision fracsigX
@@ -9,4 +10,5 @@
       common/p1X_var/pAAvar
       common/p1X_var1/ifaa
       common/wrho_log/wrho
+      common/wrho_corr/yrho,accrho
 

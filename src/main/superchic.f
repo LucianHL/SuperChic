@@ -160,6 +160,8 @@ c      read(*,*)elcoll
       read(*,*)fAA
       read(*,*)fracsigX
       read(*,*)wrho
+      read(*,*)yrho
+      read(*,*)accrho
       read(*,*)dum
       read(*,*)dum
       read(*,*)dum

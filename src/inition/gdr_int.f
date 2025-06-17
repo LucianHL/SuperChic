@@ -182,19 +182,16 @@ c         print*,btp/rzg,wt
       include 'mion.f'
       include 'vars.f'
       include 'mp.f'
+      include 'p0Xn.f'
 
       kmin=1d0
       kmax=1d4
 
       mrho=0.77545d0
-      ycut=2.5d0
-c      ycut=0.2d0
+      ycut=yrho
 
       xmin=mrho*dexp(-ycut)/rtsaa
       xmax=mrho*dexp(ycut)/rtsaa
-
-c     xmin=mrho*dexp(-4.5d0)/rtsaa
-c      xmax=mrho*dexp(-3.5d0)/rtsaa
 
       kmin=xmin/2d0/mion*(rtsaa**2-2d0*mion**2)
       kmax=xmax/2d0/mion*(rtsaa**2-2d0*mion**2)
@@ -216,19 +213,11 @@ c      xmax=mrho*dexp(-3.5d0)/rtsaa
          lk=lkmin+htlk*(dble(ik)-0.5d0)
          k=dexp(lk)
          
-c         print*,k 285308.  500513.
          wgam=dsqrt(2d0*0.938d0*k)
-c         sig=sig0+msig*(wgam-30d0)
-c         print*,k,sig
-
-         wt=htlk*sig
+         wt=htlk*sig*accrho
 
          x=2d0*mion*k/(rtsaa**2-2d0*mion**2)
          wt=wt*gdrint(x,bt)
-
-c         print*,k,x,dsqrt(2d0*0.938d0*k)
-
-   
 
          sum=sum+wt
 
@@ -236,13 +225,7 @@ c         print*,k,x,dsqrt(2d0*0.938d0*k)
       enddo
 
       x=mrho/rtsaa
-c      sum=gdrint(x,bt)
-      print*,'test',sum,gdrint(x,bt)*dlog(kmax/kmin)*sig
 
-c      print*,'rho',bt,sum
-
-c      stop
-      
 
       return
       end
