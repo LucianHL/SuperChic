@@ -13,6 +13,7 @@ c     *  (l.harland-lang@ucl.ac.uk)                 *
 c     *                                             *
 c     *  For details see :                          *
 c     *                                             *
+c     *  arXiv 2506.03264 (coincident production)   *
 c     *  arXiv 2303.04826 (ion dissiciation)        *
 c     *  arXiv 2201.08403 (WW)                      *
 c     *  arXiv 2007.12704 (v4 updates)              *
@@ -304,6 +305,7 @@ c      read(*,*)elcoll
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+      if(beam.neq.'ion')wrho=.false.
       if(wrho)ionbreakup=.true.
       if(fAA.eq.'10')fAA='01'
       if(fAA.eq.'1A')fAA='A1'
