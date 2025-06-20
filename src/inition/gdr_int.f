@@ -49,12 +49,7 @@ c         gdrarr(5,i)=sum
          endif
 
       enddo
-
-
-      close(20)
-
-      stop
-
+      
       return
       end
 
