@@ -110,9 +110,7 @@ c         gdrarr(5,i)=sum
       include 'mion.f'
       include 'vars.f'
       include 'mp.f'
-
-
-cc   0.25943604146912896    
+      
       btmax=rzg*100d0
       btmax=dlog(btmax)
 
@@ -197,7 +195,8 @@ c         print*,btp/rzg,wt
       lkmax=dlog(kmax)
       htlk=(lkmax-lkmin)/dble(nk)
 
-      sig0=2d0/0.389379d0
+      sig0=2.3d0/0.389379d0  ! cross section
+      sig0=sig0*2d0  ! incude both ions
       sig=sig0
       msig=0.2d0/0.389379d0/30d0
 
@@ -218,10 +217,7 @@ c         print*,btp/rzg,wt
 
 
       enddo
-
-      x=mrho/rtsaa
-
-
+      
       return
       end
 
