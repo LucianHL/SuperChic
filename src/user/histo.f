@@ -32,12 +32,10 @@
 
 !cccccccc
 
-      mmin0=6d0
-
       if(dps.eq.1)then
          call histo1(1,10,ymin,ymax,yx,wt,'yx')
       else
-         call histo1(1,10,mmin0,mmax,mx,wt,'mx')
+         call histo1(1,10,mmin,mmax,mx,wt,'mx')
          call histo1(2,10,ymin,ymax,yx,wt,'yx')
       endif
 
