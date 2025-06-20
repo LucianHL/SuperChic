@@ -221,8 +221,12 @@ mutual ion dissociation (or a veto on it) as specified by \texttt{fAA}. Possible
  dissociation of beam 1; the experimental definition is usually given by the sum of these two possibilities, or in 
  most cases by simply multiplying one case by 2. If \texttt{ionbreakup} set to \texttt{.false.} the result is 
  inclusive with respect to mutual ion dissociation.
-\item \texttt{fracsigX}. Reweights the normalization of the $\gamma A \to A^*$ cross section when ion breakup is 
+\item \texttt{fracsigX}: Reweights the normalization of the $\gamma A \to A^*$ cross section when ion breakup is 
 included. For approximate tuning purposes.
+\item \texttt{wrho}: if set to \texttt{.true.} then includes probability of coincident $\rho^0$ production in PbPb collisions, as described in arXiv:2506.03264.
+\item \texttt{yrho}: maximum value of $|y_{\rho^0}|$, if \texttt{wrho} is \texttt{.true.}.
+\item \texttt{accrho}: additional correction factor to account for e.g. $\rho^0\to \pi^+\pi^-$ acceptance, non-resonant dipions and different beams (input assume Pb beams). Simply multiplies $\gamma A \to \rho^0 A$ cross section.
+ Default normalization is as described in arXiv:2506.03264.
 \item \texttt{ncall}, \texttt{itms}: number of iterations and calls in \texttt{VEGAS} preconditioning run. Soft 
 survival effects are turned off to decrease the runtime. It is recommended to set the number of calls in units of 
 1000, and to increase the number when applying cuts.

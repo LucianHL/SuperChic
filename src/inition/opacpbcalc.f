@@ -1,7 +1,8 @@
       subroutine opacpbcalc
       implicit none
-      double precision sigin,px,p1,p0,opac,sum1t
-      double precision hb,bt,pgdrint,opacpb
+      double precision sigin,px,p1,p0,opac,sum1t,sum1ta
+      double precision hb,bt,pgdrint,opacpb,prho,pll
+     &   ,sum_cs,sum_cs1,sum_cs2,sum_cs3
       integer i
       logical readop
 
@@ -44,13 +45,37 @@ cccccc
 
          btmin=rzg*1.6d0
 
+
          if(fAA.eq.'11')then
             btmax=rzg*200d0
             ioppb=3000
          elseif(fAA.eq.'00')then
+            if(wrho)then
+            btmax=rzg*200d0
+            ioppb=3000
+            else
             btmax=rzg*150d0
             btmin=rzg*1.7d0
             ioppb=1500
+            endif
+         elseif(fAA.eq.'A0')then
+            if(wrho)then
+            btmax=rzg*200d0
+            ioppb=3000
+            else
+            btmax=rzg*150d0
+            btmin=rzg*1.7d0
+            ioppb=1500
+            endif
+         elseif(fAA.eq.'AA')then
+            if(wrho)then
+            btmax=rzg*200d0
+            ioppb=3000
+            else
+            btmax=rzg*4d0
+            btmin=rzg*1.5d0
+            ioppb=25
+            endif
          elseif(fAA.eq.'XX')then
             btmax=rzg*200d0
             ioppb=3000
@@ -60,7 +85,15 @@ cccccc
          elseif(fAA.eq.'01')then
             btmax=rzg*200d0
             ioppb=3000
+         elseif(fAA.eq.'A1')then
+            btmax=rzg*200d0
+            ioppb=3000
+         elseif(fAA.eq.'AX')then
+            btmax=rzg*200d0
+            ioppb=3000
          endif
+
+
 
       else
          btmax=rzg*4d0
@@ -97,7 +130,12 @@ cccccc
 
          if(ionbreakup)then
 
-            if(fAA.eq.'00')then
+
+            if(wrho)then
+               p0=dexp(-pgdrint(3,dlog(bt)))
+               pX=1d0-p0
+               p1=pgdrint(2,dlog(bt))*p0
+            elseif(fAA.eq.'00'.or.fAA.eq.'A0')then
                if(bt.gt.rzg*1.5d0)then
                   p0=dexp(-pgdrint(3,dlog(bt)))
                else
@@ -109,10 +147,24 @@ cccccc
                p1=pgdrint(2,dlog(bt))*p0
             endif
 
+            if(wrho)then
+               prho=pgdrint(4,dlog(bt))
+               pll=pgdrint(5,dlog(bt))
+            endif
+
             approx=.false.
+
+
+            if(wrho)then
+
+            sum1t=pgdrint(4,dlog(btmax))/bt**2*btmax**2
+
+            else
 
             sum1t=0.75d0*az*(an-az)/an**(2d0/3d0)
      &              /0.389389d0*az**2/pi**2/bt**2/137d0
+
+            endif
 
             if(approx)then
                sum1t=0.75d0*az*(an-az)/an**(2d0/3d0)
@@ -123,25 +175,78 @@ cccccc
             endif
 
             if(fAA.eq.'00')then
+               if(wrho)then
+               opacpbarr(3,i)=1d0-opacpbarr(2,i)*dsqrt(sum1t)
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*(dsqrt(prho)*p0
+     &              -dsqrt(sum1t))
+               else
                opacpbarr(2,i)=opacpbarr(2,i)*p0
+               endif
             elseif(fAA.eq.'XX')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*pX*dsqrt(prho)
+               else
                opacpbarr(2,i)=1d0-opacpbarr(2,i)*pX
+               endif
             elseif(fAA.eq.'11')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*p1*dsqrt(prho)
+               else
                opacpbarr(2,i)=1d0-opacpbarr(2,i)*p1
+               endif
             elseif(fAA.eq.'0X')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(pX*p0*prho)
+               else
                opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(pX*p0)
-            elseif(fAA.eq.'X0')then
-               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(pX*p0)
+               endif
             elseif(fAA.eq.'01')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*p0*prho)
+               else
                opacpbarr(3,i)=1d0-opacpbarr(2,i)*dsqrt(sum1t)
                opacpbarr(2,i)=1d0-opacpbarr(2,i)*(dsqrt(p1*p0)
      &              -dsqrt(sum1t))
-            elseif(fAA.eq.'10')then
-               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*p0)
-            elseif(fAA.eq.'X1')then
-               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*pX)
+               endif
             elseif(fAA.eq.'1X')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*pX*prho)
+               else
                opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*pX)
+               endif
+            elseif(fAA.eq.'AA')then
+               if(wrho)then
+               opacpbarr(3,i)=1d0-opacpbarr(2,i)*dsqrt(sum1t)
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*(dsqrt(prho)
+     &              -dsqrt(sum1t))
+c               print*,bt,opacpbarr(3,i),opacpbarr(2,i)
+               else
+               opacpbarr(2,i)=opacpbarr(2,i)
+               endif
+            elseif(fAA.eq.'A0')then
+               if(wrho)then
+               opacpbarr(3,i)=1d0-opacpbarr(2,i)*dsqrt(sum1t)
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*(dsqrt(prho*p0)
+     &              -dsqrt(sum1t))
+               else
+               opacpbarr(2,i)=opacpbarr(2,i)*dsqrt(p0)
+               endif
+            elseif(fAA.eq.'AX')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(pX*prho)
+               else
+               opacpbarr(3,i)=1d0-opacpbarr(2,i)*dsqrt(sum1t)
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*(dsqrt(pX)
+     &              -dsqrt(sum1t))
+               endif
+            elseif(fAA.eq.'A1')then
+               if(wrho)then
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*dsqrt(p1*prho)
+               else
+               opacpbarr(3,i)=1d0-opacpbarr(2,i)*dsqrt(sum1t)
+               opacpbarr(2,i)=1d0-opacpbarr(2,i)*(dsqrt(p1)
+     &              -dsqrt(sum1t))
+               endif
             else
                print*,'fAA option not allowed - STOP'
                STOP 1
@@ -150,6 +255,7 @@ cccccc
          endif
 
       enddo
+
 
       return
       end

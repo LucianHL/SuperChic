@@ -21,7 +21,10 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       if(beam.eq.'ionp'.and.qcd.eqv..true.)ionqcd='coh'
       if(faa.eq.'0X'.or.faa.eq.'X0')then
+         if(wrho)then
+         else
          if(ionbreakup)pAAvar=.true.
+         endif
       endif
 
       call ionpars

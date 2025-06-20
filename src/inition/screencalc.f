@@ -15,6 +15,8 @@
 
       itot=400
 
+c      open(10,file='testold.dat')
+
       do i=1,itot+1
 
          lq=lqmin+(lqmax-lqmin)*dble(i-1)/dble(itot)
@@ -24,7 +26,7 @@
 
          if(pAAvar)then
             scionarr(ifaa+1,i)=screen(qt)
-         elseif(fAA.eq.'01')then
+         elseif(int_01)then
             scionarr(2,i)=screen_01(qt)
             scionarr(2,i)=scionarr(2,i)+screen(qt)
          else

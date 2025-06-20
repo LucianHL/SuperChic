@@ -1,18 +1,18 @@
 ****************************************************************************************
 ******  RE-RUN ./init IF FIRST FIVE PARAMETERS ARE CHANGED (and beam = 'prot'):  *******
 ****************************************************************************************
-13d3           !  [rts] : CMS collision energy (GeV)
+5.36d3           !  [rts] : CMS collision energy (GeV)
 4	       !  [isurv] : Model of soft survival (from 1 -> 4, corresponding to arXiv:1306.2149)
-'in13'         !  [intag] for input files 
+'in536'         !  [intag] for input files 
 ****************************************************************************************
 ****************************************************************************************
 'MSHT20qed_nnlo'   ! [PDFname] : PDF set
 0                    ! [PDFmember] : PDF member
 ****************************************************************************************
-58      !  [proc] : Process number (see manual for labelling)
-'prot'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
+57      !  [proc] : Process number (see manual for labelling)
+'ion'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
 'test'          ! [outtg]
-.true.  !  [sfaci] : Include soft survival effects
+.false.  !  [sfaci] : Include soft survival effects
 ****************************************************************************************
 ************************* Dissociation parameters for PI  ******************************
 ****************************************************************************************
@@ -26,8 +26,11 @@
 0.55d0  !  [dn] : Ion neutron density - skin thickness
 'coh'   !  [ionqcd] : Coherent ('coh') or incoherent ('incoh') for QCD-induced (ion-ion) processes
 .false.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
-'00'    ! [fAA] : if ionbreakup=.true. then specifies breakup type
+'AA'    ! [fAA] : if ionbreakup=.true. then specifies breakup type
 1d0     ! [fracsigX] : multiply sig_(gamA) by this factor (1d0 - default)
+.false.  ! [wrho] : generate concident rho production in AA collisions
+2.5d0    ! [yrho] : maximum rho |y|
+1d0      ! [accrho] : additional correction factor to account for rho->pipi acceptance, non-resonant dipions and different beams
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
@@ -49,11 +52,11 @@
 ****************************************************************************************
 *******************************   general cuts    **************************************
 ****************************************************************************************
--2.5d0          ! [ymin]
-2.5d0          ! [ymax]
-10d0          ! [mmin]
-100d0          ! [mmax]
-.false.        ! [gencuts] : Generate cuts below
+-0.5d0          ! [ymin]
+0.5d0          ! [ymax]
+2.5d0          ! [mmin]
+3.5d0          ! [mmax]
+.true.        ! [gencuts] : Generate cuts below
 .true.        ! [scorr] : Include spin correlations
 .true.	      ! [fwidth] : Include finite width 
 ****************************************************************************************
@@ -65,8 +68,8 @@
 ****************************************************************************************
 ************************* 2 body final states : p(a) + p(b) ****************************
 ****************************************************************************************
-2.5d0         ! [ptamin]
-2.5d0         ! [ptbmin]
+1d0         ! [ptamin]
+1d0         ! [ptbmin]
 -2.5d0       ! [etaamin]
 2.5d0        ! [etaamax]
 -2.5d0       ! [etabmin]
