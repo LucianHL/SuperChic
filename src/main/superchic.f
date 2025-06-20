@@ -305,7 +305,7 @@ c      read(*,*)elcoll
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
-      if(beam.neq.'ion')wrho=.false.
+      if(beam.ne.'ion')wrho=.false.
       if(wrho)ionbreakup=.true.
       if(fAA.eq.'10')fAA='01'
       if(fAA.eq.'1A')fAA='A1'
