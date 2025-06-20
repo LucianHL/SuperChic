@@ -173,7 +173,7 @@ c         print*,btp/rzg,wt
       double precision ycut,xmin,xmax,mrho
       double precision lk,k,wt,sum,x,bt
       double precision gdrint
-      double precision erho,yrho,prho,sig0,msig,wgam
+      double precision erho,prho,sig0,msig,wgam
       integer ik,nk
 
       include 'ion.f'
