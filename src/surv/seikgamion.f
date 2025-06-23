@@ -45,7 +45,7 @@ ccc   (two-photon induced processes)
       qtmin=0d0
 
       if(ionbreakup)then
-         if(fAA.eq.'01')then
+         if(int_01)then
             xggmin=1d-4         ! 01
          else
             xggmin=1d-2         ! otherwise
@@ -182,9 +182,12 @@ ccc   (two-photon induced processes)
 
             if(ionbreakup)then
                if(sfac)then
-                  if(fAA.eq.'00')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases
+               if(wrho)then
+               else
+                  if(fAA.eq.'00'.or.fAA.eq.'AA'.or.fAA.eq.'A0')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases
                      outg(p)=outg(p)+zoutoff2
                   endif
+               endif
                else
                   outg(p)=outg(p)+zoutoff2
                endif
@@ -203,9 +206,12 @@ ccc   (two-photon induced processes)
 
             if(ionbreakup)then
                if(sfac)then
-                  if(fAA.eq.'00')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases
+               if(wrho)then
+               else
+                  if(fAA.eq.'00'.or.fAA.eq.'AA'.or.fAA.eq.'A0')then ! exp(-omega)*p and not 1-exp(-omega)*p (more stable) for other cases
                      outg(p)=outg(p)+zout*x00p*2d0
                   endif
+               endif
                else
                   outg(p)=outg(p)+zout*x00p*2d0
                endif
