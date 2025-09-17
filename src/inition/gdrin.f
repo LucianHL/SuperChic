@@ -43,6 +43,8 @@
       open(50,file=trim(defpath)// '/Muccifora.dat')
       endif
 
+
+
       i0=161 ! GDR, Veyssiere et al. Nucl. Phys. A159, 561 (1970)
       i1=189 ! 25-103 MeV, Lepretre, et al., Nucl. Phys. A367, 237 (1981)
       i2=210 ! 106-440 MeV, Carlos, et al., Nucl. Phys. A431, 573 (1984)
@@ -65,6 +67,7 @@
       lemin=dlog(16.4d0)
       ir=100
       leint=(lemax-lemin)/dble(ir)
+
 
       if(nint(az).eq.82)then
          read(10,*)

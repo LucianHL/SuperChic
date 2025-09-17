@@ -13,8 +13,16 @@
 !cc   binning subroutine
       subroutine binit(wt)
       implicit none
-      double precision wt
-      integer i
+      double precision wt,yx_lab
+      integer i,j
+      double precision acoab,delphi,ptgam1,ptgam2,ptgam
+      double precision eta1,eta2,eta3,pmod1,pmod2,pmod3
+      double precision eta3rf,pmod3rf,eta2rf,pmod2rf
+      double precision pj1(4),pj2(4),pl1(4),pl2(4)
+      double precision pq1(4),pq2(4),qsq1,qsq1tt
+      double precision q1(4),q2(4),ptj1,pmodj1,etaj1,xi1
+      double precision mqgam,ptq,d13,d23,dphi,eta3d
+      double precision pa_in(4),mdiss_a,pa_out(4)
 
       include 'vars.f'
       include 'mom.f'
@@ -29,14 +37,18 @@
       include 'xb.f'
       include 'ewpars.f'
       include 'partonmom2.f'
+      include 'mion.f'
 
 !cccccccc
 
+      yx_lab=0.5d0*dlog((q(4,5)+q(3,5))/(q(4,5)-q(3,5)))
+
       if(dps.eq.1)then
-         call histo1(1,10,ymin,ymax,yx,wt,'yx')
+         call histo1(1,10,ymin,ymax,yx_lab,wt,'yx')
       else
-         call histo1(1,10,mmin,mmax,mx,wt,'mx')
-         call histo1(2,10,ymin,ymax,yx,wt,'yx')
+         call histo1(1,20,mmin,mmax,mx,wt,'mx')
+!ccc         call histo1(2,10,ymin,ymax,yx,wt,'yx')
+         call histo1(2,10,0d0,2.4d0,dabs(yx_lab),wt,'|yx|')
       endif
 
       return

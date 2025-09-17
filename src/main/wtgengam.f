@@ -13,6 +13,7 @@ c      include 'zoutarr.f'
       include 'diss.f'
       include 'eff.f'
 
+      
 
       if(offshell)then
 
@@ -23,13 +24,19 @@ c               if(p.eq.1.or.p.eq.2.or.p.eq.5.or.p.eq.7.or.p.eq.9)then
 c               endif
             endif
             if(proc.eq.56.or.proc.eq.57.or.proc.eq.58)then
-               call lloff(p)
+c              call lbyloff(p)
+c               call lloff(p)
+               call lloff_test(p)
+c               call lloff_MG(p)
             endif
             if(proc.eq.58)then
                call lloff_MG(p)
             endif 
             if(proc.eq.68)then
                call alp_off(p)
+            endif
+            if(proc.eq.59)then
+               call lbyloff(p)
             endif
          enddo
       else
@@ -49,10 +56,19 @@ c               endif
      &        proc.eq.76)then
          do p=1,pol
             call llpol(p,mx,uh,th,pp,mm,pm,mp)
+c            call lightlightpol(p,mx,uh,th,pp,mm,pm,mp)
+
+c            pp=0d0
+c            mm=0d0
+c            pm=0d0
+c            mp=0d0
+
             ppa(p)=pp
             mma(p)=mm
             pma(p)=pm
             mpa(p)=mp
+
+            
 
 c            print*,p
 c            print*,'pp,mm,pm,mp=',pp,mm,pm,mp

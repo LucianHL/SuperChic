@@ -1,3 +1,24 @@
+      subroutine F1F2el_neut(q2,f1,f2)
+      implicit double precision(a-y)
+ 
+      mn=0.94d0 
+      diprat = -1.913d0/2.793d0 ! Ratio of mu_n/mu_p
+      
+      ge1=1d0/(1d0+q2/0.71d0)**4
+      gm1=ge1*7.78d0
+
+      gmn=diprat**2 * ge1 ! From eq(14) of hep-ph/0612014v2
+      gen=(1.7d0*t/(1+3.3d0*q2))**2 * ge1 ! From eq(2) of PHYSICAL REVIEW C 70, 068202
+      ffen=(4d0*mn**2*gen+q2*gmn)/(4d0*mn**2+q2)
+
+      ffmn=gmn
+
+      f2=ffen
+      f1=fmn/2d0
+
+      return
+      end
+
       subroutine F1F2el(q2,f1,f2)
       implicit double precision(a-y)
 

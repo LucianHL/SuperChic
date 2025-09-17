@@ -356,6 +356,9 @@ FFV1_2_ll.o \
 FFV2_0_ll.o \
 FFV2_1_ll.o \
 FFV2_2_ll.o \
+FFV1_0_ionem.o \
+FFV1_1_ionem.o \
+FFV1_2_ionem.o \
 
 Model = \
 rw_para.o \
@@ -384,6 +387,8 @@ matrix_aub.o \
 matrix_ad.o \
 matrix_adb.o \
 matrix_aall_SM.o \
+matrix_gamq_gamgamq.o \
+cs_ion_em.o \
 
 #
 

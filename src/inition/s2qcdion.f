@@ -48,6 +48,7 @@
 
          wt1=bt1*bt2*hphi*hbt**2*2d0*pi
          wt1=wt1*(tpqcdint(bt1)*tpqcdint(bt2))
+c         print*,bt1/rzg,tpqcdint(bt1)
 
          sum=sum+wt
          sum1=sum1+wt1
@@ -57,6 +58,9 @@
       out=sum/sum1
 
       s2qcd=out
+
+c      print*,s2qcd
+c      stop
 
       return
       end

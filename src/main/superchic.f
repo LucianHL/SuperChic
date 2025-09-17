@@ -121,9 +121,12 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'p0Xn.f'
       include 'mxs.f'
       include 'tau.f'
+      include 'ion_inel.f'
+      include 'prot_mom.f'
       character*10 tdiff,tbeam,bp
 
       call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
+
 
 ccccccc
 
@@ -163,6 +166,8 @@ c      read(*,*)elcoll
       read(*,*)wrho
       read(*,*)yrho
       read(*,*)accrho
+      read(*,*)ion_inel
+      read(*,*)ion_incoh_type
       read(*,*)dum
       read(*,*)dum
       read(*,*)dum
@@ -305,6 +310,26 @@ c      read(*,*)elcoll
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
+      ion_em=.false.
+      AA_frame=.false.
+
+      if(proc.lt.56)ion_inel=.false.
+      if(proc.gt.59)ion_inel=.false.
+
+      if(proc.eq.2)then
+         if(ionqcd.eq.'mixed')then
+            ion_inel=.true.
+            ionqcd='coh'
+         endif
+      endif
+
+      if(ion_inel)beam='ionp'
+      if(ion_inel.and.ion_incoh_type.eq.'inel')diff='sd'
+      if(ion_incoh_type.eq.'el')diff='el'
+
+      ymax_lab=ymax
+      ymin_lab=ymin
+
       if(beam.ne.'ion')wrho=.false.
       if(wrho)ionbreakup=.true.
       if(fAA.eq.'10')fAA='01'
@@ -432,10 +457,12 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
      &.or.bp.eq.'ppel')) goto 111
       if(proc.le.47.and.beam.eq.'ion')goto 111
 
-      write(*,*)'Usupported process and beam combination'
-      write(*,*)'bp->',bp,'<-'
-      write(*,*)'proc->',proc,'<-'
-      STOP 1
+
+ccccc LHL TEMP REMOVE
+c      write(*,*)'Unsupported process and beam combination'
+c      write(*,*)'bp->',bp,'<-'
+c      write(*,*)'proc->',proc,'<-'
+c      STOP 1
  111  continue 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
@@ -662,11 +689,26 @@ cccccccccccccccccccccccccc
       if(proc.eq.54.or.proc.eq.55.or.proc.eq.58)then
          call setpara('param_card.dat') !set parameters for MG calculation
       endif
+      if(proc.eq.59.and.ion_em.eqv..true.)then
+         call setpara('param_card.dat') !set parameters for MG calculation
+      endif
+
+      call setpara('param_card.dat') !set parameters for MG calculation
 
       s2int=8
       if(beam.eq.'ionp')s2int=16
       if(diff.eq.'el'.and.gamma.eqv..true.)s2int=16
+      if(ion_inel)s2int=4
+      if(ion_inel)offshell=.true.
+      if(proc.eq.2)then
+      offshell=.false.
+      s2int=8
+      endif
 
+      if(ion_em)then
+      offshell=.true.
+      pol=1
+      endif
 
       call header
       call gaminit
@@ -676,16 +718,18 @@ cccccccccccccccccccccccccc
 
 cccccccccccccccccccccccccc
 
-      if(diff.eq.'sd'.or.diff.eq.'dd')then
-         if(offshell.eqv..false.)then
-            print*,'Dissociation not currently supported'//
-     &           ' for this process/beam - STOP'
-            STOP 1
-         endif
-         if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
-            print*,'Dissociation currently only supported with LHE'
-         endif
-      endif
+cccc LHL TEMP REMOVE
+
+c      if(diff.eq.'sd'.or.diff.eq.'dd')then
+c         if(offshell.eqv..false.)then
+c            print*,'Dissociation not currently supported'//
+c     &           ' for this process/beam - STOP'
+c            STOP 1
+c         endif
+c         if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
+c            print*,'Dissociation currently only supported with LHE'
+c         endif
+c      endif
 
       elcoll=.false.
       difftot=.false.
@@ -731,6 +775,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       s=rts**2
 
+      beta_prot=dsqrt(1d0-4d0*mp**2/s)
       if(beam.eq.'prot')then
          beta=dsqrt(1d0-4d0*mp**2/s)
       elseif(beam.eq.'el')then
@@ -742,6 +787,7 @@ c     mion=mp*an
          si=s
       endif
 
+
       q(1,1)=0d0
       q(2,1)=0d0
       q(3,1)=rts/2d0*beta
@@ -752,8 +798,23 @@ c     mion=mp*an
       q(3,2)=-rts/2d0*beta
       q(4,2)=rts/2d0
 
-      if(beam.eq.'ionp')call pAinit
+      prot_mom(1,1)=0d0
+      prot_mom(2,1)=0d0
+      prot_mom(3,1)=rts/2d0*beta_prot
+      prot_mom(4,1)=rts/2d0
+
+      prot_mom(1,2)=0d0
+      prot_mom(2,2)=0d0
+      prot_mom(3,2)=-rts/2d0*beta_prot
+      prot_mom(4,2)=rts/2d0
+      
+
+      if(beam.eq.'ionp')then
+      rtsnn=rts
+      call pAinit(1)
+      endif
       if(beam.eq.'ion')call AAinit
+  
 
       if(beam.eq.'prot')then
          pdgid(1)=2212
@@ -924,6 +985,7 @@ ccccccccc
          call readscreen
          if(beam.eq.'prot'.or.ionqcd.eq.'incoh')surv=1d0/norm**2
       endif
+      
 
       if(qcd)then
 C         call calcsud
@@ -931,19 +993,35 @@ C         call calchg
          call readsud
          call readhg
       endif
-
-
-
+cc 737.127 - 518.6042
+ccc   Use modified ion-ion opacity for incoherent production
+      if(ion_inel)beam='ion'  
+ccc      
       if(beam.eq.'ion'.or.beam.eq.'ionp')call ioninit
+      if(ion_inel)beam='ionp'
 
+c      beam='ion'
 
       if(beam.eq.'ionp')then
+         if(AA_frame)then
+c         print*,rts
+         rts=dsqrt((q(4,1)+q(4,2))**2-(q(3,1)+q(3,2))**2)
+         s=rts**2
+c         print*,q(4,1)+q(4,2),q(3,1)+q(3,2)
+c         print*,rts,mion
+c         stop
+         else
          rts=rtspa
          s=spa
+         endif
       elseif(beam.eq.'ion')then
          rts=rtsaa
          s=saa
       endif
+
+c      call ioninel_pdftest
+c      call ioninel_lumiout
+c      stop
 
 cccccccccccc
 
@@ -959,6 +1037,7 @@ ccccccc    initialise histograms
       if(histol)call inithist(nhistmax)
 
 cccccccccccccccc
+
 
       neff=0
       neff0=0

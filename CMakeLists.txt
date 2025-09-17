@@ -154,7 +154,7 @@ set(Helas FFV2_0.f FFV2_1.f FFV2_2.f FFV2_3.f FFV1_0.f FFV1_1.f FFV1_2.f
           VVVV2_0.f VVV1_0.f VVV1_1.f VVV1P0_1.f VVV1_2.f VVV1_3.f 
           aloha_functions.f VVVV5_0.f VVVV2P0_1.f VVVV5_4.f 
 	  FFV15_0_ll.f FFV15_1_ll.f FFV15_2_ll.f FFV1_0_ll.f FFV1_1_ll.f
-	  FFV1_2_ll.f FFV2_0_ll.f FFV2_1_ll.f FFV2_2_ll.f)
+	  FFV1_2_ll.f FFV2_0_ll.f FFV2_1_ll.f FFV2_2_ll.f FFV1_0_ionem.f FFV1_1_ionem.f FFV1_2_ionem.f)
 list(TRANSFORM Helas PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/DHELAS/")
 
 set(Model rw_para.f lha_read.f couplings.f couplings1.f couplings2.f )
@@ -163,7 +163,7 @@ list(TRANSFORM Model PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/MODEL/")
 set(MG wwpol_match.f is_born.f matrix_uc.f matrix_ds.f matrix_ubcb.f 
        matrix_dbsb.f matrix_dbub.f matrix_udb.f matrix_cub.f matrix_sdb.f 
        matrix_dub.f matrix_du.f mgcross.f cs_SF_SD.f matrix_au.f 
-       matrix_aub.f matrix_ad.f matrix_adb.f matrix_aall_SM.f)
+       matrix_aub.f matrix_ad.f matrix_adb.f matrix_aall_SM.f matrix_gamq_gamgamq.f cs_ion_em.f)
 list(TRANSFORM MG PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/MG/")
 
 set( sCODELHA ${Mainf} ${Mesf} ${EW} ${PDFsfLHA} ${Intf} ${Phasef} 

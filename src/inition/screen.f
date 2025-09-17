@@ -16,6 +16,7 @@
       if(beam.eq.'ion')nbt=ioppb
       if(beam.eq.'ionp')nbt=ioppbp
 
+
       nbt=3000
 
       if(ionbreakup)then

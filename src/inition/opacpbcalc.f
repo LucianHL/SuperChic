@@ -3,8 +3,10 @@
       double precision sigin,px,p1,p0,opac,sum1t,sum1ta
       double precision hb,bt,pgdrint,opacpb,prho,pll
      &   ,sum_cs,sum_cs1,sum_cs2,sum_cs3
-      integer i
+      integer i,ioppba
       logical readop
+      double precision opacpb_inel,opacpbint,opacpb_inel_incohqcd
+      double precision test,test1
 
       include 'opacpbpars.f'
       include 'ion.f'
@@ -13,6 +15,8 @@
       include 'qcd.f'
       include 'p0Xn.f'
       include 'btmaxmin.f'
+      include 'ion_inel.f'
+
 
       if(pAAvar)then
          if(ifaa.eq.1)then  ! inclusive
@@ -101,10 +105,23 @@ cccccc
          ioppb=25
       endif
 
+      if(ion_inel)then
+         btmax=rzg*4d0
+         btmin=rzg*1.5d0
+         ioppb=25
+      
+
+      endif
+
       hb=(btmax-btmin)/dble(ioppb)
 
       if(ionqcd.eq.'incoh')sigin=6.5d0 ! fm^2
       if(ionqcd.eq.'coh')sigin=6.74d0 ! fm^2
+
+      if(ion_inel)goto 444
+      if(qcd.and.ionqcd.eq.'incoh')goto 444
+
+      sum_cs=0d0
 
       do i=1,ioppb
 
@@ -149,6 +166,7 @@ cccccc
 
             if(wrho)then
                prho=pgdrint(4,dlog(bt))
+c               sum_cs=sum_cs+pX*hb*2d0*pi*bt*opacpbarr(2,i)**2
                pll=pgdrint(5,dlog(bt))
             endif
 
@@ -230,6 +248,7 @@ c               print*,bt,opacpbarr(3,i),opacpbarr(2,i)
      &              -dsqrt(sum1t))
                else
                opacpbarr(2,i)=opacpbarr(2,i)*dsqrt(p0)
+c               print*,bt,opacpbarr(2,i)
                endif
             elseif(fAA.eq.'AX')then
                if(wrho)then
@@ -253,6 +272,101 @@ c               print*,bt,opacpbarr(3,i),opacpbarr(2,i)
             endif
 
          endif
+
+      enddo
+
+
+
+      return
+
+
+
+  444 continue
+
+
+      if(ionbreakup)then
+
+      if(fAA.eq.'A0')then
+         btmax=rzg*150d0
+         btmin=rzg*1.5d0
+         ioppb=1500
+      endif
+
+      endif
+
+      do i=1,ioppb
+
+         bt=btmin+(dble(i)-0.5d0)*hb
+         opacpbarr(1,i)=bt
+
+         if(bt.lt.rzg*1.5d0)then
+            opac=200d0
+         elseif(bt.lt.4d0*rzg)then ! above this no point evaluating, ~ 0
+            opac=opacpb(bt)
+         else
+            opac=0d0
+         endif
+
+         if(opac.gt.100d0)then
+            opacpbarr(2,i)=0d0
+         else
+            opacpbarr(2,i)=dexp(-opac/2d0)
+         endif
+
+
+      enddo
+
+      btmin=0d0
+      hb=(btmax-btmin)/dble(ioppb)
+
+
+
+      do i=1,ioppb
+
+         bt=btmin+(dble(i)-0.5d0)*hb
+
+         if(qcd)then
+         if(ionqcd.eq.'incoh')then
+         opacpbarr_temp(i)=opacpb_inel_incohqcd(bt)
+         else
+         opacpbarr_temp(i)=opacpb_inel(bt)
+         endif
+         else
+         opacpbarr_temp(i)=opacpb_inel(bt)
+         endif
+
+
+         if(opacpbarr_temp(i).gt.1d0)opacpbarr_temp(i)=1d0
+
+         if(ionbreakup)then
+
+            if(fAA.eq.'00'.or.fAA.eq.'A0')then
+            if(bt.gt.rzg*1.5d0)then
+               p0=dexp(-pgdrint(3,dlog(bt)))
+            else
+               p0=0d0
+            endif
+            else
+            p0=dexp(-pgdrint(3,dlog(bt)))
+            pX=1d0-p0
+            p1=pgdrint(2,dlog(bt))*p0
+            endif
+
+
+         endif
+
+
+
+      enddo
+
+
+cccc  And now overewrite (standard opacity needed above)
+
+
+      do i=1,ioppb
+         bt=btmin+(dble(i)-0.5d0)*hb
+         opacpbarr(1,i)=bt
+         opacpbarr(2,i)=opacpbarr_temp(i)
 
       enddo
 

@@ -2,9 +2,9 @@ c   calculates CEP cross section
       function cs(rarr,wgt)
       implicit none
       complex*16 wt(10),wtn(10),wtd(10),wtpvar(3,10),wt_0(10)
-     &,wt_atau(10),wt_atauonly_lin(10)
+     &,wt_atau(10),wt_atauonly_lin(10),wt_neut(10)
       double precision rarr(10),wtr(10)
-      integer i,p,icut
+      integer i,p,icut,j
       double precision rphi,ran2,cs
       double precision ypp,ypmin1,ypmin2,ypmin,ypmax,ypmax1,ypmax2,
      &     yp,ymin1,ymax1,ycut,xgmin,wty1,wty2,wty,wtt,wtpt,wtpol,wtt_0,
@@ -23,6 +23,7 @@ c   calculates CEP cross section
      &     lmdiss1,lmdiss2
       double precision jrho,jmono,jchi,jalp
       double precision wgt
+      double precision ran_ioninel,betaa,betap,atilde,onetilde
 
       include 'polvecs.f'
       include 'gencuts.f'
@@ -79,12 +80,29 @@ c   calculates CEP cross section
       include 'p0Xn.f'
       include 'mxs.f'
       include 'tau.f'
-      
+      include 'ion_inel.f'
+      include 'prot_mom.f'
+
       wtt=0d0
 
       elcollw=.false.
 
-      if(beam.eq.'ionp')call pAinit
+
+      if(beam.eq.'ionp')then
+      ioninel_pbeam=1
+      if(ion_inel)then
+         ran_ioninel=ran2()
+c         ran_ioninel=0.7d0
+         if(ran_ioninel.gt.0.5d0)then
+         if(ion_incoh_type.eq.'inel')diffsd='sda'
+         ioninel_pbeam=1
+         else
+         if(ion_incoh_type.eq.'inel')diffsd='sdb'
+         ioninel_pbeam=2
+         endif
+      endif
+      call pAinit(ioninel_pbeam)
+      endif
 
       if(dps.eq.1)then
          mx=mres
@@ -134,8 +152,13 @@ c   calculates CEP cross section
          mpp1=mion
          mpp2=mion
       elseif(beam.eq.'ionp')then
+         if(ioninel_pbeam.eq.1)then
          mpp1=mp
          mpp2=mion
+         elseif(ioninel_pbeam.eq.2)then
+         mpp2=mp
+         mpp1=mion
+         endif
       elseif(beam.eq.'el')then
          mpp1=me
          mpp2=me
@@ -243,8 +266,7 @@ c   calculates CEP cross section
 
       elseif(gamma)then
 
-
-         if(beam.eq.'prot'.and.diff.eq.'sd')then
+         if(diff.eq.'sd')then
             rdiss=ran2()
             if(rdiss.gt.0.5d0)then
                diss1=.true.
@@ -269,7 +291,6 @@ c   calculates CEP cross section
 
          r1=ran2()
 
-
          phi1=2d0*pi*r1
          phi2=2d0*pi*r2+phi1
 
@@ -281,6 +302,7 @@ c   calculates CEP cross section
 
          ptmin=0d0
          xgmin=(mx/rts)**2
+
 
          if(diss1)then
             ptmax1=rts/2d0
@@ -330,7 +352,6 @@ ccccc
          ptxx=(pt1x+pt2x)**2+(pt1y+pt2y)**2
          rmx=dsqrt(ptxx+mx**2)
 
-
          if(beam.eq.'ionp')then
             ymax=dlog(rts/rmx)
             ymin=-ymax
@@ -368,6 +389,9 @@ ccccc
 
          pt1sq=pt1sq**2
          pt2sq=pt2sq**2
+         
+         wty1=1d0
+         wty2=1d0
 
          phi1=2d0*pi*r3
          phi2=2d0*pi*r4+phi1
@@ -380,6 +404,11 @@ ccccc
          ptxsq=(pt1x+pt2x)**2+(pt1y+pt2y)**2
          rmx=dsqrt(mx**2+ptxsq)
 
+         if(beam.eq.'ionp')then
+            ymax=dlog(rts/rmx)
+            ymin=-ymax
+         endif
+
 cccccccccccccccccccccc
 
          ymax1=ymax
@@ -388,11 +417,17 @@ cccccccccccccccccccccc
          ry=rarr(1)
          yx=ymin+(ymax-ymin)*ry
 
+
          ymin=ymin1
          ymax=ymax1
 
          x1=rmx/rts*dexp(yx)
          x2=rmx/rts*dexp(-yx)
+
+         if(beam.eq.'ion')then
+            x1n=x1*an
+            x2n=x2*an
+         endif
 
          if(x1.gt.1d0)goto 777
          if(x2.gt.1d0)goto 777
@@ -401,9 +436,7 @@ cccccccccccccccccccccc
 
 cccccccc   Dissociation
 
-
-
-      if(beam.eq.'prot')then
+      if(beam.eq.'prot'.or.ion_inel.eqv..true.)then
 
          mdissmax=rts
 
@@ -422,7 +455,13 @@ cccccccc   Dissociation
          wtdiss1=2d0*mdiss1**2*(lmdissmax-lmdissmin)
 
       else
+         if(ion_inel)then
+         mdiss1=mion
+cccc     Overwrite for elastic emission from protons         
+         if(ioninel_pbeam.eq.1)mdiss1=mp
+         else
          mdiss1=mp
+         endif
          wtdiss1=1d0
       endif
 
@@ -443,7 +482,12 @@ cccccccc   Dissociation
          wtdiss2=2d0*mdiss2**2*(lmdissmax-lmdissmin)
 
       else
+         if(ion_inel)then
+         mdiss2=mion
+         if(ioninel_pbeam.eq.2)mdiss2=mp
+         else
          mdiss2=mp
+         endif
          wtdiss2=1d0
       endif
 
@@ -461,6 +505,7 @@ cccccccccccc
 
       aa1=(1d0-x1)*rts/dsqrt(2d0)
       aa2=(1d0-x2)*rts/dsqrt(2d0)
+
       cc1=0.5d0*(pt2sq+mpp2**2)
       cc2=0.5d0*(pt1sq+mpp1**2)
 
@@ -470,6 +515,7 @@ c                   p2- + cc2/p1+ = aa2
 
       root1sq=(cc1-cc2-aa1*aa2)**2-4d0*cc2*aa1*aa2
       root2sq=(cc2-cc1-aa1*aa2)**2-4d0*cc1*aa1*aa2
+
 
       if(root1sq.le.0d0.or.root2sq.le.0d0)goto 777
 
@@ -491,12 +537,20 @@ c                   p2- + cc2/p1+ = aa2
       q(3,4)=(p2p-p2m)/dsqrt(2d0)
       q(4,4)=(p2p+p2m)/dsqrt(2d0)
 
-
       do i=1,4
          q(i,5)=q(i,1)+q(i,2)-q(i,3)-q(i,4)
       enddo
 
-      if(beam.eq.'prot')then
+      qsq1tt=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
+     &        -(q(1,3)-q(1,1))**2
+
+      qsq2tt=(q(4,4)-q(4,2))**2-(q(3,4)-q(3,2))**2-(q(2,4)-q(2,2))**2
+     &        -(q(1,4)-q(1,2))**2
+
+      qsq1=-qsq1tt
+      qsq2=-qsq2tt
+
+      if(beam.eq.'prot'.or.ion_inel.eqv..true.)then
 
          qsq1tt=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
      &        -(q(1,3)-q(1,1))**2
@@ -520,10 +574,16 @@ ccccccc
             xb2=1d0
          endif
 
+
          if(offshell)then
-         else
+            if(ion_em)then
+            else
             if(qsq1.gt.mx**2)goto 777
             if(qsq2.gt.mx**2)goto 777
+            endif
+         else
+c            if(qsq1.gt.mx**2)goto 777
+c            if(qsq2.gt.mx**2)goto 777
          endif
 
          if(diss1.and.xb1.gt.1d0)goto 777
@@ -535,8 +595,6 @@ ccccccc
       endif
 
 ccccccccccccccccccccccccccccccccc
-
-c      rphi=rarr(8)+r1+r2
 
       if(dps.eq.2)then
          rphi=ran2()
@@ -556,6 +614,7 @@ c      rphi=rarr(8)+r1+r2
             call twojetpsm(mx,meta,metap,ps,uh,th)
          endif
       endif
+
 
 cccccccccccccccccc
 
@@ -639,7 +698,6 @@ ccccccccccccccccccc
             else
                call twobodyw(7,10,11,0d0,mtau)
             endif
-c            print*,dsqrt(q(4,11)**2-q(3,11)**2-q(2,11)**2-q(1,11)**2)
          elseif(proc.eq.73)then
             call threebody(1,6,8,9,10,mneut,mmu,0d0,wt3a)
             call threebody(1,7,11,12,13,mneut,mmu,0d0,wt3b)
@@ -664,11 +722,12 @@ c            print*,dsqrt(q(4,11)**2-q(3,11)**2-q(2,11)**2-q(1,11)**2)
             wt2=wt2a
          endif
 
-         if(beam.eq.'ionp')call pAboost
+         if(beam.eq.'ionp')call pAboost(ioninel_pbeam)
 
 ccccccccccccccccccc  cuts ccccccccccccccccc
 
          neff0=neff0+1
+
 
          if(gencuts)then
             call cut(icut)
@@ -676,6 +735,8 @@ ccccccccccccccccccc  cuts ccccccccccccccccc
          endif
 
          neff=neff+1
+
+
 
 ccccccccccccccccccccccccccccccccccccccccccc
 
@@ -708,6 +769,7 @@ ccccccccccccccccccccccccccccccccccccccccccc
           endif
 
 ccccccccc
+
 
 
          if(photo)then
@@ -792,7 +854,7 @@ ccccccccc
                else
                   call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
                endif
-            else
+               else
                if(deltau)then
                   atau_temp=atau
                   dtau_temp=dtau
@@ -829,7 +891,19 @@ ccccccccc
                   atau_lin=.false.
                   atau_quad=.false.
                endif
+               if(ion_inel.and.ion_incoh_type.eq.'inel')then
+               if(ion_em)then
                call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+               else
+ccccc          Add neutron + proton contributions
+               neutron_inel=.true.
+               call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt_neut)
+               neutron_inel=.false.
+               call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+               endif
+               else
+               call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+               endif
             endif
          endif
          else
@@ -839,16 +913,23 @@ ccccccccc
              elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
                 if(ionqcd.eq.'incoh')then
                    if(sfac)then
-                      call schimc(pt1x,pt1y,pt2x,pt2y,wt)
+                      s2qcd=1d0
+                      call schimcion(pt1x,pt1y,pt2x,pt2y,wt)
                       do p=1,pol
                          if(beam.eq.'ion')wt(p)=wt(p)*dsqrt(s2qcd)*an
                          if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(s2qcd*an)
                       enddo
                    else
                       call schimcion(pt1x,pt1y,pt2x,pt2y,wt)
+c                      call schimc(pt1x,pt1y,pt2x,pt2y,wtn)
+c                       do p=1,pol
+c                        print*,p,wt(p),wtn(p)
+c                       enddo
                       do p=1,pol
-                         if(beam.eq.'ion')wt(p)=wt(p)*dsqrt(s2qcd)*an
-                         if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(s2qcd*an)
+c                         if(beam.eq.'ion')wt(p)=wt(p)*dsqrt(s2qcd)*an
+c                         if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(s2qcd*an)
+                         if(beam.eq.'ion')wt(p)=wt(p)*an
+                         if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(an)
                       enddo
                    endif
                 elseif(ionqcd.eq.'coh')then
@@ -856,13 +937,13 @@ ccccccccc
                    ktcut=ptdif
                    call schimcion(pt1x,pt1y,pt2x,pt2y,wt)
                    if(sfac)then
-                      sfac=.false.
-                      call schimc(pt1x,pt1y,pt2x,pt2y,wtd)
-                      sfac=.true.
-                      call schimc(pt1x,pt1y,pt2x,pt2y,wtn)
-                      do p=1,pol
-                         wt(p)=wt(p)*cdabs(wtn(p))/cdabs(wtd(p))
-                      enddo
+c                      sfac=.false.
+c                      call schimc(pt1x,pt1y,pt2x,pt2y,wtd)
+c                      sfac=.true.
+c                      call schimc(pt1x,pt1y,pt2x,pt2y,wtn)
+c                      do p=1,pol
+c                         wt(p)=wt(p)*cdabs(wtn(p))/cdabs(wtd(p))
+c                      enddo
                    endif
                 endif
              endif
@@ -898,7 +979,16 @@ ccccccccc
              if(deltau.and.atau_quad)wtt
      &=wtt+wtt_atauonly_lin
          endif
+
+         if(ion_inel.and.ion_incoh_type.eq.'inel')then
+            do p=1,pol
+               wtt=wtt+cdabs(wt_neut(p))**2
+            enddo
+         endif
  
+
+c         wtt=1d0
+c         offshell=.false.
 
          wtpol=1d0
 
@@ -1001,13 +1091,13 @@ ccccccccc
             wtt=wtt*wtdiss1*wtdiss2
             if(diff.eq.'sd')wtt=wtt*2d0
             if(diffsd.eq.'sda'.or.diffsd.eq.'sdb')wtt=wtt/2d0
+            if(ion_inel)wtt=wtt*2d0  ! Photon emitted from either ion
             if(difftot)wtt=wtt*3d0
             if(fwidth)then
                if(proc.eq.68)then
                   wtt=wtt*jalp
                endif
             endif
-
          else
             wtt=wtt*(ymax-ymin)
             wtt=wtt*4d0*ptmax**2*dsqrt(pt1sq*pt2sq)*pi**2
@@ -1039,6 +1129,8 @@ ccccccccccccc 1 body phase space
          endif
 
          wtt=wtt*conv*surv
+
+
 
  888     if((elcoll.eqv..true.).and.(unw.eqv..true.))then
 
@@ -1150,6 +1242,13 @@ c                   p2- + cc2/p1+ = aa2
          if(diss1)call qinit(xb1,qsq1,1)
          if(diss2)call qinit(xb2,qsq2,2)
 
+         if(beam.eq.'ionp')then
+            ymax=ymax_lab
+            ymin=ymin_lab
+            yx=0.5d0*dlog((q(4,5)+q(3,5))/(q(4,5)-q(3,5)))
+         endif
+
+
          val=wtt*wgt
          if(bin)then
             if(unw)then
@@ -1175,6 +1274,8 @@ c                   p2- + cc2/p1+ = aa2
          endif
 
  777     cs=wtt
+
+
 
       return
       end

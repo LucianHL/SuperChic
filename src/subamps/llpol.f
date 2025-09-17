@@ -12,13 +12,23 @@ ccc   gamma gamma --> l+l- subprocess amplitude
       include 'partonmom2.f'
       include 'zi.f'
       include 'mom.f'
-      include 'norm.f'
+      include 'norm.f' 
       include 'proc.f'
 
 c      print*,1d0/alpha
 
       beta=dsqrt(1d0-4d0*mq**2/mx**2)
       costt=(t-u)/beta/mx**2
+
+c      print*,u,t,costt
+c      print*,costt
+
+c      if(dabs(costt).gt.0.99d0)then
+c      print*,mx,t,u,costt
+c      stop
+c      endif
+
+c      costt=0d0
 
       cost_test=p1(3)/dsqrt(p1(1)**2+p1(2)**2+p1(3)**2)
 c      print*,costt,cost_test
@@ -85,12 +95,18 @@ c         pm=2d0*beta*sintt*(1d0+costt)/(1d0-beta**2*costt**2)
          mp=pm
       endif
 
-c      normp=16d0*pi**2*alpha**2
-      normp=16d0*pi**2/137d0**2
+      normp=16d0*pi**2*alpha**2
       normp=normp/32d0/pi/mx**2*beta/4d0
       normp=normp*2d0
       normp=normp*conv
       normp=dsqrt(normp)
+
+c      normp=1d0
+
+c      print*,normp
+c      stop
+
+c      normp=1d0
 
       if(proc.eq.61)normp=normp*dsqrt(3d0)*(2d0/3d0)**2 ! ttbar
       if(proc.eq.76)normp=normp*dsqrt(2d0) ! L + R sleptons

@@ -48,6 +48,10 @@
 
       norm=dsqrt(norm)
 
+c      norm=norm/24d0
+
+c      print*,norm
+
       sh=mx**2
 
 ccccccccccccccc
@@ -82,6 +86,8 @@ ccccccccccccccc
       mgen2 = mars(i)
       mgen2i = marsi(i)
       cqfactor = cqfa(i)
+
+c      print*,i,cqfactor
 
 c      mgen2=0d0
 c      mgen2i=dcmplx(0d0,-1d-30)
@@ -262,6 +268,8 @@ cccccccc
          mp=qedamp(2,1,2,1)
       endif
 
+c      print*,pp,mm,pm,mp
+
 c$$$      pp=0d0
 c$$$      mm=0d0
 c$$$      pm=0d0
@@ -292,10 +300,16 @@ c      efac=0d0
          mp=mp-ewamp(2,1,2,1)*efac
       endif
 
+      
       pp=pp*norm
       mm=mm*norm
       pm=pm*norm
       mp=mp*norm
+
+c      pp=1d0
+c      mm=1d0
+c      pm=1d0
+c      mp=1d0
 
       return
       end

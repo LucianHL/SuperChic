@@ -10,6 +10,10 @@
       subroutine cut(icut)
       implicit double precision(a-y)
       integer icut,jflag,ijet
+      double precision pj1(4),pj2(4),pl1(4),pl2(4)
+      double precision pq1(4),pq2(4),qsq1,qsq1tt,mqgam
+      double precision q1(4),q2(4),ptj1,pmodj1,etaj1,xi1
+      double precision pa_in(4),mdiss_a,pa_out(4)
 
       include 'gencuts.f'
       include 'vars.f'
@@ -20,6 +24,9 @@
       include 'pi.f'
       include 'ptXcuts.f'
       include 'range.f'
+      include 'beam.f'
+      include 'x.f'
+      include 'mion.f'
 
       icut=0
 
@@ -33,6 +40,15 @@ cccccccccccccccccccccccccccccccccccccccccccccc
 
       if(yx.gt.ymax)return
       if(yx.lt.ymin)return
+
+      if(beam.eq.'ionp')then
+         yx_lab=0.5d0*dlog((q(4,5)+q(3,5))/(q(4,5)-q(3,5)))
+         x1n=mx/rtsnn*dexp(yx_lab)
+         x2n=mx/rtsnn*dexp(-yx_lab)
+         if(yx_lab.gt.ymax_lab)return
+         if(yx_lab.lt.ymin_lab)return
+      endif
+
       if(dsqrt(q(1,5)**2+q(2,5)**2).gt.ptxmax)return
 
       if(decay4)then
@@ -211,7 +227,23 @@ cccccccccccccccccccccccccccccccccccccccccccccc
 
       delphi=dabs(datan2(q(2,6),q(1,6))-datan2(q(2,7),q(1,7)))
       if (delphi .ge. pi) delphi = -delphi+pi*2d0
+
+c      c delphit=(q(1,6)*q(1,7)+q(2,6)*q(2,7))/dsqrt((q(1,6)**2+q(2,6)**2))
+c      c delphit=delphit/dsqrt((q(1,7)**2+q(2,7)**2))
+c      c if(dabs(delphit).gt.1d0)delphit=delphit/dabs(delphit)
+c      c delphit=dacos(delphit)
+
+
+      delphi=(q(1,6)*q(1,7)+q(2,6)*q(2,7))/dsqrt((q(1,6)**2+q(2,6)**2))
+     &     /dsqrt((q(1,7)**2+q(2,7)**2))
+      if(dabs(delphi).gt.1d0)delphi=delphi/dabs(delphi)
+      delphi=dacos(delphi)
+
+c      print*,delphi,delphit,delphi/delphit
+c      ,datan2(q(2,6),q(1,6)),datan2(q(2,7),q(1,7))
+
       acoab=1d0-delphi/pi
+c      if(acoab.lt.1d-2)return
       if(acoab.gt.acoabmax)return
 
 
