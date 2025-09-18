@@ -14,16 +14,7 @@
       subroutine binit(wt)
       implicit none
       double precision wt,yx_lab
-      integer i,j
-      double precision acoab,delphi,ptgam1,ptgam2,ptgam
-      double precision eta1,eta2,eta3,pmod1,pmod2,pmod3
-      double precision eta3rf,pmod3rf,eta2rf,pmod2rf
-      double precision pj1(4),pj2(4),pl1(4),pl2(4)
-      double precision pq1(4),pq2(4),qsq1,qsq1tt
-      double precision q1(4),q2(4),ptj1,pmodj1,etaj1,xi1
-      double precision mqgam,ptq,d13,d23,dphi,eta3d
-      double precision pa_in(4),mdiss_a,pa_out(4)
-
+      
       include 'vars.f'
       include 'mom.f'
       include 'range.f'
