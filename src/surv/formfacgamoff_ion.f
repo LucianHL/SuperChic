@@ -33,8 +33,6 @@ ccccc EPA form factors (proton)
       include 'mion.f'
       include 'sAA.f'
 
-c      print*,'test'
-
       t1=q1x**2+q1y**2
       t2=q2x**2+q2y**2
 
@@ -72,10 +70,6 @@ cccccccccc
          xi1=-qsq1/rts/(q1p(4)-q1p(3))
          xi2=-qsq2/rts/(q2p(4)+q2p(3))
 
-c         x1t=x1
-c         x2t=x2
-
-
          do mu=1,4
             do mup=1,4
                fb1=.true.
@@ -84,7 +78,6 @@ c         x2t=x2
                fb1=.false.
                fb2=.true.
                sf2_g(mu,mup)=SF_g_ion(diss2,mu,mup,x2t,x2tt,p2,q2p)
-
             enddo
          enddo
 
@@ -180,7 +173,6 @@ c      zoutsf=zoutsf/xb1/xb2  ! multiplied by this later
       q1(2)=q1y
       q2(1)=q2x
       q2(2)=q2y
-
 
 cccccccccc
 
