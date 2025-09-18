@@ -153,23 +153,10 @@ ccccccccccc
       if(beam.eq.'ion'.or.beam.eq.'ionp')then
          fg1=fg(x1n,q1min,mu)
          fg2=fg(x2n,q2min,mu)
-c         print*,x1n,x2n,fg1,fg2
-c         fg1=fg(x1,q1min,mu)
-c         fg2=fg(x2,q2min,mu)
-c         print*,x1,x2,fg1,fg2
-c         print*,''
       else
          fg1=fg(x1,q1min,mu)
          fg2=fg(x2,q2min,mu)
       endif
-
-ccd      print*,x1,x2,fg1,fg2
-
-c      fg1=fg(0.1d0,q1min,mu)
-c      fg2=fg(0.1d0,q2min,mu)
-
-c      print*,x1,x2
-c      stop
 
       if(fg1.lt.0d0)goto 334
       if(fg2.lt.0d0)goto 334
@@ -240,12 +227,9 @@ cccccc
 
  333  enddo
 
-
       do p=1,pol
          out(p)=sum(p)
       enddo
-
-c      print*,out(1)
 
       return
       end
