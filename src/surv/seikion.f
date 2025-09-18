@@ -9,7 +9,6 @@ ccc   (QCD induced processes)
       double precision p1x,p1y,p2x,p2y,hk
       integer p,nphi,jqt,jphi,nk,nk1
       complex*16 out(10),x0(10),x0p(10),outt
-c      complex*16 outt(0:4000,10)
       integer icount
       common/icount/icount
 
@@ -29,9 +28,6 @@ c      complex*16 outt(0:4000,10)
       include 'ion_inel.f'
       include 'ion.f'
 
-c      print*,beam
-c      stop
-
       call setmu(mu)
 
       do p=1,pol
@@ -39,13 +35,7 @@ c      stop
       enddo
       outt=0d0
 
-c      print*,s2int
-c      stop
-
       nphi=s2int*4
-
-
-
 
       nk=s2int*4
       nk1=s2int*4
@@ -55,18 +45,10 @@ c      stop
       qtmax=0.5d0
       qtmax1=1.5d0
 
-c      qtmax1=3d0
-c      nk=10000
-c      nphi=1000
       hk=qtmax1/dble(nk)
       hphi=2d0*pi/dble(nphi)
 
       call bare(mu,p1x,p1y,p2x,p2y,x0p)
-      
-
-c      do p=1,pol
-c         x0p(p)=1d0
-c      enddo 
 
       if(ion_inel)then
       do p=1,pol
@@ -88,9 +70,6 @@ c         do jqt=1,nk
 c           qt=dble(jqt)*hk
 
            sc=screeningionint(qt)
-
-c           print*,qt,sc
-c           stop
 
            do jphi=1,nphi
 
@@ -118,15 +97,10 @@ c               wt=hphi*hk*qt
                t22=p2xp**2+p2yp**2
 
                x00p=betaionex(-t12)*betaionex(-t22)
-c               x00p=dexp(-2d1*(t12+t22))
-c               x00p=1d0
-
-
+               
             if(beam.eq.'ion')then
                tp1=tpint(1,dsqrt(t12))+tpint(2,dsqrt(t12))
                tp2=tpint(1,dsqrt(t22))+tpint(2,dsqrt(t22))
-
-c               if(jphi.eq.1)print*,qt,sc,sc*x00p,tp1,t12,t22
 
                if(ionqcd.eq.'coh')x00p=x00p*tp1*tp2
             elseif(beam.eq.'ionp')then
@@ -135,23 +109,13 @@ c               if(jphi.eq.1)print*,qt,sc,sc*x00p,tp1,t12,t22
                if(ionqcd.eq.'coh')then
                if(ion_inel.eqv..true..and.ioninel_pbeam.eq.1)then
                x00p=x00p*tp2
-c               /betaionex(-t22)
                elseif(ion_inel.eqv..true..and.ioninel_pbeam.eq.2)then
                x00p=x00p*tp1
-c               /betaionex(-t12)
                else
                x00p=x00p*tp1
                endif
                endif
             endif
-
-
-c            call bare(mu,p1xp,p1yp,p2xp,p2yp,x0p)
-c            if(ion_inel)then
-c            do p=1,pol
-c            x0p(p)=x0p(p)*dsqrt(an)
-c            enddo 
-c            endif
 
            do p=1,pol
 
@@ -180,55 +144,31 @@ c            endif
       t22=p2x**2+p2y**2
 
       x00p=betaionex(-t11)*betaionex(-t22)
-c      x00p=dexp(-2d1*(t11+t22))
-c      x00p=1d0
 
       if(beam.eq.'ion')then
          tp1=tpint(1,dsqrt(t11))+tpint(2,dsqrt(t11))
          tp2=tpint(1,dsqrt(t22))+tpint(2,dsqrt(t22))
-c         if(ionqcd.eq.'coh')x00p=x00p*tp1*tp2
          if(ionqcd.eq.'coh')x00p=x00p*tp1*tp2
       elseif(beam.eq.'ionp')then
          tp1=tpint(1,dsqrt(t11))+tpint(2,dsqrt(t11))
          tp2=tpint(1,dsqrt(t22))+tpint(2,dsqrt(t22))
-c         if(ionqcd.eq.'coh')x00p=x00p*tp1
          if(ionqcd.eq.'coh')then
-c         print*,ioninel_pbeam
          if(ion_inel.eqv..true..and.ioninel_pbeam.eq.1)then
          x00p=x00p*tp2
-c         /betaionex(-t22)
          elseif(ion_inel.eqv..true..and.ioninel_pbeam.eq.2)then
          x00p=x00p*tp1
-c         /betaionex(-t11)
          else
          x00p=x00p*tp1
          endif
          endif
       endif
 
-c      call bare(mu,p1x,p1y,p2x,p2y,x0p)
-
-c      if(ion_inel)then
-c      do p=1,pol
-c         x0p(p)=x0p(p)*dsqrt(an)
-c      enddo 
-c      endif
 
       do p=1,pol
-c         if(sfac)then
-c         print*,p,cdabs(out(p))**2,cdabs(x0p(p)*x00p)**2
-c     &   ,cdabs(out(p)+x0p(p)*x00p)**2/cdabs(x0p(p)*x00p)**2
-c         stop
-c         endif
          out(p)=out(p)+x0p(p)*x00p
          if(cdabs(x0p(p)*x00p).lt.cdabs(out(p))*del)
      &        out(p)=x0p(p)*x00p
-
-c         out(p)=betaionex(-t11)*betaionex(-t22)
-c         out(p)=betaionex(-t11)*betaionex(-t22)
       enddo
-
-c      if(sfac)stop
 
       return
       end
