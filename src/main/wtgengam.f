@@ -19,11 +19,8 @@ ccc   calls subprocess amplitude
                   call wwoff_axial(p)
             endif
             if(proc.eq.56.or.proc.eq.57.or.proc.eq.58)then
-               call lloff_MG(p)
+               call lloff(p)
             endif
-            if(proc.eq.58)then
-               call lloff_MG(p)
-            endif 
             if(proc.eq.68)then
                call alp_off(p)
             endif
