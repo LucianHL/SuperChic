@@ -80,6 +80,8 @@ ccc   gamma gamma --> l+l- subprocess amplitude
       if(proc.eq.61)normp=normp*dsqrt(3d0)*(2d0/3d0)**2 ! ttbar
       if(proc.eq.76)normp=normp*dsqrt(2d0) ! L + R sleptons
 
+      
+
       pm=pm*(cphi+zi*sphi)**2
       mp=mp*(cphi-zi*sphi)**2
 

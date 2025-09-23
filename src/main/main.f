@@ -987,8 +987,7 @@ c                      enddo
          endif
  
 
-c         wtt=1d0
-c         offshell=.false.
+ 
 
          wtpol=1d0
 

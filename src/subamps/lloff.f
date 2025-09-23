@@ -148,7 +148,7 @@ c      normp=1d0
       do i1=1,4
          do i2=1,4
 
-         zoutarr(p,i1,i2)=zoutarr(p,i1,i2)*zout
+         zoutarr(p,i1,i2)=zoutarr(p,i1,i2)*zout*dsqrt(beta)
 
          enddo
       enddo
@@ -262,9 +262,10 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
 
       zout=zout1+zout2
       zout=zout*4d0*pi*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
-      zout=zout*dsqrt(conv)
+      zout=zout*dsqrt(conv)*dsqrt(beta)
 
 444      zoutarr(p,i1,i2)=zout
+
 
       enddo
       enddo
