@@ -41,9 +41,6 @@ c      print*,mdiss1,mdiss2
       x1i=x1
       x2i=x2
 
-      x1i=((q(4,1)-q(4,3))/q(4,1))
-      x2i=((q(4,2)-q(4,4))/q(4,2))
-
 ccccccccc
 
       if(ioninel_pbeam.eq.1)then
