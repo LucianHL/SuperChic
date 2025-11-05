@@ -1,3 +1,163 @@
+      subroutine lbyloff(p)
+      implicit none
+      integer i1,i2
+      integer i,j,l,p
+      complex*16 zout
+      double precision ul,tl,qsq1,qsq2,alphaem,beta,al,normp
+      complex*16 pp,mm,pm,mp
+
+      include 'mom.f'
+      include 'gmatrices.f'
+      include 'gmatrices_comb.f'
+      include 'ewpars.f'
+      include 'pi.f'
+      include 'vars.f'
+      include 'mandelstam.f'
+      include 'partonmom2.f'
+      include 'norm.f'
+      include 'mq.f'
+      include 'zi.f'
+      include 'zoutarr.f'
+      include 'eff.f'
+
+
+      beta=dsqrt(1d0-4d0*mq**2/mx**2)
+
+      do i1=1,4
+         do i2=1,4
+
+         zoutarr(p,i1,i2)=0d0
+
+         enddo
+      enddo
+
+      call lightlightpol(p,mx,uh,th,pp,mm,pm,mp)
+
+c      print*,pp,mm,pm,mp
+
+
+      zoutarr(p,1,1)=-(pp+mm)/2d0+(pm+mp)/2d0
+      zoutarr(p,2,2)=-(pp+mm)/2d0-(pm+mp)/2d0
+      zoutarr(p,1,2)=-zi*(pp-mm)/2d0+zi*(mp-pm)/2d0
+      zoutarr(p,2,1)=zi*(pp-mm)/2d0+zi*(mp-pm)/2d0
+c      zoutarr(p,2,1)=zoutarr(p,1,2)
+
+      zout=4d0*pi*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
+      zout=zout*dsqrt(conv)
+
+
+c      print*,zout,qsq1,qsq2
+
+c      normp=(8d0*alpha**2)**2
+c      normp=normp/16d0/pi/mx**2
+c      normp=normp/4d0
+c      normp=normp*conv
+c      normp=dsqrt(normp)
+
+      normp=16d0*pi**2*alpha**2
+      normp=normp/32d0/pi/mx**2/4d0
+      normp=normp*2d0
+      normp=normp*conv
+      normp=dsqrt(normp)
+
+c      print*,normp
+c      stop
+
+      zout=zout/normp
+
+      
+c      zout=0d0
+
+      do i1=1,4
+         do i2=1,4
+
+         zoutarr(p,i1,i2)=zoutarr(p,i1,i2)*zout
+
+         enddo
+      enddo
+
+
+
+      return
+      end
+
+      subroutine lloff_test(p)
+      implicit none
+      integer i1,i2
+      integer i,j,l,p
+      complex*16 zout
+      double precision ul,tl,qsq1,qsq2,alphaem,beta,al,normp
+      complex*16 pp,mm,pm,mp
+
+      include 'mom.f'
+      include 'gmatrices.f'
+      include 'gmatrices_comb.f'
+      include 'ewpars.f'
+      include 'pi.f'
+      include 'vars.f'
+      include 'mandelstam.f'
+      include 'partonmom2.f'
+      include 'norm.f'
+      include 'mq.f'
+      include 'zi.f'
+      include 'zoutarr.f'
+      include 'eff.f'
+
+
+      beta=dsqrt(1d0-4d0*mq**2/mx**2)
+
+      do i1=1,4
+         do i2=1,4
+
+         zoutarr(p,i1,i2)=0d0
+
+         enddo
+      enddo
+
+      call llpol(p,mx,uh,th,pp,mm,pm,mp)
+
+
+      zoutarr(p,1,1)=-(pp+mm)/2d0+(pm+mp)/2d0
+      zoutarr(p,2,2)=-(pp+mm)/2d0-(pm+mp)/2d0
+      zoutarr(p,1,2)=-zi*(pp-mm)/2d0+zi*(mp-pm)/2d0
+      zoutarr(p,2,1)=zi*(pp-mm)/2d0+zi*(mp-pm)/2d0
+c      zoutarr(p,2,1)=zoutarr(p,1,2)
+
+      zout=4d0*pi*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
+      zout=zout*dsqrt(conv)
+
+
+
+
+      normp=16d0*pi**2*alpha**2
+      normp=normp/32d0/pi/mx**2*beta/4d0
+      normp=normp*2d0
+      normp=normp*conv
+      normp=dsqrt(normp)
+
+c      normp=1d0
+
+c      print*,1,normp
+c      stop
+
+c      normp=1d0
+
+      zout=zout/normp
+
+
+      do i1=1,4
+         do i2=1,4
+
+         zoutarr(p,i1,i2)=zoutarr(p,i1,i2)*zout*dsqrt(beta)
+
+         enddo
+      enddo
+
+
+
+      return
+      end
+
 ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       subroutine lloff(p)
       implicit none
@@ -73,6 +233,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
             zout1=0d0
             zout2=0d0
 
+
       do 900 i=1,4
       do 900 l=1,4
 
@@ -101,9 +262,10 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
 
       zout=zout1+zout2
       zout=zout*4d0*pi*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
-      zout=zout*dsqrt(conv)
+      zout=zout*dsqrt(conv)*dsqrt(beta)
 
-      zoutarr(p,i1,i2)=zout
+444      zoutarr(p,i1,i2)=zout
+
 
       enddo
       enddo

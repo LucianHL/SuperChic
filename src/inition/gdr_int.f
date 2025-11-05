@@ -10,12 +10,13 @@
       include 'pi.f'
       include 'p0Xn.f'
 
-      open(20,file='probtest1a.dat')
+c      open(20,file='prob_incohel_fin.dat')
 
       btmax=rzg*500d0
       btmin=rzg*1.5d0
 
       ibmax=500
+c      ibmax=50
 
       lbtmax=dlog(btmax)
       lbtmin=dlog(btmin)
@@ -48,8 +49,13 @@ c         call twogamprob_calc(bt,sum)
 c         gdrarr(5,i)=sum
          endif
 
+c         print*,bti,sum1,sumX
+c         write(20,*)bti,sum1,sumX
+
       enddo
       
+c      stop
+
       return
       end
 
@@ -225,7 +231,7 @@ c         print*,btp/rzg,wt
       subroutine gdrcalc(bt,sum1,sumX)
       implicit none
       double precision x,wtx,wt1,sum1,sumx,bt
-      double precision gdrint
+      double precision gdrint,gdrint_protel,gdrint_incoh
       integer i
 
       include 'ion.f'
@@ -247,6 +253,8 @@ c         print*,i,sneut(1,i)
          x=2d0*mion*sneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
 
          wt1=wt1*gdrint(x,bt)
+c         wt1=wt1*gdrint_incoh(x,bt)
+
 
          if(i.lt.i0)then
             wt1=wt1*(sneut(1,i+1)-sneut(1,i))
@@ -255,6 +263,8 @@ c         print*,i,sneut(1,i)
          endif
 
          sum1=sum1+wt1
+
+c         print*,x,gdrint_incoh(x,bt),gdrint(x,bt),wt1
 
       enddo
 
@@ -265,6 +275,7 @@ c         print*,i,sneut(1,i)
          x=2d0*mion*mneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
 
          wtX=wtX*gdrint(x,bt)
+c         wtX=wtX*gdrint_incoh(x,bt)
 
          if(i.lt.i4)then
             wtX=wtX*(mneut(1,i+1)-mneut(1,i))
@@ -272,20 +283,35 @@ c         print*,i,sneut(1,i)
             wtX=wtX*(mneut(1,i4)-mneut(1,i4-1))
          endif
 
+c         if(mneut(1,i).lt.5d3)wtx=0d0
+
          sumX=sumX+wtX
+c         print*,x,gdrint_incoh(x,bt),gdrint(x,bt),wtx
+c         print*,mneut(1,i)
 
       enddo
 
       do i=i4+1,i5
+c      do i=i5,i5
+
 
          x=2d0*mion*mneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
+         
+c         print*,mneut(1,i)
 
          wtx=dlog(mneut(1,i))-dlog(mneut(1,i-1))
          wtx=wtx*gdrint(x,bt)*mneut(2,i)
+c         wtx=wtx*gdrint_incoh(x,bt)*mneut(2,i)
+
+c         if(mneut(1,i).lt.5d3)wtx=0d0
 
          sumx=sumx+wtx
 
+c         print*,x,gdrint_incoh(x,bt),gdrint(x,bt)
+
       enddo
+
+c      stop
 
       sum1=sum1/0.389389d0
       sumX=sumX/0.389389d0
@@ -293,7 +319,148 @@ c         print*,i,sneut(1,i)
       return
       end
 
-      
+      function gdrint_incoh(x,btt)
+      implicit none
+      double precision btmax,hphi,hbt,bt,phi,btp,btt,x
+      integer iphi,ibt,nbt,nphi
+      double precision sum,wt
+      double precision btpx,btpy,btx,bty
+      double precision opacpb_inel,opacpb,rhoxyint
+      integer nbtx,nbty,ibty,ibtx
+      double precision hbtx,hbty,opacpbint
+      double precision breakup_prob,gdrint_protel,gdrint_incoh
+
+      include 'pi.f'
+      include 'ion.f'
+      include 'rho0.f'
+      include 'ionqcd.f'
+      include 'qcd.f'
+      include 'p0Xn.f'
+
+c      print*,'TEST'
+
+      btmax=2d0*rzg
+
+      nphi=10
+      nbt=20
+
+      nbtx=20
+      nbty=20
+
+      hbtx=btmax/dble(nbtx)
+      hbty=btmax/dble(nbty)
+
+      hphi=2d0*pi/dble(nphi)
+      hbt=btmax/dble(nbt)
+
+      sum=0d0
+
+      do ibtx=-nbtx,nbtx
+      do ibty=-nbty,nbty
+
+         btx=(dble(ibtx))*hbtx
+         bty=(dble(ibty))*hbty
+         bt=dsqrt(btx**2+bty**2)
+
+         btpx=btx+btt
+         btpy=bty
+
+         btp=dsqrt(btpx**2+btpy**2)
+
+         wt=rhoxyint(1,bt)*gdrint_protel(x,btp)
+         wt=wt*hbtx*hbty
+
+
+         sum=sum+wt
+
+      enddo
+      enddo
+
+      gdrint_incoh=sum
+
+c      print*,'sum = ',sum
+
+      return
+      end
+
+      function gdrint_protel(xp,bt)
+      implicit none
+      double precision x,bt,gdrint_protel,wt,sum,sum1
+      double precision qt,q2min,q2max,lq2min,lq2max,qsq,q0,lqsq,hq2,f1
+      double precision qtmin,hlq2,f2
+      double precision tpint,xp
+      integer i,itot
+
+      include 'ion.f'
+      include 'gdr.f'
+      include 'mion.f'
+      include 'pi.f'
+      include 'gaussvars.f'
+      include 'mp.f'
+
+      q0=0.71d0
+
+      x=xp*an
+
+      if(x.gt.1d0)then
+         gdrint_protel=0d0
+         return
+      endif
+c      print*,x,xp
+
+      qtmin=0d0
+
+      q2min=(qtmin**2+x**2*mp**2)/(1d0-x)
+      q2max=2d0
+
+c      print*,q2min
+
+      if(q2min.gt.q2max)then
+         gdrint_protel=0d0
+         return
+      endif
+
+      lq2min=dlog(q2min)
+      lq2max=dlog(q2max)
+
+      itot=100
+
+      itot=nint(bt/2d0)
+      if(itot.lt.1000)itot=1000
+
+c      print*,itot
+
+      hlq2=(lq2max-lq2min)/dble(itot)
+      hq2=(q2max-q2min)/dble(itot)
+
+      sum=0d0
+      sum1=0d0
+
+      do i=1,itot
+
+         lqsq=lq2min+hlq2*(dble(i)-0.5d0)
+         qsq=dexp(lqsq)
+
+         qt=(1d0-x)*qsq-x**2*mp**2
+         qt=dsqrt(qt)
+
+         call F1F2(.false.,1d0,qsq,mp,f1,f2)
+
+         wt=dsqrt(f2)*qt
+         wt=wt*BESSEL_J1(bt*qt)
+
+         wt=wt*hlq2
+
+         sum=sum+wt
+
+      enddo
+
+      sum=sum**2*(1d0-x)/4d0/pi**2/137d0
+
+      gdrint_protel=sum
+
+      return
+      end
 
       function gdrint(x,bt)  ! is |tilde{N}|^2 in (34) of 2303.04826
       implicit none

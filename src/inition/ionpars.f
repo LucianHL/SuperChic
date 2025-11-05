@@ -32,6 +32,8 @@ ccc   Fit according to one-channel calculation
       c=0.438d0-0.00524d0*rtst+0.000108d0*rtst**2
       sig0=sig0/0.389d0
 
+c      sig0=sig0/2d0
+
       return
       end
 

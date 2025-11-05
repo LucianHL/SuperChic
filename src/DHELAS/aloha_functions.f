@@ -943,6 +943,7 @@ c#endif
 
       if(vmass.eq.rZero.and.scpol.eqv..true.)then  ! scalar polarization
 
+
          do i=1,3
             vc(i+3)=egam0(i)
          enddo

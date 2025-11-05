@@ -28,6 +28,11 @@
 .false.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
 '00'    ! [fAA] : if ionbreakup=.true. then specifies breakup type
 1d0     ! [fracsigX] : multiply sig_(gamA) by this factor (1d0 - default)
+.false.  ! [wrho] : generate concident rho production in AA collisions
+2.5d0    ! [yrho] : maximum rho |y|
+1d0      ! [accrho] : additional correction factor to account for rho->pipi acceptance, non-resonant dipions and different beams
+.false.     ! [ion_incoh]
+'inel'   ! [ion_incoh_type]   
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
@@ -167,4 +172,5 @@
 .false. ! [calc_tau_coeff] : if true calculate  O(a_tau^n) or O(d_tau^n) coefficients
 'atau'  ! [tau_mom] : 'atau','dtau' - coeffecients for magnetic/electric dipole moments
 1       ! [tau_coeff] : order 'n' in coefficient (0-4)
+
 

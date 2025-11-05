@@ -20,10 +20,6 @@ ccc   generates two-body phase space for particles of equal mass mq
       return 
       endif
 
-c      rphi=ran2()
-
-c      print*,rphi,rtheta
-
       phi=2d0*pi*rphi
       ctheta=-1d0+2d0*rtheta
       stheta=dsqrt(1d0-ctheta**2)

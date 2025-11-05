@@ -1,3 +1,22 @@
+      function rf2(x,q2)
+      implicit double precision(a-y)
+      double precision garr(-6:6)
+
+      call evolvePDFphoton(x,dsqrt(q2),garr,phot)
+
+      sqp=(garr(2)+garr(-2)+garr(4)+garr(-4))*4d0+garr(1)+
+     &     garr(-1)+garr(3)+garr(-3)
+      sqp=sqp+garr(5)+garr(-5)
+
+      sqn=(garr(1)+garr(-1)+garr(4)+garr(-4))*4d0+garr(2)+
+     &     garr(-2)+garr(3)+garr(-3)
+      sqn=sqn+garr(5)+garr(-5)
+
+      rf2=sqn/sqp
+
+      return
+      end
+      
       subroutine F1F2ev(x,q2,f1,f2)
       implicit double precision(a-y)
       double precision garr(-6:6)

@@ -2614,7 +2614,7 @@ c
             if(erec.eq.'lhe')enew=.true.
          endif
 
-         offshell=.true.
+c         offshell=.false.
 
          if(erec.eq.'lhe')enew=.true.
          dps=2
@@ -3298,6 +3298,12 @@ c
          gamma=.true.
          nhep=13
       elseif(proc.eq.76)then
+
+         if(beam.eq.'prot')then
+            offshell=.true.
+            if(erec.eq.'lhe')enew=.true.
+         endif
+
          ndim=6
          pol=1   ! slepton
          mq=mcharg

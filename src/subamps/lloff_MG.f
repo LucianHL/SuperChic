@@ -6,7 +6,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       REAL*8 Pmom(0:3,6)
       integer nhel(4)
       double precision alphaem,qsq1,qsq2
-      complex*16 zout,AMP_aall_SM
+      complex*16 zout,AMP_aall_SM,AMP_aaelel
 
       include 'mom.f'
       include 'vars.f'
@@ -19,6 +19,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       include 'mp.f'
       include 'zoutarr.f'
       include 'tau.f'
+
 
 
       qsq1=(q(4,3)-q(4,1))**2-(q(3,3)-q(3,1))**2-(q(2,3)-q(2,1))**2
@@ -64,38 +65,17 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       do i1=1,4
             do i2=1,4
 
-              
-
             call egcalc(i1,i2)
             zcalc=.true.
-            zout=AMP_aall_SM(Pmom,nhel)
+            zout=AMP_aaelel(Pmom,nhel)
             zout=zout*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
             zout=zout*1.325070D+02
             zout=zout*dsqrt(conv)
             zout=zout
-c            zoutarr_mg(p,i1,i2)=zout
             zoutarr(p,i1,i2)=zout
-
-
-
+            
             ENDDO
       enddo
-
-!       zout=0d0
-!       do i=1,4
-!          zout=0d0
-!          do j=1,4
-!             ztt1=zoutarr_mg(p,i,j)*q2(j)
-! c$$$*     q2(i)
-!             if(j.lt.4)ztt1=-ztt1
-! c$$$c            if(i.lt.4)ztt1=-ztt1
-! c            print*,ztt1
-!             zout=zout+ztt1
-!          enddo
-!          print*,i,zout
-!       enddo
-
-
       
       return
       end

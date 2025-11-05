@@ -8,7 +8,7 @@ ccccc EPA form factors (proton)
       complex*16 zt,ztsf,zoutsf,zout
       integer p,i,mu,mup,nu,nup,qin
       double precision sf1_g(4,4),sf2_g(4,4),q1p(4),q2p(4),p1(4),p2(4)
-      complex*16 zw(9),zoutt
+      complex*16 zw(9),zoutt,zout1,zt1
       common/zw/zw
       common/sffull/sf1_g,sf2_g
 
@@ -29,6 +29,7 @@ ccccc EPA form factors (proton)
       include 'surv.f'
       include 'diff.f'
       include 'fbeam.f'
+
 
       t1=q1x**2+q1y**2
       t2=q2x**2+q2y**2
@@ -144,6 +145,49 @@ ccccccccccc
 
       endif
 
+      if(proc.eq.59)then
+
+
+
+      if(diss1)then
+c            print*,'mdiss - ',mdiss1,qsq1
+            if(qsq1.gt.0d0.and.mdiss1.gt.dsqrt(3.5d-10))then
+            out=0d0
+            do qin=1,2
+               call cs_ionem(p,2,qin,outi)
+               out=out+outi
+            enddo
+            out=out/xb1/xb2  ! normalize so consistent with above
+c            out=out*dsqrt(1d0-4d0*mw**2/mx**2) ! normalize so consistent with above
+             zout=dsqrt(dabs(out))
+
+
+c            zout=1d0
+            else
+            zout=0d0
+            endif
+
+      else
+            out=0d0
+            do qin=1,2
+               call cs_ionem(p,1,qin,outi)
+               out=out+outi
+            enddo
+            out=out/xb1/xb2  ! normalize so consistent with above
+c               out=out*dsqrt(1d0-4d0*mw**2/mx**2) ! normalize so consistent with above
+            zout=dsqrt(dabs(out))
+
+            zout=zout*dsqrt(alphaEM(qsq2)*132.5d0)
+
+            
+      endif
+
+      
+
+      return
+
+      endif
+
 cccccccccc
 
       if(p.eq.1)then            ! gam-gam density matrices
@@ -231,6 +275,7 @@ cccccccc
 
       qsq1=q1(4)**2-q1(3)**2-q1(2)**2-q1(1)**2
       qsq1=-qsq1
+      
 
       do i=1,2
          q1t(i)=q1(i)

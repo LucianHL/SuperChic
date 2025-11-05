@@ -13,9 +13,8 @@
 !cc   binning subroutine
       subroutine binit(wt)
       implicit none
-      double precision wt
-      integer i
-
+      double precision wt,yx_lab
+      
       include 'vars.f'
       include 'mom.f'
       include 'range.f'
@@ -29,14 +28,18 @@
       include 'xb.f'
       include 'ewpars.f'
       include 'partonmom2.f'
+      include 'mion.f'
 
 !cccccccc
 
+      yx_lab=0.5d0*dlog((q(4,5)+q(3,5))/(q(4,5)-q(3,5)))
+
       if(dps.eq.1)then
-         call histo1(1,10,ymin,ymax,yx,wt,'yx')
+         call histo1(1,10,ymin,ymax,yx_lab,wt,'yx')
       else
-         call histo1(1,10,mmin,mmax,mx,wt,'mx')
-         call histo1(2,10,ymin,ymax,yx,wt,'yx')
+         call histo1(1,20,mmin,mmax,mx,wt,'mx')
+!ccc         call histo1(2,10,ymin,ymax,yx,wt,'yx')
+         call histo1(2,10,0d0,2.4d0,dabs(yx_lab),wt,'|yx|')
       endif
 
       return
