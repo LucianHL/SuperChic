@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 #----------------------------------------------------------------------------
 project(SuperChic LANGUAGES  Fortran)
-set(PROJECT_VERSION 5.4)
+set(PROJECT_VERSION 5.6)
 set(RELEASE_DATE 30.06.2024)
 
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
