@@ -90,7 +90,7 @@ cccccccccccccccc
       subroutine supinit
       implicit none
       double precision rpsip
-      integer i1
+      integer i1,i
 
       include 'mesflag.f'
       include 'mfact.f'
@@ -2727,7 +2727,7 @@ c         offshell=.false.
             isthep(7)=1
             jdahep(1,5)=6
             jdahep(2,5)=7
-                        nhep=7
+            nhep=7
          endif
 
 
@@ -3312,59 +3312,119 @@ c         offshell=.false.
          decay2=.true.
          call twobodyinit(1,mq,mneut,mmu) ! slepton
          procn='gamma gamma --> Slepton pair (leptonic decay)'
-         pdgid(5)=93
-         pdgid(6)=1000013
-         pdgid(7)=-1000013
-         pdgid(8)=1000022
-         pdgid(9)=13
-         pdgid(10)=1000022
-         pdgid(11)=-13
-         istup(5)=2
-         istup(6)=2
-         istup(7)=2
-         istup(8)=1
-         istup(9)=1
-         istup(10)=1
-         istup(11)=1
-         mothup(1,6)=3
-         mothup(2,6)=0
-         mothup(1,7)=3
-         mothup(2,7)=0
-         mothup(1,8)=4
-         mothup(2,8)=0
-         mothup(1,9)=4
-         mothup(2,9)=0
-         mothup(1,10)=5
-         mothup(2,10)=0
-         mothup(1,11)=5
-         mothup(2,11)=0
-         icolup(1,6)=0
-         icolup(2,6)=0
-         icolup(1,7)=0
-         icolup(2,7)=0
-         icolup(1,8)=0
-         icolup(2,8)=0
-         icolup(1,9)=0
-         icolup(2,9)=0
-         icolup(1,10)=0
-         icolup(2,10)=0
-         icolup(1,11)=0
-         icolup(2,11)=0
-         isthep(5)=2
-         isthep(6)=2
-         isthep(7)=2
-         isthep(8)=1
-         isthep(9)=1
-         isthep(10)=1
-         isthep(11)=1
-         jdahep(1,5)=6
-         jdahep(2,5)=7
-         jdahep(1,6)=8
-         jdahep(2,6)=9
-         jdahep(1,7)=10
-         jdahep(2,7)=11
          gamma=.true.
-         nhep=11
+
+        if(enew)then
+            if(diff.eq.'el')i1=5
+            if(diff.eq.'sd')i1=6
+            if(diff.eq.'dd')i1=7
+                        nhep=i1+1
+            pdgid(i1)=1000013
+            pdgid(i1+1)=-1000013
+            pdgid(i1+2)=1000022
+            pdgid(i1+3)=13
+            pdgid(i1+4)=1000022
+            pdgid(i1+5)=-13
+
+            istup(i1)=2
+            istup(i1+1)=2
+            istup(i1+2)=1
+            istup(i1+3)=1
+            istup(i1+4)=1
+            istup(i1+5)=1
+
+
+            mothup(1,i1)=1
+            mothup(1,i1+1)=1
+            mothup(2,i1)=2
+            mothup(2,i1+1)=2
+            mothup(1,i1+2)=3
+            mothup(2,i1+2)=0
+            mothup(1,i1+3)=3
+            mothup(2,i1+3)=0
+            mothup(1,i1+4)=4
+            mothup(2,i1+4)=0
+            mothup(1,i1+5)=4
+            mothup(2,i1+5)=0
+
+            if(diff.eq.'sd')then
+               mothup(2,i1)=2
+               mothup(2,i1+1)=2
+            endif
+
+            do i=i1,i1+5
+            icolup(1,i)=0
+            icolup(2,i)=0
+            istup(i)=1
+            enddo
+            istup(i1)=1
+            istup(i1+1)=1
+
+            isthep(i1)=1
+            isthep(i1+1)=1
+
+            else
+
+            pdgid(5)=93
+            pdgid(6)=1000013
+            pdgid(7)=-1000013
+            pdgid(8)=1000022
+            pdgid(9)=13
+            pdgid(10)=1000022
+            pdgid(11)=-13
+
+            istup(5)=2
+            istup(6)=2
+            istup(7)=2
+            istup(8)=1
+            istup(9)=1
+            istup(10)=1
+            istup(11)=1
+
+
+
+            mothup(1,6)=3
+            mothup(2,6)=0
+            mothup(1,7)=3
+            mothup(2,7)=0
+            mothup(1,8)=4
+            mothup(2,8)=0
+            mothup(1,9)=4
+            mothup(2,9)=0
+            mothup(1,10)=5
+            mothup(2,10)=0
+            mothup(1,11)=5
+            mothup(2,11)=0
+            icolup(1,6)=0
+            icolup(2,6)=0
+            icolup(1,7)=0
+            icolup(2,7)=0
+            icolup(1,8)=0
+            icolup(2,8)=0
+            icolup(1,9)=0
+            icolup(2,9)=0
+            icolup(1,10)=0
+            icolup(2,10)=0
+            icolup(1,11)=0
+            icolup(2,11)=0
+            isthep(5)=2
+            isthep(6)=2
+            isthep(7)=2
+            isthep(8)=1
+            isthep(9)=1
+            isthep(10)=1
+            isthep(11)=1
+            jdahep(1,5)=6
+            jdahep(2,5)=7
+            jdahep(1,6)=8
+            jdahep(2,6)=9
+            jdahep(1,7)=10
+            jdahep(2,7)=11
+            nhep=11
+            endif
+
+
+         
       elseif(proc.eq.82)then
          enew=.true.
          ndim=6
