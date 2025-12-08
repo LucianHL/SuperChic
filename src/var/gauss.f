@@ -9,10 +9,7 @@
       nkt4=s2int*4
       nphi=s2int*2
       nkt=s2int*2
-
-      nphi=s2int*4
-      nkt=s2int*4
-
+      
       nb=s2int*2
       nphib=s2int
 
