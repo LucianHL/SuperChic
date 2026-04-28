@@ -226,8 +226,9 @@ included. For approximate tuning purposes.
 \item \texttt{veto}: If set to \texttt{.true.} then impose exclusivity veto in ion--ion production due to ion electromagnetic dissociation, as discussed in 2604.19879.
 This is achieved by parameterising $p_{vb}(E_\gamma)$, where $E_\gamma$ is the photon energy in the dissociating ion rest frame, according to
 \begin{equation}
-  p_{vb}(E_\gamma) = {\rm ERF} \left[ \frac{E_\gamma - {\rm veto\_ecent}}{{\rm veto\_eden}} \right]
+  p_{vb}(E_\gamma) = {\rm Max}\left[{\rm ERF} \left[ \frac{E_\gamma - {\rm veto\_ecent}}{{\rm veto\_eden}} \right],0\right]
 \end{equation}
+see Fig. 1 (b) of this reference.
 \item \texttt{veto\_ecent}: Parameter of ERF function as defined above.
 \item \texttt{veto\_eden}: Parameter of ERF function as defined above.
 \item \texttt{wrho}: if set to \texttt{.true.} then includes probability of coincident $\rho^0$ production in PbPb collisions, as described in arXiv:2506.03264.
