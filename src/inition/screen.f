@@ -39,6 +39,8 @@
          btmin=0d0
       endif
 
+c      nbt=3000
+
 
       goto 888
 

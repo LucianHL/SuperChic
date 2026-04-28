@@ -460,4 +460,14 @@ install: all
 	@cp data/Lepretre25_103.dat  $$PREFIX/share/SuperChic
 	@cp data/Caldwell.dat  $$PREFIX/share/SuperChic
 	@cp data/Lepretre_25_103.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g96_x.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g96_w.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g128_x.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g128_w.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g256_x.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g256_w.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g512_x.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g512_w.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g1024_x.dat  $$PREFIX/share/SuperChic
+	@cp gauss_weights/g1024_w.dat  $$PREFIX/share/SuperChic
 	@echo "Installation complete."

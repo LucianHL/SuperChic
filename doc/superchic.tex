@@ -223,6 +223,13 @@ mutual ion dissociation (or a veto on it) as specified by \texttt{fAA}. Possible
  inclusive with respect to mutual ion dissociation.
 \item \texttt{fracsigX}: Reweights the normalization of the $\gamma A \to A^*$ cross section when ion breakup is 
 included. For approximate tuning purposes.
+\item \texttt{veto}: If set to \texttt{.true.} then impose exclusivity veto in ion--ion production due to ion electromagnetic dissociation, as discussed in 2604.19879.
+This is achieved by parameterising $p_{vb}(E_\gamma)$, where $E_\gamma$ is the photon energy in the dissociating ion rest frame, according to
+\begin{equation}
+  p_{vb}(E_\gamma) = {\rm ERF} \left[ \frac{E_\gamma - {\rm veto\_ecent}}{{\rm veto\_eden}} \right]
+\end{equation}
+\item \texttt{veto\_ecent}: Parameter of ERF function as defined above.
+\item \texttt{veto\_eden}: Parameter of ERF function as defined above.
 \item \texttt{wrho}: if set to \texttt{.true.} then includes probability of coincident $\rho^0$ production in PbPb collisions, as described in arXiv:2506.03264.
 \item \texttt{yrho}: maximum value of $|y_{\rho^0}|$, if \texttt{wrho} is \texttt{.true.}.
 \item \texttt{accrho}: additional correction factor to account for e.g. $\rho^0\to \pi^+\pi^-$ acceptance, non-resonant dipions and different beams (input assume Pb beams). Simply multiplies $\gamma A \to \rho^0 A$ cross section.
@@ -236,12 +243,6 @@ automatically adjusted so that the number of calls passing cuts is approximately
 \item  \texttt{prec}: the required \% accuracy by the user; the main run will terminate once this level of accuracy 
 has been reached.
 \item \texttt{iseed}: random number seed, must be a positive integer.
-\item \texttt{s2int}: determines precision of pomeron loop momentum integration performed to calculated screened 
-amplitude. While comfortably set to high enough (sub \% level) precision for most uses, if the average survival factor
- is close to unity (as in the case of two--photon initiated processes), and/or restrictive cuts are placed, in 
- particular on the outgoing proton momenta, it is recommended that the user increases the parameter in increments of 4,
-  and confirms that the output is stable within the required precision. If not, it should set at a sufficiently high 
-  value that this stability is reached: this will result in a longer runtime.
 \item \texttt{genunw}, \texttt{nev}, \texttt{erec}: set \texttt{genunw} to \texttt{.true.} to generate unweighted events,
  and specify required number of events with \texttt{nev}, and event record format (\texttt{lhe} and 
  \texttt{hepmc} for Les Houches and HepMC, respectively) with \texttt{erec}.

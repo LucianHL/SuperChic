@@ -18,6 +18,7 @@ c   calculates CEP cross section
       double precision qsq1,qsq2,qsq1tt,qsq2tt
       double precision ptxx,ptxsq,ptmin,ptmax1,ptmax2,ptmax,ptdif
       double precision pt2x,pt2y,pt1y,pt1x,pt1sq,pt2sq,phi2,phi1
+      double precision ltx,lty,qtx,qty
       double precision ps,p2p,p2m,p1p,p1m,ktcut
       double precision msub,mpp1,mpp2,mdissmax,lmdissmin,lmdissmax,
      &     lmdiss1,lmdiss2
@@ -87,12 +88,10 @@ c   calculates CEP cross section
 
       elcollw=.false.
 
-
       if(beam.eq.'ionp')then
       ioninel_pbeam=1
       if(ion_inel)then
          ran_ioninel=ran2()
-c         ran_ioninel=0.7d0
          if(ran_ioninel.gt.0.5d0)then
          if(ion_incoh_type.eq.'inel')diffsd='sda'
          ioninel_pbeam=1
@@ -302,7 +301,6 @@ c         ran_ioninel=0.7d0
 
          ptmin=0d0
          xgmin=(mx/rts)**2
-
 
          if(diss1)then
             ptmax1=rts/2d0
@@ -615,7 +613,6 @@ ccccccccccccccccccccccccccccccccc
          endif
       endif
 
-
 cccccccccccccccccc
 
 cccc decays
@@ -728,15 +725,12 @@ ccccccccccccccccccc  cuts ccccccccccccccccc
 
          neff0=neff0+1
 
-
          if(gencuts)then
             call cut(icut)
             if(icut.eq.0)goto 777
          endif
 
          neff=neff+1
-
-
 
 ccccccccccccccccccccccccccccccccccccccccccc
 
@@ -769,8 +763,6 @@ ccccccccccccccccccccccccccccccccccccccccccc
           endif
 
 ccccccccc
-
-
 
          if(photo)then
              if(beam.eq.'prot')then
@@ -823,33 +815,39 @@ ccccccccc
             elseif(beam.eq.'ion'.or.beam.eq.'ionp')then
                if(pAAvar)then
                   do p=1,pol
-                     do i=1,3
+                     do i=1,2
                         wtpvar(i,p)=0d0
                      enddo
                   enddo
                if(sfac)then
-                  do ifaa=1,3
+                  do ifaa=1,2
                      if(ifaa.eq.1)then ! inclusive                                                       
-                        ionbreakup=.false.
+                        ionbreakup=.true.   ! NEW
+                        faa='AA'
+                        faa='AX'
+                        int_01=.true.
                      endif
                      if(ifaa.eq.2)then
                         ionbreakup=.true.
                         faa='00'
+                        faa='XX'
+                        int_01=.false.
                      endif
                      if(ifaa.eq.3)then
                         ionbreakup=.true.
                         faa='XX'
                      endif
-                     call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+                     call schimcgamion_s2int(pt1x,pt1y,pt2x,pt2y,wt)
                      do p=1,pol
                         wtpvar(ifaa,p)=wt(p)
                      enddo
                   enddo
                   do p=1,pol
-                     wtr(p)=cdabs(wtpvar(1,p))**2
-     &               -cdabs(wtpvar(2,p))**2
-     &               -cdabs(wtpvar(3,p))**2
-                     wtr(p)=wtr(p)/2d0
+c                     wtr(p)=cdabs(wtpvar(1,p))**2
+c     &               -cdabs(wtpvar(2,p))**2
+c     &               -cdabs(wtpvar(3,p))**2
+c                     wtr(p)=wtr(p)/2d0
+c                     wtr(p)=cdabs(wtpvar(1,p))**2              
                   enddo
                else
                   call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
@@ -901,8 +899,12 @@ ccccc          Add neutron + proton contributions
                neutron_inel=.false.
                call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
                endif
+               else              
+               if(sfac)then
+               call schimcgamion_s2int(pt1x,pt1y,pt2x,pt2y,wt)
                else
                call schimcgamion(pt1x,pt1y,pt2x,pt2y,wt)
+               endif
                endif
             endif
          endif
@@ -921,13 +923,7 @@ ccccc          Add neutron + proton contributions
                       enddo
                    else
                       call schimcion(pt1x,pt1y,pt2x,pt2y,wt)
-c                      call schimc(pt1x,pt1y,pt2x,pt2y,wtn)
-c                       do p=1,pol
-c                        print*,p,wt(p),wtn(p)
-c                       enddo
                       do p=1,pol
-c                         if(beam.eq.'ion')wt(p)=wt(p)*dsqrt(s2qcd)*an
-c                         if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(s2qcd*an)
                          if(beam.eq.'ion')wt(p)=wt(p)*an
                          if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(an)
                       enddo
@@ -936,15 +932,6 @@ c                         if(beam.eq.'ionp')wt(p)=wt(p)*dsqrt(s2qcd*an)
                    ptdif=dsqrt((pt1x-pt2x)**2+(pt1y-pt2y)**2)
                    ktcut=ptdif
                    call schimcion(pt1x,pt1y,pt2x,pt2y,wt)
-                   if(sfac)then
-c                      sfac=.false.
-c                      call schimc(pt1x,pt1y,pt2x,pt2y,wtd)
-c                      sfac=.true.
-c                      call schimc(pt1x,pt1y,pt2x,pt2y,wtn)
-c                      do p=1,pol
-c                         wt(p)=wt(p)*cdabs(wtn(p))/cdabs(wtd(p))
-c                      enddo
-                   endif
                 endif
              endif
           endif
@@ -953,9 +940,13 @@ c                      enddo
 
           if(paavar)then
              if(sfac)then
+               wtt_0=0d0
                 do p=1,pol
-                   wtt=wtt+wtr(p)
+c                   wtt=wtt+wtr(p)
+                     wtt=wtt+cdabs(wtpvar(1,p))**2
+                     wtt_0=wtt_0+cdabs(wtpvar(2,p))**2
                 enddo
+                wtt=wtt*2d0-wtt_0
              else
                 do p=1,pol
                    wtt=wtt+cdabs(wt(p))**2
@@ -980,14 +971,13 @@ c                      enddo
      &=wtt+wtt_atauonly_lin
          endif
 
+
+
          if(ion_inel.and.ion_incoh_type.eq.'inel')then
             do p=1,pol
                wtt=wtt+cdabs(wt_neut(p))**2
             enddo
          endif
- 
-
- 
 
          wtpol=1d0
 
@@ -1045,14 +1035,11 @@ c                      enddo
 
          wtt=wtt*wt2*wt3*wt4*wt6
 
-
          if(decays)then
             do i=1,nbr
                wtt=wtt*br(i)
             enddo
          endif
-
-
 
          if(photo)then
             wtt=wtt*wty
@@ -1128,8 +1115,6 @@ ccccccccccccc 1 body phase space
          endif
 
          wtt=wtt*conv*surv
-
-
 
  888     if((elcoll.eqv..true.).and.(unw.eqv..true.))then
 

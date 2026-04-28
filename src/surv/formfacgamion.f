@@ -4,6 +4,7 @@ ccccc EPA form factors (proton)
       double precision t1,t2,out
       double precision q0,x1i,x2i,qsq1,qsq2,f1,f2
       double precision tpint,rw_gdr,delta_gdr
+      double precision alphaem
 
       include 'photo.f'
       include 'mp.f'
@@ -36,6 +37,7 @@ ccccccccc
       f1=f1/(t1+x1i**2*mion**2)
       f1=f1*tpint(1,dsqrt(qsq1))
       f1=f1*dsqrt((1d0-x1i)/137d0/pi)
+c      f1=f1*dsqrt((1d0-x2i)/pi*alphaem(qsq1))
 
       delta_gdr=80d-3/az**(1d0/3d0)
 

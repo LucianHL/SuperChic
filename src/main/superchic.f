@@ -47,6 +47,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       logical histol
       character*100 dum
       integer idum
+      integer itvar
+      common/itv/itvar
       COMMON /ranno/ idum
 
       include 'pdfinf.f'
@@ -123,10 +125,12 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'tau.f'
       include 'ion_inel.f'
       include 'prot_mom.f'
+      include 'veto.f'
       character*10 tdiff,tbeam,bp
 
       call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
 
+      itvar=0
 
 ccccccc
 
@@ -163,6 +167,9 @@ c      read(*,*)elcoll
       read(*,*)ionbreakup
       read(*,*)fAA
       read(*,*)fracsigX
+      read(*,*)veto
+      read(*,*)veto_ecent
+      read(*,*)veto_eden
       read(*,*)wrho
       read(*,*)yrho
       read(*,*)accrho
@@ -341,6 +348,7 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       
       int_01=.false.
       if(fAA.eq.'01'.or.fAA.eq.'A1'.or.fAA.eq.'AX')int_01=.true.
+      if(fAA.eq.'0X')int_01=.true.
       if(wrho)then
          if(fAA.eq.'AA')int_01=.true.
          if(fAA.eq.'01')int_01=.false.
@@ -718,19 +726,6 @@ cccccccccccccccccccccccccc
 
 cccccccccccccccccccccccccc
 
-cccc LHL TEMP REMOVE
-
-c      if(diff.eq.'sd'.or.diff.eq.'dd')then
-c         if(offshell.eqv..false.)then
-c            print*,'Dissociation not currently supported'//
-c     &           ' for this process/beam - STOP'
-c            STOP 1
-c         endif
-c         if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
-c            print*,'Dissociation currently only supported with LHE'
-c         endif
-c      endif
-
       elcoll=.false.
       difftot=.false.
       if(diff.eq.'el')then
@@ -781,12 +776,10 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
       elseif(beam.eq.'el')then
          beta=dsqrt(1d0-4d0*me**2/s)
       elseif(beam.eq.'ionp'.or.beam.eq.'ion')then
-c     mion=mp*an
          mion=mp*az+(an-az)*mn
          rtsi=rts
          si=s
       endif
-
 
       q(1,1)=0d0
       q(2,1)=0d0
@@ -808,14 +801,12 @@ c     mion=mp*an
       prot_mom(3,2)=-rts/2d0*beta_prot
       prot_mom(4,2)=rts/2d0
       
-
       if(beam.eq.'ionp')then
       rtsnn=rts
       call pAinit(1)
       endif
       if(beam.eq.'ion')call AAinit
   
-
       if(beam.eq.'prot')then
          pdgid(1)=2212
          pdgid(2)=2212
@@ -988,28 +979,18 @@ ccccccccc
       
 
       if(qcd)then
-C         call calcsud
-C         call calchg
          call readsud
          call readhg
       endif
-cc 737.127 - 518.6042
 ccc   Use modified ion-ion opacity for incoherent production
       if(ion_inel)beam='ion'  
 ccc      
       if(beam.eq.'ion'.or.beam.eq.'ionp')call ioninit
       if(ion_inel)beam='ionp'
-
-c      beam='ion'
-
       if(beam.eq.'ionp')then
          if(AA_frame)then
-c         print*,rts
          rts=dsqrt((q(4,1)+q(4,2))**2-(q(3,1)+q(3,2))**2)
          s=rts**2
-c         print*,q(4,1)+q(4,2),q(3,1)+q(3,2)
-c         print*,rts,mion
-c         stop
          else
          rts=rtspa
          s=spa
@@ -1018,10 +999,6 @@ c         stop
          rts=rtsaa
          s=saa
       endif
-
-c      call ioninel_pdftest
-c      call ioninel_lumiout
-c      stop
 
 cccccccccccc
 

@@ -3,7 +3,7 @@
       double precision screen_01,wt,sum,bt,hbt,qt
       double precision opacpbint_3
       double precision b0,hbt0,sum0,btminb
-      double precision btmin,btmax,aj0,opac0,sumt
+      double precision btmin,btmax,aj0,opac0,sumt,aj0t
       integer ibt,nbt,nbt0
 
       include 'pi.f'
@@ -26,7 +26,15 @@ cccccccccccc
       btminb=0d0
       btmax=4d0*rzg
 
+      btmax=8d0*rzg
+
       aj0=(1d0-opacpbint_3(rzg*40d0))*rzg*40d0
+
+      aj0=(1d0-opacpbint_3(rzg*200d0))*rzg*200d0
+
+c      print*,aj0,aj0t
+c      stop
+
       aj0=-aj0/2d0/pi
 
       hbt=(btmax-btminb)/dble(nbt)

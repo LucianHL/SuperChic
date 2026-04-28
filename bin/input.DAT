@@ -1,7 +1,7 @@
 ****************************************************************************************
 ******  RE-RUN ./init IF FIRST FIVE PARAMETERS ARE CHANGED (and beam = 'prot'):  *******
 ****************************************************************************************
-5.36d3           !  [rts] : CMS collision energy (GeV)
+5.02d3           !  [rts] : CMS collision energy (GeV)
 4	       !  [isurv] : Model of soft survival (from 1 -> 4, corresponding to arXiv:1306.2149)
 'in536'         !  [intag] for input files 
 ****************************************************************************************
@@ -9,10 +9,10 @@
 'MSHT20qed_nnlo'   ! [PDFname] : PDF set
 0                    ! [PDFmember] : PDF member
 ****************************************************************************************
-57      !  [proc] : Process number (see manual for labelling)
+56      !  [proc] : Process number (see manual for labelling)
 'ion'  ! [beam] : Beam type ('prot', 'ion', 'ionp' or 'el')
 'test'          ! [outtg]
-.false.  !  [sfaci] : Include soft survival effects
+.true.  !  [sfaci] : Include soft survival effects
 ****************************************************************************************
 ************************* Dissociation parameters for PI  ******************************
 ****************************************************************************************
@@ -25,22 +25,25 @@
 6.7d0 	!  [rn] : Ion neutron density - radius
 0.55d0  !  [dn] : Ion neutron density - skin thickness
 'coh'   !  [ionqcd] : Coherent ('coh') or incoherent ('incoh') for QCD-induced (ion-ion) processes
-.false.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
+.true.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
 'AA'    ! [fAA] : if ionbreakup=.true. then specifies breakup type
 1d0     ! [fracsigX] : multiply sig_(gamA) by this factor (1d0 - default)
+.true.  ! [veto] : impose exclusivity veto in ion-ion case due to EMD
+53.9655d0 ! [veto_ecent]
+263.313d0 ! [veto_eden]
 .false.  ! [wrho] : generate concident rho production in AA collisions
-2.5d0    ! [yrho] : maximum rho |y|
-1d0      ! [accrho] : additional correction factor to account for rho->pipi acceptance, non-resonant dipions and different beams
-.false.     ! [ion_incoh]
-'inel'   ! [ion_incoh_type]  
+3.86d0    ! [yrho] : maximum rho |y|
+1.2d0      ! [accrho] : additional correction factor to account for rho->pipi acceptance, non-resonant dipions and different beams
+.false.   ! [ion_incoh] : inelastic emission in ion-ion case
+'inel'   ! [ion_incoh_type] : type of inelastic emission, 'inel' or 'el'
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
-10000       ! [ncall] : Number of calls for preconditioning
+1000       ! [ncall] : Number of calls for preconditioning
 10          ! [itmx] : Number of iterations for preconditioning
-1d0          ! [prec]
-10000       ! [ncall1] : Number of calls in first iteration
-10000       ! [inccall] : Number of increase calls per iteration
+10d0          ! [prec]
+1000       ! [ncall1] : Number of calls in first iteration
+1000       ! [inccall] : Number of increase calls per iteration
 1000        ! [itend] : Maximum number of iterations
 6           ! [iseed] : Random number seed (integer > 0)
 ****************************************************************************************
@@ -54,10 +57,10 @@
 ****************************************************************************************
 *******************************   general cuts    **************************************
 ****************************************************************************************
--0.5d0          ! [ymin]
-0.5d0          ! [ymax]
-2.5d0          ! [mmin]
-3.5d0          ! [mmax]
+-2.4d0          ! [ymin]
+2.4d0          ! [ymax]
+100d0          ! [mmin]
+1000d0          ! [mmax]
 .true.        ! [gencuts] : Generate cuts below
 .true.        ! [scorr] : Include spin correlations
 .true.	      ! [fwidth] : Include finite width 
@@ -70,12 +73,12 @@
 ****************************************************************************************
 ************************* 2 body final states : p(a) + p(b) ****************************
 ****************************************************************************************
-1d0         ! [ptamin]
-1d0         ! [ptbmin]
--2.5d0       ! [etaamin]
-2.5d0        ! [etaamax]
--2.5d0       ! [etabmin]
-2.5d0        ! [etabmax]
+4d0         ! [ptamin]
+4d0         ! [ptbmin]
+-2.4d0       ! [etaamin]
+2.4d0        ! [etaamax]
+-2.4d0       ! [etabmin]
+2.4d0        ! [etabmax]
 1d10        ! [acoabmax]
 ****************************************************************************************
 ********************** 3 body final states : p(a) + p(b) + p(c) ************************
@@ -172,4 +175,3 @@
 .false. ! [calc_tau_coeff] : if true calculate  O(a_tau^n) or O(d_tau^n) coefficients
 'atau'  ! [tau_mom] : 'atau','dtau' - coeffecients for magnetic/electric dipole moments
 1       ! [tau_coeff] : order 'n' in coefficient (0-4)
-

@@ -35,11 +35,22 @@
       yx_lab=0.5d0*dlog((q(4,5)+q(3,5))/(q(4,5)-q(3,5)))
 
       if(dps.eq.1)then
-         call histo1(1,10,ymin,ymax,yx_lab,wt,'yx')
+         call histo1(1,12,0d0,ymax,dabs(yx_lab),wt,'yx')
       else
-         call histo1(1,20,mmin,mmax,mx,wt,'mx')
-!ccc         call histo1(2,10,ymin,ymax,yx,wt,'yx')
-         call histo1(2,10,0d0,2.4d0,dabs(yx_lab),wt,'|yx|')
+
+      call histo1(1,1,10d0,20d0,mx,wt,'mx')
+      call histo1(2,1,20d0,40d0,mx,wt,'mx')
+      call histo1(3,1,40d0,80d0,mx,wt,'mx')
+
+      call histo1(4,10,ymin,ymax,yx,wt,'yx')
+
+      call histo1(5,5,10d0,20d0,mx,wt,'mx')
+      call histo1(6,5,20d0,40d0,mx,wt,'mx')
+      call histo1(7,4,40d0,80d0,mx,wt,'mx')
+      call histo1(8,1,80d0,100d0,mx,wt,'mx')
+      call histo1(9,1,100d0,200d0,mx,wt,'mx')
+      call histo1(10,12,0d0,ymax,dabs(yx_lab),wt,'|yx|')
+
       endif
 
       return

@@ -123,14 +123,20 @@
          e=mneut(1,i3+i)*1d-3
       enddo
 
+      do i=1,i4
+         mneut(3,i)=0d0
+      enddo
+
       do i=i4+1,i5
          le=lemin+dble(i-i4)*leint
          e=dexp(le)
 
          mneut(1,i)=e*1d3
-         mneut(2,i)=Regge_gdr(e)*an
+         mneut(2,i)=Regge_gdr(1,e)*an
+         mneut(3,i)=Regge_gdr(2,e)*an
 
       enddo
+
 
       return
       end
@@ -163,11 +169,11 @@
       return
       end
 
-!       0.365192E+09 
 
-      function Regge_gdr(e)
+      function Regge_gdr(ien,e)
       implicit none
-      double precision regge_gdr,shad
+      integer ien
+      double precision regge_gdr,shad,w_gdr,w_gdr_flip
       double precision y,x,vec,s,pom,mn,eta,eps,e
 
       include 'mion.f'
@@ -185,7 +191,9 @@
       eps=0.1d0
       eta=0.716d0/2d0
 
-      shad=0.65d0
+!      shad=0.65d0
+      shad=0.4d0
+      
 
       s=2d0*mn*e+mn**2
 
@@ -194,7 +202,52 @@
 
       Regge_gdr=shad*(pom+vec)
 
-      if(e.gt.500d0)regge_gdr=0d0
+      if(ien.eq.1)then
+!         if(e.gt.500d0)regge_gdr=0d0
+         Regge_gdr=Regge_gdr*w_gdr(e)
+!         Regge_gdr=Regge_gdr*w_gdr_flip(e)
+         if(e.gt.500d0)Regge_gdr=0d0  ! Set to zero in all cases - will always break veto
+      elseif(ien.eq.2)then
+!         if(e.lt.500d0)regge_gdr=0d0
+         Regge_gdr=Regge_gdr*w_gdr_flip(e)
+      endif
+!      regge_gdr=0d0
+
+!      Regge_gdr=Regge_gdr*w_gdr(e)
+!      print*,e,Regge_gdr,w_gdr(e)
+
+      return
+      end
+
+      function w_gdr(e)
+      double precision w_gdr,e
+
+      include 'veto.f'
+
+      w_gdr=1d0-max(0.,erf((e-veto_ecent)/veto_eden))
+!      w_gdr=1d0-max(0.,erf((e-53.9655)/263.313))
+!      w_gdr=1d0-max(0.,erf((e-37.703)/207.671))
+!      w_gdr=1d0-max(0.,erf((e-25.5495)/235.043))
+!      w_gdr=max(0.,erf((e-25.5495)/235.043))
+!      w_gdr=1d0-max(0.,erf((e-25.5495*2d0)/235.043))
+
+      return
+      end
+
+      function w_gdr_flip(e)
+      double precision w_gdr_flip,e
+
+      include 'veto.f'
+
+      w_gdr_flip=max(0.,erf((e-veto_ecent)/veto_eden))
+
+
+!       w_gdr_flip=max(0.,erf((e-53.9655)/263.313))
+!       w_gdr_flip=max(0.,erf((e-114.821)/407.025))
+!       w_gdr_flip=max(0.,erf((e-37.703)/207.671))  
+!   w_gdr_flip=max(0.,erf((e-25.5495)/235.043))
+!      w_gdr=max(0.,erf((e-25.5495)/235.043))
+!      w_gdr=1d0-max(0.,erf((e-25.5495*2d0)/235.043))
 
       return
       end

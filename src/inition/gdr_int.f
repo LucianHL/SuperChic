@@ -1,6 +1,6 @@
       subroutine gdrset
       implicit none
-      double precision sum1,sumx,hb,btmin,btmax,bt,acc
+      double precision sum1,sumx,hb,btmin,btmax,bt,acc,sumxh
       double precision bti,lbtmin,lbtmax,hlb,lbt,sum
       logical recalc
       integer i
@@ -35,16 +35,19 @@ c      ibmax=50
          lbt=lbtmin+hlb*dble(i-1)
          bt=dexp(lbt)
 
-         call gdrcalc(bt,sum1,sumX)
+         call gdrcalc(bt,sum1,sumX,sumxh)
+
+
          bti=bt
 
          gdrarr(1,i)=dlog(bti)
          gdrarr(2,i)=sum1*fracsigX
          gdrarr(3,i)=sumX*fracsigX
+         gdrarr(4,i)=sumXh*fracsigX
 
          if(wrho)then
          call rho_exc_calc(bt,sum)
-         gdrarr(4,i)=sum
+         gdrarr(5,i)=sum
 c         call twogamprob_calc(bt,sum)
 c         gdrarr(5,i)=sum
          endif
@@ -68,6 +71,7 @@ c      stop
 
       btmax=gdrarr(1,ibmax+1)
       btmin=gdrarr(1,1)
+
 
 
       if(bt.gt.btmax)then
@@ -94,6 +98,9 @@ c      stop
       endif
 
       pgdrint=out
+
+c      print*,'out',dlog(bt),dlog(btmax),dlog(btmin),out
+
 
       return
       end
@@ -228,9 +235,9 @@ c         print*,btp/rzg,wt
       end
 
 
-      subroutine gdrcalc(bt,sum1,sumX)
+      subroutine gdrcalc(bt,sum1,sumX,sumxh)
       implicit none
-      double precision x,wtx,wt1,sum1,sumx,bt
+      double precision x,wtx,wt1,sum1,sumx,bt,sumxh,wtxh
       double precision gdrint,gdrint_protel,gdrint_incoh
       integer i
 
@@ -243,6 +250,7 @@ c         print*,btp/rzg,wt
 
       sum1=0d0
       sumX=0d0
+      sumxh=0d0
 
       do i=1,i0
 
@@ -270,6 +278,8 @@ c         print*,x,gdrint_incoh(x,bt),gdrint(x,bt),wt1
 
       do i=1,i4
 
+        
+
          wtX=mneut(2,i)/mneut(1,i)
 
          x=2d0*mion*mneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
@@ -291,23 +301,23 @@ c         print*,mneut(1,i)
 
       enddo
 
-      do i=i4+1,i5
-c      do i=i5,i5
+c      sumx=0d0
 
+      do i=i4+1,i5
 
          x=2d0*mion*mneut(1,i)*1d-3/(rtsaa**2-2d0*mion**2)
          
-c         print*,mneut(1,i)
-
          wtx=dlog(mneut(1,i))-dlog(mneut(1,i-1))
          wtx=wtx*gdrint(x,bt)*mneut(2,i)
-c         wtx=wtx*gdrint_incoh(x,bt)*mneut(2,i)
 
-c         if(mneut(1,i).lt.5d3)wtx=0d0
+c         print*,wtx
 
          sumx=sumx+wtx
 
-c         print*,x,gdrint_incoh(x,bt),gdrint(x,bt)
+         wtxh=dlog(mneut(1,i))-dlog(mneut(1,i-1))
+         wtxh=wtxh*gdrint(x,bt)*mneut(3,i)
+
+         sumxh=sumxh+wtxh
 
       enddo
 
@@ -315,6 +325,7 @@ c      stop
 
       sum1=sum1/0.389389d0
       sumX=sumX/0.389389d0
+      sumXh=sumXh/0.389389d0
 
       return
       end

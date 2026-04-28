@@ -60,11 +60,11 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
       call calcscreen        ! screening amplitude
 
       call readcoh
-      call dd
+c      call dd
       call readscreen
-      call sdcoh
+c      call sdcoh
       call apfelinit
-      call sdincoh
+c      call sdincoh
 
 
       call calcsud           ! sudakov factor

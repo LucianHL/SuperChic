@@ -23,7 +23,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
       if(faa.eq.'0X'.or.faa.eq.'X0')then
          if(wrho)then
          else
-         if(ionbreakup)pAAvar=.true.
+c         if(ionbreakup)pAAvar=.true.
          endif
       endif
 
@@ -42,7 +42,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
          if(pAAvar)then
 
-            do ifaa=1,3
+            do ifaa=1,2
 c               print*,'ifaa = ',ifaa
                call opacpbcalc
                call screencalc

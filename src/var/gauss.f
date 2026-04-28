@@ -7,13 +7,17 @@
 
       nphi4=s2int*4
       nkt4=s2int*4
+
+      s2int=16
+
       nphi=s2int*2
       nkt=s2int*2
       
       nb=s2int*2
       nphib=s2int
 
-c      print*,nphi,nkt,s2int
+      s2int=24
+      nphi4=24*4
 
       if(nphi.eq.96)then
          call gauss96(xiphi,wiphi)
@@ -61,7 +65,9 @@ c      print*,nphi,nkt,s2int
          STOP 1
       endif
 
-      if(nphi4.eq.96)then
+      if(nphi4.eq.128)then
+         call gauss128(xiphi4,wiphi4)
+      elseif(nphi4.eq.96)then
          call gauss96(xiphi4,wiphi4)
       elseif(nphi4.eq.64)then
          call gauss64(xiphi4,wiphi4)
@@ -79,12 +85,20 @@ c      print*,nphi,nkt,s2int
          call gauss6(xiphi4,wiphi4)
       elseif(nphi4.eq.4)then
          call gauss4(xiphi4,wiphi4)
+      elseif(nphi4.eq.256)then
+         call gauss256(xiphi4,wiphi4)
+      elseif(nphi4.eq.512)then
+         call gauss512(xiphi4,wiphi4)
+      elseif(nphi4.eq.1024)then
+         call gauss1024(xiphi4,wiphi4)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
          STOP 1
       endif
 
-      if(nkt4.eq.96)then
+      if(nkt4.eq.128)then
+         call gauss128(xikt4,wikt4)
+      elseif(nkt4.eq.96)then
          call gauss96(xikt4,wikt4)
       elseif(nkt4.eq.64)then
          call gauss64(xikt4,wikt4)
@@ -102,6 +116,12 @@ c      print*,nphi,nkt,s2int
          call gauss6(xikt4,wikt4)
       elseif(nkt4.eq.4)then
          call gauss4(xikt4,wikt4)
+      elseif(nkt4.eq.256)then
+         call gauss256(xikt4,wikt4)
+      elseif(nkt4.eq.512)then
+         call gauss512(xikt4,wikt4)
+      elseif(nkt4.eq.1024)then
+         call gauss1024(xikt4,wikt4)
       else
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
          STOP 1
@@ -152,6 +172,196 @@ c      print*,nphi,nkt,s2int
          print*,'Gaussian points not avaiable for choice of s2int: STOP'
          STOP 1
       endif
+
+      call gauss16(x16,w16)
+      call gauss32(x32,w32)
+      call gauss64(x64,w64)
+      call gauss96(x96,w96)
+      call gauss128(x128,w128)
+      call gauss256(x256,w256)
+      call gauss512(x512,w512)
+      call gauss1024(x1024,w1024)
+
+      return
+      end
+
+      SUBROUTINE gauss128(xi,wi)
+      implicit none
+      double precision X(64),W(64),xi(128),wi(128)
+      integer i
+
+      character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'share/SuperChic'/
+#endif
+
+      integer length
+      character*500 valuepath
+      length = 500
+      length=0
+      CALL GET_ENVIRONMENT_VARIABLE('SUPERCHIC_DATA_PATH', valuepath)
+      length=len(trim(valuepath))
+
+      if (length > 0) then
+      open(10,file=valuepath(1:length) // '/gauss_weights/g128_x.dat')
+      open(20,file=valuepath(1:length) // '/gauss_weights/g128_w.dat')
+      else
+      open(10,file=trim(defpath)// '/gauss_weights/g128_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g128_x.dat')
+      endif
+
+      do i=1,64
+         read(10,*)x(i)
+         read(20,*)w(i)
+      enddo
+   
+      DO I=1,64
+      XI(I)=-X(65-I)
+      WI(I)=W(65-I)
+      XI(I+64)=X(I)
+      WI(I+64)=W(I)
+      enddo
+
+      close(10)
+      close(20)
+
+      return
+      end
+
+      SUBROUTINE gauss1024(xi,wi)
+      implicit none
+      double precision X(512),W(512),xi(1024),wi(1024)
+      integer i
+
+      character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'share/SuperChic'/
+#endif
+
+      integer length
+      character*500 valuepath
+      length = 500
+      length=0
+      CALL GET_ENVIRONMENT_VARIABLE('SUPERCHIC_DATA_PATH', valuepath)
+      length=len(trim(valuepath))
+
+      if (length > 0) then
+      open(10,file=valuepath(1:length) // '/gauss_weights/g1024_x.dat')
+      open(20,file=valuepath(1:length) // '/gauss_weights/g1024_w.dat')
+      else
+      open(10,file=trim(defpath)// '/gauss_weights/g1024_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g1024_x.dat')
+      endif
+
+      do i=1,512
+         read(10,*)x(i)
+         read(20,*)w(i)
+      enddo
+   
+      DO I=1,512
+      XI(I)=-X(513-I)
+      WI(I)=W(513-I)
+      XI(I+512)=X(I)
+      WI(I+512)=W(I)
+      enddo
+
+      close(10)
+      close(20)
+
+      return
+      end
+
+      SUBROUTINE gauss512(xi,wi)
+      implicit none
+      double precision X(256),W(256),xi(512),wi(512)
+      integer i
+
+            character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'share/SuperChic'/
+#endif
+
+      integer length
+      character*500 valuepath
+      length = 500
+      length=0
+      CALL GET_ENVIRONMENT_VARIABLE('SUPERCHIC_DATA_PATH', valuepath)
+      length=len(trim(valuepath))
+
+      if (length > 0) then
+      open(10,file=valuepath(1:length) // '/gauss_weights/g512_x.dat')
+      open(20,file=valuepath(1:length) // '/gauss_weights/g512_w.dat')
+      else
+      open(10,file=trim(defpath)// '/gauss_weights/g512_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g512_x.dat')
+      endif
+
+
+      do i=1,256
+         read(10,*)x(i)
+         read(20,*)w(i)
+      enddo
+   
+      DO I=1,256
+      XI(I)=-X(257-I)
+      WI(I)=W(257-I)
+      XI(I+256)=X(I)
+      WI(I+256)=W(I)
+      enddo
+
+      close(10)
+      close(20)
+
+      return
+      end
+
+      SUBROUTINE gauss256(xi,wi)
+      implicit none
+      double precision X(128),W(128),xi(256),wi(256)
+      integer i
+
+      character*500 defpath
+#if defined(DATA_PATH)
+      data defpath/DATA_PATH/
+#else
+      data defpath/'share/SuperChic'/
+#endif
+
+      integer length
+      character*500 valuepath
+      length = 500
+      length=0
+      CALL GET_ENVIRONMENT_VARIABLE('SUPERCHIC_DATA_PATH', valuepath)
+      length=len(trim(valuepath))
+
+      if (length > 0) then
+      open(10,file=valuepath(1:length) // '/gauss_weights/g256_x.dat')
+      open(20,file=valuepath(1:length) // '/gauss_weights/g256_w.dat')
+      else
+      open(10,file=trim(defpath)// '/gauss_weights/g256_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g256_x.dat')
+      endif
+
+      do i=1,128
+         read(10,*)x(i)
+         read(20,*)w(i)
+      enddo
+   
+      DO I=1,128
+      XI(I)=-X(129-I)
+      WI(I)=W(129-I)
+      XI(I+128)=X(I)
+      WI(I+128)=W(I)
+      enddo
+
+      close(10)
+      close(20)
 
       return
       end
