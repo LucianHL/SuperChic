@@ -28,6 +28,9 @@
 .false.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
 '00'    ! [fAA] : if ionbreakup=.true. then specifies breakup type
 1d0     ! [fracsigX] : multiply sig_(gamA) by this factor (1d0 - default)
+.true.  ! [veto] : impose exclusivity veto in ion-ion case due to EMD
+53.9655d0 ! [veto_ecent]
+263.313d0 ! [veto_eden]
 .false.  ! [wrho] : generate concident rho production in AA collisions
 2.5d0    ! [yrho] : maximum rho |y|
 1d0      ! [accrho] : additional correction factor to account for rho->pipi acceptance, non-resonant dipions and different beams
