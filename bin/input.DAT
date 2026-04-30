@@ -25,10 +25,10 @@
 6.7d0 	!  [rn] : Ion neutron density - radius
 0.55d0  !  [dn] : Ion neutron density - skin thickness
 'coh'   !  [ionqcd] : Coherent ('coh') or incoherent ('incoh') for QCD-induced (ion-ion) processes
-.true.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
+.false.  ! [ionbreakup] : set to .true. if include ion breakup, false if inclusive
 'AA'    ! [fAA] : if ionbreakup=.true. then specifies breakup type
 1d0     ! [fracsigX] : multiply sig_(gamA) by this factor (1d0 - default)
-.true.  ! [veto] : impose exclusivity veto in ion-ion case due to EMD
+.false.  ! [veto] : impose exclusivity veto in ion-ion case due to EMD
 53.9655d0 ! [veto_ecent]
 263.313d0 ! [veto_eden]
 .false.  ! [wrho] : generate concident rho production in AA collisions
