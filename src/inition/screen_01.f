@@ -24,16 +24,11 @@
 cccccccccccc
 
       btminb=0d0
-      btmax=4d0*rzg
-
+c      btmax=4d0*rzg
       btmax=8d0*rzg
 
-      aj0=(1d0-opacpbint_3(rzg*40d0))*rzg*40d0
-
+c      aj0=(1d0-opacpbint_3(rzg*40d0))*rzg*40d0
       aj0=(1d0-opacpbint_3(rzg*200d0))*rzg*200d0
-
-c      print*,aj0,aj0t
-c      stop
 
       aj0=-aj0/2d0/pi
 

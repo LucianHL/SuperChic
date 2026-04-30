@@ -178,6 +178,7 @@
 
       include 'mion.f'
       include 'ion.f'
+      include 'veto.f'
 
       mn=0.94d0
 
@@ -192,8 +193,10 @@
       eta=0.716d0/2d0
 
 !      shad=0.65d0
-      shad=0.4d0
-      
+!      shad=0.4d0
+      shad=rshad     
+
+
 
       s=2d0*mn*e+mn**2
 

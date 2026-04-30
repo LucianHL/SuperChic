@@ -170,6 +170,7 @@ c      read(*,*)elcoll
       read(*,*)veto
       read(*,*)veto_ecent
       read(*,*)veto_eden
+      read(*,*)rshad
       read(*,*)wrho
       read(*,*)yrho
       read(*,*)accrho
@@ -316,6 +317,8 @@ c      read(*,*)elcoll
       read(*,*)tau_coeff
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+      if(veto)ionbreakup=.true.
 
       ion_em=.false.
       AA_frame=.false.

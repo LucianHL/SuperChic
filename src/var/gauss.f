@@ -7,17 +7,11 @@
 
       nphi4=s2int*4
       nkt4=s2int*4
-
-      s2int=16
-
-      nphi=s2int*2
-      nkt=s2int*2
+      nphi=s2int*4
+      nkt=s2int*4
       
       nb=s2int*2
       nphib=s2int
-
-      s2int=24
-      nphi4=24*4
 
       if(nphi.eq.96)then
          call gauss96(xiphi,wiphi)

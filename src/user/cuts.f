@@ -41,9 +41,6 @@ cccccccccccccccccccccccccccccccccccccccccccccc
       if(yx.gt.ymax)return
       if(yx.lt.ymin)return
 
-c      if(dabs(yx).lt.1.6d0)return
-c      if(dabs(yx).gt.2.4d0)return
-
       if(beam.eq.'ionp')then
          yx_lab=0.5d0*dlog((q(4,5)+q(3,5))/(q(4,5)-q(3,5)))
          x1n=mx/rtsnn*dexp(yx_lab)
@@ -53,9 +50,6 @@ c      if(dabs(yx).gt.2.4d0)return
       endif
 
       if(dsqrt(q(1,5)**2+q(2,5)**2).gt.ptxmax)return
-
-c      if(dsqrt(q(1,5)**2+q(2,5)**2).gt.0.1d0)return
-c      if(dsqrt(q(1,5)**2+q(2,5)**2).lt.0.09d0)return
 
       if(decay4)then
 
