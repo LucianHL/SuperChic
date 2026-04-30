@@ -31,6 +31,7 @@
 .false.  ! [veto] : impose exclusivity veto in ion-ion case due to EMD
 53.9655d0 ! [veto_ecent]
 263.313d0 ! [veto_eden]
+0.4d0 ! [rshad]
 .false.  ! [wrho] : generate concident rho production in AA collisions
 3.86d0    ! [yrho] : maximum rho |y|
 1.2d0      ! [accrho] : additional correction factor to account for rho->pipi acceptance, non-resonant dipions and different beams
