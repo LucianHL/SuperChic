@@ -39,7 +39,7 @@
 ****************************************************************************************
 ************************* Integration parameters ***************************************
 ****************************************************************************************
-1000       ! [ncall] : Number of calls for preconditioning
+10000       ! [ncall] : Number of calls for preconditioning
 10          ! [itmx] : Number of iterations for preconditioning
 10d0          ! [prec]
 1000       ! [ncall1] : Number of calls in first iteration
