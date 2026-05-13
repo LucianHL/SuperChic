@@ -105,8 +105,6 @@ ccc   gamgam --> VX  amplitude
 
       include 'mxs.f'
 
-      tau=0.04d0
-
       norm=dexp(-tau*mx)  ! mx distribution
 
       pp=dsqrt(norm) ! square root as amplitude here

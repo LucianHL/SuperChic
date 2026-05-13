@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.15.0 FATAL_ERROR)
 #----------------------------------------------------------------------------
 project(SuperChic LANGUAGES  Fortran)
-set(PROJECT_VERSION 5.2)
+set(PROJECT_VERSION 5.6.2)
+set(RELEASE_DATE 30.06.2024)
+
 option(SUPERCHIC_ENABLE_TESTS        "Enables building of tests." OFF)
 option(SUPERCHIC_ENABLE_FPES         "Enables FPEs." OFF)
 option(SUPERCHIC_ENABLE_DOCS         "Enables compilation of manual." OFF)
@@ -52,6 +54,7 @@ message(STATUS "SuperChic: SUPERCHIC_ENABLE_FPES=${SUPERCHIC_ENABLE_FPES}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_TESTS=${SUPERCHIC_ENABLE_TESTS}" )
 message(STATUS "SuperChic: SUPERCHIC_ENABLE_DOCS=${SUPERCHIC_ENABLE_DOCS}" )
 
+configure_file(${PROJECT_SOURCE_DIR}/src/inc/head.f.in ${PROJECT_BINARY_DIR}/src/inc/head.f IMMEDIATE @ONLY)
 set(Dissf CLAS.f gd-fit-11.f CB.f Elastic.f F1F2.f F2ev.f rfit.f 
           alphaEM.f qinit.f apfelinit.f )
 list(TRANSFORM Dissf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/diss/")
@@ -77,7 +80,7 @@ set(Phasef 2body.f 2bodyw.f 2jetps.f 2jetpsm.f 3jetps.f boost.f
            genpol1.f genpol1rf.f genpol2.f rambo.f 6body.f 6bodyinit.f 
            4body.f 4bodyinit.f 3body.f 3bodyinit.f 2bodyinit.f wwcorr.f 
            jpsidecay.f rhodecay.f chidecay.f monow.f alpdecay.f 
-           pAboost.f pAinit.f AAinit.f genpol_axial.f )
+           pAboost.f pAinit.f AAinit.f genpol_axial.f wwmix.f)
 list(TRANSFORM Phasef PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/phase/")
 
 set(Subampsf chi0.f chi1.f chi2.f etaq.f higgs.f higgsinit.f pipi.f 
@@ -85,7 +88,7 @@ set(Subampsf chi0.f chi1.f chi2.f etaq.f higgs.f higgsinit.f pipi.f
              gggjets.f pipixy.f rhorho.f djpsi.f djpsip.f djpsipp.f 
              ggjets.f qqgjets.f rhorhoxy.f wwpol.f llpol.f mhv.f 
              lightlightpol.f higgsgam.f higgsgaminit.f alp.f mmpol.f 
-             monop.f lloff.f spinors.f wwoff.f wwoff_amp.f )
+             monop.f lloff.f lloff_MG.f spinors.f wwoff.f wwoff_amp.f )
 list(TRANSFORM Subampsf PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/subamps/")
 
 set(Survf initparsr.f formfac.f formfacphot.f formfacgam.f seik.f 
@@ -149,7 +152,9 @@ set(Helas FFV2_0.f FFV2_1.f FFV2_2.f FFV2_3.f FFV1_0.f FFV1_1.f FFV1_2.f
           FFV1P0_3.f FFV3_0.f FFV3_1.f FFV3_2.f FFV3_3.f VVS1_0.f 
           VVS1_3.f VVS1_3.f VVVV5_0.f FFV5_0.f FFV5_1.f FFV5_2.f FFV5_3.f
           VVVV2_0.f VVV1_0.f VVV1_1.f VVV1P0_1.f VVV1_2.f VVV1_3.f 
-          aloha_functions.f VVVV5_0.f VVVV2P0_1.f VVVV5_4.f )
+          aloha_functions.f VVVV5_0.f VVVV2P0_1.f VVVV5_4.f 
+	  FFV15_0_ll.f FFV15_1_ll.f FFV15_2_ll.f FFV1_0_ll.f FFV1_1_ll.f
+	  FFV1_2_ll.f FFV2_0_ll.f FFV2_1_ll.f FFV2_2_ll.f FFV1_0_ionem.f FFV1_1_ionem.f FFV1_2_ionem.f)
 list(TRANSFORM Helas PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/DHELAS/")
 
 set(Model rw_para.f lha_read.f couplings.f couplings1.f couplings2.f )
@@ -158,14 +163,14 @@ list(TRANSFORM Model PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/MODEL/")
 set(MG wwpol_match.f is_born.f matrix_uc.f matrix_ds.f matrix_ubcb.f 
        matrix_dbsb.f matrix_dbub.f matrix_udb.f matrix_cub.f matrix_sdb.f 
        matrix_dub.f matrix_du.f mgcross.f cs_SF_SD.f matrix_au.f 
-       matrix_aub.f matrix_ad.f matrix_adb.f )
+       matrix_aub.f matrix_ad.f matrix_adb.f matrix_aall_SM.f matrix_gamq_gamgamq.f cs_ion_em.f)
 list(TRANSFORM MG PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/src/MG/")
 
 set( sCODELHA ${Mainf} ${Mesf} ${EW} ${PDFsfLHA} ${Intf} ${Phasef} 
               ${Subampsf} ${Survf} ${Userf} ${sPDFsf} ${Unwf} ${Varf} 
               ${LbyLf} ${InitfION} ${Dissf} ${Helas} ${Model} ${MG})
 
-set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/src/inc)
+set(scincludes ${CMAKE_CURRENT_SOURCE_DIR}/src/main ${CMAKE_CURRENT_SOURCE_DIR}/src/inc ${CMAKE_CURRENT_BINARY_DIR}/src/inc)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
   set(sccompile_options )
 else()
@@ -176,13 +181,13 @@ else()
                         "$<$<COMPILE_LANG_AND_ID:Fortran,PGI>:-mcmodel=medium>")
 endif()
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
-                            ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f 
+                            ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAKE_CURRENT_SOURCE_DIR}/src/var/gauss.f 
                              PROPERTIES Fortran_PREPROCESS ON Fortran_FORMAT FREE)
 
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin" OR  ${CMAKE_VERSION} VERSION_LESS 3.18)
 set_source_files_properties( ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAKE_CURRENT_SOURCE_DIR}/src/diss/Elastic.f ${CMAKE_CURRENT_SOURCE_DIR}/src/inition/gdrin.f 
-                            ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f 
+                            ${CMAKE_CURRENT_SOURCE_DIR}/src/user/histo.f ${CMAKE_CURRENT_SOURCE_DIR}/src/var/gauss.f 
                              PROPERTIES COMPILE_FLAGS "-traditional -cpp" )  
 endif()
 

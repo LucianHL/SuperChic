@@ -1,11 +1,12 @@
       subroutine tpcalc
       implicit none
       double precision qtmin,qtmax,sum,qt,lqtmin,lqtmax,lqt
-      double precision tpz,tpn
+      double precision tpz,tpn,wt
       integer i
 
       include 'tppars.f'
       include 'ion.f'
+      include 'pi.f'
 
       itp=1900
 
@@ -26,9 +27,17 @@
          tparr(2,i)=tpz(qt)
          tparr(3,i)=tpn(qt)
 
+         wt=(tparr(2,i)+tparr(3,i))**2
+         wt=wt*(lqtmax-lqtmin)/dble(itp)
+         wt=wt*pi*qt**2
+         sum=sum+wt
+
 c         print*,qt,tparr(2,i),tparr(3,i)
 
       enddo
+
+c      print*,sum
+c      stop
 
 c$$$      meta=0.6d0
 c$$$      rts=8.12d3

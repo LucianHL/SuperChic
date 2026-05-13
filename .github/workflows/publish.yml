@@ -7,11 +7,11 @@ on:
     - cron:  "0 0 1/600 * *"
 
 jobs:
-  Fedora37x86_64_GNU:
-    name: Fedora37x86_64_GNU
+  Fedora40x86_64_GNU:
+    name: Fedora40x86_64_GNU
     runs-on: ubuntu-latest
     container:
-        image: fedora:37
+        image: fedora:40
     steps:
     - name: Checkout
       uses: actions/checkout@v3

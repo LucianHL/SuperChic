@@ -83,9 +83,6 @@ ccccccccccccccc
       mgen2i = marsi(i)
       cqfactor = cqfa(i)
 
-c      mgen2=0d0
-c      mgen2i=dcmplx(0d0,-1d-30)
-
       if (mgen2.eq.0) then
 
       qedamp(1,1,2,2) = qedamp(1,1,2,2) + cqfactor
@@ -261,14 +258,8 @@ cccccccc
          pm=qedamp(2,1,1,2)
          mp=qedamp(2,1,2,1)
       endif
-
-c$$$      pp=0d0
-c$$$      mm=0d0
-c$$$      pm=0d0
-c$$$      mp=0d0
-
+      
       efac=1.5d0
-c      efac=0d0
 
       if(p.eq.1)then
          pp=pp-ewamp(1,1,1,1)*efac
@@ -291,7 +282,7 @@ c      efac=0d0
          pm=pm-ewamp(2,1,1,2)*efac
          mp=mp-ewamp(2,1,2,1)*efac
       endif
-
+      
       pp=pp*norm
       mm=mm*norm
       pm=pm*norm

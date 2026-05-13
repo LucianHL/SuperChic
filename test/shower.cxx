@@ -84,7 +84,25 @@ BeamRemnants:unresolvedHadron = 3
 SpaceShower:pTdampMatch=1
 PartonLevel:ISR = off
 LesHouches:matchInOut = off
+PDF:BeamA2gamma = on
+PDF:BeamB2gamma = on
+Photon:ProcessType = 4
+Photon:sampleQ2 = off
+Check:epTolErr = 1.e-3
+Check:epTolWarn = 1.e-3
+Photon:Wmin force= 0.
+)""";
+
+std::string config_elnoPI_pp = R"""(
+PartonLevel:MPI = off
+SpaceShower:pTmaxMatch = 2
+BeamRemnants:primordialKT = off
+BeamRemnants:unresolvedHadron = 3
+SpaceShower:pTdampMatch=1
+PartonLevel:ISR = off
+LesHouches:matchInOut = off
 PartonLevel:Remnants = off
+Check:event = off
 )""";
 
 std::string config_ds_pp = R"""(
@@ -135,6 +153,7 @@ int main(int argc, char ** argv) {
   std::vector<std::string> c_ds_pp = split(config_ds_pp);
   std::vector<std::string> c_el_pp = split(config_el_pp);
   std::vector<std::string> c_dd_pp = split(config_dd_pp);
+  std::vector<std::string> c_elnoPI_pp = split(config_elnoPI_pp);
   
  Pythia8::Pythia8ToHepMC topHepMC(argv[2]);
   // Generator. We here stick with default values, but changes
@@ -154,30 +173,44 @@ int main(int argc, char ** argv) {
      && type != "dd_AA" && type != "sda_AA" && type != "sdb_AA" && type != "sd_AA" && type != "el_AA"
      && type != "dd_pA" && type != "sda_pA" && type != "sdb_pA" && type != "sd_pA" && type != "el_pA"
       && type != "dd_ee" && type != "sda_ee" && type != "sdb_ee" && type != "sd_ee" && type != "el_ee"
+      && type != "elnoPI_pp"
     ) { printf("Bad argument->%s<-\n",argv[3]); return 7;}
       printf("Running in %s mode\n",argv[3]);
       std::string beam ="pp";
       beam[0]=type[type.size()-2];
       beam[1]=type[type.size()-1];
-      if (beam=="AA" || beam=="pA") { 
-		  pythiaconfig.readString("Check:beams = off");
-    }      
+    //   if (beam=="AA" || beam=="pA") { 
+		//   pythiaconfig.readString("Check:beams = off");
+    // }      
+
+     if (type[type.size()-1] == 'A'){
+    string lhadir=std::getenv("PYTHIA8_LHA_DIR");
+    PDFPtr protonPDFA = make_shared<LHAGrid1>(2212, lhadir+"/NNPDF23_lo_as_0130_qed_0000.dat");
+    PDFPtr protonPDFB = make_shared<LHAGrid1>(2212, lhadir+"/NNPDF23_lo_as_0130_qed_0000.dat");
+    pythia.setPDFPtr( protonPDFA, protonPDFB);
+    pythiaconfig.readString("Check:event = off");
+      if (type[type.size()-2] == 'p'){
+    pythiaconfig.readString("PartonLevel:Remnants = off");
+    }
+    }
+
     if (type[type.size()-1] == 'A' ) type[type.size()-1] ='p';
     if (type[type.size()-2] == 'A' ) type[type.size()-2] ='p';
     bool showerconfigured=false;
   
-    if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp" ) )
+    if (!showerconfigured  && (type == "dd_pp" || type == "sdb_pp" || type == "sda_pp" ||  type == "sd_pp" || type == "el_pp"|| type == "elnoPI_pp" ) )
     {
-    for ( auto s: c_c) pythiaconfig.readString(s);
+    // for ( auto s: c_c) pythiaconfig.readString(s);
     pythiaconfig.readString("PartonLevel:MPI = off");
-    pythiaconfig.readString("Check:event = off");
-    pythiaconfig.readString("LesHouches:matchInOut = off");
+    // pythiaconfig.readString("Check:event = off");
+    // pythiaconfig.readString("LesHouches:matchInOut = off");
 
 
     if (type == "dd_pp") for ( auto s: c_dd_pp) pythiaconfig.readString(s);
     if (type == "sdb_pp") for ( auto s: c_ds_pp) pythiaconfig.readString(s);
     if (type == "sda_pp" ) for ( auto s: c_sd_pp) pythiaconfig.readString(s);
     if (type == "el_pp") for ( auto s: c_el_pp) pythiaconfig.readString(s);
+    if (type == "elnoPI_pp") for ( auto s: c_elnoPI_pp) pythiaconfig.readString(s);
     showerconfigured=true;
     }
   

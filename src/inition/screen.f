@@ -16,18 +16,31 @@
       if(beam.eq.'ion')nbt=ioppb
       if(beam.eq.'ionp')nbt=ioppbp
 
+
       nbt=3000
 
       if(ionbreakup)then
-         if(fAA.eq.'00')then
-            btmin=0d0
-         endif
-         if(fAA.eq.'01')then
+         if(wrho)then
+         if(int_01)then
             nbt=3000
+         endif
+         else
+         if(fAA.eq.'00'.or.fAA.eq.'AA'.or.fAA.eq.'A0')then
+            if(wrho)then
+            else
+            btmin=0d0
+            endif
+         endif
+         if(int_01)then
+            nbt=3000
+         endif
          endif
       else
          btmin=0d0
       endif
+
+c      nbt=3000
+
 
       goto 888
 
@@ -69,6 +82,7 @@
          sum=sum+wt
 
       enddo
+
 
       sum=sum+sum0
 

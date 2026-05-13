@@ -13,6 +13,7 @@ c     *  (l.harland-lang@ucl.ac.uk)                 *
 c     *                                             *
 c     *  For details see :                          *
 c     *                                             *
+c     *  arXiv 2506.03264 (coincident production)   *
 c     *  arXiv 2303.04826 (ion dissiciation)        *
 c     *  arXiv 2201.08403 (WW)                      *
 c     *  arXiv 2007.12704 (v4 updates)              *
@@ -46,6 +47,8 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       logical histol
       character*100 dum
       integer idum
+      integer itvar
+      common/itv/itvar
       COMMON /ranno/ idum
 
       include 'pdfinf.f'
@@ -119,9 +122,15 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'wdecay.f'
       include 'p0Xn.f'
       include 'mxs.f'
+      include 'tau.f'
+      include 'ion_inel.f'
+      include 'prot_mom.f'
+      include 'veto.f'
       character*10 tdiff,tbeam,bp
 
       call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
+
+      itvar=0
 
 ccccccc
 
@@ -158,6 +167,15 @@ c      read(*,*)elcoll
       read(*,*)ionbreakup
       read(*,*)fAA
       read(*,*)fracsigX
+      read(*,*)veto
+      read(*,*)veto_ecent
+      read(*,*)veto_eden
+      read(*,*)rshad
+      read(*,*)wrho
+      read(*,*)yrho
+      read(*,*)accrho
+      read(*,*)ion_inel
+      read(*,*)ion_incoh_type
       read(*,*)dum
       read(*,*)dum
       read(*,*)dum
@@ -288,8 +306,61 @@ c      read(*,*)elcoll
       read(*,*)dum
       read(*,*)tau
       read(*,*)mxs
+      read(*,*)dum
+      read(*,*)dum
+      read(*,*)dum
+      read(*,*)atau
+      read(*,*)dtau
+      read(*,*)
+      read(*,*)calc_tau_coeff
+      read(*,*)tau_mom
+      read(*,*)tau_coeff
 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
+
+      if(veto)ionbreakup=.true.
+
+      ion_em=.false.
+      AA_frame=.false.
+
+      if(proc.lt.56)ion_inel=.false.
+      if(proc.gt.59)ion_inel=.false.
+
+      if(proc.eq.2)then
+         if(ionqcd.eq.'mixed')then
+            ion_inel=.true.
+            ionqcd='coh'
+         endif
+      endif
+
+      if(ion_inel)beam='ionp'
+      if(ion_inel.and.ion_incoh_type.eq.'inel')diff='sd'
+      if(ion_incoh_type.eq.'el')diff='el'
+
+      ymax_lab=ymax
+      ymin_lab=ymin
+
+      if(beam.ne.'ion')wrho=.false.
+      if(wrho)ionbreakup=.true.
+      if(fAA.eq.'10')fAA='01'
+      if(fAA.eq.'1A')fAA='A1'
+      if(fAA.eq.'XA')fAA='AX'
+      if(fAA.eq.'0A')fAA='A0'
+      if(fAA.eq.'X0')fAA='0X'
+      if(fAA.eq.'X1')fAA='1X'
+      
+      int_01=.false.
+      if(fAA.eq.'01'.or.fAA.eq.'A1'.or.fAA.eq.'AX')int_01=.true.
+      if(fAA.eq.'0X')int_01=.true.
+      if(wrho)then
+         if(fAA.eq.'AA')int_01=.true.
+         if(fAA.eq.'01')int_01=.false.
+         if(fAA.eq.'AX')int_01=.false.
+         if(fAA.eq.'A1')int_01=.false.
+         if(fAA.eq.'A0')int_01=.true.
+         if(fAA.eq.'00')int_01=.true.
+      endif
+
       tdiff=diff
       if(diff.eq.'sda'.or.diff.eq.'sdb')then
          tdiff='sd'
@@ -395,17 +466,18 @@ CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
      &.or.bp.eq.'ppel')) goto 111
       if(proc.eq.84.and.(bp.eq.'pAel'.or.bp.eq.'eeel'
      &.or.bp.eq.'ppel')) goto 111
+      if(proc.le.47.and.beam.eq.'ion')goto 111
 
 
-      write(*,*)'Usupported process and beam combination'
-      write(*,*)'bp->',bp,'<-'
-      write(*,*)'proc->',proc,'<-'
-      STOP 1
+ccccc LHL TEMP REMOVE
+c      write(*,*)'Unsupported process and beam combination'
+c      write(*,*)'bp->',bp,'<-'
+c      write(*,*)'proc->',proc,'<-'
+c      STOP 1
  111  continue 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 
       approx=.false.
-
 
 ccccccccccccc
 
@@ -493,6 +565,91 @@ c      mwx=80.318d0
       mup=0.062d0
       md=0.083d0
       ms=0.215d0
+      md_quark=md
+      mu_quark=mup
+
+
+      NPlin=.false.  ! if true only linear terms in a_tau,d_tau included (not available by default)
+      if(NPlin)int_atauonly=.false.
+
+      if(proc.ne.58)then
+         print*
+     &,'[calc_tau_coeff] can only be true for tau tau - set to false'
+         calc_tau_coeff=.false.
+      endif
+
+      if(calc_tau_coeff)then
+         if(tau_mom.eq.'atau')then
+            atau=1d0
+            dtau=0d0
+         elseif(tau_mom.eq.'dtau')then
+            atau=0d0
+            dtau=1d-15
+         else  
+            print*,'Incorrect calc_tau_coeff flag -- STOP'
+            stop
+         endif 
+         if(tau_coeff.eq.0)then
+            atau=0d0
+            dtau=0d0
+            deltau=.false.
+            atau_only=.false.
+            atau_lin=.false.
+            atau_quad=.false.
+            int_atauonly=.false.
+         elseif(tau_coeff.eq.1)then
+            deltau=.true.
+            atau_only=.false.
+            atau_lin=.true.
+            atau_quad=.false.
+            int_atauonly=.false.
+         elseif(tau_coeff.eq.2)then
+            deltau=.true.
+            atau_only=.false.
+            atau_lin=.false.
+            atau_quad=.true.
+            int_atauonly=.false.
+         elseif(tau_coeff.eq.3)then
+            deltau=.false.
+            atau_only=.true.
+            atau_lin=.false.
+            atau_quad=.false.
+            int_atauonly=.true.
+         elseif(tau_coeff.eq.3)then
+            deltau=.false.
+            atau_only=.true.
+            atau_lin=.false.
+            atau_quad=.false.
+            int_atauonly=.true.
+         elseif(tau_coeff.eq.4)then
+            deltau=.false.
+            atau_only=.true.
+            atau_lin=.false.
+            atau_quad=.true.
+            int_atauonly=.false.
+         else  
+            print*,'Incorrect tau_coeff flag -- STOP'
+            stop
+         endif 
+         if(tau_mom.eq.'dtau')then
+            if(tau_coeff.eq.1.or.tau_coeff.eq.3)then
+               print*,'Only even tau_coeff non-zero for dtau -- STOP'
+               stop
+            endif
+         endif
+      else  
+         deltau=.false.
+         atau_only=.false.
+         atau_lin=.false.
+         atau_quad=.false.
+         int_atauonly=.false.
+      endif 
+
+
+      if(deltau)atau_only=.false.
+      dtau=dtau/0.1973d-13*2d0*dsqrt(pi/1.325070D+02) ! convert to GeV^-1
+      GC_6515=dsqrt(pi/1.325070D+02)/mtau*atau/2d0*zi
+      GC_6506=-dtau/2d0
 
       rmf1( 1) = 1d-10
       rmf1( 2) = me
@@ -540,14 +697,29 @@ cccccccccccccccccccccccccc
       call inpdf
       call supinit
 
-      if(proc.eq.54.or.proc.eq.55)then
+      if(proc.eq.54.or.proc.eq.55.or.proc.eq.58)then
          call setpara('param_card.dat') !set parameters for MG calculation
       endif
+      if(proc.eq.59.and.ion_em.eqv..true.)then
+         call setpara('param_card.dat') !set parameters for MG calculation
+      endif
+
+      call setpara('param_card.dat') !set parameters for MG calculation
 
       s2int=8
       if(beam.eq.'ionp')s2int=16
       if(diff.eq.'el'.and.gamma.eqv..true.)s2int=16
+      if(ion_inel)s2int=4
+      if(ion_inel)offshell=.true.
+      if(proc.eq.2)then
+      offshell=.false.
+      s2int=8
+      endif
 
+      if(ion_em)then
+      offshell=.true.
+      pol=1
+      endif
 
       call header
       call gaminit
@@ -556,17 +728,6 @@ cccccccccccccccccccccccccc
       call gaussinit
 
 cccccccccccccccccccccccccc
-
-      if(diff.eq.'sd'.or.diff.eq.'dd')then
-         if(offshell.eqv..false.)then
-            print*,'Dissociation not currently supported'//
-     &           ' for this process/beam - STOP'
-            STOP 1
-         endif
-         if(erec.eq.'hepevt'.or.erec.eq.'hepmc')then
-            print*,'Dissociation currently only supported with LHE'
-         endif
-      endif
 
       elcoll=.false.
       difftot=.false.
@@ -612,12 +773,12 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       s=rts**2
 
+      beta_prot=dsqrt(1d0-4d0*mp**2/s)
       if(beam.eq.'prot')then
          beta=dsqrt(1d0-4d0*mp**2/s)
       elseif(beam.eq.'el')then
          beta=dsqrt(1d0-4d0*me**2/s)
       elseif(beam.eq.'ionp'.or.beam.eq.'ion')then
-c     mion=mp*an
          mion=mp*az+(an-az)*mn
          rtsi=rts
          si=s
@@ -633,9 +794,22 @@ c     mion=mp*an
       q(3,2)=-rts/2d0*beta
       q(4,2)=rts/2d0
 
-      if(beam.eq.'ionp')call pAinit
-      if(beam.eq.'ion')call AAinit
+      prot_mom(1,1)=0d0
+      prot_mom(2,1)=0d0
+      prot_mom(3,1)=rts/2d0*beta_prot
+      prot_mom(4,1)=rts/2d0
 
+      prot_mom(1,2)=0d0
+      prot_mom(2,2)=0d0
+      prot_mom(3,2)=-rts/2d0*beta_prot
+      prot_mom(4,2)=rts/2d0
+      
+      if(beam.eq.'ionp')then
+      rtsnn=rts
+      call pAinit(1)
+      endif
+      if(beam.eq.'ion')call AAinit
+  
       if(beam.eq.'prot')then
          pdgid(1)=2212
          pdgid(2)=2212
@@ -805,22 +979,25 @@ ccccccccc
          call readscreen
          if(beam.eq.'prot'.or.ionqcd.eq.'incoh')surv=1d0/norm**2
       endif
+      
 
       if(qcd)then
-C         call calcsud
-C         call calchg
          call readsud
          call readhg
       endif
-
-
-
+ccc   Use modified ion-ion opacity for incoherent production
+      if(ion_inel)beam='ion'  
+ccc      
       if(beam.eq.'ion'.or.beam.eq.'ionp')call ioninit
-
-
+      if(ion_inel)beam='ionp'
       if(beam.eq.'ionp')then
+         if(AA_frame)then
+         rts=dsqrt((q(4,1)+q(4,2))**2-(q(3,1)+q(3,2))**2)
+         s=rts**2
+         else
          rts=rtspa
          s=spa
+         endif
       elseif(beam.eq.'ion')then
          rts=rtsaa
          s=saa
@@ -840,6 +1017,7 @@ ccccccc    initialise histograms
       if(histol)call inithist(nhistmax)
 
 cccccccccccccccc
+
 
       neff=0
       neff0=0

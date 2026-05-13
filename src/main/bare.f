@@ -32,6 +32,10 @@ ccc   calculates 'bare' amplitude, performs integration over gluon Q_t
       include 'jz2.f'
       include 'gaussvars.f'
       include 'nsurv.f'
+      include 'beam.f'
+      include 'ion_inel.f'
+
+
 
 cccccccccccc
 
@@ -146,8 +150,13 @@ cccccccccccc
 
 ccccccccccc
 
-      fg1=fg(x1,q1min,mu)
-      fg2=fg(x2,q2min,mu)
+      if(beam.eq.'ion'.or.beam.eq.'ionp')then
+         fg1=fg(x1n,q1min,mu)
+         fg2=fg(x2n,q2min,mu)
+      else
+         fg1=fg(x1,q1min,mu)
+         fg2=fg(x2,q2min,mu)
+      endif
 
       if(fg1.lt.0d0)goto 334
       if(fg2.lt.0d0)goto 334
@@ -218,12 +227,9 @@ cccccc
 
  333  enddo
 
-
       do p=1,pol
          out(p)=sum(p)
       enddo
-
-c      print*,out(1)
 
       return
       end

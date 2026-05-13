@@ -21,27 +21,28 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccc
 
       if(beam.eq.'ionp'.and.qcd.eqv..true.)ionqcd='coh'
       if(faa.eq.'0X'.or.faa.eq.'X0')then
-         if(ionbreakup)pAAvar=.true.
+         if(wrho)then
+         else
+c         if(ionbreakup)pAAvar=.true.
+         endif
       endif
 
       call ionpars
 
-
       if(ionbreakup)call gdrin
-      call opacpars(rtsnn)
+      call opacpars(rts)
       call rhonorm
       call rhoxycalc
       call tpcalc
       print*,'gdrset...'
       if(ionbreakup)call gdrset
       print*,'...done'
-
       call opacpcalc
       if(beam.eq.'ion')then
 
          if(pAAvar)then
 
-            do ifaa=1,3
+            do ifaa=1,2
 c               print*,'ifaa = ',ifaa
                call opacpbcalc
                call screencalc
@@ -66,7 +67,8 @@ c               print*,'ifaa = ',ifaa
          endif
       endif
       if(qcd)then
-         if(ionqcd.eq.'coh')call screencalc
+c         if(ionqcd.eq.'coh')call screencalc
+         call screencalc
       else
          call screencalc
       endif

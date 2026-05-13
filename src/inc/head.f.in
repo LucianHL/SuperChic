@@ -1,8 +1,8 @@
       character*80 head(30)
       DATA head /'***********************************************',
-     &  '**************  Superchic v5.2 ***************',
+     &  '**************  Superchic v@PROJECT_VERSION@ ***************',
      &  '***********************************************',
-     &  '*   v5.2                     DATE  19.06.2024 *',
+     &  '*   v@PROJECT_VERSION@                     DATE  @RELEASE_DATE@ *',
      &  '*                                             *',
      &  '* Author: Lucian Harland-Lang                 *',
      &  '* (l.harland-lang@ucl.ac.uk)                  *',

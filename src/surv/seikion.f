@@ -6,10 +6,9 @@ ccc   (QCD induced processes)
       double precision tpx,tpy,tp2,tp1,t11,t12,t22,tpint
       double precision betaionex,sc,screeningionint
       double precision p1xp,p1yp,p2xp,p2yp,mu,hphi,del
-      double precision p1x,p1y,p2x,p2y
+      double precision p1x,p1y,p2x,p2y,hk
       integer p,nphi,jqt,jphi,nk,nk1
       complex*16 out(10),x0(10),x0p(10),outt
-c      complex*16 outt(0:4000,10)
       integer icount
       common/icount/icount
 
@@ -26,6 +25,8 @@ c      complex*16 outt(0:4000,10)
       include 'rho0.f'
       include 'ionqcd.f'
       include 'gaussvars.f'
+      include 'ion_inel.f'
+      include 'ion.f'
 
       call setmu(mu)
 
@@ -36,8 +37,6 @@ c      complex*16 outt(0:4000,10)
 
       nphi=s2int*4
 
-      hphi=2d0*pi/dble(nphi)
-
       nk=s2int*4
       nk1=s2int*4
 
@@ -46,11 +45,21 @@ c      complex*16 outt(0:4000,10)
       qtmax=0.5d0
       qtmax1=1.5d0
 
+      hk=qtmax1/dble(nk)
+      hphi=2d0*pi/dble(nphi)
+
       call bare(mu,p1x,p1y,p2x,p2y,x0p)
+
+      if(ion_inel)then
+      do p=1,pol
+         x0p(p)=x0p(p)*dsqrt(an)
+      enddo 
+      endif
 
       if(sfac)then
 
         do jqt=1,nk+nk1
+c         do jqt=1,nk
 
            if(jqt.le.nk)then
               qt=qtmax/2d0*(xikt4(jqt)+1d0)
@@ -58,11 +67,14 @@ c      complex*16 outt(0:4000,10)
               qt=((qtmax1-qtmax)*xikt4(jqt-nk)+qtmax1+qtmax)/2d0
            endif
 
+c           qt=dble(jqt)*hk
+
            sc=screeningionint(qt)
 
            do jphi=1,nphi
 
               phiq=pi*(xiphi4(jphi)+1d0)
+c              phiq=dble(jphi)*hphi
 
                tpx=qt*dcos(phiq)
                tpy=qt*dsin(phiq)
@@ -75,6 +87,8 @@ c      complex*16 outt(0:4000,10)
 
                wt=wt*pi*wiphi4(jphi)
 
+c               wt=hphi*hk*qt
+
                p1xp=p1x-tpx
                p1yp=p1y-tpy
                t12=p1xp**2+p1yp**2
@@ -83,14 +97,24 @@ c      complex*16 outt(0:4000,10)
                t22=p2xp**2+p2yp**2
 
                x00p=betaionex(-t12)*betaionex(-t22)
-
+               
             if(beam.eq.'ion')then
                tp1=tpint(1,dsqrt(t12))+tpint(2,dsqrt(t12))
                tp2=tpint(1,dsqrt(t22))+tpint(2,dsqrt(t22))
-               x00p=x00p*tp1*tp2
+
+               if(ionqcd.eq.'coh')x00p=x00p*tp1*tp2
             elseif(beam.eq.'ionp')then
                tp1=tpint(1,dsqrt(t12))+tpint(2,dsqrt(t12))
+               tp2=tpint(1,dsqrt(t22))+tpint(2,dsqrt(t22))
+               if(ionqcd.eq.'coh')then
+               if(ion_inel.eqv..true..and.ioninel_pbeam.eq.1)then
+               x00p=x00p*tp2
+               elseif(ion_inel.eqv..true..and.ioninel_pbeam.eq.2)then
                x00p=x00p*tp1
+               else
+               x00p=x00p*tp1
+               endif
+               endif
             endif
 
            do p=1,pol
@@ -127,8 +151,18 @@ c      complex*16 outt(0:4000,10)
          if(ionqcd.eq.'coh')x00p=x00p*tp1*tp2
       elseif(beam.eq.'ionp')then
          tp1=tpint(1,dsqrt(t11))+tpint(2,dsqrt(t11))
-         if(ionqcd.eq.'coh')x00p=x00p*tp1
+         tp2=tpint(1,dsqrt(t22))+tpint(2,dsqrt(t22))
+         if(ionqcd.eq.'coh')then
+         if(ion_inel.eqv..true..and.ioninel_pbeam.eq.1)then
+         x00p=x00p*tp2
+         elseif(ion_inel.eqv..true..and.ioninel_pbeam.eq.2)then
+         x00p=x00p*tp1
+         else
+         x00p=x00p*tp1
+         endif
+         endif
       endif
+
 
       do p=1,pol
          out(p)=out(p)+x0p(p)*x00p

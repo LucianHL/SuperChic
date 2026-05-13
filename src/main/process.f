@@ -90,7 +90,7 @@ cccccccccccccccc
       subroutine supinit
       implicit none
       double precision rpsip
-      integer i1
+      integer i1,i
 
       include 'mesflag.f'
       include 'mfact.f'
@@ -2449,19 +2449,38 @@ cccccccccccccccc
          decays=.true.
          nbr=2
 
+         wlp_lep=.false.
+         if(wlp.eq.'lep')wlp_lep=.true.
+
+
          if(wlp.eq.'mu')then
             br(1)=10.63d-2
-         else
+         elseif(wlp.eq.'el')then
             br(1)=10.71d-2
+         elseif(wlp.eq.'lep')then
+            br(1)=21.34d-2 ! just take sum of above two
+         elseif(wlp.eq.'had')then
+            br(1)=67.41d-2
+         else  
+            br(1)=11.38d-2
          endif
+
+         wlm_lep=.false.
+         if(wlm.eq.'lep')wlm_lep=.true.
 
          if(wlm.eq.'mu')then
             br(2)=10.63d-2
-         else
+         elseif(wlm.eq.'el')then
             br(2)=10.71d-2
+         elseif(wlm.eq.'lep')then
+            br(2)=21.34d-2 ! just take sum of above two
+         elseif(wlm.eq.'had')then
+            br(2)=67.41d-2
+         else
+            br(2)=11.38d-2
          endif
 
-
+c
         if(enew)then
             if(diff.eq.'el')i1=5
             if(diff.eq.'sd')i1=6
@@ -2489,18 +2508,31 @@ cccccccccccccccc
             if(wlp.eq.'mu')then
                pdgid(i1+2)=14
                pdgid(i1+3)=-13
-            else
+            elseif(wlp.eq.'el')then
                pdgid(i1+2)=12
                pdgid(i1+3)=-11
+            elseif(wlp.eq.'had')then
+               pdgid(i1+2)=2
+               pdgid(i1+3)=-1
+            else
+               pdgid(i1+2)=16
+               pdgid(i1+3)=-15
             endif
 
             if(wlm.eq.'mu')then
                pdgid(i1+4)=-14
                pdgid(i1+5)=13
-            else
+            elseif(wlm.eq.'el')then
                pdgid(i1+4)=-12
                pdgid(i1+5)=11
+            elseif(wlm.eq.'had')then
+               pdgid(i1+4)=-2
+               pdgid(i1+5)=1
+            else
+               pdgid(i1+4)=-16
+               pdgid(i1+5)=15
             endif
+
 
             istup(i1+2)=1
             istup(i1+3)=1
@@ -2576,7 +2608,9 @@ cccccccccccccccc
       elseif(proc.eq.56)then
          ndim=6
          pol=4
+
          mq=me
+
          if(beam.eq.'prot')then
             offshell=.true.
             if(erec.eq.'lhe')enew=.true.
@@ -2695,7 +2729,7 @@ cccccccccccccccc
             isthep(7)=1
             jdahep(1,5)=6
             jdahep(2,5)=7
-                        nhep=7
+            nhep=7
          endif
 
 
@@ -3266,6 +3300,12 @@ cccccccccccccccc
          gamma=.true.
          nhep=13
       elseif(proc.eq.76)then
+
+         if(beam.eq.'prot')then
+            offshell=.true.
+            if(erec.eq.'lhe')enew=.true.
+         endif
+
          ndim=6
          pol=1   ! slepton
          mq=mcharg
@@ -3274,59 +3314,119 @@ cccccccccccccccc
          decay2=.true.
          call twobodyinit(1,mq,mneut,mmu) ! slepton
          procn='gamma gamma --> Slepton pair (leptonic decay)'
-         pdgid(5)=93
-         pdgid(6)=1000013
-         pdgid(7)=-1000013
-         pdgid(8)=1000022
-         pdgid(9)=13
-         pdgid(10)=1000022
-         pdgid(11)=-13
-         istup(5)=2
-         istup(6)=2
-         istup(7)=2
-         istup(8)=1
-         istup(9)=1
-         istup(10)=1
-         istup(11)=1
-         mothup(1,6)=3
-         mothup(2,6)=0
-         mothup(1,7)=3
-         mothup(2,7)=0
-         mothup(1,8)=4
-         mothup(2,8)=0
-         mothup(1,9)=4
-         mothup(2,9)=0
-         mothup(1,10)=5
-         mothup(2,10)=0
-         mothup(1,11)=5
-         mothup(2,11)=0
-         icolup(1,6)=0
-         icolup(2,6)=0
-         icolup(1,7)=0
-         icolup(2,7)=0
-         icolup(1,8)=0
-         icolup(2,8)=0
-         icolup(1,9)=0
-         icolup(2,9)=0
-         icolup(1,10)=0
-         icolup(2,10)=0
-         icolup(1,11)=0
-         icolup(2,11)=0
-         isthep(5)=2
-         isthep(6)=2
-         isthep(7)=2
-         isthep(8)=1
-         isthep(9)=1
-         isthep(10)=1
-         isthep(11)=1
-         jdahep(1,5)=6
-         jdahep(2,5)=7
-         jdahep(1,6)=8
-         jdahep(2,6)=9
-         jdahep(1,7)=10
-         jdahep(2,7)=11
          gamma=.true.
-         nhep=11
+
+        if(enew)then
+            if(diff.eq.'el')i1=5
+            if(diff.eq.'sd')i1=6
+            if(diff.eq.'dd')i1=7
+                        nhep=i1+1
+            pdgid(i1)=1000013
+            pdgid(i1+1)=-1000013
+            pdgid(i1+2)=1000022
+            pdgid(i1+3)=13
+            pdgid(i1+4)=1000022
+            pdgid(i1+5)=-13
+
+            istup(i1)=2
+            istup(i1+1)=2
+            istup(i1+2)=1
+            istup(i1+3)=1
+            istup(i1+4)=1
+            istup(i1+5)=1
+
+
+            mothup(1,i1)=1
+            mothup(1,i1+1)=1
+            mothup(2,i1)=2
+            mothup(2,i1+1)=2
+            mothup(1,i1+2)=3
+            mothup(2,i1+2)=0
+            mothup(1,i1+3)=3
+            mothup(2,i1+3)=0
+            mothup(1,i1+4)=4
+            mothup(2,i1+4)=0
+            mothup(1,i1+5)=4
+            mothup(2,i1+5)=0
+
+            if(diff.eq.'sd')then
+               mothup(2,i1)=2
+               mothup(2,i1+1)=2
+            endif
+
+            do i=i1,i1+5
+            icolup(1,i)=0
+            icolup(2,i)=0
+            istup(i)=1
+            enddo
+            istup(i1)=1
+            istup(i1+1)=1
+
+            isthep(i1)=1
+            isthep(i1+1)=1
+
+            else
+
+            pdgid(5)=93
+            pdgid(6)=1000013
+            pdgid(7)=-1000013
+            pdgid(8)=1000022
+            pdgid(9)=13
+            pdgid(10)=1000022
+            pdgid(11)=-13
+
+            istup(5)=2
+            istup(6)=2
+            istup(7)=2
+            istup(8)=1
+            istup(9)=1
+            istup(10)=1
+            istup(11)=1
+
+
+
+            mothup(1,6)=3
+            mothup(2,6)=0
+            mothup(1,7)=3
+            mothup(2,7)=0
+            mothup(1,8)=4
+            mothup(2,8)=0
+            mothup(1,9)=4
+            mothup(2,9)=0
+            mothup(1,10)=5
+            mothup(2,10)=0
+            mothup(1,11)=5
+            mothup(2,11)=0
+            icolup(1,6)=0
+            icolup(2,6)=0
+            icolup(1,7)=0
+            icolup(2,7)=0
+            icolup(1,8)=0
+            icolup(2,8)=0
+            icolup(1,9)=0
+            icolup(2,9)=0
+            icolup(1,10)=0
+            icolup(2,10)=0
+            icolup(1,11)=0
+            icolup(2,11)=0
+            isthep(5)=2
+            isthep(6)=2
+            isthep(7)=2
+            isthep(8)=1
+            isthep(9)=1
+            isthep(10)=1
+            isthep(11)=1
+            jdahep(1,5)=6
+            jdahep(2,5)=7
+            jdahep(1,6)=8
+            jdahep(2,6)=9
+            jdahep(1,7)=10
+            jdahep(2,7)=11
+            nhep=11
+            endif
+
+
+         
       elseif(proc.eq.82)then
          enew=.true.
          ndim=6
@@ -3428,6 +3528,7 @@ cccccccccccccccc
       endif
 
       if(beam.eq.'el')offshell=.false. ! need onshell approx for electron beam
+      if(beam.eq.'ionp')offshell=.false. ! need onshell approx for pA beam
 
       return
       end

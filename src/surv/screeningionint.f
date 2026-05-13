@@ -6,12 +6,13 @@
 
       include 'scionpars.f'
       include 'p0Xn.f'
-
+      
       is=2
       if(paavar)is=ifaa+1
 
       rmin=scionarr(1,1)
       rmax=scionarr(1,itot)
+
 
       if(ri.lt.dexp(rmin))then
          screeningionint=scionarr(is,1)
@@ -20,6 +21,7 @@
 
       r=dlog(ri)
       r=r-rmin
+
 
       if(ri.gt.dexp(rmax))then
          screeningionint=0d0
