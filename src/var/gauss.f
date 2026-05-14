@@ -203,7 +203,7 @@
       open(20,file=valuepath(1:length) // '/gauss_weights/g128_w.dat')
       else
       open(10,file=trim(defpath)// '/gauss_weights/g128_x.dat')
-      open(20,file=trim(defpath)// '/gauss_weights/g128_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g128_w.dat')
       endif
 
       do i=1,64
@@ -248,7 +248,7 @@
       open(20,file=valuepath(1:length) // '/gauss_weights/g1024_w.dat')
       else
       open(10,file=trim(defpath)// '/gauss_weights/g1024_x.dat')
-      open(20,file=trim(defpath)// '/gauss_weights/g1024_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g1024_w.dat')
       endif
 
       do i=1,512
@@ -293,7 +293,7 @@
       open(20,file=valuepath(1:length) // '/gauss_weights/g512_w.dat')
       else
       open(10,file=trim(defpath)// '/gauss_weights/g512_x.dat')
-      open(20,file=trim(defpath)// '/gauss_weights/g512_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g512_w.dat')
       endif
 
 
@@ -339,7 +339,7 @@
       open(20,file=valuepath(1:length) // '/gauss_weights/g256_w.dat')
       else
       open(10,file=trim(defpath)// '/gauss_weights/g256_x.dat')
-      open(20,file=trim(defpath)// '/gauss_weights/g256_x.dat')
+      open(20,file=trim(defpath)// '/gauss_weights/g256_w.dat')
       endif
 
       do i=1,128
