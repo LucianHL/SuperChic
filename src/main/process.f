@@ -3352,6 +3352,26 @@ c
             if(diff.eq.'sd')then
                mothup(2,i1)=2
                mothup(2,i1+1)=2
+
+               mothup(1,i1+2)=4
+               mothup(2,i1+2)=0
+               mothup(1,i1+3)=4
+               mothup(2,i1+3)=0
+               mothup(1,i1+4)=5
+               mothup(2,i1+4)=0
+               mothup(1,i1+5)=5
+               mothup(2,i1+5)=0
+            endif
+
+            if(diff.eq.'dd')then
+               mothup(1,i1+2)=5
+               mothup(2,i1+2)=0
+               mothup(1,i1+3)=5
+               mothup(2,i1+3)=0
+               mothup(1,i1+4)=6
+               mothup(2,i1+4)=0
+               mothup(1,i1+5)=6
+               mothup(2,i1+5)=0
             endif
 
             do i=i1,i1+5
