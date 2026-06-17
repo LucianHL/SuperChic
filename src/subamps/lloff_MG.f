@@ -5,7 +5,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       double precision q1(4),q2(4)
       REAL*8 Pmom(0:3,6)
       integer nhel(4)
-      double precision alphaem,qsq1,qsq2
+      double precision alphaem,qsq1,qsq2,beta
       complex*16 zout,AMP_aall_SM,AMP_aaelel
 
       include 'mom.f'
@@ -19,6 +19,7 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       include 'mp.f'
       include 'zoutarr.f'
       include 'tau.f'
+      include 'mq.f'
 
 
 
@@ -62,15 +63,17 @@ ccc   gamma gamma --> l+l- subprocess amplitude - off-shell
       endif
 
 
+      beta=dsqrt(1d0-4d0*mq**2/mx**2)
+
       do i1=1,4
             do i2=1,4
 
             call egcalc(i1,i2)
             zcalc=.true.
-            zout=AMP_aaelel(Pmom,nhel)
+            zout=AMP_aall_SM(Pmom,nhel)
             zout=zout*dsqrt(alphaEM(qsq1)*alphaEM(qsq2))
             zout=zout*1.325070D+02
-            zout=zout*dsqrt(conv)
+            zout=zout*dsqrt(conv)*dsqrt(beta)
             zout=zout
             zoutarr(p,i1,i2)=zout
             
