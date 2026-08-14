@@ -12,16 +12,21 @@ ccc   calls subprocess amplitude
       include 'diss.f'
       include 'eff.f'
 
+
       if(offshell)then
 
          do p=1,pol
             if(proc.eq.54.or.proc.eq.55)then
                   call wwoff_axial(p)
             endif
-            if(proc.eq.56.or.proc.eq.57.or.proc.eq.58)then
+            if(proc.eq.56.or.proc.eq.57)then
                call lloff(p)
-c               call lloff_test(p)
             endif
+
+            if(proc.eq.58)then
+               call lloff_MG(p)
+c               call lloff(p)
+            endif 
 
             if(proc.eq.76)then
                call lloff_test(p)
