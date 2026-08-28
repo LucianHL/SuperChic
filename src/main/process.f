@@ -2514,10 +2514,10 @@ c
             elseif(wlp.eq.'had')then
                pdgid(i1+2)=2
                pdgid(i1+3)=-1
-               icolup(2,i1+2)=501
-               icolup(1,i1+2)=0
-               icolup(2,i1+3)=0
-               icolup(1,i1+3)=501
+               icolup(1,i1+2)=501
+               icolup(2,i1+2)=0
+               icolup(1,i1+3)=0
+               icolup(2,i1+3)=501
             else
                pdgid(i1+2)=16
                pdgid(i1+3)=-15
