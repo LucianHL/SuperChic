@@ -151,6 +151,7 @@ mmpol.o \
 monop.o \
 lloff.o \
 lloff_MG.o \
+wwoff_MG.o \
 spinors.o \
 wwoff.o \
 wwoff_amp.o \
@@ -356,6 +357,38 @@ FFV1_2_ll.o \
 FFV2_0_ll.o \
 FFV2_1_ll.o \
 FFV2_2_ll.o \
+VVV1_0_WW_unitary.o \
+VVV1_2_WW_unitary.o \
+VVV1_3_WW_unitary.o \
+VVVV2_0_WW_unitary.o \
+VSS1_0_WW_FD.o \
+VSS1_2_WW_FD.o \
+VSS1_3_WW_FD.o \
+VSV2_0_WW_FD.o \
+VSV2_2_WW_FD.o \
+VSV2_3_WW_FD.o \
+VVS1_0_WW_FD.o \
+VVS1_2_WW_FD.o \
+VVS1_3_WW_FD.o \
+VVV1_0_WW_FD.o \
+VVV1_2_WW_FD.o \
+VVV1_3_WW_FD.o \
+VVSS1_0_WW_FD.o \
+VVVV2_0_WW_FD.o \
+VVS3_0_WW_EL_SMEFT.o \
+VVS4_0_WW_EL_SMEFT.o \
+VVS4_3_WW_EL_SMEFT.o \
+VVV4_0_WW_EL_SMEFT.o \
+VVV4_2_WW_EL_SMEFT.o \
+VVV4_3_WW_EL_SMEFT.o \
+VVV7_0_WW_EL_SMEFT.o \
+VVV7_2_WW_EL_SMEFT.o \
+VVV7_3_WW_EL_SMEFT.o \
+VVV8_0_WW_EL_SMEFT.o \
+VVV8_2_WW_EL_SMEFT.o \
+VVV8_3_WW_EL_SMEFT.o \
+VVVV15_0_WW_EL_SMEFT.o \
+VVVV8_0_WW_EL_SMEFT.o \  
 
 Model = \
 rw_para.o \
@@ -384,6 +417,7 @@ matrix_aub.o \
 matrix_ad.o \
 matrix_adb.o \
 matrix_aall_SM.o \
+matrix_aaWW_SM.o \
 
 #
 

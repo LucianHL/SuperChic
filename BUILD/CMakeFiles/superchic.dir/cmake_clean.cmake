@@ -1,0 +1,40 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/superchic.dir/src/PDFs/PDF.f.o"
+  "CMakeFiles/superchic.dir/src/PDFs/PDFlha.f.o"
+  "CMakeFiles/superchic.dir/src/PDFs/alphas.f.o"
+  "CMakeFiles/superchic.dir/src/PDFs/inpdf.f.o"
+  "CMakeFiles/superchic.dir/src/diss/CLAS.f.o"
+  "CMakeFiles/superchic.dir/src/diss/Elastic.f.o"
+  "CMakeFiles/superchic.dir/src/diss/F1F2.f.o"
+  "CMakeFiles/superchic.dir/src/diss/F2ev.f.o"
+  "CMakeFiles/superchic.dir/src/diss/apfelinit.f.o"
+  "CMakeFiles/superchic.dir/src/diss/gd-fit-11.f.o"
+  "CMakeFiles/superchic.dir/src/diss/rfit.f.o"
+  "CMakeFiles/superchic.dir/src/init/calcop.f.o"
+  "CMakeFiles/superchic.dir/src/init/calcscreen.f.o"
+  "CMakeFiles/superchic.dir/src/init/dd.f.o"
+  "CMakeFiles/superchic.dir/src/init/dd_test.f.o"
+  "CMakeFiles/superchic.dir/src/init/inithg.f.o"
+  "CMakeFiles/superchic.dir/src/init/initpars.f.o"
+  "CMakeFiles/superchic.dir/src/init/initsud.f.o"
+  "CMakeFiles/superchic.dir/src/init/opacity.f.o"
+  "CMakeFiles/superchic.dir/src/init/opacityint.f.o"
+  "CMakeFiles/superchic.dir/src/init/screening.f.o"
+  "CMakeFiles/superchic.dir/src/init/sdcoh.f.o"
+  "CMakeFiles/superchic.dir/src/init/sdincoh.f.o"
+  "CMakeFiles/superchic.dir/src/int/rann.f.o"
+  "CMakeFiles/superchic.dir/src/main/superchic.f.o"
+  "CMakeFiles/superchic.dir/src/sPDFs/Sudakov.f.o"
+  "CMakeFiles/superchic.dir/src/sPDFs/hg.f.o"
+  "CMakeFiles/superchic.dir/src/surv/readscreen.f.o"
+  "CMakeFiles/superchic.dir/src/surv/screeningint.f.o"
+  "CMakeFiles/superchic.dir/src/var/nf.f.o"
+  "CMakeFiles/superchic.dir/src/var/string.f.o"
+  "bin/superchic"
+  "bin/superchic.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang Fortran)
+  include(CMakeFiles/superchic.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

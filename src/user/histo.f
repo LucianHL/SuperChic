@@ -14,7 +14,7 @@
       subroutine binit(wt)
       implicit none
       double precision wt
-
+      double precision ptl1,ptl2,ptlmax
 
 
       include 'vars.f'
@@ -39,6 +39,17 @@
          call histo1(1,30,mmin,mmax,mx,wt,'mx')
          call histo1(2,30,0d0,ymax,dabs(yx),wt,'yx')
       endif
+
+      ptl1=dsqrt(q(1,9)**2+q(2,9)**2)
+      ptl2=dsqrt(q(1,11)**2+q(2,11)**2)
+
+      if(ptl1.gt.ptl2)then
+         ptlmax=ptl1
+      else  
+         ptlmax=ptl2
+      endif
+
+      call histo1(3,30,0d0,250d0,ptlmax,wt,'ptlmax')
 
       return
       end

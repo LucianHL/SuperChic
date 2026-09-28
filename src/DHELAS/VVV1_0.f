@@ -47,6 +47,9 @@ C
       TMP9 = (V3(3)*V1(3)-V3(4)*V1(4)-V3(5)*V1(5)-V3(6)*V1(6))
       VERTEX = COUP*(TMP5*(-CI*(TMP11)+CI*(TMP12))+(TMP7*(-CI*(TMP15)
      $ +CI*(TMP16))+TMP9*(+CI*(TMP13)-CI*(TMP14))))
+
+c      print*,'vertex = ',V3(3),V3(4),V3(5),V3(6)
+
       END
 
 

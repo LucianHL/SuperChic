@@ -260,6 +260,7 @@ C
 
       mdl_ww=0d0
       mdl_wz=0d0
+c      photi=0
 
       if(scpol)then
          if(nhel(1).eq.1)then

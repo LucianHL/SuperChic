@@ -177,8 +177,12 @@ cx            print*,mu,nu,zout
 
             zoutarr(p,mu,nu)=zout
 
+c            print*,zout
+
          enddo
       enddo
+
+c      print*,''
 
       return
       end

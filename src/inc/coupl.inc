@@ -17,8 +17,10 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 !      PARAMETER(NL=2D0)
 
       DOUBLE PRECISION MDL_MW,MDL_MZ,MDL_MH,MDL_MB,MDL_MT,MDL_MTA
+     &      ,MDL_MW_SMEFT
 
       COMMON/MASSES/ MDL_MW,MDL_MZ,MDL_MH,MDL_MB,MDL_MT,MDL_MTA
+     &      ,MDL_MW_SMEFT
 
 
       DOUBLE PRECISION MDL_WW,MDL_WT,MDL_WZ,MDL_WH
@@ -27,8 +29,12 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
 
       DOUBLE COMPLEX GC_1, GC_2, GC_3, GC_5, GC_35, GC_36, GC_50,
-     $  GC_53, GC_57, GC_58, GC_72, GC_81, GC_100
+     $  GC_53, GC_57, GC_58, GC_72, GC_81, GC_100, GC_6, GC_74, 
+     $  GC_6286, GC_6288, GC_6482, GC_6548,
+     $  GC_6741, GC_7053, GC_7108, GC_7253, GC_7313
 
       COMMON/COUPLINGS/ GC_1, GC_2, GC_3, GC_5, GC_35, GC_36, GC_50,
-     $  GC_53, GC_57, GC_58, GC_72, GC_81, GC_100
+     $  GC_53, GC_57, GC_58, GC_72, GC_81, GC_100, GC_6, GC_74, 
+     $      GC_6286, GC_6288, GC_6482, GC_6548,
+     $      GC_6741, GC_7053, GC_7108, GC_7253, GC_7313
 

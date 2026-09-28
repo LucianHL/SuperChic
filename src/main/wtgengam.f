@@ -12,6 +12,7 @@ ccc   calls subprocess amplitude
 c      include 'zoutarr.f'
       include 'diss.f'
       include 'eff.f'
+      include 'wwpars.f'
 
 
       if(offshell)then
@@ -19,7 +20,12 @@ c      include 'zoutarr.f'
          do p=1,pol
             if(proc.eq.54.or.proc.eq.55)then
 c               if(p.eq.1.or.p.eq.2.or.p.eq.5.or.p.eq.7.or.p.eq.9)then
-                  call wwoff_axial(p)
+c                  call wwoff_axial(p)
+                  if(new_ww)then
+                     call wwoff_MG(p)  
+                  else
+                     call wwoff_axial(p)
+                  endif
 c               endif
             endif
             if(proc.eq.56.or.proc.eq.57.or.proc.eq.58)then
@@ -74,7 +80,7 @@ c            print*,''
       elseif(proc.eq.60)then
           call higgsgam(mx,pp,mm,pm,mp)
             ppa(1)=pp
-            mma(1)=mm
+            mma(1)=mm 
             pma(1)=pm
             mpa(1)=mp
             pincarr(1)=cdabs(pp)**2+cdabs(mm)**2

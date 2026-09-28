@@ -76,6 +76,49 @@ C
 
         MDL_CW__EXP__2 = MDL_CW**2
 
+        MDL_SQRT__GF = SQRT(DCMPLX(MDL_GF))
+
+        MDL_NB__2__EXP__0_25 = 2.000000D+00**2.500000D-01
+
+        MDL_STH2 = 5.000000D-01-SQRT(DCMPLX(1.000000D+00-(2.000000D+00
+     $   *MDL_AEW*PI*MDL_SQRT__2)/(MDL_GF*MDL_MZ__EXP__2)))/2.000000D
+     $   +00
+
+        MDL_SQRT__STH2 = SQRT(DCMPLX(MDL_STH2))
+
+        MDL_STH = MDL_SQRT__STH2
+
+        MDL_CTH = SQRT(DCMPLX(1.000000D+00-MDL_STH2))
+
+        MDL_VEVHAT = 1.000000D+00/(MDL_NB__2__EXP__0_25*MDL_SQRT__GF)
+
+        MDL_VEVHAT__EXP__2 = MDL_VEVHAT**2
+
+        MDL_VEVHAT__EXP__3 = MDL_VEVHAT**3
+
+        MDL_CTH__EXP__2 = MDL_CTH**2
+
+        MDL_STH__EXP__2 = MDL_STH**2
+
+        MDL_CTH__EXP__3 = MDL_CTH**3
+
+        MDL_STH__EXP__3 = MDL_STH**3
+
+        MDL_DMZ2 = (2.000000D+00*MDL_CHWB
+     $   *MDL_CTH*MDL_STH*MDL_VEVHAT__EXP__2)/MDL_LAMBDASMEFT__EXP__2
+
+
+        MDL_DGW = -(MDL_CTH__EXP__2*(MDL_DMZ2+(2.000000D+00
+     $   *MDL_CHWB*MDL_STH__EXP__3*MDL_VEVHAT__EXP__2)/(MDL_CTH
+     $   *MDL_LAMBDASMEFT__EXP__2)))/(2.000000D+00*(1.000000D+00
+     $   -2.000000D+00*MDL_STH__EXP__2))
+
+         MDL_MWSM = MDL_CTH*MDL_MZ
+
+        MDL_DMW = MDL_DGW*MDL_MWSM
+
+        MDL_MW_SMEFT = MDL_DMW+MDL_MWSM
+
       ENDIF
 C
 C     Parameters that should be recomputed at an event by even basis.

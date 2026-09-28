@@ -1,0 +1,40 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/init.dir/src/PDFs/PDF.f.o"
+  "CMakeFiles/init.dir/src/PDFs/PDFlha.f.o"
+  "CMakeFiles/init.dir/src/PDFs/alphas.f.o"
+  "CMakeFiles/init.dir/src/PDFs/inpdf.f.o"
+  "CMakeFiles/init.dir/src/diss/CLAS.f.o"
+  "CMakeFiles/init.dir/src/diss/Elastic.f.o"
+  "CMakeFiles/init.dir/src/diss/F1F2.f.o"
+  "CMakeFiles/init.dir/src/diss/F2ev.f.o"
+  "CMakeFiles/init.dir/src/diss/apfelinit.f.o"
+  "CMakeFiles/init.dir/src/diss/gd-fit-11.f.o"
+  "CMakeFiles/init.dir/src/diss/rfit.f.o"
+  "CMakeFiles/init.dir/src/init/calcop.f.o"
+  "CMakeFiles/init.dir/src/init/calcscreen.f.o"
+  "CMakeFiles/init.dir/src/init/dd.f.o"
+  "CMakeFiles/init.dir/src/init/dd_test.f.o"
+  "CMakeFiles/init.dir/src/init/init.f.o"
+  "CMakeFiles/init.dir/src/init/inithg.f.o"
+  "CMakeFiles/init.dir/src/init/initpars.f.o"
+  "CMakeFiles/init.dir/src/init/initsud.f.o"
+  "CMakeFiles/init.dir/src/init/opacity.f.o"
+  "CMakeFiles/init.dir/src/init/opacityint.f.o"
+  "CMakeFiles/init.dir/src/init/screening.f.o"
+  "CMakeFiles/init.dir/src/init/sdcoh.f.o"
+  "CMakeFiles/init.dir/src/init/sdincoh.f.o"
+  "CMakeFiles/init.dir/src/int/rann.f.o"
+  "CMakeFiles/init.dir/src/sPDFs/Sudakov.f.o"
+  "CMakeFiles/init.dir/src/sPDFs/hg.f.o"
+  "CMakeFiles/init.dir/src/surv/readscreen.f.o"
+  "CMakeFiles/init.dir/src/surv/screeningint.f.o"
+  "CMakeFiles/init.dir/src/var/nf.f.o"
+  "CMakeFiles/init.dir/src/var/string.f.o"
+  "bin/init"
+  "bin/init.pdb"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang Fortran)
+  include(CMakeFiles/init.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

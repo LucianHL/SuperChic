@@ -697,7 +697,8 @@ ccccccccccccccccccccccccccccccccccccccccccc
                 call genpolaxial1(6,ewp)
                 call genpolaxial1(7,ewm)
              endif
-             wgauge='axial'
+             wgauge='unitary'
+c             wgauge='axial'
           endif
 
           if(proc.eq.40.or.proc.eq.43.or.proc.eq.45)then
@@ -1020,6 +1021,10 @@ ccccccccc
          endif
 
          wtt=wtt/sym
+
+
+c         print*,wtt
+c         stop
 
          if(photo)goto 888
          if(gamma)goto 888

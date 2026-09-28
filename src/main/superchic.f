@@ -120,6 +120,7 @@ ccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
       include 'p0Xn.f'
       include 'mxs.f'
       include 'tau.f'
+      include '../MODEL/input.inc'
       character*10 tdiff,tbeam,bp
 
       call EXECUTE_COMMAND_LINE('mkdir -p inputs evrecs outputs')
@@ -298,7 +299,17 @@ c      read(*,*)elcoll
       read(*,*)calc_tau_coeff
       read(*,*)tau_mom
       read(*,*)tau_coeff
-
+      read(*,*)
+      read(*,*)new_ww
+      read(*,*)ww_SM
+      read(*,*)ww_NP2
+      read(*,*)ww_noSM
+      read(*,*)MDL_LAMBDASMEFT__EXP__2
+      read(*,*)MDL_CW_SMEFT
+      read(*,*)MDL_CHW
+      read(*,*)MDL_CHB
+      read(*,*)MDL_CHWB
+          
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       tdiff=diff
       if(diff.eq.'sda'.or.diff.eq.'sdb')then
@@ -633,6 +644,13 @@ cccccccccccccccccccccccccc
 
       call inpdf
       call supinit
+
+c      MDL_LAMBDASMEFT__EXP__2=1d3
+c      MDL_CW_SMEFT=0d0
+c      MDL_CHW=0D0
+c      MDL_CHB=0d0
+c      MDL_CHWB=0d0
+c      ww_SM=.true.
 
       if(proc.eq.54.or.proc.eq.55.or.proc.eq.58)then
          call setpara('param_card.dat') !set parameters for MG calculation

@@ -153,7 +153,6 @@ ccccc Correct (stable) scal pol
       if(qin.eq.4)call SMATRIX_adb(Pmom,MATELEM)
 
 
-
       if(pflag.eq.1)then
          call F1F2(diss1,xbi,qsqi2,mdiss1,f1,f2)
       else
@@ -183,6 +182,7 @@ c      out_tran=out_tran*f2*(qi2(1)**2+qi2(2)**2)/qsqi2
 
       out_t=out_tran
       out_t=out_t+out_long
+
 
 
       out_t=out_t*conv

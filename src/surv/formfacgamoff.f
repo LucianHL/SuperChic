@@ -107,6 +107,7 @@ ccccccccccc
 
       if(diff.eq.'sd')then
 
+
          if(diss1)then
             if(qsq1.gt.1d0.and.mdiss1.gt.dsqrt(3.5d0))then
                out=0d0
@@ -120,6 +121,7 @@ ccccccccccc
 
                zout=zout*dsqrt(alphaEM(qsq1)*132.5d0)
 
+c               zout=0d0
 
                return
             endif
@@ -135,6 +137,8 @@ ccccccccccc
                zout=dsqrt(dabs(out))
 
                zout=zout*dsqrt(alphaEM(qsq2)*132.5d0)
+
+c               zout=0d0
 
                return
             endif

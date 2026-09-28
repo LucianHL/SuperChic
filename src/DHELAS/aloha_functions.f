@@ -2107,3 +2107,103 @@ c     local variable
       enddo
       return
       end
+
+      subroutine multiply_propagator_factor(win, m, wout)
+
+      implicit none
+   
+      double complex win(7)
+      double precision m
+      double complex wout(7)
+   
+   
+      double complex q(0:4)
+      double precision n(0:4)
+      double precision nq
+      double complex w0(0:4), w1(0:4)
+   
+      double precision d
+      double complex js1, js2
+   
+      double complex ci
+      parameter (ci=(0.d0,1.d0))
+   
+      wout(1:2) = win(1:2)
+      
+      q(0) = -dble(win(1))
+      q(1) = -dble(win(2))
+      q(2) = -dimag(win(2))
+      q(3) = -dimag(win(1))
+      q(4) = -ci*m
+         
+      call define_gauge_dir(q,n)
+
+      w0(0:4) = win(3:7)
+      
+      nq = n(0)*dble(q(0))-n(1)*dble(q(1))-n(2)*dble(q(2))
+     &   -n(3)*dble(q(3))
+
+      call calculate_propagator_factor(q, m, d)
+      
+      js1 = (n(0)*w0(0)-n(1)*w0(1)-n(2)*w0(2)-n(3)*w0(3)) / nq
+      js2 = (q(0)*w0(0)-q(1)*w0(1)-q(2)*w0(2)-q(3)*w0(3) 
+     &     - dconjg(q(4))*w0(4)) / nq
+
+      w1(0:4) = w0(0:4)-q(0:4)*js1-n(0:4)*js2
+
+      wout(3:7) = w1(0:4)
+      
+      end
+
+      subroutine define_gauge_dir(q, n)
+
+      implicit none
+
+      double complex q(0:4)
+      double precision n(0:4)
+
+      double precision qabs2, qabs
+
+      qabs2 = dble(q(1))**2+dble(q(2))**2+dble(q(3))**2
+
+      if (qabs2>0.d0) then
+
+         qabs = sqrt(qabs2)
+         n(0) = sign(1.d0,dble(q(0)))
+         n(1) = -dble(q(1))/qabs
+         n(2) = -dble(q(2))/qabs
+         n(3) = -dble(q(3))/qabs
+         n(4) = 0.d0
+               
+      else
+            
+         n(0) = sign(1.d0,dble(q(0)))
+         n(1) = 0.d0
+         n(2) = 0.d0
+         n(3) = sign(-1.d0,dble(q(0)))
+         n(4) = 0.d0
+         
+      endif
+
+      return
+
+      end
+
+      subroutine calculate_propagator_factor(q,mass,d)
+
+      implicit none
+
+      double complex q(0:4)
+      double precision mass
+
+      double precision d
+
+      double precision q2
+
+      q2 = dble(q(0))**2 -(dble(q(1))**2 + dble(q(2))**2+dble(q(3))**2 )
+
+      d = 1.d0/(q2-mass**2)
+
+      return
+      end
+      
