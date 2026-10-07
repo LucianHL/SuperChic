@@ -11,8 +11,8 @@
 #  PYTHIA8_lhapdfdummy_LIBRARY
 #  PYTHIA8_LIBRARIES (not cached) : includes 3 libraries above; not to be used if lhapdf is used
 
+set(PYTHIA8_SEARCH_DIRS "")
 if (PYTHIA8_ROOT_DIR OR PYTHIA8_DIR OR (DEFINED ENV{PYTHIA8_ROOT_DIR}) OR (DEFINED ENV{PYTHIA8_DIR}) )
-  set(PYTHIA8_SEARCH_DIRS "" CACHE STRING "" FORCE)
   if (PYTHIA8_ROOT_DIR)
     list (APPEND PYTHIA8_SEARCH_DIRS "${PYTHIA8_ROOT_DIR}" )
   endif()
