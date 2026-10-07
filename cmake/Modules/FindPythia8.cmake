@@ -39,7 +39,7 @@ else()
   find_library(PYTHIA8_lhapdfdummy_LIBRARY NAMES lhapdfdummy PATH_SUFFIXES lib lib64 ../lib ../lib64)
 endif()
 
-if(PYTHIA8_INCLUDE_DIR AND PYTHIA8_XMLDOC_DIR)
+if(PYTHIA8_INCLUDE_DIR AND PYTHIA8_XMLDOC_DIR)	
   file(READ ${PYTHIA8_XMLDOC_DIR}/Version.xml versionstr)
   string(REGEX REPLACE ".*Pythia:versionNumber.*default.*[0-9][.]([0-9]+).*" "\\1" PYTHIA8_VERSION "${versionstr}")
   set(PYTHIA8_VERSION "8.${PYTHIA8_VERSION}")
@@ -67,6 +67,13 @@ if(Pythia8_FOUND AND NOT TARGET Pythia8::Pythia8)
     add_library(Pythia8::Pythia8 UNKNOWN IMPORTED)
     set_target_properties(Pythia8::Pythia8 PROPERTIES
         IMPORTED_LOCATION "${PYTHIA8_LIBRARY}"
+        INTERFACE_INCLUDE_DIRECTORIES "${PYTHIA8_INCLUDE_DIR}"
+    )
+endif()
+if(Pythia8_FOUND AND PYTHIA8_lhapdfdummy_LIBRARY AND NOT TARGET Pythia8::lhapdfdummy)
+    add_library(Pythia8::lhapdfdummy UNKNOWN IMPORTED)
+    set_target_properties(Pythia8::lhapdfdummy PROPERTIES
+        IMPORTED_LOCATION "${PYTHIA8_lhapdfdummy_LIBRARY}"
         INTERFACE_INCLUDE_DIRECTORIES "${PYTHIA8_INCLUDE_DIR}"
     )
 endif()
