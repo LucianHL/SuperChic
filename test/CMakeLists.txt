@@ -33,8 +33,11 @@ target_link_libraries(shower PRIVATE HepMC3::HepMC3 Pythia8::Pythia8 )
 target_compile_features(shower PRIVATE cxx_std_11)
 message(STATUS "SuperChic test: PYTHIA8_VERSION=${PYTHIA8_VERSION} PYTHIA8_LIBRARIES=${PYTHIA8_LIBRARIES} PYTHIA8_INCLUDE_DIRS=${PYTHIA8_INCLUDE_DIRS}")
 
+# pdfdata sits next to xmldoc in the discovered Pythia8 installation
+get_filename_component(PYTHIA8_LHA_DIR "${PYTHIA8_XMLDOC_DIR}/../pdfdata" ABSOLUTE)
 
-set(STANDARDENVIRONMENT "SUPERCHIC_DATA_PATH=${PROJECT_SOURCE_DIR}/share/SuperChic;PYTHIA8_XMLDOC_DIR=${PYTHIA8_XMLDOC_DIR};PYTHIA8_LHA_DIR=${PYTHIA8_ROOT_DIR}/share/Pythia8/pdfdata")
+
+set(STANDARDENVIRONMENT "SUPERCHIC_DATA_PATH=${PROJECT_SOURCE_DIR}/share/SuperChic;PYTHIA8_XMLDOC_DIR=${PYTHIA8_XMLDOC_DIR};PYTHIA8_LHA_DIR=${PYTHIA8_LHA_DIR}")
 
 if (SUPERCHIC_ENABLE_RIVET)
 find_package (Python 3 COMPONENTS  Development Interpreter)
