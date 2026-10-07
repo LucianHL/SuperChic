@@ -10,38 +10,39 @@
 #  PYTHIA8_hepmcinterface_LIBRARY
 #  PYTHIA8_lhapdfdummy_LIBRARY
 #  PYTHIA8_LIBRARIES (not cached) : includes 3 libraries above; not to be used if lhapdf is used
-set(TEST_PYTHIA8_ROOT_DIR  "" ${PYTHIA8_ROOT_DIR})
-IF(TEST_PYTHIA8_ROOT_DIR STREQUAL "")
-IF(DEFINED ENV{PYTHIA8_ROOT_DIR})
-set(PYTHIA8_ROOT_DIR  $ENV{PYTHIA8_ROOT_DIR})
+
+set(PYTHIA8_SEARCH_DIRS "")
+if (PYTHIA8_ROOT_DIR OR PYTHIA8_DIR OR (DEFINED ENV{PYTHIA8_ROOT_DIR}) OR (DEFINED ENV{PYTHIA8_DIR}) )
+  if (PYTHIA8_ROOT_DIR)
+    list (APPEND PYTHIA8_SEARCH_DIRS "${PYTHIA8_ROOT_DIR}" )
+  endif()
+  if (PYTHIA8_DIR)
+    list (APPEND PYTHIA8_SEARCH_DIRS "${PYTHIA8_DIR}" )
+  endif()
+  if (DEFINED ENV{PYTHIA8_ROOT_DIR})
+    list (APPEND PYTHIA8_SEARCH_DIRS "$ENV{PYTHIA8_ROOT_DIR}" )
+  endif()
+  if (DEFINED ENV{PYTHIA8_DIR})
+    list (APPEND PYTHIA8_SEARCH_DIRS "$ENV{PYTHIA8_DIR}" )
+endif()
+endif()
+
+if (PYTHIA8_SEARCH_DIRS)
+  find_path(PYTHIA8_INCLUDE_DIR Pythia.h Pythia8/Pythia.h PATHS  ${PYTHIA8_SEARCH_DIRS} PATH_SUFFIXES include  NO_DEFAULT_PATH)
+  find_path(PYTHIA8_XMLDOC_DIR Version.xml PATHS ${PYTHIA8_SEARCH_DIRS} PATH_SUFFIXES xmldoc  share/pythia8/xmldoc share/Pythia8/xmldoc share/pythia8-data/xmldoc  share/doc/packages/pythia/xmldoc NO_DEFAULT_PATH)
+  find_library(PYTHIA8_LIBRARY NAMES pythia8 Pythia8 PATHS ${PYTHIA8_SEARCH_DIRS} PATH_SUFFIXES lib lib64 NO_DEFAULT_PATH)
+  find_library(PYTHIA8_lhapdfdummy_LIBRARY NAMES lhapdfdummy PATHS ${PYTHIA8_SEARCH_DIRS} PATH_SUFFIXES lib lib64 NO_DEFAULT_PATH)
 else()
-if ( ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-set(PYTHIA8_ROOT_DIR  "/usr/local")
-else()
-set(PYTHIA8_ROOT_DIR  "/usr")
+  find_path(PYTHIA8_INCLUDE_DIR Pythia.h Pythia8/Pythia.h PATH_SUFFIXES include)
+  find_path(PYTHIA8_XMLDOC_DIR Version.xml PATH_SUFFIXES xmldoc  share/pythia8/xmldoc share/Pythia8/xmldoc share/pythia8-data/xmldoc  share/doc/packages/pythia/xmldoc)
+  find_library(PYTHIA8_LIBRARY NAMES pythia8 Pythia8 PATH_SUFFIXES lib lib64 ../lib ../lib64)
+  find_library(PYTHIA8_lhapdfdummy_LIBRARY NAMES lhapdfdummy PATH_SUFFIXES lib lib64 ../lib ../lib64)
 endif()
 
-endif()
-endif()
-
-find_path(PYTHIA8_INCLUDE_DIR Pythia.h Pythia8/Pythia.h
-  HINTS  ${PYTHIA8_ROOT_DIR}/include)
-
-find_path(PYTHIA8_XMLDOC_DIR Version.xml
-  HINTS  ${PYTHIA8_ROOT_DIR}/xmldoc  ${PYTHIA8_ROOT_DIR}/share/Pythia8/xmldoc ${PYTHIA8_ROOT_DIR}/share/pythia8-data/xmldoc  ${PYTHIA8_ROOT_DIR}/share/doc/packages/pythia/xmldoc )
-
-if(PYTHIA8_INCLUDE_DIR AND PYTHIA8_XMLDOC_DIR)
+if(PYTHIA8_INCLUDE_DIR AND PYTHIA8_XMLDOC_DIR)	
   file(READ ${PYTHIA8_XMLDOC_DIR}/Version.xml versionstr)
   string(REGEX REPLACE ".*Pythia:versionNumber.*default.*[0-9][.]([0-9]+).*" "\\1" PYTHIA8_VERSION "${versionstr}")
   set(PYTHIA8_VERSION "8.${PYTHIA8_VERSION}")
-  find_library(PYTHIA8_LIBRARY NAMES pythia8 Pythia8
-    HINTS ${PYTHIA8_ROOT_DIR}/lib
-          ${PYTHIA8_ROOT_DIR}/lib64)
-
-  find_library(PYTHIA8_lhapdfdummy_LIBRARY NAMES lhapdfdummy
-    HINTS ${PYTHIA8_ROOT_DIR}/lib
-          ${PYTHIA8_ROOT_DIR}/lib64)
-
   set(PYTHIA8_INCLUDE_DIRS ${PYTHIA8_INCLUDE_DIR} ${PYTHIA8_INCLUDE_DIR}/Pythia8 ${PYTHIA8_INCLUDE_DIR}/Pythia8Plugins)
   set(PYTHIA8_LIBRARIES ${PYTHIA8_LIBRARY})
   if(PYTHIA8_VERSION VERSION_LESS 8.200)
@@ -65,7 +66,14 @@ FIND_PACKAGE_HANDLE_STANDARD_ARGS(Pythia8 REQUIRED_VARS PYTHIA8_INCLUDE_DIR PYTH
 if(Pythia8_FOUND AND NOT TARGET Pythia8::Pythia8)
     add_library(Pythia8::Pythia8 UNKNOWN IMPORTED)
     set_target_properties(Pythia8::Pythia8 PROPERTIES
-        IMPORTED_LOCATION "${PYTHIA8_LIBRARIES}"
+        IMPORTED_LOCATION "${PYTHIA8_LIBRARY}"
+        INTERFACE_INCLUDE_DIRECTORIES "${PYTHIA8_INCLUDE_DIR}"
+    )
+endif()
+if(Pythia8_FOUND AND PYTHIA8_lhapdfdummy_LIBRARY AND NOT TARGET Pythia8::lhapdfdummy)
+    add_library(Pythia8::lhapdfdummy UNKNOWN IMPORTED)
+    set_target_properties(Pythia8::lhapdfdummy PROPERTIES
+        IMPORTED_LOCATION "${PYTHIA8_lhapdfdummy_LIBRARY}"
         INTERFACE_INCLUDE_DIRECTORIES "${PYTHIA8_INCLUDE_DIR}"
     )
 endif()
